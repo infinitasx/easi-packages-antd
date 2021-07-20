@@ -1,5 +1,5 @@
 <template>
-  <easi-layout v-model:show="show" :userName="'张三'" @setSetting="setSetting"></easi-layout>
+  <easi-text></easi-text>
 </template>
 
 <script lang="ts">
