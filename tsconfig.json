@@ -17,6 +17,6 @@
     },
     "lib": ["esnext", "dom"]
   },
-  "include": ["packages/**/*.ts", "packages/**/*.tsx", "packages/**/*.vue", "typings/*", "src/*"],
+  "include": ["packages/**/*.ts", "packages/**/*.tsx", "packages/**/*.vue", "typings/*"],
   "exclude": ["node_modules"]
 }

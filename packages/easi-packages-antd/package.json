@@ -1,0 +1,12 @@
+{
+  "name": "easi-packages-antd",
+  "license": "ISC",
+  "version": "0.0.1",
+  "dependencies": {
+    "@easi-packages-antd/demo": "^0.0.0",
+    "@easi-packages-antd/text": "^0.0.0"
+  },
+  "devDependencies": {
+    "jest": "^27.0.6"
+  }
+}

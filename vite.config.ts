@@ -16,10 +16,10 @@ export default () => {
     build: {
       sourcemap: false,
       lib: {
-        entry: "packages/index.ts",
+        entry: resolve(__dirname, "packages/easi-packages-antd/index.ts"),
         name: "EASI",
         formats: ["cjs", "es"],
-        fileName: "index",
+        fileName: "index.js",
       },
       outDir: "dist",
       rollupOptions: {
@@ -45,14 +45,24 @@ export default () => {
       },
     },
     plugins: [
-      vue(),
+      vue({
+        include: [/\.vue$/, /\.md$/],
+      }),
       dts({
         exclude: ["node_modules"],
         outputDir: "lib",
         beforeWriteFile(filePath, content) {
           if (filePath.includes("packages")) {
-            filePath = filePath.replace(/\/packages\/+/g, "/");
+            console.log(filePath);
+            if (filePath.includes("easi-packages-antd")) {
+              filePath = filePath.replace(/\/packages\/easi-packages-antd\/+/g, "/");
+            } else if (filePath.includes("utils")) {
+              filePath = filePath.replace(/\/packages\/+/g, "/");
+            } else {
+              filePath = filePath.replace(/\/packages\/+/g, "/easi-");
+            }
           }
+
           return { filePath, content };
         },
       }),
