@@ -1,5 +1,5 @@
 import vue from "rollup-plugin-vue";
-import css from "rollup-plugin-css-only";
+import scss from "rollup-plugin-scss";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import esbuild from "rollup-plugin-esbuild";
 import { getPackagesSync } from "@lerna/project";
@@ -34,7 +34,7 @@ export default inputs.map((name) => {
       },
     ],
     plugins: [
-      css(),
+      scss(),
       vue({
         target: "browser",
         css: false,
