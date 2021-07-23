@@ -1,0 +1,180 @@
+<template>
+  <!--  <slot name="trigger" />-->
+  <a-modal
+      :visible="visible === undefined ? symbolVisible : visible"
+      :title="title"
+      :bodyStyle="autoHeight ? bodyStyle : { ...bodyScrollStyle, ...bodyStyle }"
+      :closable="closable"
+      :confirmLoading="autoLoading || confirmLoading"
+      :destroyOnClose="destroyOnClose"
+      :keyboard="keyboard"
+      :maskClosable="maskClosable"
+      :width="width"
+      :getContainer="getContainer"
+      :afterClose="afterClose"
+      class="modal-top"
+      :class="{ 'no-footer': !footer }"
+      @cancel="onCancel"
+  >
+    <slot></slot>
+    <template #footer>
+      <slot name="footer"></slot>
+      <div class="footer" v-if="!$slots.footer && footer">
+        <a-button v-if="showCancel" @click="onCancel">
+          {{ cancelText || $t('cancel') }}
+        </a-button>
+        <a-button
+            v-if="showOk"
+            :type="okType"
+            :loading="autoLoading || confirmLoading"
+            @click="onConfirm"
+        >
+          {{ okText || $t('confirm') }}
+        </a-button>
+      </div>
+    </template>
+  </a-modal>
+</template>
+
+<script lang="ts">
+import { ref, toRefs, watch, PropType } from 'vue';
+import { defineComponent } from 'vue';
+import { createNamespace } from "../utils/create";
+
+export default defineComponent({
+  name: createNamespace('Modal'),
+  emits: ['ok', 'cancel', 'update:visible', 'show'],
+  props: {
+    visible: {
+      type: Boolean,
+      default: undefined,
+    },
+    title: {
+      type: String,
+      default: '',
+    },
+    bodyStyle: Object,
+    showCancel: {
+      type: Boolean,
+      default: true,
+    },
+    showOk: {
+      type: Boolean,
+      default: true,
+    },
+    cancelText: {
+      type: String,
+    },
+    okText: {
+      type: String,
+    },
+    okType: {
+      type: String,
+      default: 'primary',
+    },
+    closable: {
+      default: true,
+      type: Boolean,
+    },
+    afterClose: Function,
+    confirmLoading: {
+      type: Boolean,
+      default: false,
+    },
+    destroyOnClose: {
+      type: Boolean,
+      default: true,
+    },
+    keyboard: {
+      type: Boolean,
+      default: false,
+    },
+    maskClosable: {
+      type: Boolean,
+      default: false,
+    },
+    width: {
+      type: [String, Number],
+      default: 1000,
+    },
+    getContainer: {
+      type: Function,
+      default: () => document.body,
+    },
+    // 如果点击确认按钮需要异步关闭弹框，则传入此参数 ():Promise => {}
+    handleOk: {
+      type: Function,
+      default: null,
+    },
+    // 是否去掉弹框的滚动条，撑开高度
+    autoHeight: {
+      type: Boolean as PropType<boolean>,
+      default: true,
+    },
+    footer: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  setup(props, { emit }) {
+    const { handleOk, visible } = toRefs(props);
+    const symbolVisible = ref(false);
+
+    const bodyScrollStyle = {
+      maxHeight: 'calc(100vh - 160px)',
+      overflow: 'auto',
+    };
+
+    const showModal = () => {
+      symbolVisible.value = true;
+      emit('update:visible', true);
+      emit('show');
+    };
+
+    watch(
+        () => visible.value,
+        newVal => {
+          if (newVal) {
+            emit('update:visible', true);
+            emit('show');
+          }
+        },
+    );
+
+    // 管理异步关闭弹框的loading
+    const autoLoading = ref(false);
+
+    const onCancel = () => {
+      symbolVisible.value = false;
+      emit('update:visible', false);
+      emit('cancel');
+    };
+
+    const onConfirm = async () => {
+      if (handleOk.value && typeof handleOk.value === 'function') {
+        try {
+          autoLoading.value = true;
+          await handleOk.value();
+          autoLoading.value = false;
+          onCancel();
+        } catch (e) {
+          console.log(e);
+          autoLoading.value = false;
+        }
+      } else {
+        emit('ok');
+        onCancel();
+      }
+    };
+
+    return {
+      symbolVisible,
+      autoLoading,
+      bodyScrollStyle,
+      onConfirm,
+      onCancel,
+      showModal,
+    };
+  },
+});
+</script>

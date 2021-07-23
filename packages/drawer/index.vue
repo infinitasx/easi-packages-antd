@@ -1,0 +1,84 @@
+<template>
+  <a-drawer
+      v-bind="$attrs"
+      :visible="visible"
+      :width="width"
+      :maskClosable="false"
+      :body-style="computedBodyStyle"
+      @close="handleClose"
+  >
+    <slot name="default"></slot>
+    <div class="drawer-footer" v-if="$slots.footer">
+      <slot name="footer"></slot>
+    </div>
+  </a-drawer>
+</template>
+
+<script lang="ts">
+import { defineComponent, computed, toRefs, watch } from 'vue';
+import { createNamespace } from "../utils/create";
+
+export default defineComponent({
+  name: createNamespace('Drawer'),
+  emits: ['update:visible', 'close', 'show'],
+  props: {
+    visible: {
+      default: false,
+      type: Boolean,
+    },
+    width: {
+      default: '500px',
+      type: String,
+    },
+    bodyStyle: {
+      default: () => ({}),
+      type: Object,
+    },
+  },
+  setup(props, { emit, slots }) {
+    const { bodyStyle, visible } = toRefs(props);
+
+    const computedBodyStyle = computed(() => {
+      return slots.footer ? { ...bodyStyle, paddingBottom: '55px' } : bodyStyle;
+    });
+
+    watch(
+        () => visible.value,
+        (newVal: boolean) => {
+          if (newVal) {
+            emit('show');
+          }
+        },
+    );
+
+    return {
+      computedBodyStyle,
+      handleClose() {
+        emit('update:visible', false);
+        emit('close');
+      },
+    };
+  },
+});
+</script>
+
+<style lang="scss" scoped>
+.has-footer {
+  padding-bottom: 35px;
+}
+[data-pro-theme='antdv-pro-theme-dark'] .drawer-footer {
+  background-color: #1f1f1f;
+  border-color: #303030;
+}
+.drawer-footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #e9e9e9;
+  padding: 10px 16px;
+  background: #fff;
+  text-align: right;
+  z-index: 1;
+}
+</style>

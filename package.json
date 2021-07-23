@@ -6,9 +6,6 @@
   "main": "dist/index.es.js",
   "module": "dist/index.cjs.js",
   "typings": "lib/index.d.ts",
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
     "serve": "vite",
     "gc": "bash ./scripts/gc.sh",
@@ -23,6 +20,7 @@
     "@babel/preset-env": "^7.14.7",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.0.2",
+    "@types/node": "^16.3.3",
     "@vitejs/plugin-vue": "^1.2.5",
     "@vue/compiler-sfc": "^3.1.4",
     "autoprefixer": "^10.3.1",
@@ -43,9 +41,15 @@
   },
   "peerDependencies": {
     "ant-design-vue": "^2.1.x",
-    "vue": "^3.1.x"
+    "easi-web-utils": "https://github.com/infinitasx/easi-web-utils.git#main",
+    "vue": "^3.1.x",
+    "vue-i18n": "9",
+    "vue-router": "^4.0.10"
   },
   "dependencies": {
-    "ant-design-vue": "^2.2.2"
+    "ant-design-vue": "^2.2.2",
+    "easi-web-utils": "https://github.com/infinitasx/easi-web-utils.git#main",
+    "vue-i18n": "^9.1.7",
+    "vue-router": "^4.0.10"
   }
 }

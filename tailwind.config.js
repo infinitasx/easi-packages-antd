@@ -23,7 +23,7 @@ module.exports = {
         28: ["28px", { lineHeight: "32px" }],
       },
       width: {
-        100: "100px",
+        110: "110px",
       },
       minWidth: {
         "1/5": "20%",

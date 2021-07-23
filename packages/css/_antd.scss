@@ -1,0 +1,63 @@
+.ant-dropdown-trigger {
+  cursor: pointer;
+}
+
+.ant-drawer-wrapper-body {
+  display: flex;
+  flex-direction: column;
+
+  .ant-drawer-body {
+    flex: 1;
+    overflow-y: auto;
+  }
+}
+
+.ant-layout-sider .ant-layout-sider-children {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.page-breadcrumb-wrap {
+  background: #fff;
+}
+
+.anticon svg {
+  display: block !important;
+}
+
+.ant-modal-close,
+.ant-drawer-close {
+  outline: none !important;
+}
+
+.ant-tree li .ant-tree-node-content-wrapper {
+  height: auto;
+}
+
+.ant-pagination-options-size-changer.ant-select {
+  margin-right: 0;
+}
+
+.ant-tooltip-inner .iconfont {
+  vertical-align: inherit;
+  padding-right: 4px;
+}
+
+.iconfont.anticon {
+  vertical-align: inherit;
+}
+
+.ant-table-row td .ant-btn:last-of-type + .ant-divider-vertical {
+  display: none !important;
+}
+
+.ant-modal.modal-top.no-footer {
+  .ant-modal-footer {
+    display: none;
+  }
+}
+
+.ant-pagination-options-quick-jumper {
+  margin-left: 16px;
+}
