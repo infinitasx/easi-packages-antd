@@ -3,16 +3,13 @@ import scss from "rollup-plugin-scss";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import esbuild from "rollup-plugin-esbuild";
 import { getPackagesSync } from "@lerna/project";
-import pkg from "./package.json";
+import pkg from "../package.json";
 import { resolve } from "path";
 
 const noPrefixFile = /(utils|directives|hooks|locale)/;
 const getOutFile = (name, dir = "lib") => {
   const compName = name.split("@easi-packages-antd/")[1];
-  if (noPrefixFile.test(name)) {
-    return `${dir}/${compName}/index.js`;
-  }
-  return `${dir}/easi-${compName}/index.js`;
+  return `${dir}/${compName}/index.js`;
 };
 
 const inputs = getPackagesSync()
@@ -21,7 +18,7 @@ const inputs = getPackagesSync()
 
 export default inputs.map((name) => {
   return {
-    input: resolve(__dirname, `packages/${name.split(`@${pkg.name}/`)[1]}/index.ts`),
+    input: resolve(__dirname, `../packages/${name.split(`@${pkg.name}/`)[1]}/index.ts`),
     output: [
       {
         format: "es",

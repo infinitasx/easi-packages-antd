@@ -3,6 +3,7 @@
     "target": "esnext",
     "module": "esnext",
     "strict": true,
+    "declaration": true,
     "jsx": "preserve",
     "importHelpers": true,
     "moduleResolution": "node",
@@ -15,7 +16,7 @@
     "paths": {
       "@/*": ["packages/*", "src/*"]
     },
-    "lib": ["esnext", "dom"]
+    "lib": ["esnext", "dom", "dom.iterable"]
   },
   "include": ["packages/**/*.ts", "packages/**/*.tsx", "packages/**/*.vue", "typings/*"],
   "exclude": ["node_modules"]
