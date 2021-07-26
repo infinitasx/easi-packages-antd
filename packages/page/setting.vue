@@ -62,12 +62,12 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, inject} from "vue"
+import {createVNode, defineComponent, inject} from "vue"
 import {createNamespace} from "../utils/create";
-import { Modal } from 'ant-design-vue';
-import { setProvider } from '../utils/globalProvider'
+import {Modal} from 'ant-design-vue';
+import {setProvider, IProvider} from '../utils/globalProvider'
 import {ExclamationCircleOutlined, LogoutOutlined} from '@ant-design/icons-vue';
-import { useI18n } from 'vue-i18n';
+import {useI18n} from 'vue-i18n';
 
 export default defineComponent({
   name: createNamespace('Setting'),
@@ -79,7 +79,7 @@ export default defineComponent({
     }
   },
   setup() {
-    const globalProvider = inject('globalProvider');
+    const globalProvider = inject<IProvider>('globalProvider');
     const { t } = useI18n();
 
     const setSetting = (key: string, value: boolean) => {

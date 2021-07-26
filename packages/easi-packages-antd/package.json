@@ -4,7 +4,13 @@
   "version": "0.0.1",
   "dependencies": {
     "@easi-packages-antd/button": "^0.0.0",
-    "@easi-packages-antd/text": "^0.0.0"
+    "@easi-packages-antd/text": "^0.0.0",
+    "@easi-packages-antd/drawer": "^0.0.0",
+    "@easi-packages-antd/layout": "^0.0.0",
+    "@easi-packages-antd/loading": "^0.0.0",
+    "@easi-packages-antd/modal": "^0.0.0",
+    "@easi-packages-antd/page": "^0.0.0",
+    "@easi-packages-antd/table": "^0.0.0"
   },
   "devDependencies": {
     "jest": "^27.0.6"

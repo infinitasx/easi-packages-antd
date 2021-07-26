@@ -37,8 +37,7 @@
 </template>
 
 <script lang="ts">
-import { ref, toRefs, watch, PropType } from 'vue';
-import { defineComponent } from 'vue';
+import { defineComponent, ref, toRefs, watch, PropType } from 'vue';
 import { createNamespace } from "../utils/create";
 
 export default defineComponent({

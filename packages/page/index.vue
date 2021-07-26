@@ -75,14 +75,14 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, onBeforeUnmount, onMounted, provide, ref, toRefs, watch} from 'vue';
-import {useRoute, useRouter} from 'vue-router';
-import {createNamespace} from "../utils/create";
+import {computed, defineComponent, onBeforeUnmount, onMounted, provide, ref, toRefs, watch, PropType} from 'vue';
+import {useRoute, useRouter, RouteLocationNormalized} from 'vue-router';
+import {createNamespace} from '../utils/create';
 import PageNav from './nav.vue';
 import PageHeader from './header.vue';
 import PageSetting from './setting.vue';
 import PageTab from './tab.vue';
-import {isMobile} from 'easi-web-utils'
+import {isMobile, debounced} from 'easi-web-utils'
 import {initProvider, useReload} from '../utils/globalProvider'
 
 export default defineComponent({
@@ -106,8 +106,8 @@ export default defineComponent({
     },
     // 菜单数据
     nav: {
-      type: Array,
-      default: [],
+      type: Array as PropType<RouteLocationNormalized[]>,
+      default: () => ([]),
     },
     // 用户信息
     userInfo: {
@@ -116,7 +116,7 @@ export default defineComponent({
     }
   },
   setup(props) {
-    const {nav} = toRefs(props)
+    const { nav } = toRefs(props)
 
     const route = useRoute();
     const router = useRouter();
@@ -189,7 +189,7 @@ export default defineComponent({
       globalProvider,
       cachedPage: computed(() => (globalProvider.showTab ? globalProvider.cachedPage : [])),
       async onReloadPage() {
-        await useReload(globalProvider, route, store);
+        await useReload(globalProvider, route);
       },
       handleShowSetting() {
         showSetting.value = true
