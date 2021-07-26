@@ -62,7 +62,7 @@
 </template>
 
 <script lang="ts">
-import {createVNode, defineComponent, inject} from "vue"
+import {createVNode, defineComponent, inject, PropType} from "vue"
 import {createNamespace} from "../utils/create";
 import {Modal} from 'ant-design-vue';
 import {setProvider, IProvider} from '../utils/globalProvider'
@@ -74,7 +74,7 @@ export default defineComponent({
   emits: ['update:visible', 'logout'],
   props: {
     userInfo: {
-      type: Object,
+      type: Object as PropType<any>,
       default: () => ({})
     }
   },

@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, toRefs, watch } from 'vue';
+import { defineComponent, computed, toRefs, watch, PropType, toRaw } from 'vue';
 import { createNamespace } from "../utils/create";
 
 export default defineComponent({
@@ -32,14 +32,14 @@ export default defineComponent({
     },
     bodyStyle: {
       default: () => ({}),
-      type: Object,
+      type: Object as PropType<any>,
     },
   },
   setup(props, { emit, slots }) {
     const { bodyStyle, visible } = toRefs(props);
 
     const computedBodyStyle = computed(() => {
-      return slots.footer ? { ...bodyStyle, paddingBottom: '55px' } : bodyStyle;
+      return slots.footer ? { ...bodyStyle.value, paddingBottom: '55px' } : toRaw(bodyStyle.value);
     });
 
     watch(
