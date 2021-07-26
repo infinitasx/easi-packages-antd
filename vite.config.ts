@@ -23,7 +23,7 @@ export default () => {
       },
       outDir: "dist",
       rollupOptions: {
-        external: ["vue", "ant-design-vue", "moment", "easi-web-utils", "vue-router"],
+        external: ["vue", "ant-design-vue", "ant-design-vue/dist/antd.css", "moment", "easi-web-utils", "vue-router", "vue-i18n"],
         output: {
           exports: "named",
           globals: {
@@ -32,6 +32,8 @@ export default () => {
             "ant-design-vue": "antd",
             moment: "moment",
             "easi-web-utils": "EASI-Utils",
+            "ant-design-vue/dist/antd.css": "antd",
+            "vue-i18n": "I18n",
           },
         },
         plugins: [json()],
