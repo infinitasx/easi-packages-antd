@@ -3,6 +3,7 @@ import scss from "rollup-plugin-scss";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import esbuild from "rollup-plugin-esbuild";
 import { getPackagesSync } from "@lerna/project";
+import json from "@rollup/plugin-json";
 import pkg from "../package.json";
 import { resolve } from "path";
 
@@ -31,6 +32,7 @@ export default inputs.map((name) => {
       },
     ],
     plugins: [
+      json(),
       scss(),
       vue({
         target: "browser",
@@ -39,6 +41,6 @@ export default inputs.map((name) => {
       nodeResolve(),
       esbuild(),
     ],
-    external: ["vue"],
+    external: ["vue", "ant-design-vue", "ant-design-vue/dist/antd.css", "moment", "easi-web-utils", "vue-router", "vue-i18n"],
   };
 });
