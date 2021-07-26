@@ -41,9 +41,10 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, watch, inject} from "vue"
+import {defineComponent, watch, inject, ref} from "vue"
 import {createNamespace} from "../utils/create";
 import { MenuInfo } from '../../typings/antd';
+import { IProvider } from '../utils/globalProvider';
 import { useRoute, useRouter, RouteLocationNormalizedLoaded, Router, RouteMeta } from 'vue-router';
 import { MoreOutlined, ReloadOutlined, CloseOutlined } from '@ant-design/icons-vue';
 
@@ -61,7 +62,7 @@ export default defineComponent({
     const route: RouteLocationNormalizedLoaded = useRoute();
     const router: Router = useRouter();
 
-    const globalProvider = inject('globalProvider')
+    const globalProvider = inject<IProvider>('globalProvider')
 
     const activeKey = ref<string>('');
     const panes = ref<TabPane[]>([]);
@@ -78,7 +79,7 @@ export default defineComponent({
           fullPath: route.fullPath,
           name: route.name as string,
           cached: !!(route.meta as RouteMeta)?.cached,
-        });
+        } as TabPane);
       }
     };
 
@@ -102,7 +103,7 @@ export default defineComponent({
       const { fullPath, name, cached } = panes.value[index];
       panes.value.splice(index, 1);
       if (cached) {
-        globalProvider.cachedPage = globalProvider.cachedPage.filter((key: string) => key !== name);
+        (globalProvider as IProvider).cachedPage = (globalProvider as IProvider).cachedPage.filter((key: string) => key !== name);
       }
       if (fullPath === activeKey.value) {
         activeKey.value = panes.value[panes.value.length - 1].fullPath;
@@ -112,7 +113,7 @@ export default defineComponent({
 
     const removeOtherTab = () => {
       panes.value = panes.value.filter((pane: TabPane) => pane.fullPath === activeKey.value);
-      globalProvider.cachedPage = panes.value[0].cached ? [panes.value[0].name] : []
+      (globalProvider as IProvider).cachedPage = panes.value[0].cached ? [panes.value[0].name] : []
     };
 
     return {

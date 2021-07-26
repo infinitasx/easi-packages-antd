@@ -3,7 +3,7 @@
 // true：显示； false：隐藏
 // 也可以接受对象，{show: boolean, title: 'common.loading', size: 'small' | 'normal'}
 
-import Loading from '@/components/loading/loading.vue';
+import Loading from '../loading/index.vue';
 import { I18n } from 'vue-i18n';
 import { createApp, nextTick, DirectiveBinding, App } from 'vue';
 
