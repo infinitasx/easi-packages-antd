@@ -19,7 +19,7 @@ export default () => {
         entry: resolve(__dirname, "packages/easi-packages-antd/index.ts"),
         name: "EASI",
         formats: ["cjs", "es"],
-        fileName: "index.js",
+        fileName: "index",
       },
       outDir: "dist",
       rollupOptions: {
