@@ -3,9 +3,9 @@
 // true：显示； false：隐藏
 // 也可以接受对象，{show: boolean, title: 'common.loading', size: 'small' | 'normal'}
 
-import Loading from '../loading/index.vue';
-import { I18n } from 'vue-i18n';
-import { createApp, nextTick, DirectiveBinding, App } from 'vue';
+import Loading from "../loading/index.vue";
+import { I18n } from "vue-i18n";
+import { createApp, nextTick, DirectiveBinding, App } from "vue";
 
 interface CustomerDom extends HTMLElement {
   originalPosition: string;
@@ -20,15 +20,12 @@ interface Options {
 
 export default {
   install: (app: App, options: Options) => {
-    const { i18n } = options;
+    const { i18n } = options || {};
 
     const insertDom = (el: CustomerDom, title: string, size: string) => {
-      if (
-        getComputedStyle(el, null).display !== 'none' &&
-        getComputedStyle(el, null).visibility !== 'hidden'
-      ) {
-        if (el.originalPosition !== 'absolute' && el.originalPosition !== 'fixed') {
-          el.style.position = 'relative';
+      if (getComputedStyle(el, null).display !== "none" && getComputedStyle(el, null).visibility !== "hidden") {
+        if (el.originalPosition !== "absolute" && el.originalPosition !== "fixed") {
+          el.style.position = "relative";
         }
         el?.appendChild(el?.loadingRoot);
         el.comp.show = true;
@@ -39,20 +36,20 @@ export default {
 
     const removeDom = (el: CustomerDom) => {
       el &&
-      setTimeout(() => {
-        el.domInserted = false;
-        (el as CustomerDom)?.loadingRoot?.parentElement?.removeChild(el?.loadingRoot);
-        // el.removeChild(el.loadingRoot);
-      }, 300);
+        setTimeout(() => {
+          el.domInserted = false;
+          (el as CustomerDom)?.loadingRoot?.parentElement?.removeChild(el?.loadingRoot);
+          // el.removeChild(el.loadingRoot);
+        }, 300);
     };
 
     const toggleLoading = async (el: CustomerDom, binding: DirectiveBinding) => {
-      let _title = 'common.loading';
+      let _title = "common.loading";
       let _show = true;
-      let _size = 'normal';
+      let _size = "normal";
 
-      if (typeof binding.value === 'object') {
-        const { title, show, size = 'normal' } = binding.value;
+      if (typeof binding.value === "object") {
+        const { title, show, size = "normal" } = binding.value;
         _title = title;
         _show = show;
         _size = size;
@@ -73,11 +70,11 @@ export default {
       }
     };
 
-    app.directive('loading', {
+    app.directive("loading", {
       async beforeMount(el, binding) {
         const loading = createApp(Loading).use(i18n as I18n);
         el.loading = el;
-        el.loadingRoot = document.createElement('div');
+        el.loadingRoot = document.createElement("div");
         el.comp = loading.mount(el.loadingRoot);
         await toggleLoading(el, binding);
       },

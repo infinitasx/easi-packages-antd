@@ -1,5 +1,6 @@
 <template>
-  <easi-text></easi-text>
+  <EASIText></EASIText>
+  <EASILayout></EASILayout>
 </template>
 
 <script lang="ts">

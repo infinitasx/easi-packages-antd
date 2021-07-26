@@ -3,7 +3,7 @@
   "license": "ISC",
   "version": "0.0.1",
   "dependencies": {
-    "@easi-packages-antd/demo": "^0.0.0",
+    "@easi-packages-antd/button": "^0.0.0",
     "@easi-packages-antd/text": "^0.0.0"
   },
   "devDependencies": {

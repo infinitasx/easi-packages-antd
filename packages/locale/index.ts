@@ -1,26 +1,24 @@
-import {createI18n, useI18n} from 'vue-i18n';
+import { createI18n, useI18n } from "vue-i18n";
+import defaultCN from "./cn";
 
-type Lang = 'cn' | 'en' | 'ja'
+type Lang = "cn" | "en" | "ja";
 
 export function initI18n() {
   return createI18n({
     legacy: false,
     globalInjection: true,
-    useScope: 'global',
-    locale: 'cn',
-    fallbackLocale: 'cn',
+    useScope: "global",
+    locale: "cn",
+    fallbackLocale: "cn",
     messages: {
-      cn: require(`./cn`).default,
+      cn: defaultCN,
     },
   });
 }
 
 export function setLocale(lang: Lang) {
   const { setLocaleMessage } = useI18n();
-  import(
-    /* webpackInclude: /(cn|ja|en)\.ts/ */ /* webpackChunkName: "locale-[request]" */ `./${lang}.ts`
-    )
-  .then((message) => {
-    setLocaleMessage(lang, message.default)
-  })
+  import(/* @vite-ignore */ `./${lang}.ts`).then((message) => {
+    setLocaleMessage(lang, message.default);
+  });
 }

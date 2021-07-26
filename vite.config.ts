@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import json from "@rollup/plugin-json";
 import vue from "@vitejs/plugin-vue";
-import dts from "vite-plugin-dts";
+// import dts from "vite-plugin-dts";
 import html from "vite-plugin-html";
 import { resolve } from "path";
 
@@ -23,15 +23,15 @@ export default () => {
       },
       outDir: "dist",
       rollupOptions: {
-        external: ["vue", "ant-design-vue", "moment", 'easi-web-utils', 'vue-router'],
+        external: ["vue", "ant-design-vue", "moment", "easi-web-utils", "vue-router"],
         output: {
           exports: "named",
           globals: {
             vue: "Vue",
-            'vue-router': "VueRouter",
+            "vue-router": "VueRouter",
             "ant-design-vue": "antd",
             moment: "moment",
-            'easi-web-utils': 'EASI-Utils'
+            "easi-web-utils": "EASI-Utils",
           },
         },
         plugins: [json()],
@@ -50,24 +50,23 @@ export default () => {
       vue({
         include: [/\.vue$/, /\.md$/],
       }),
-      dts({
-        exclude: ["node_modules"],
-        outputDir: "lib",
-        beforeWriteFile(filePath, content) {
-          if (filePath.includes("packages")) {
-            console.log(filePath);
-            if (filePath.includes("easi-packages-antd")) {
-              filePath = filePath.replace(/\/packages\/easi-packages-antd\/+/g, "/");
-            } else if (filePath.includes("utils")) {
-              filePath = filePath.replace(/\/packages\/+/g, "/");
-            } else {
-              filePath = filePath.replace(/\/packages\/+/g, "/easi-");
-            }
-          }
+      // dts({
+      //   exclude: ["node_modules"],
+      //   outputDir: "lib",
+      //   beforeWriteFile(filePath, content) {
+      //     if (filePath.includes("packages")) {
+      //       if (filePath.includes("easi-packages-antd")) {
+      //         filePath = filePath.replace(/\/packages\/easi-packages-antd\/+/g, "/");
+      //       } else if (filePath.includes("utils")) {
+      //         filePath = filePath.replace(/\/packages\/+/g, "/");
+      //       } else {
+      //         filePath = filePath.replace(/\/packages\/+/g, "/easi-");
+      //       }
+      //     }
 
-          return { filePath, content };
-        },
-      }),
+      //     return { filePath, content };
+      //   },
+      // }),
       html({
         inject: {
           injectData: {

@@ -15,23 +15,17 @@
       </a-row>
     </template>
     <template v-for="(index, name) in $slots" v-slot:[name]="slotProps">
-      <slot
-          :name="name"
-          v-bind="slotProps"
-          v-if="
-          $slots.name !== 'title' && $slots.name !== 'headerLeft' && $slots.name !== 'headerRight'
-        "
-      ></slot>
+      <slot :name="name" v-bind="slotProps" v-if="$slots.name !== 'title' && $slots.name !== 'headerLeft' && $slots.name !== 'headerRight'"></slot>
     </template>
   </a-table>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from "vue";
 import { createNamespace } from "../utils/create";
 
 export default defineComponent({
-  name: createNamespace('Table'),
+  name: createNamespace("Table"),
   props: {
     loading: {
       type: Boolean,
