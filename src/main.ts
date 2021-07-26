@@ -6,7 +6,4 @@ import Easi from "../packages/easi-packages-antd/index";
 import "ant-design-vue/dist/antd.css";
 // import "../dist/style.css";
 
-createApp(App)
-  .use(Antd)
-  .use(Easi)
-  .mount("#app");
+createApp(App).use(Antd).use(Easi).mount("#app");

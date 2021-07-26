@@ -12,7 +12,7 @@ export default [
     input: path.resolve(__dirname, "../packages/easi-packages-antd/index.ts"),
     output: {
       format: "es",
-      file: "lib/index.esm.js",
+      file: "lib/index.js",
     },
     plugins: [
       json(),

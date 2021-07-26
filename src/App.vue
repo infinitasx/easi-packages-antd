@@ -1,10 +1,10 @@
 <template>
-  <EASIText></EASIText>
-  <EASILayout></EASILayout>
+  <EASIDrawer :visible="true"></EASIDrawer>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
+import { EASIDrawer } from "../lib/index";
 export default defineComponent({
   setup() {
     const show = ref(true);
@@ -15,6 +15,9 @@ export default defineComponent({
       show,
       setSetting,
     };
+  },
+  components: {
+    EASIDrawer,
   },
 });
 </script>

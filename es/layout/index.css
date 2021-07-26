@@ -1,0 +1,7 @@
+.page-breadcrumb-wrap .ant-page-header-footer {
+  margin: 0;
+}
+
+.error-full-page {
+  height: calc(100vh - 160px);
+}

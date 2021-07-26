@@ -41,7 +41,7 @@ export default () => {
       terserOptions: {
         compress: {
           ecma: 2015,
-          drop_console: true,
+          drop_console: false,
         },
       },
       commonjsOptions: {

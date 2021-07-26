@@ -24,33 +24,23 @@
       </div>
     </template>
     <NoPermission status="403" v-else>
-      <template #title>
-        403
-      </template>
+      <template #title> 403 </template>
       <template #sub-title>
-        {{ $t('noPermission') }}
+        {{ $t("noPermission") }}
       </template>
     </NoPermission>
   </div>
 </template>
 
 <script lang="ts">
-import {
-  computed,
-  defineComponent,
-  toRefs,
-  PropType,
-  ComputedRef,
-  getCurrentInstance,
-  ComponentInternalInstance,
-} from 'vue';
-import { useRoute, RouteLocationNormalizedLoaded, RouteLocationMatched } from 'vue-router';
-import { BreadcrumbRoute } from '../../typings/antd';
-import NoPermission from '../../packages/error/index';
+import { computed, defineComponent, toRefs, PropType, ComputedRef, getCurrentInstance, ComponentInternalInstance } from "vue";
+import { useRoute, RouteLocationNormalizedLoaded, RouteLocationMatched } from "vue-router";
+import { BreadcrumbRoute } from "../../typings/antd";
+import NoPermission from "../../packages/error/index";
 import { createNamespace } from "../utils/create";
 
 export default defineComponent({
-  name: createNamespace('Layout'),
+  name: createNamespace("Layout"),
   props: {
     showPageHeader: {
       type: Boolean,
@@ -62,16 +52,16 @@ export default defineComponent({
     },
     title: {
       type: String,
-      default: '',
+      default: "",
     },
     desc: {
       type: String,
-      default: '',
+      default: "",
     },
     // 如果不想要默认card模式布局，则可以传入'customer'，这样slot不会被card包裹
     layoutType: {
-      type: String as PropType<'card' | 'customer'>,
-      default: 'card',
+      type: String as PropType<"card" | "customer">,
+      default: "card",
     },
     // 传false则会强制显示403页面
     hasPermission: {
@@ -83,18 +73,19 @@ export default defineComponent({
     const { breadcrumb, title, desc, hasPermission } = toRefs(props);
 
     const route: RouteLocationNormalizedLoaded = useRoute();
+    console.log("getCurrentInstance", getCurrentInstance);
 
     const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 
     const breadcrumbRoutes: ComputedRef<BreadcrumbRoute[]> = computed((): BreadcrumbRoute[] => {
       return (breadcrumb.value ||
-          route.meta.breadcrumb ||
-          route.matched.map((_route: RouteLocationMatched) => {
-            return {
-              path: _route.path,
-              breadcrumbName: _route.meta.title,
-            };
-          })) as BreadcrumbRoute[];
+        route.meta.breadcrumb ||
+        route.matched.map((_route: RouteLocationMatched) => {
+          return {
+            path: _route.path,
+            breadcrumbName: _route.meta.title,
+          };
+        })) as BreadcrumbRoute[];
     });
 
     const pageTitle = computed((): string => {
@@ -106,11 +97,8 @@ export default defineComponent({
     });
 
     // 是否可以执行初始化渲染请求数据
-    if (
-        hasPermission.value &&
-        appContext.config.globalProperties.$usePermissions(route.meta.permission)
-    ) {
-      emit('initPage');
+    if (hasPermission.value && appContext.config.globalProperties.$usePermissions(route.meta.permission)) {
+      emit("initPage");
     }
 
     return {
