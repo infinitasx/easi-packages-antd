@@ -1,3 +1,7 @@
 .error-full-page {
   height: calc(100vh - 160px);
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

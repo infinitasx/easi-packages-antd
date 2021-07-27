@@ -5,3 +5,7 @@
 [data-pro-theme=antdv-pro-theme-dark] .more-item {
   color: rgba(255, 255, 255, 0.65);
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

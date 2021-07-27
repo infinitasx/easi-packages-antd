@@ -203,3 +203,7 @@
 [data-pro-theme=antdv-pro-theme-dark] .ant-btn-link.easi-btn-link-warning:hover, [data-pro-theme=antdv-pro-theme-dark] .ant-btn-link.easi-btn-link-warning:focus {
   color: #d69005 !important;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

@@ -159,3 +159,6 @@
     transform: translateX(6px) rotate(90deg);
   }
 }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

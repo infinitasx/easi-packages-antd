@@ -1,5 +1,6 @@
 import { App } from "vue";
 import Modal from "./index.vue";
+import "tailwindcss/tailwind.css";
 
 Modal.install = (app: App): void => {
   app.component(Modal.name, Modal);

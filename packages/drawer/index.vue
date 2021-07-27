@@ -1,123 +1,61 @@
 <template>
-  <a-drawer placement="right" width="320px" v-model:visible="visible" :headerStyle="{ backgroundColor: drawerSeting.mode === 'dark' ? '' : '#fafafa' }" @close="$emit('update:show', false)">
-    <template #title>
-      <header class="flex items-center">
-        <a-avatar shape="circle" size="default" :src="$attrs.userInfo.headImg || '../../assets/img/head.png'" :style="{ backgroundColor: '#ffbf00', verticalAlign: 'middle', marginRight: '8px' }">
-        </a-avatar>
-        {{ $attrs.userInfo.name || "用户名" }}
-      </header>
-    </template>
-    <slot name="body"></slot>
-    <slot name="style">
-      <a-typography-text class="block mb-32"> 风格设置 </a-typography-text>
-      <div class="flex items-center mb-32">
-        <span class="flex-1">
-          <a-typography-text type="secondary"> 夜间模式 </a-typography-text>
-        </span>
-        <div>
-          <a-switch size="small" :checked="drawerSeting.mode === 'dark'" @change="(bool) => setSetting('mode', bool)" />
-        </div>
-      </div>
-      <div class="flex items-center mb-32">
-        <span class="flex-1">
-          <a-typography-text type="secondary"> 显示浏览标签栏 </a-typography-text>
-        </span>
-        <div>
-          <a-switch size="small" v-model:checked="drawerSeting.showTab" @change="setSetting('showTab', drawerSeting.showTab)" />
-        </div>
-      </div>
-      <div class="flex items-center mb-32">
-        <span class="flex-1">
-          <a-typography-text type="secondary"> 浏览标签栏固定在顶部 </a-typography-text>
-        </span>
-        <div>
-          <a-switch size="small" v-model:checked="drawerSeting.fixedTab" @change="setSetting('fixedTab', drawerSeting.fixedTab)" />
-        </div>
-      </div>
-      <a-divider />
-    </slot>
-    <a-typography-text class="block mb-32"> 更多操作 </a-typography-text>
-    <div class="more-item flex items-center mb-32 cursor-pointer" style="color: #f5222d" @click="logoutHandler">
-      <LogoutOutlined class="mr-8 text-14" />
-      <div>退出登录</div>
+  <a-drawer
+      v-bind="$attrs"
+      :visible="visible"
+      :width="width"
+      :maskClosable="false"
+      :body-style="computedBodyStyle"
+      @close="handleClose"
+  >
+    <slot name="default"></slot>
+    <div class="drawer-footer" v-if="$slots.footer">
+      <slot name="footer"></slot>
     </div>
   </a-drawer>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, toRefs, watch, reactive, computed, createVNode, PropType } from "vue";
-import { Modal } from "ant-design-vue";
-import { LogoutOutlined, ExclamationCircleOutlined } from "@ant-design/icons-vue";
+import { defineComponent, computed, toRefs, watch, PropType, toRaw } from 'vue';
 import { createNamespace } from "../utils/create";
 
-export type defaultSeting = {
-  mode: "dark" | "light";
-  showTab: boolean;
-  fixedTab?: boolean;
-};
-
 export default defineComponent({
-  name: createNamespace("Drawer"),
-  emits: ["update:show", "update:drawerSeting", "logout"],
+  name: createNamespace('Drawer'),
+  emits: ['update:visible', 'close', 'show'],
   props: {
-    show: {
-      type: Boolean,
+    visible: {
       default: false,
+      type: Boolean,
     },
-    drawerSeting: {
-      type: Object as PropType<defaultSeting>,
-      default: () => ({
-        mode: "dark",
-        showTab: true,
-        fixedTab: true,
-      }),
+    width: {
+      default: '500px',
+      type: String,
+    },
+    bodyStyle: {
+      default: () => ({}),
+      type: Object as PropType<any>,
     },
   },
-  components: {
-    LogoutOutlined,
-  },
-  setup(props, { emit }) {
-    // 控制显示隐藏
-    const { show, drawerSeting } = toRefs(props);
-    const visible = ref(show.value);
+  setup(props, { emit, slots }) {
+    const { bodyStyle, visible } = toRefs(props);
+
+    const computedBodyStyle = computed(() => {
+      return slots.footer ? { ...bodyStyle.value, paddingBottom: '55px' } : toRaw(bodyStyle.value);
+    });
 
     watch(
-      () => show.value,
-      (newVal: boolean) => {
-        if (newVal) {
-          visible.value = true;
-        }
-      }
+        () => visible.value,
+        (newVal: boolean) => {
+          if (newVal) {
+            emit('show');
+          }
+        },
     );
 
-    const setSetting = (key: string, value: boolean) => {
-      let _value: any = value;
-      if (key === "mode") {
-        _value = value ? "dark" : "light";
-      }
-      const html = document.querySelector("html") as HTMLHtmlElement;
-      html.setAttribute("data-pro-theme", _value === "dark" ? "antdv-pro-theme-dark" : "");
-      emit("update:drawerSeting", {
-        ...drawerSeting.value,
-        ...{
-          [key]: _value,
-        },
-      });
-    };
-
     return {
-      visible,
-      setSetting,
-      logoutHandler() {
-        Modal.confirm({
-          title: "退出确认",
-          icon: createVNode(ExclamationCircleOutlined),
-          content: "您确定要退出本系统吗?",
-          centered: true,
-          onOk() {
-            emit("logout");
-          },
-        });
+      computedBodyStyle,
+      handleClose() {
+        emit('update:visible', false);
+        emit('close');
       },
     };
   },
@@ -125,13 +63,22 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.gray {
-  color: rgba(00, 00, 00, 0.45);
+.has-footer {
+  padding-bottom: 35px;
 }
-
-[data-pro-theme="antdv-pro-theme-dark"] {
-  .more-item {
-    color: rgba(255, 255, 255, 0.65);
-  }
+[data-pro-theme='antdv-pro-theme-dark'] .drawer-footer {
+  background-color: #1f1f1f;
+  border-color: #303030;
+}
+.drawer-footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #e9e9e9;
+  padding: 10px 16px;
+  background: #fff;
+  text-align: right;
+  z-index: 1;
 }
 </style>

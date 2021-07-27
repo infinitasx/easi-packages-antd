@@ -6552,10 +6552,6 @@
     transform: translateX(6px) rotate(90deg);
   }
 }
-.error-full-page {
-  height: calc(100vh - 160px);
-}
-
 .easi-btn-primary {
   background-color: #1890ff !important;
   color: #fff;
@@ -6762,6 +6758,14 @@
   color: #d69005 !important;
 }
 
+.error-full-page {
+  height: calc(100vh - 160px);
+}
+
+.page-breadcrumb-wrap .ant-page-header-footer {
+  margin: 0;
+}
+
 .logo {
   width: 34px;
   height: 34px;
@@ -6792,10 +6796,6 @@
     opacity: 1;
   }
 }
-.page-breadcrumb-wrap .ant-page-header-footer {
-  margin: 0;
-}
-
 .gray {
   color: rgba(0, 0, 0, 0.45);
 }
