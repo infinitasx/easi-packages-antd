@@ -1,31 +1,5 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-var _vue = require('vue');
-var antDesignVue = require('ant-design-vue');
-
-function _interopNamespace(e) {
-    if (e && e.__esModule) return e;
-    var n = Object.create(null);
-    if (e) {
-        Object.keys(e).forEach(function (k) {
-            if (k !== 'default') {
-                var d = Object.getOwnPropertyDescriptor(e, k);
-                Object.defineProperty(n, k, d.get ? d : {
-                    enumerable: true,
-                    get: function () {
-                        return e[k];
-                    }
-                });
-            }
-        });
-    }
-    n['default'] = e;
-    return Object.freeze(n);
-}
-
-var _vue__namespace = /*#__PURE__*/_interopNamespace(_vue);
+import * as _vue from 'vue';
+import { h, nextTick, defineComponent, ref, resolveComponent, openBlock, createBlock, createVNode, toDisplayString, Fragment, withDirectives, vShow, mergeProps, toHandlers } from 'vue';
 
 /**
  * Take input from [0, n] and return it as [0, 1]
@@ -1419,14 +1393,14 @@ function isIconDefinition(target) {
 }
 function generate(node, key, rootProps) {
   if (!rootProps) {
-    return _vue.h(node.tag, _objectSpread$4({
+    return h(node.tag, _objectSpread$4({
       key: key
     }, node.attrs), (node.children || []).map(function (child, index) {
       return generate(child, "".concat(key, "-").concat(node.tag, "-").concat(index));
     }));
   }
 
-  return _vue.h(node.tag, _objectSpread$4({
+  return h(node.tag, _objectSpread$4({
     key: key
   }, rootProps, node.attrs), (node.children || []).map(function (child, index) {
     return generate(child, "".concat(key, "-").concat(node.tag, "-").concat(index));
@@ -1447,7 +1421,7 @@ var iconStyles = "\n.anticon {\n  display: inline-block;\n  color: inherit;\n  f
 var cssInjectedFlag = false;
 var useInsertStyles = function useInsertStyles() {
   var styleStr = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : iconStyles;
-  _vue.nextTick(function () {
+  nextTick(function () {
     if (!cssInjectedFlag) {
       if (typeof window !== 'undefined' && window.document && window.document.documentElement) {
         insertCss(styleStr, {
@@ -1624,12 +1598,12 @@ var Icon = function Icon(props, context) {
       primaryColor = _normalizeTwoToneColo2[0],
       secondaryColor = _normalizeTwoToneColo2[1];
 
-  return _vue__namespace.createVNode("span", _vue__namespace.mergeProps(restProps, {
+  return _vue.createVNode("span", _vue.mergeProps(restProps, {
     "role": "img",
     "aria-label": icon.name,
     "onClick": onClick,
     "class": classObj
-  }), [_vue__namespace.createVNode(IconBase, {
+  }), [_vue.createVNode(IconBase, {
     "class": svgClassString,
     "icon": icon,
     "primaryColor": primaryColor,
@@ -1650,236 +1624,137 @@ Icon.getTwoToneColor = getTwoToneColor;
 Icon.setTwoToneColor = setTwoToneColor;
 
 // This icon file is generated automatically.
-var ExclamationCircleOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z" } }, { "tag": "path", "attrs": { "d": "M464 688a48 48 0 1096 0 48 48 0 10-96 0zm24-112h48c4.4 0 8-3.6 8-8V296c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8z" } }] }, "name": "exclamation-circle", "theme": "outlined" };
+var MenuFoldOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 000 13.8z" } }] }, "name": "menu-fold", "theme": "outlined" };
 
 function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? Object(arguments[i]) : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty$1(target, key, source[key]); }); } return target; }
 
 function _defineProperty$1(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var ExclamationCircleOutlined = function ExclamationCircleOutlined(props, context) {
+var MenuFoldOutlined = function MenuFoldOutlined(props, context) {
   var p = _objectSpread$1({}, props, context.attrs);
 
-  return _vue__namespace.createVNode(Icon, _vue__namespace.mergeProps(p, {
-    "icon": ExclamationCircleOutlined$1
+  return _vue.createVNode(Icon, _vue.mergeProps(p, {
+    "icon": MenuFoldOutlined$1
   }), null);
 };
 
-ExclamationCircleOutlined.displayName = 'ExclamationCircleOutlined';
-ExclamationCircleOutlined.inheritAttrs = false;
+MenuFoldOutlined.displayName = 'MenuFoldOutlined';
+MenuFoldOutlined.inheritAttrs = false;
 
 // This icon file is generated automatically.
-var LogoutOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M868 732h-70.3c-4.8 0-9.3 2.1-12.3 5.8-7 8.5-14.5 16.7-22.4 24.5a353.84 353.84 0 01-112.7 75.9A352.8 352.8 0 01512.4 866c-47.9 0-94.3-9.4-137.9-27.8a353.84 353.84 0 01-112.7-75.9 353.28 353.28 0 01-76-112.5C167.3 606.2 158 559.9 158 512s9.4-94.2 27.8-137.8c17.8-42.1 43.4-80 76-112.5s70.5-58.1 112.7-75.9c43.6-18.4 90-27.8 137.9-27.8 47.9 0 94.3 9.3 137.9 27.8 42.2 17.8 80.1 43.4 112.7 75.9 7.9 7.9 15.3 16.1 22.4 24.5 3 3.7 7.6 5.8 12.3 5.8H868c6.3 0 10.2-7 6.7-12.3C798 160.5 663.8 81.6 511.3 82 271.7 82.6 79.6 277.1 82 516.4 84.4 751.9 276.2 942 512.4 942c152.1 0 285.7-78.8 362.3-197.7 3.4-5.3-.4-12.3-6.7-12.3zm88.9-226.3L815 393.7c-5.3-4.2-13-.4-13 6.3v76H488c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h314v76c0 6.7 7.8 10.5 13 6.3l141.9-112a8 8 0 000-12.6z" } }] }, "name": "logout", "theme": "outlined" };
+var MenuUnfoldOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM142.4 642.1L298.7 519a8.84 8.84 0 000-13.9L142.4 381.9c-5.8-4.6-14.4-.5-14.4 6.9v246.3a8.9 8.9 0 0014.4 7z" } }] }, "name": "menu-unfold", "theme": "outlined" };
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? Object(arguments[i]) : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var LogoutOutlined = function LogoutOutlined(props, context) {
+var MenuUnfoldOutlined = function MenuUnfoldOutlined(props, context) {
   var p = _objectSpread({}, props, context.attrs);
 
-  return _vue__namespace.createVNode(Icon, _vue__namespace.mergeProps(p, {
-    "icon": LogoutOutlined$1
+  return _vue.createVNode(Icon, _vue.mergeProps(p, {
+    "icon": MenuUnfoldOutlined$1
   }), null);
 };
 
-LogoutOutlined.displayName = 'LogoutOutlined';
-LogoutOutlined.inheritAttrs = false;
+MenuUnfoldOutlined.displayName = 'MenuUnfoldOutlined';
+MenuUnfoldOutlined.inheritAttrs = false;
+
+var script$1 = defineComponent({
+  name: "user-account-action",
+  props: {
+    userInfo: {
+      type: Object,
+      require: true,
+      default: () => ({})
+    }
+  },
+  emits: ["openHandler"],
+  setup(props, { emit }) {
+    const show = ref(false);
+    return {
+      openHandler() {
+        emit("openHandler");
+      },
+      show
+    };
+  }
+});
+
+const _hoisted_1$1 = { class: "pl-8" };
+function render$1(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_a_avatar = resolveComponent("a-avatar");
+  return openBlock(), createBlock("span", {
+    class: "dropdown-trigger px-8 cursor-pointer hover:bg-gray-100",
+    onClick: _cache[1] || (_cache[1] = (...args) => _ctx.openHandler && _ctx.openHandler(...args))
+  }, [
+    createVNode(_component_a_avatar, {
+      shape: "circle",
+      size: "default",
+      src: _ctx.userInfo.headImg || "../../assets/img/head.png",
+      style: { backgroundColor: "#ffbf00", verticalAlign: "middle" }
+    }, null, 8, ["src"]),
+    createVNode("span", _hoisted_1$1, toDisplayString(_ctx.userInfo.name || "\u7528\u6237\u540D"), 1)
+  ]);
+}
+
+script$1.render = render$1;
+script$1.__file = "packages/header/user-account-action.vue";
 
 function createNamespace(name) {
   return `EASI${name}`;
 }
 
-var script = _vue.defineComponent({
-  name: createNamespace("Drawer"),
-  emits: ["update:show", "update:drawerSeting", "logout"],
+var script = defineComponent({
+  name: createNamespace("Header"),
   props: {
-    show: {
+    collapsed: {
       type: Boolean,
       default: false
-    },
-    drawerSeting: {
-      type: Object,
-      default: () => ({
-        mode: "dark",
-        showTab: true,
-        fixedTab: true
-      })
     }
   },
-  components: {
-    LogoutOutlined
-  },
+  emits: ["colToggle"],
   setup(props, { emit }) {
-    const { show, drawerSeting } = _vue.toRefs(props);
-    const visible = _vue.ref(show.value);
-    _vue.watch(() => show.value, (newVal) => {
-      if (newVal) {
-        visible.value = true;
-      }
-    });
-    const setSetting = (key, value) => {
-      let _value = value;
-      if (key === "mode") {
-        _value = value ? "dark" : "light";
-      }
-      const html = document.querySelector("html");
-      html.setAttribute("data-pro-theme", _value === "dark" ? "antdv-pro-theme-dark" : "");
-      emit("update:drawerSeting", {
-        ...drawerSeting.value,
-        ...{
-          [key]: _value
-        }
-      });
-    };
     return {
-      visible,
-      setSetting,
-      logoutHandler() {
-        antDesignVue.Modal.confirm({
-          title: "\u9000\u51FA\u786E\u8BA4",
-          icon: _vue.createVNode(ExclamationCircleOutlined),
-          content: "\u60A8\u786E\u5B9A\u8981\u9000\u51FA\u672C\u7CFB\u7EDF\u5417?",
-          centered: true,
-          onOk() {
-            emit("logout");
-          }
-        });
+      colToggle() {
+        emit("colToggle");
       }
     };
+  },
+  components: {
+    MenuFoldOutlined,
+    MenuUnfoldOutlined,
+    UserAccountAction: script$1
   }
 });
 
-const _withId = /* @__PURE__ */ _vue.withScopeId("data-v-5cb92078");
-_vue.pushScopeId("data-v-5cb92078");
-const _hoisted_1 = { class: "flex items-center" };
-const _hoisted_2 = /* @__PURE__ */ _vue.createTextVNode(" \u98CE\u683C\u8BBE\u7F6E ");
-const _hoisted_3 = { class: "flex items-center mb-32" };
-const _hoisted_4 = { class: "flex-1" };
-const _hoisted_5 = /* @__PURE__ */ _vue.createTextVNode(" \u591C\u95F4\u6A21\u5F0F ");
-const _hoisted_6 = { class: "flex items-center mb-32" };
-const _hoisted_7 = { class: "flex-1" };
-const _hoisted_8 = /* @__PURE__ */ _vue.createTextVNode(" \u663E\u793A\u6D4F\u89C8\u6807\u7B7E\u680F ");
-const _hoisted_9 = { class: "flex items-center mb-32" };
-const _hoisted_10 = { class: "flex-1" };
-const _hoisted_11 = /* @__PURE__ */ _vue.createTextVNode(" \u6D4F\u89C8\u6807\u7B7E\u680F\u56FA\u5B9A\u5728\u9876\u90E8 ");
-const _hoisted_12 = /* @__PURE__ */ _vue.createTextVNode(" \u66F4\u591A\u64CD\u4F5C ");
-const _hoisted_13 = /* @__PURE__ */ _vue.createVNode("div", null, "\u9000\u51FA\u767B\u5F55", -1);
-_vue.popScopeId();
-const render = /* @__PURE__ */ _withId((_ctx, _cache, $props, $setup, $data, $options) => {
-  const _component_a_avatar = _vue.resolveComponent("a-avatar");
-  const _component_a_typography_text = _vue.resolveComponent("a-typography-text");
-  const _component_a_switch = _vue.resolveComponent("a-switch");
-  const _component_a_divider = _vue.resolveComponent("a-divider");
-  const _component_LogoutOutlined = _vue.resolveComponent("LogoutOutlined");
-  const _component_a_drawer = _vue.resolveComponent("a-drawer");
-  return _vue.openBlock(), _vue.createBlock(_component_a_drawer, {
-    placement: "right",
-    width: "320px",
-    visible: _ctx.visible,
-    "onUpdate:visible": _cache[7] || (_cache[7] = ($event) => _ctx.visible = $event),
-    headerStyle: { backgroundColor: _ctx.drawerSeting.mode === "dark" ? "" : "#fafafa" },
-    onClose: _cache[8] || (_cache[8] = ($event) => _ctx.$emit("update:show", false))
-  }, {
-    title: _withId(() => [
-      _vue.createVNode("header", _hoisted_1, [
-        _vue.createVNode(_component_a_avatar, {
-          shape: "circle",
-          size: "default",
-          src: _ctx.$attrs.userInfo.headImg || "../../assets/img/head.png",
-          style: { backgroundColor: "#ffbf00", verticalAlign: "middle", marginRight: "8px" }
-        }, null, 8, ["src"]),
-        _vue.createTextVNode(" " + _vue.toDisplayString(_ctx.$attrs.userInfo.name || "\u7528\u6237\u540D"), 1)
-      ])
+const _hoisted_1 = /* @__PURE__ */ createVNode("div", { class: "flex-1" }, null, -1);
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_MenuFoldOutlined = resolveComponent("MenuFoldOutlined");
+  const _component_MenuUnfoldOutlined = resolveComponent("MenuUnfoldOutlined");
+  const _component_UserAccountAction = resolveComponent("UserAccountAction");
+  return openBlock(), createBlock(Fragment, null, [
+    withDirectives(createVNode(_component_MenuFoldOutlined, {
+      class: "text-18",
+      onClick: _ctx.colToggle
+    }, null, 8, ["onClick"]), [
+      [vShow, !_ctx.collapsed]
     ]),
-    default: _withId(() => [
-      _vue.renderSlot(_ctx.$slots, "body"),
-      _vue.renderSlot(_ctx.$slots, "style", {}, () => [
-        _vue.createVNode(_component_a_typography_text, { class: "block mb-32" }, {
-          default: _withId(() => [
-            _hoisted_2
-          ]),
-          _: 1
-        }),
-        _vue.createVNode("div", _hoisted_3, [
-          _vue.createVNode("span", _hoisted_4, [
-            _vue.createVNode(_component_a_typography_text, { type: "secondary" }, {
-              default: _withId(() => [
-                _hoisted_5
-              ]),
-              _: 1
-            })
-          ]),
-          _vue.createVNode("div", null, [
-            _vue.createVNode(_component_a_switch, {
-              size: "small",
-              checked: _ctx.drawerSeting.mode === "dark",
-              onChange: _cache[1] || (_cache[1] = (bool) => _ctx.setSetting("mode", bool))
-            }, null, 8, ["checked"])
-          ])
-        ]),
-        _vue.createVNode("div", _hoisted_6, [
-          _vue.createVNode("span", _hoisted_7, [
-            _vue.createVNode(_component_a_typography_text, { type: "secondary" }, {
-              default: _withId(() => [
-                _hoisted_8
-              ]),
-              _: 1
-            })
-          ]),
-          _vue.createVNode("div", null, [
-            _vue.createVNode(_component_a_switch, {
-              size: "small",
-              checked: _ctx.drawerSeting.showTab,
-              "onUpdate:checked": _cache[2] || (_cache[2] = ($event) => _ctx.drawerSeting.showTab = $event),
-              onChange: _cache[3] || (_cache[3] = ($event) => _ctx.setSetting("showTab", _ctx.drawerSeting.showTab))
-            }, null, 8, ["checked"])
-          ])
-        ]),
-        _vue.createVNode("div", _hoisted_9, [
-          _vue.createVNode("span", _hoisted_10, [
-            _vue.createVNode(_component_a_typography_text, { type: "secondary" }, {
-              default: _withId(() => [
-                _hoisted_11
-              ]),
-              _: 1
-            })
-          ]),
-          _vue.createVNode("div", null, [
-            _vue.createVNode(_component_a_switch, {
-              size: "small",
-              checked: _ctx.drawerSeting.fixedTab,
-              "onUpdate:checked": _cache[4] || (_cache[4] = ($event) => _ctx.drawerSeting.fixedTab = $event),
-              onChange: _cache[5] || (_cache[5] = ($event) => _ctx.setSetting("fixedTab", _ctx.drawerSeting.fixedTab))
-            }, null, 8, ["checked"])
-          ])
-        ]),
-        _vue.createVNode(_component_a_divider)
-      ]),
-      _vue.createVNode(_component_a_typography_text, { class: "block mb-32" }, {
-        default: _withId(() => [
-          _hoisted_12
-        ]),
-        _: 1
-      }),
-      _vue.createVNode("div", {
-        class: "more-item flex items-center mb-32 cursor-pointer",
-        style: { "color": "#f5222d" },
-        onClick: _cache[6] || (_cache[6] = (...args) => _ctx.logoutHandler && _ctx.logoutHandler(...args))
-      }, [
-        _vue.createVNode(_component_LogoutOutlined, { class: "mr-8 text-14" }),
-        _hoisted_13
-      ])
+    withDirectives(createVNode(_component_MenuUnfoldOutlined, {
+      class: "text-18",
+      onClick: _ctx.colToggle
+    }, null, 8, ["onClick"]), [
+      [vShow, _ctx.collapsed]
     ]),
-    _: 3
-  }, 8, ["visible", "headerStyle"]);
-});
+    _hoisted_1,
+    createVNode(_component_UserAccountAction, mergeProps(_ctx.$attrs, toHandlers(_ctx.$listener)), null, 16)
+  ], 64);
+}
 
 script.render = render;
-script.__scopeId = "data-v-5cb92078";
-script.__file = "packages/drawer/index.vue";
+script.__file = "packages/header/index.vue";
 
 script.install = (app) => {
   app.component(script.name, script);
 };
 
-exports.default = script;
+export default script;

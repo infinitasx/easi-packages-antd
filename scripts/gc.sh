@@ -63,7 +63,7 @@ cat > $DIRNAME/package.json <<EOF
 {
   "name": "@easi-packages-antd/$INPUT_NAME",
   "version": "0.0.0",
-  "main": "dist/index.js",
+  "main": "index.ts",
   "license": "MIT",
   "peerDependencies": {
     "vue": "3.1.1"

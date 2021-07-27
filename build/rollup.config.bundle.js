@@ -5,6 +5,7 @@ import typescript from "rollup-plugin-typescript2";
 import commonjs from "rollup-plugin-commonjs";
 import json from "@rollup/plugin-json";
 import scss from "rollup-plugin-scss";
+import image from "@rollup/plugin-image";
 import path from "path";
 
 export default [
@@ -15,6 +16,7 @@ export default [
       file: "lib/index.js",
     },
     plugins: [
+      image(),
       json(),
       scss(),
       terser(),

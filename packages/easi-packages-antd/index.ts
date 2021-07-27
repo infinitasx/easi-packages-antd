@@ -1,57 +1,55 @@
-import '../css/index.scss';
-import type { App, Plugin } from 'vue'
+import "../css/index.scss";
+import "tailwindcss/tailwind.css";
 
-import EASIText from '../text'
-import EASIButton from '../button'
-import EASIDrawer from '../drawer'
-import EASIError from '../error'
-import EASILayout from '../layout'
-import EASILoading from '../loading'
-import EASIModal from '../modal'
-import EASIPage from '../page'
-import EASITable from '../table'
+import type { App, Plugin } from "vue";
 
-import vPermission from '../v-permission'
-import vLoading from '../v-loading'
+import EASIText from "../text";
+import EASIButton from "../button";
+import EASIMenu from "../menu";
+import EASINav from "../nav";
+import EASIHeader from "../header";
+import EASIDrawer from "../drawer";
+import EASIError from "../error";
+import EASILayout from "../layout";
+import EASILoading from "../loading";
+import EASIModal from "../modal";
+import EASIPage from "../page";
+import EASITable from "../table";
 
-import { useModalVisible } from '../useModalVisible'
-import { usePagination } from '../usePagination'
+import vPermission from "../v-permission";
+import vLoading from "../v-loading";
 
-import { initI18n, setLocale } from '../locale'
+import { useModalVisible } from "../useModalVisible";
+import { usePagination } from "../usePagination";
 
-import { version as version_ } from './version'
-const version = version_
+import { initI18n, setLocale } from "../locale";
 
-const components = [
-  EASIText,
-  EASIButton,
-  EASIDrawer,
-  EASIError,
-  EASILayout,
-  EASILoading,
-  EASIModal,
-  EASIPage,
-  EASITable,
-]
+import { version as version_ } from "./version";
+const version = version_;
+
+const components = [EASIText, EASIButton, EASIMenu, EASINav, EASIHeader, EASIDrawer, EASIError, EASILayout, EASILoading, EASIModal, EASIPage, EASITable];
 
 // 初始化组件内部国际化
 const i18n = initI18n();
 
-const plugins:Plugin[] = [i18n, vPermission, vLoading]
+const plugins: Plugin[] = [i18n, vPermission, vLoading];
 
 const install = (app: App): void => {
-  components.forEach(component => {
-    app.component(component.name, component)
-  })
+  components.forEach((component) => {
+    app.component(component.name, component);
+  });
 
-  plugins.forEach(plugin => {
-    app.use(plugin)
-  })
-}
+  plugins.forEach((plugin) => {
+    app.use(plugin);
+  });
+};
 
 export {
   EASIText,
   EASIButton,
+  EASIMenu,
+  EASINav,
+  EASIHeader,
   EASIDrawer,
   EASIError,
   EASILayout,
@@ -64,10 +62,10 @@ export {
   vPermission,
   vLoading,
   useModalVisible,
-  usePagination
-}
+  usePagination,
+};
 
 export default {
   version,
   install,
-}
+};

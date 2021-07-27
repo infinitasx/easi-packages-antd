@@ -4,6 +4,7 @@ import { nodeResolve } from "@rollup/plugin-node-resolve";
 import esbuild from "rollup-plugin-esbuild";
 import { getPackagesSync } from "@lerna/project";
 import json from "@rollup/plugin-json";
+import image from "@rollup/plugin-image";
 import pkg from "../package.json";
 import { resolve } from "path";
 
@@ -33,6 +34,7 @@ export default inputs.map((name) => {
     ],
     plugins: [
       json(),
+      image(),
       scss(),
       vue({
         target: "browser",
