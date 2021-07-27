@@ -5,7 +5,7 @@
     </a-layout-sider>
     <a-drawer placement="left" width="200px" :closable="false" :visible="!collapsed && isH5" :bodyStyle="{ padding: 0, height: '100%' }" @close="$emit('hideMenu')">
       <a-layout-sider class="flex flex-col h-screen overflow-hidden" collapsible :collapsed="false" :trigger="null">
-        <NavMenu v-bind="$attrs" />
+        <Menu v-bind="$attrs" />
       </a-layout-sider>
     </a-drawer>
   </div>

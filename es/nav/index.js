@@ -183,7 +183,6 @@ var script = defineComponent({
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Menu = resolveComponent("Menu");
   const _component_a_layout_sider = resolveComponent("a-layout-sider");
-  const _component_NavMenu = resolveComponent("NavMenu");
   const _component_a_drawer = resolveComponent("a-drawer");
   return withDirectives((openBlock(), createBlock("div", {
     class: ["side-placeholder", { "transition-width": !_ctx.isH5 }],
@@ -218,7 +217,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           trigger: null
         }, {
           default: withCtx(() => [
-            createVNode(_component_NavMenu, _ctx.$attrs, null, 16)
+            createVNode(_component_Menu, _ctx.$attrs, null, 16)
           ]),
           _: 1
         })
