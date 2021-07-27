@@ -33,6 +33,7 @@
       >
         <PageHeader :collapsed="collapsed"
                     :userInfo="userInfo"
+                    :avatar="avatar"
                     @colToggle="setCollapsed"
                     @handleShowSetting="handleShowSetting"
                     @logout="$emit('logout')"
@@ -65,7 +66,7 @@
         &copy;Copyright EASI, Make life easier.
       </a-layout-footer>
     </a-layout>
-    <PageSetting v-model:visible="showSetting" :userInfo="userInfo">
+    <PageSetting v-model:visible="showSetting" :userInfo="userInfo" :avatar="avatar" @logout="$emit('logout')">
       <!--  开发时可自定义插入内容  -->
       <template #action-render>
         <slot name="action-render"></slot>
@@ -113,6 +114,10 @@ export default defineComponent({
     userInfo: {
       type: Object,
       default: () => ({}),
+    },
+    // 用户头像
+    avatar: {
+      type: String,
     }
   },
   setup(props) {

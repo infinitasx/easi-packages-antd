@@ -2,7 +2,7 @@
   <a-drawer placement="right" width="320px" v-bind="$attrs" :headerStyle="{ backgroundColor: globalProvider.mode === 'dark' ? '' : '#fafafa' }" @close="$emit('update:visible', false)">
     <template #title>
       <header class="flex items-center">
-        <a-avatar shape="circle" size="default" src="../../assets/img/head.png" :style="{ backgroundColor: '#ffbf00', verticalAlign: 'middle', marginRight: '8px' }"> </a-avatar>
+        <a-avatar shape="circle" size="default" v-if="avatar" :src="avatar" :style="{ backgroundColor: '#ffbf00', verticalAlign: 'middle', marginRight: '8px' }"> </a-avatar>
         {{ userInfo?.name || "用户名" }}
       </header>
     </template>
@@ -61,6 +61,9 @@ export default defineComponent({
       type: Object as PropType<any>,
       default: () => ({}),
     },
+    avatar: {
+      type: String
+    }
   },
   setup(props, { emit }) {
     const globalProvider = inject<IProvider>("globalProvider");

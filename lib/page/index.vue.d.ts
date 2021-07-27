@@ -21,6 +21,9 @@ declare const _default: import("vue").DefineComponent<{
         type: ObjectConstructor;
         default: () => {};
     };
+    avatar: {
+        type: StringConstructor;
+    };
 }, {
     isH5: import("vue").Ref<boolean>;
     showSetting: import("vue").Ref<boolean>;
@@ -45,13 +48,16 @@ declare const _default: import("vue").DefineComponent<{
     subTitle?: unknown;
     nav?: unknown;
     userInfo?: unknown;
+    avatar?: unknown;
 } & {
     logo: string;
     title: string;
     subTitle: string;
     nav: RouteLocationNormalized[];
     userInfo: Record<string, any>;
-} & {}>, {
+} & {
+    avatar?: string | undefined;
+}>, {
     logo: string;
     title: string;
     subTitle: string;

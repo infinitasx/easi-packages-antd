@@ -5,9 +5,6 @@ import type { App, Plugin } from "vue";
 
 import EASIText from "../text";
 import EASIButton from "../button";
-import EASIMenu from "../menu";
-import EASINav from "../nav";
-import EASIHeader from "../header";
 import EASIDrawer from "../drawer";
 import EASIError from "../error";
 import EASILayout from "../layout";
@@ -27,7 +24,7 @@ import { initI18n, setLocale } from "../locale";
 import { version as version_ } from "./version";
 const version = version_;
 
-const components = [EASIText, EASIButton, EASIMenu, EASINav, EASIHeader, EASIDrawer, EASIError, EASILayout, EASILoading, EASIModal, EASIPage, EASITable];
+const components = [EASIText, EASIButton, EASIDrawer, EASIError, EASILayout, EASILoading, EASIModal, EASIPage, EASITable];
 
 // 初始化组件内部国际化
 const i18n = initI18n();
@@ -47,9 +44,6 @@ const install = (app: App): void => {
 export {
   EASIText,
   EASIButton,
-  EASIMenu,
-  EASINav,
-  EASIHeader,
   EASIDrawer,
   EASIError,
   EASILayout,

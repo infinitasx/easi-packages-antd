@@ -2048,6 +2048,9 @@ var script$3 = defineComponent({
     userInfo: {
       type: Object,
       default: () => ({})
+    },
+    avatar: {
+      type: String
     }
   },
   setup(props, { emit }) {
@@ -2090,12 +2093,13 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
       class: "dropdown-trigger px-8 cursor-pointer hover:bg-gray-100",
       onClick: _cache[1] || (_cache[1] = (...args) => _ctx.handleShowSetting && _ctx.handleShowSetting(...args))
     }, [
-      createVNode(_component_a_avatar, {
+      _ctx.avatar ? (openBlock(), createBlock(_component_a_avatar, {
+        key: 0,
         shape: "circle",
         size: "default",
-        src: "../../assets/img/head.png",
+        src: _ctx.avatar,
         style: { backgroundColor: "#ffbf00", verticalAlign: "middle" }
-      }),
+      }, null, 8, ["src"])) : createCommentVNode("v-if", true),
       createVNode("span", _hoisted_2$3, toDisplayString(_ctx.userInfo?.name || "\u7528\u6237\u540D"), 1)
     ])
   ], 64);
@@ -2151,6 +2155,9 @@ var script$2 = defineComponent({
     userInfo: {
       type: Object,
       default: () => ({})
+    },
+    avatar: {
+      type: String
     }
   },
   setup(props, { emit }) {
@@ -2205,12 +2212,13 @@ function render$2(_ctx, _cache, $props, $setup, $data, $options) {
   }), {
     title: withCtx(() => [
       createVNode("header", _hoisted_1$2, [
-        createVNode(_component_a_avatar, {
+        _ctx.avatar ? (openBlock(), createBlock(_component_a_avatar, {
+          key: 0,
           shape: "circle",
           size: "default",
-          src: "../../assets/img/head.png",
+          src: _ctx.avatar,
           style: { backgroundColor: "#ffbf00", verticalAlign: "middle", marginRight: "8px" }
-        }),
+        }, null, 8, ["src"])) : createCommentVNode("v-if", true),
         createTextVNode(" " + toDisplayString(_ctx.userInfo?.name || "\u7528\u6237\u540D"), 1)
       ])
     ]),
@@ -2481,6 +2489,9 @@ var script = defineComponent({
     userInfo: {
       type: Object,
       default: () => ({})
+    },
+    avatar: {
+      type: String
     }
   },
   setup(props) {
@@ -2598,10 +2609,11 @@ const render = /* @__PURE__ */ _withId((_ctx, _cache, $props, $setup, $data, $op
               createVNode(_component_PageHeader, {
                 collapsed: _ctx.collapsed,
                 userInfo: _ctx.userInfo,
+                avatar: _ctx.avatar,
                 onColToggle: _ctx.setCollapsed,
                 onHandleShowSetting: _ctx.handleShowSetting,
                 onLogout: _cache[2] || (_cache[2] = ($event) => _ctx.$emit("logout"))
-              }, null, 8, ["collapsed", "userInfo", "onColToggle", "onHandleShowSetting"])
+              }, null, 8, ["collapsed", "userInfo", "avatar", "onColToggle", "onHandleShowSetting"])
             ]),
             _: 1
           }, 8, ["class", "style"]),
@@ -2652,13 +2664,15 @@ const render = /* @__PURE__ */ _withId((_ctx, _cache, $props, $setup, $data, $op
       createVNode(_component_PageSetting, {
         visible: _ctx.showSetting,
         "onUpdate:visible": _cache[3] || (_cache[3] = ($event) => _ctx.showSetting = $event),
-        userInfo: _ctx.userInfo
+        userInfo: _ctx.userInfo,
+        avatar: _ctx.avatar,
+        onLogout: _cache[4] || (_cache[4] = ($event) => _ctx.$emit("logout"))
       }, {
         "action-render": _withId(() => [
           renderSlot(_ctx.$slots, "action-render")
         ]),
         _: 3
-      }, 8, ["visible", "userInfo"])
+      }, 8, ["visible", "userInfo", "avatar"])
     ]),
     _: 1
   });

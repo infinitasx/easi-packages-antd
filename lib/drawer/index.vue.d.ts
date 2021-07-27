@@ -1,34 +1,31 @@
-import { PropType } from "vue";
-export declare type defaultSeting = {
-    mode: "dark" | "light";
-    showTab: boolean;
-    fixedTab?: boolean;
-};
+import { PropType } from 'vue';
 declare const _default: import("vue").DefineComponent<{
-    show: {
-        type: BooleanConstructor;
+    visible: {
         default: boolean;
+        type: BooleanConstructor;
     };
-    drawerSeting: {
-        type: PropType<defaultSeting>;
-        default: () => {
-            mode: string;
-            showTab: boolean;
-            fixedTab: boolean;
-        };
+    width: {
+        default: string;
+        type: StringConstructor;
+    };
+    bodyStyle: {
+        default: () => {};
+        type: PropType<any>;
     };
 }, {
-    visible: import("vue").Ref<boolean>;
-    setSetting: (key: string, value: boolean) => void;
-    logoutHandler(): void;
-}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("update:show" | "update:drawerSeting" | "logout")[], "update:show" | "update:drawerSeting" | "logout", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
-    show?: unknown;
-    drawerSeting?: unknown;
+    computedBodyStyle: import("vue").ComputedRef<{}>;
+    handleClose(): void;
+}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("update:visible" | "close" | "show")[], "update:visible" | "close" | "show", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
+    visible?: unknown;
+    width?: unknown;
+    bodyStyle?: unknown;
 } & {
-    show: boolean;
-    drawerSeting: defaultSeting;
+    visible: boolean;
+    width: string;
+    bodyStyle: {};
 } & {}>, {
-    show: boolean;
-    drawerSeting: defaultSeting;
+    visible: boolean;
+    width: string;
+    bodyStyle: {};
 }>;
 export default _default;
