@@ -1,5 +1,4 @@
 import "../css/index.scss";
-import "tailwindcss/tailwind.css";
 
 import type { App, Plugin } from "vue";
 
@@ -41,23 +40,7 @@ const install = (app: App): void => {
   });
 };
 
-export {
-  EASIText,
-  EASIButton,
-  EASIDrawer,
-  EASIError,
-  EASILayout,
-  EASILoading,
-  EASIModal,
-  EASIPage,
-  EASITable,
-  install,
-  setLocale,
-  vPermission,
-  vLoading,
-  useModalVisible,
-  usePagination,
-};
+export { EASIText, EASIButton, EASIDrawer, EASIError, EASILayout, EASILoading, EASIModal, EASIPage, EASITable, install, setLocale, vPermission, vLoading, useModalVisible, usePagination };
 
 export default {
   version,
