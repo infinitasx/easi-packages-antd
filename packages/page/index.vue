@@ -73,7 +73,6 @@ export default defineComponent({
     const { breadcrumb, title, desc, hasPermission } = toRefs(props);
 
     const route: RouteLocationNormalizedLoaded = useRoute();
-    console.log("getCurrentInstance", getCurrentInstance);
 
     const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 
