@@ -6,17 +6,17 @@ import EASIText from "../text";
 import EASIButton from "../button";
 import EASIDrawer from "../drawer";
 import EASIError from "../error";
-import EASILayout from "../layout";
+import EASIPage from "../page";
 import EASILoading from "../loading";
 import EASIModal from "../modal";
-import EASIPage from "../page";
+import EASILayout from "../layout";
 import EASITable from "../table";
 
-import vPermission from "../v-permission";
-import vLoading from "../v-loading";
+import vPermission from "../directives/v-permissions";
+import vLoading from "../directives/v-loading";
 
-import { useModalVisible } from "../useModalVisible";
-import { usePagination } from "../usePagination";
+import { useModalVisible } from "../utils/useModalVisible";
+import { usePagination } from "../utils/usePagination";
 
 import { initI18n, setLocale } from "../locale";
 

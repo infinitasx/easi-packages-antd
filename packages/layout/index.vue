@@ -1,122 +1,238 @@
 <template>
-  <div>
-    <template v-if="$usePermissions($route.meta.permission) && hasPermission">
-      <div class="page-breadcrumb-wrap" v-if="showPageHeader">
-        <a-page-header :title="pageTitle">
-          <template #breadcrumb>
-            <a-breadcrumb :routes="breadcrumbRoutes">
-              <template #itemRender="{ route }">
-                <router-link :to="route.path">
-                  {{ route.breadcrumbName }}
-                </router-link>
-              </template>
-            </a-breadcrumb>
-          </template>
-          <p v-if="pageDesc">{{ pageDesc }}</p>
-          <slot name="header"></slot>
-        </a-page-header>
-      </div>
-      <div class="p-24">
-        <a-card v-if="layoutType === 'card'">
-          <slot></slot>
-        </a-card>
-        <slot v-else></slot>
-      </div>
-    </template>
-    <NoPermission status="403" v-else>
-      <template #title> 403 </template>
-      <template #sub-title>
-        {{ $t("noPermission") }}
+  <a-layout class="min-h-screen">
+    <!-- 侧边栏导航  -->
+    <PageNav :collapsed="collapsed"
+             :coll-width="collWidth"
+             :isH5="isH5"
+             :logo="logo"
+             :sub-title="subTitle"
+             :title="title"
+             :nav="nav"
+             @hideMenu="collapsed = true"
+    />
+    <!-- 内容布局 -->
+    <a-layout>
+      <div class="h-48"></div>
+      <a-layout-header
+          class="
+          page-header
+          fixed
+          top-0
+          right-0
+          bg-white
+          flex
+          items-center
+          h-48
+          leading-48
+          pl-16
+          pr-16
+          z-10
+        "
+          :class="{ 'transition-width': !isH5 }"
+          :style="{ width: isH5 ? '100%' : `calc(100% - ${collWidth})` }"
+      >
+        <PageHeader :collapsed="collapsed"
+                    :userInfo="userInfo"
+                    :avatar="avatar"
+                    @colToggle="setCollapsed"
+                    @handleShowSetting="handleShowSetting"
+                    @logout="$emit('logout')"
+        />
+      </a-layout-header>
+      <PageTab class="page-tab pt-6 bg-white"
+               :class="[
+                  globalProvider.fixedTab ? 'fixed top-48 right-0 z-10' : '',
+                  !isH5 && addTransition ? 'transition-width' : '',
+                ]"
+               :style="{ width: globalProvider.fixedTab && !isH5 ? `calc(100% - ${collWidth})` : `100%` }"
+               @reloadPage="onReloadPage"
+               v-if="globalProvider.showTab"
+      />
+      <div class="h-64" v-if="globalProvider.showTab && globalProvider.fixedTab"></div>
+      <a-layout-content>
+        <router-view v-slot="{ Component }">
+          <transition name="slid-up" mode="out-in">
+            <keep-alive :include="globalProvider.cachedPage">
+              <component
+                  :is="Component"
+                  :key="(Component || {}).name"
+                  v-if="globalProvider.reloadPage"
+              />
+            </keep-alive>
+          </transition>
+        </router-view>
+      </a-layout-content>
+      <a-layout-footer class="px-16 py-12 text-center">
+        &copy;Copyright EASI, Make life easier.
+      </a-layout-footer>
+    </a-layout>
+    <PageSetting v-model:visible="showSetting" :userInfo="userInfo" :avatar="avatar" @logout="$emit('logout')">
+      <!--  开发时可自定义插入内容  -->
+      <template #action-render>
+        <slot name="action-render"></slot>
       </template>
-    </NoPermission>
-  </div>
+    </PageSetting>
+  </a-layout>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, toRefs, PropType, ComputedRef, getCurrentInstance, ComponentInternalInstance } from "vue";
-import { useRoute, RouteLocationNormalizedLoaded, RouteLocationMatched } from "vue-router";
-import { BreadcrumbRoute } from "../../typings/antd";
-import NoPermission from "../../packages/error/index";
-import { createNamespace } from "../utils/create";
+import {computed, defineComponent, onBeforeUnmount, onMounted, provide, ref, toRefs, watch, PropType} from 'vue';
+import {useRoute, useRouter, RouteLocationNormalized} from 'vue-router';
+import {createNamespace} from '../utils/create';
+import PageNav from './nav.vue';
+import PageHeader from './header.vue';
+import PageSetting from './setting.vue';
+import PageTab from './tab.vue';
+import {isMobile, debounced} from 'easi-web-utils'
+import {initProvider, useReload} from '../utils/globalProvider'
 
 export default defineComponent({
-  name: createNamespace("Layout"),
+  name: createNamespace('Page'),
+  emits: ['logout'], // 退出登录
   props: {
-    showPageHeader: {
-      type: Boolean,
-      default: true,
+    // Logo图片路径
+    logo: {
+      type: String,
+      default: null
     },
-    breadcrumb: {
-      type: Array as PropType<BreadcrumbRoute[]>,
-      default: undefined,
-    },
+    // 系统名称
     title: {
       type: String,
-      default: "",
+      default: null
     },
-    desc: {
+    // 系统二级名称，一般放城市
+    subTitle: {
       type: String,
-      default: "",
+      default: null
     },
-    // 如果不想要默认card模式布局，则可以传入'customer'，这样slot不会被card包裹
-    layoutType: {
-      type: String as PropType<"card" | "customer">,
-      default: "card",
+    // 菜单数据
+    nav: {
+      type: Array as PropType<RouteLocationNormalized[]>,
+      default: () => ([]),
     },
-    // 传false则会强制显示403页面
-    hasPermission: {
-      type: Boolean,
-      default: true,
+    // 用户信息
+    userInfo: {
+      type: Object,
+      default: () => ({}),
     },
-  },
-  setup(props, { emit }) {
-    const { breadcrumb, title, desc, hasPermission } = toRefs(props);
-
-    const route: RouteLocationNormalizedLoaded = useRoute();
-    console.log("getCurrentInstance", getCurrentInstance);
-
-    const { appContext } = getCurrentInstance() as ComponentInternalInstance;
-
-    const breadcrumbRoutes: ComputedRef<BreadcrumbRoute[]> = computed((): BreadcrumbRoute[] => {
-      return (breadcrumb.value ||
-        route.meta.breadcrumb ||
-        route.matched.map((_route: RouteLocationMatched) => {
-          return {
-            path: _route.path,
-            breadcrumbName: _route.meta.title,
-          };
-        })) as BreadcrumbRoute[];
-    });
-
-    const pageTitle = computed((): string => {
-      return title.value || ((route.meta.title && route.meta.title) as string);
-    });
-
-    const pageDesc = computed((): string => {
-      return desc.value || ((route.meta.desc && route.meta.desc) as string);
-    });
-
-    // 是否可以执行初始化渲染请求数据
-    if (hasPermission.value && appContext.config.globalProperties.$usePermissions(route.meta.permission)) {
-      emit("initPage");
+    // 用户头像
+    avatar: {
+      type: String,
     }
+  },
+  setup(props) {
+    const { nav } = toRefs(props)
+
+    const route = useRoute();
+    const router = useRouter();
+
+    const isH5 = ref<boolean>(isMobile());
+
+    const addTransition = ref<boolean>(true);
+
+    // 侧边栏折叠面板
+    const collapsed = ref<boolean>(isH5.value);
+
+    const showSetting = ref<boolean>(false);
+
+
+    const globalProvider = initProvider();
+    provide('globalProvider', globalProvider);
+
+    let timeout: any;
+    watch(
+        () => globalProvider.fixedTab,
+        () => {
+          clearTimeout(timeout);
+          addTransition.value = false;
+          timeout = setTimeout(() => {
+            addTransition.value = true;
+          }, 200);
+        },
+    );
+
+    // 监听页面resize事件
+    const handleResize = () => {
+      debounced(() => {
+        if (collapsed.value && window.innerWidth > 1200) {
+          collapsed.value = false;
+        } else if (!collapsed.value && window.innerWidth <= 1200) {
+          collapsed.value = true;
+        }
+        if (isH5.value && window.innerWidth > 750) {
+          isH5.value = false;
+        } else if (!isH5.value && window.innerWidth <= 750) {
+          isH5.value = true;
+        }
+      }, 250)();
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize, false);
+
+    onMounted(() => {
+      if (route.name === 'Index' && nav.value.length > 0) {
+        router.replace(nav.value[0].path);
+      }
+    });
+
+    onBeforeUnmount(() => {
+      window.removeEventListener('resize', handleResize, false);
+    });
 
     return {
-      breadcrumbRoutes,
-      pageTitle,
-      pageDesc,
-    };
+      isH5,
+      showSetting,
+      collapsed,
+      addTransition,
+      setCollapsed() {
+        collapsed.value = !collapsed.value;
+      },
+      collWidth: computed(() => {
+        return collapsed.value ? '80px' : '200px';
+      }),
+      globalProvider,
+      cachedPage: computed(() => (globalProvider.showTab ? globalProvider.cachedPage : [])),
+      async onReloadPage() {
+        await useReload(globalProvider, route);
+      },
+      handleShowSetting() {
+        showSetting.value = true
+      }
+    }
   },
   components: {
-    NoPermission,
-  },
-});
+    PageNav,
+    PageHeader,
+    PageSetting,
+    PageTab,
+  }
+})
 </script>
 
-<style lang="scss">
-.page-breadcrumb-wrap {
-  .ant-page-header-footer {
-    margin: 0;
+<style lang="scss" scoped>
+.page-header {
+  border-bottom: 2px solid #f1f1f1;
+
+  .dropdown-trigger {
+    &:hover {
+      background-color: rgba(190, 190, 190, 0.2);
+    }
   }
+
+  [data-pro-theme='antdv-pro-theme-dark'] .dropdown-trigger {
+    &:hover {
+      background-color: rgba(190, 190, 190, 0);
+    }
+  }
+}
+
+.transition-width {
+  transition: width 0.2s;
+}
+
+.side-placeholder {
+  flex-shrink: 0;
+  overflow: hidden;
 }
 </style>

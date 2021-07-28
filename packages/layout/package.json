@@ -1,11 +1,13 @@
 {
-  "name": "@easi-packages-antd/layout",
+  "name": "@easi-packages-antd/page",
   "version": "0.0.0",
   "main": "index.ts",
   "license": "MIT",
   "peerDependencies": {
     "vue": "3.1.1",
-    "vue-router": "4"
+    "vue-router": "4",
+    "easi-web-utils": "https://github.com/infinitasx/easi-web-utils.git#main",
+    "@ant-design/icons-vue": "6"
   },
   "devDependencies": {
     "@vue/test-utils": "^2.0.0-beta.3"
