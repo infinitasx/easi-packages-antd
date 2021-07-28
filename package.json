@@ -56,10 +56,10 @@
   },
   "peerDependencies": {
     "ant-design-vue": "^2.1.x",
-    "easi-web-utils": "git+https://github.com/infinitasx/easi-web-utils.git#main",
     "vue": "^3.1.x",
     "vue-i18n": "9",
-    "vue-router": "^4.0.10"
+    "vue-router": "^4.0.10",
+    "easi-web-utils": "git+https://github.com/infinitasx/easi-web-utils.git#main"
   },
   "dependencies": {
     "ant-design-vue": "^2.2.2",
