@@ -2207,7 +2207,6 @@ function render$2(_ctx, _cache, $props, $setup, $data, $options) {
     placement: "right",
     width: "320px"
   }, _ctx.$attrs, {
-    headerStyle: { backgroundColor: _ctx.globalProvider.mode === "dark" ? "" : "#fafafa" },
     onClose: _cache[5] || (_cache[5] = ($event) => _ctx.$emit("update:visible", false))
   }), {
     title: withCtx(() => [
@@ -2295,7 +2294,7 @@ function render$2(_ctx, _cache, $props, $setup, $data, $options) {
       ])
     ]),
     _: 3
-  }, 16, ["headerStyle"]);
+  }, 16);
 }
 
 script$2.render = render$2;
