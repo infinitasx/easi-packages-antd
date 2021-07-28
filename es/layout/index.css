@@ -1,10 +1,41 @@
-.page-breadcrumb-wrap .ant-page-header-footer {
-  margin: 0;
+.page-header {
+  border-bottom: 2px solid #f1f1f1;
+}
+.page-header .dropdown-trigger:hover {
+  background-color: rgba(190, 190, 190, 0.2);
+}
+.page-header [data-pro-theme=antdv-pro-theme-dark] .dropdown-trigger:hover {
+  background-color: rgba(190, 190, 190, 0);
+}
+
+.transition-width {
+  transition: width 0.2s;
+}
+
+.side-placeholder {
+  flex-shrink: 0;
+  overflow: hidden;
 }
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.error-full-page {
-  height: calc(100vh - 160px);
+.page-tab {
+  height: 64px;
+}
+
+.icon-action {
+  margin-right: 0 !important;
+  color: rgba(0, 0, 0, 0.85);
+}
+.icon-action:hover {
+  color: #177ddc;
+}
+
+[data-pro-theme=antdv-pro-theme-dark] .icon-action {
+  margin-right: 0 !important;
+  color: rgba(255, 255, 255, 0.45);
+}
+[data-pro-theme=antdv-pro-theme-dark] .icon-action:hover {
+  color: #177ddc;
 }

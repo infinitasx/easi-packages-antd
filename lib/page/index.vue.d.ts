@@ -1,67 +1,55 @@
-import { PropType } from 'vue';
-import { RouteLocationNormalized } from 'vue-router';
+import { PropType, ComputedRef } from "vue";
+import { BreadcrumbRoute } from "../../typings/antd";
 declare const _default: import("vue").DefineComponent<{
-    logo: {
-        type: StringConstructor;
-        default: null;
+    showPageHeader: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
+    breadcrumb: {
+        type: PropType<BreadcrumbRoute[]>;
+        default: undefined;
     };
     title: {
         type: StringConstructor;
-        default: null;
+        default: string;
     };
-    subTitle: {
+    desc: {
         type: StringConstructor;
-        default: null;
+        default: string;
     };
-    nav: {
-        type: PropType<RouteLocationNormalized[]>;
-        default: () => never[];
+    layoutType: {
+        type: PropType<"card" | "customer">;
+        default: string;
     };
-    userInfo: {
-        type: ObjectConstructor;
-        default: () => {};
-    };
-    avatar: {
-        type: StringConstructor;
+    hasPermission: {
+        type: BooleanConstructor;
+        default: boolean;
     };
 }, {
-    isH5: import("vue").Ref<boolean>;
-    showSetting: import("vue").Ref<boolean>;
-    collapsed: import("vue").Ref<boolean>;
-    addTransition: import("vue").Ref<boolean>;
-    setCollapsed(): void;
-    collWidth: import("vue").ComputedRef<"80px" | "200px">;
-    globalProvider: {
-        [x: string]: any;
-        reloadPage: boolean;
-        mode: "light" | "dark";
-        showTab: boolean;
-        fixedTab: boolean;
-        cachedPage: string[];
-    };
-    cachedPage: import("vue").ComputedRef<string[]>;
-    onReloadPage(): Promise<void>;
-    handleShowSetting(): void;
-}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "logout"[], "logout", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
-    logo?: unknown;
+    breadcrumbRoutes: ComputedRef<BreadcrumbRoute[]>;
+    pageTitle: ComputedRef<string>;
+    pageDesc: ComputedRef<string>;
+}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
+    showPageHeader?: unknown;
+    breadcrumb?: unknown;
     title?: unknown;
-    subTitle?: unknown;
-    nav?: unknown;
-    userInfo?: unknown;
-    avatar?: unknown;
+    desc?: unknown;
+    layoutType?: unknown;
+    hasPermission?: unknown;
 } & {
-    logo: string;
+    showPageHeader: boolean;
     title: string;
-    subTitle: string;
-    nav: RouteLocationNormalized[];
-    userInfo: Record<string, any>;
+    desc: string;
+    layoutType: "card" | "customer";
+    hasPermission: boolean;
 } & {
-    avatar?: string | undefined;
+    breadcrumb?: BreadcrumbRoute[] | undefined;
 }>, {
-    logo: string;
+    showPageHeader: boolean;
+    breadcrumb: BreadcrumbRoute[];
     title: string;
-    subTitle: string;
-    nav: RouteLocationNormalized[];
-    userInfo: Record<string, any>;
+    desc: string;
+    layoutType: "card" | "customer";
+    hasPermission: boolean;
 }>;
 export default _default;
