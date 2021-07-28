@@ -1,5 +1,5 @@
 <template>
-  <a-drawer placement="right" width="320px" v-bind="$attrs" :headerStyle="{ backgroundColor: globalProvider.mode === 'dark' ? '' : '#fafafa' }" @close="$emit('update:visible', false)">
+  <a-drawer placement="right" width="320px" v-bind="$attrs" @close="$emit('update:visible', false)">
     <template #title>
       <header class="flex items-center">
         <a-avatar shape="circle" size="default" v-if="avatar" :src="avatar" :style="{ backgroundColor: '#ffbf00', verticalAlign: 'middle', marginRight: '8px' }"> </a-avatar>
