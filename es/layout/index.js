@@ -2108,7 +2108,7 @@ function initProvider() {
     fixedTab: true,
     showTab: true
   };
-  defaultData.mode === "dark" && HTML.setAttribute("data-pro-theme", "antdv-pro-theme-dark");
+  defaultData.mode && HTML.setAttribute("data-pro-theme", "antdv-pro-theme-dark");
   return reactive({
     ...defaultData,
     cachedPage: [],
