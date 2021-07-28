@@ -1,70 +1,35 @@
 <template>
   <a-layout class="min-h-screen">
     <!-- 侧边栏导航  -->
-    <PageNav :collapsed="collapsed"
-             :coll-width="collWidth"
-             :isH5="isH5"
-             :logo="logo"
-             :sub-title="subTitle"
-             :title="title"
-             :nav="nav"
-             @hideMenu="collapsed = true"
-    />
+    <PageNav :collapsed="collapsed" :coll-width="collWidth" :isH5="isH5" :logo="logo" :sub-title="subTitle" :title="title" :nav="nav" @hideMenu="collapsed = true" />
     <!-- 内容布局 -->
     <a-layout>
       <div class="h-48"></div>
       <a-layout-header
-          class="
-          page-header
-          fixed
-          top-0
-          right-0
-          bg-white
-          flex
-          items-center
-          h-48
-          leading-48
-          pl-16
-          pr-16
-          z-10
-        "
-          :class="{ 'transition-width': !isH5 }"
-          :style="{ width: isH5 ? '100%' : `calc(100% - ${collWidth})` }"
+        class="page-header fixed top-0 right-0 bg-white flex items-center h-48 leading-48 pl-16 pr-16 z-10"
+        :class="{ 'transition-width': !isH5 }"
+        :style="{ width: isH5 ? '100%' : `calc(100% - ${collWidth})` }"
       >
-        <PageHeader :collapsed="collapsed"
-                    :userInfo="userInfo"
-                    :avatar="avatar"
-                    @colToggle="setCollapsed"
-                    @handleShowSetting="handleShowSetting"
-                    @logout="$emit('logout')"
-        />
+        <PageHeader :collapsed="collapsed" :userInfo="userInfo" :avatar="avatar" @colToggle="setCollapsed" @handleShowSetting="handleShowSetting" @logout="$emit('logout')" />
       </a-layout-header>
-      <PageTab class="page-tab pt-6 bg-white"
-               :class="[
-                  globalProvider.fixedTab ? 'fixed top-48 right-0 z-10' : '',
-                  !isH5 && addTransition ? 'transition-width' : '',
-                ]"
-               :style="{ width: globalProvider.fixedTab && !isH5 ? `calc(100% - ${collWidth})` : `100%` }"
-               @reloadPage="onReloadPage"
-               v-if="globalProvider.showTab"
+      <PageTab
+        class="page-tab pt-6 bg-white"
+        :class="[globalProvider.fixedTab ? 'fixed top-48 right-0 z-10' : '', !isH5 && addTransition ? 'transition-width' : '']"
+        :style="{ width: globalProvider.fixedTab && !isH5 ? `calc(100% - ${collWidth})` : `100%` }"
+        @reloadPage="onReloadPage"
+        v-if="globalProvider.showTab"
       />
       <div class="h-64" v-if="globalProvider.showTab && globalProvider.fixedTab"></div>
       <a-layout-content>
         <router-view v-slot="{ Component }">
           <transition name="slid-up" mode="out-in">
             <keep-alive :include="globalProvider.cachedPage">
-              <component
-                  :is="Component"
-                  :key="(Component || {}).name"
-                  v-if="globalProvider.reloadPage"
-              />
+              <component :is="Component" :key="(Component || {}).name" v-if="globalProvider.reloadPage" />
             </keep-alive>
           </transition>
         </router-view>
       </a-layout-content>
-      <a-layout-footer class="px-16 py-12 text-center">
-        &copy;Copyright EASI, Make life easier.
-      </a-layout-footer>
+      <a-layout-footer class="px-16 py-12 text-center"> &copy;Copyright EASI, Make life easier. </a-layout-footer>
     </a-layout>
     <PageSetting v-model:visible="showSetting" :userInfo="userInfo" :avatar="avatar" @logout="$emit('logout')">
       <!--  开发时可自定义插入内容  -->
@@ -76,39 +41,39 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent, onBeforeUnmount, onMounted, provide, ref, toRefs, watch, PropType} from 'vue';
-import {useRoute, useRouter, RouteLocationNormalized} from 'vue-router';
-import {createNamespace} from '../utils/create';
-import PageNav from './nav.vue';
-import PageHeader from './header.vue';
-import PageSetting from './setting.vue';
-import PageTab from './tab.vue';
-import {isMobile, debounced} from 'easi-web-utils'
-import {initProvider, useReload} from '../utils/globalProvider'
+import { computed, defineComponent, onBeforeUnmount, onMounted, provide, ref, toRefs, watch, PropType } from "vue";
+import { useRoute, useRouter, RouteLocationNormalized } from "vue-router";
+import { createNamespace } from "../utils/create";
+import PageNav from "./nav.vue";
+import PageHeader from "./header.vue";
+import PageSetting from "./setting.vue";
+import PageTab from "./tab.vue";
+import { isMobile, debounced } from "easi-web-utils";
+import { initProvider, useReload } from "../utils/globalProvider";
 
 export default defineComponent({
-  name: createNamespace('Page'),
-  emits: ['logout'], // 退出登录
+  name: createNamespace("Layout"),
+  emits: ["logout"], // 退出登录
   props: {
     // Logo图片路径
     logo: {
       type: String,
-      default: null
+      default: null,
     },
     // 系统名称
     title: {
       type: String,
-      default: null
+      default: null,
     },
     // 系统二级名称，一般放城市
     subTitle: {
       type: String,
-      default: null
+      default: null,
     },
     // 菜单数据
     nav: {
       type: Array as PropType<RouteLocationNormalized[]>,
-      default: () => ([]),
+      default: () => [],
     },
     // 用户信息
     userInfo: {
@@ -118,10 +83,10 @@ export default defineComponent({
     // 用户头像
     avatar: {
       type: String,
-    }
+    },
   },
   setup(props) {
-    const { nav } = toRefs(props)
+    const { nav } = toRefs(props);
 
     const route = useRoute();
     const router = useRouter();
@@ -135,20 +100,19 @@ export default defineComponent({
 
     const showSetting = ref<boolean>(false);
 
-
     const globalProvider = initProvider();
-    provide('globalProvider', globalProvider);
+    provide("globalProvider", globalProvider);
 
     let timeout: any;
     watch(
-        () => globalProvider.fixedTab,
-        () => {
-          clearTimeout(timeout);
-          addTransition.value = false;
-          timeout = setTimeout(() => {
-            addTransition.value = true;
-          }, 200);
-        },
+      () => globalProvider.fixedTab,
+      () => {
+        clearTimeout(timeout);
+        addTransition.value = false;
+        timeout = setTimeout(() => {
+          addTransition.value = true;
+        }, 200);
+      }
     );
 
     // 监听页面resize事件
@@ -168,16 +132,16 @@ export default defineComponent({
     };
 
     handleResize();
-    window.addEventListener('resize', handleResize, false);
+    window.addEventListener("resize", handleResize, false);
 
     onMounted(() => {
-      if (route.name === 'Index' && nav.value.length > 0) {
+      if (route.name === "Index" && nav.value.length > 0) {
         router.replace(nav.value[0].path);
       }
     });
 
     onBeforeUnmount(() => {
-      window.removeEventListener('resize', handleResize, false);
+      window.removeEventListener("resize", handleResize, false);
     });
 
     return {
@@ -189,7 +153,7 @@ export default defineComponent({
         collapsed.value = !collapsed.value;
       },
       collWidth: computed(() => {
-        return collapsed.value ? '80px' : '200px';
+        return collapsed.value ? "80px" : "200px";
       }),
       globalProvider,
       cachedPage: computed(() => (globalProvider.showTab ? globalProvider.cachedPage : [])),
@@ -197,17 +161,17 @@ export default defineComponent({
         await useReload(globalProvider, route);
       },
       handleShowSetting() {
-        showSetting.value = true
-      }
-    }
+        showSetting.value = true;
+      },
+    };
   },
   components: {
     PageNav,
     PageHeader,
     PageSetting,
     PageTab,
-  }
-})
+  },
+});
 </script>
 
 <style lang="scss" scoped>
@@ -220,7 +184,7 @@ export default defineComponent({
     }
   }
 
-  [data-pro-theme='antdv-pro-theme-dark'] .dropdown-trigger {
+  [data-pro-theme="antdv-pro-theme-dark"] .dropdown-trigger {
     &:hover {
       background-color: rgba(190, 190, 190, 0);
     }
