@@ -6552,8 +6552,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.error-full-page {
-  height: calc(100vh - 160px);
+.page-breadcrumb-wrap .ant-page-header-footer {
+  margin: 0;
 }
 
 .has-footer {
@@ -6577,6 +6577,10 @@
   z-index: 1;
 }
 
+.error-full-page {
+  height: calc(100vh - 160px);
+}
+
 .page-header {
   border-bottom: 2px solid #f1f1f1;
 }
@@ -6594,10 +6598,6 @@
 .side-placeholder {
   flex-shrink: 0;
   overflow: hidden;
-}
-
-.page-breadcrumb-wrap .ant-page-header-footer {
-  margin: 0;
 }
 
 .page-tab {

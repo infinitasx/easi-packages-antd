@@ -1,5 +1,5 @@
 import * as _vue from 'vue';
-import { defineComponent, toRefs, ref, onMounted, watch, toRaw, pushScopeId, popScopeId, resolveComponent, openBlock, createBlock, Fragment, createVNode, withDirectives, toDisplayString, createCommentVNode, vShow, renderList, withScopeId, withCtx, h, nextTick, reactive, inject, mergeProps, createTextVNode, renderSlot, withModifiers, provide, onBeforeUnmount, computed, Transition, KeepAlive, resolveDynamicComponent } from 'vue';
+import { defineComponent, toRefs, ref, onMounted, watch, toRaw, resolveComponent, openBlock, createBlock, Fragment, createVNode, withDirectives, toDisplayString, createCommentVNode, vShow, withCtx, renderList, h, nextTick, reactive, inject, mergeProps, createTextVNode, renderSlot, pushScopeId, popScopeId, withModifiers, withScopeId, provide, onBeforeUnmount, computed, Transition, KeepAlive, resolveDynamicComponent } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { Modal } from 'ant-design-vue';
 import { getLocal, setLocal, isMobile, debounced } from 'easi-web-utils';
@@ -40,9 +40,7 @@ var script$5 = defineComponent({
     const openKeys = ref([]);
     const selectedKeys = ref([]);
     const _changeSelect = () => {
-      const matched = [
-        ...toRaw(route.meta.breadcrumb || [])
-      ];
+      const matched = [...toRaw(route.meta.breadcrumb || [])];
       if (!collapsed.value) {
         openKeys.value = matched.map((_matched) => _matched.name);
       }
@@ -54,9 +52,7 @@ var script$5 = defineComponent({
     watch(() => route.name, _changeSelect);
     watch(() => collapsed.value, (newCollapsed) => {
       if (!newCollapsed) {
-        const matched = [
-          ...toRaw(route.meta.breadcrumb || [])
-        ];
+        const matched = [...toRaw(route.meta.breadcrumb || [])];
         openKeys.value = matched.map((_matched) => _matched.name);
       } else {
         openKeys.value = [];
@@ -73,8 +69,6 @@ var script$5 = defineComponent({
   }
 });
 
-const _withId$2 = /* @__PURE__ */ withScopeId("data-v-ab3d12e0");
-pushScopeId("data-v-ab3d12e0");
 const _hoisted_1$4 = {
   key: 0,
   class: "admin-title text-white ml-16 truncate"
@@ -85,8 +79,7 @@ const _hoisted_2$4 = {
 };
 const _hoisted_3$3 = { class: "flex-1 overflow-y-auto overflow-x-hidden" };
 const _hoisted_4$1 = { class: "flex items-center" };
-popScopeId();
-const render$5 = /* @__PURE__ */ _withId$2((_ctx, _cache, $props, $setup, $data, $options) => {
+function render$5(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_a_menu_item = resolveComponent("a-menu-item");
   const _component_a_sub_menu = resolveComponent("a-sub-menu");
   const _component_a_menu = resolveComponent("a-menu");
@@ -119,7 +112,7 @@ const render$5 = /* @__PURE__ */ _withId$2((_ctx, _cache, $props, $setup, $data,
         "onUpdate:selectedKeys": _cache[2] || (_cache[2] = ($event) => _ctx.selectedKeys = $event),
         theme: "dark"
       }, {
-        default: _withId$2(() => [
+        default: withCtx(() => [
           (openBlock(true), createBlock(Fragment, null, renderList(_ctx.nav, (item) => {
             return openBlock(), createBlock(Fragment, {
               key: item.name
@@ -127,16 +120,16 @@ const render$5 = /* @__PURE__ */ _withId$2((_ctx, _cache, $props, $setup, $data,
               item.children && item.children.length > 0 && !item.meta.hideMenu ? (openBlock(), createBlock(_component_a_sub_menu, {
                 key: item.name
               }, {
-                title: _withId$2(() => [
+                title: withCtx(() => [
                   createVNode("span", _hoisted_4$1, [
                     !!item.meta.icon ? (openBlock(), createBlock("i", {
                       key: 0,
-                      class: [item.meta.icon, "anticon"]
+                      class: [item.meta.icon, "anticon1"]
                     }, null, 2)) : createCommentVNode("v-if", true),
                     createVNode("span", null, toDisplayString(item.meta.title), 1)
                   ])
                 ]),
-                default: _withId$2(() => [
+                default: withCtx(() => [
                   (openBlock(true), createBlock(Fragment, null, renderList(item.children, (child) => {
                     return openBlock(), createBlock(Fragment, {
                       key: child.name
@@ -146,10 +139,10 @@ const render$5 = /* @__PURE__ */ _withId$2((_ctx, _cache, $props, $setup, $data,
                         class: "flex items-center",
                         onClick: ($event) => _ctx.toPage(child.name)
                       }, {
-                        default: _withId$2(() => [
+                        default: withCtx(() => [
                           !!child.meta.icon ? (openBlock(), createBlock("i", {
                             key: 0,
-                            class: [child.meta.icon, "anticon"]
+                            class: [child.meta.icon, "anticon1"]
                           }, null, 2)) : createCommentVNode("v-if", true),
                           createVNode("span", null, toDisplayString(child.meta.title), 1)
                         ]),
@@ -164,10 +157,10 @@ const render$5 = /* @__PURE__ */ _withId$2((_ctx, _cache, $props, $setup, $data,
                 class: "flex items-center",
                 onClick: ($event) => _ctx.toPage(item.name)
               }, {
-                default: _withId$2(() => [
+                default: withCtx(() => [
                   !!item.meta.icon ? (openBlock(), createBlock("i", {
                     key: 0,
-                    class: [item.meta.icon, "anticon"]
+                    class: [item.meta.icon, "anticon1"]
                   }, null, 2)) : createCommentVNode("v-if", true),
                   createVNode("span", null, toDisplayString(item.meta.title), 1)
                 ]),
@@ -180,10 +173,9 @@ const render$5 = /* @__PURE__ */ _withId$2((_ctx, _cache, $props, $setup, $data,
       }, 8, ["openKeys", "selectedKeys"])
     ])
   ], 64);
-});
+}
 
 script$5.render = render$5;
-script$5.__scopeId = "data-v-ab3d12e0";
 script$5.__file = "packages/layout/menu.vue";
 
 var script$4 = defineComponent({

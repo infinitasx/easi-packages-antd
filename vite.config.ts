@@ -15,6 +15,7 @@ export default () => {
     },
     build: {
       sourcemap: false,
+      cssCodeSplit: false,
       lib: {
         entry: resolve(__dirname, "packages/easi-packages-antd/index.ts"),
         name: "EASI",

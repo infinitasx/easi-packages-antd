@@ -9,30 +9,19 @@
     </div>
   </div>
   <div class="flex-1 overflow-y-auto overflow-x-hidden">
-    <a-menu
-        mode="inline"
-        :inlineCollapsed="false"
-        v-model:openKeys="openKeys"
-        v-model:selectedKeys="selectedKeys"
-        theme="dark"
-    >
+    <a-menu mode="inline" :inlineCollapsed="false" v-model:openKeys="openKeys" v-model:selectedKeys="selectedKeys" theme="dark">
       <template v-for="item in nav" :key="item.name">
         <template v-if="item.children && item.children.length > 0 && !item.meta.hideMenu">
           <a-sub-menu :key="item.name">
             <template #title>
               <span class="flex items-center">
-                <i :class="item.meta.icon" v-if="!!item.meta.icon" class="anticon"></i>
+                <i :class="item.meta.icon" v-if="!!item.meta.icon" class="anticon1"></i>
                 <span>{{ item.meta.title }}</span>
               </span>
             </template>
             <template v-for="child in item.children" :key="child.name">
-              <a-menu-item
-                  :key="child.name"
-                  v-if="!child.meta.hideMenu"
-                  class="flex items-center"
-                  @click="toPage(child.name)"
-              >
-                <i :class="child.meta.icon" v-if="!!child.meta.icon" class="anticon"></i>
+              <a-menu-item :key="child.name" v-if="!child.meta.hideMenu" class="flex items-center" @click="toPage(child.name)">
+                <i :class="child.meta.icon" v-if="!!child.meta.icon" class="anticon1"></i>
                 <span>{{ child.meta.title }}</span>
               </a-menu-item>
             </template>
@@ -40,7 +29,7 @@
         </template>
         <template v-else-if="!item.children && !item.meta.hideMenu">
           <a-menu-item :key="item.name" class="flex items-center" @click="toPage(item.name)">
-            <i :class="item.meta.icon" v-if="!!item.meta.icon" class="anticon"></i>
+            <i :class="item.meta.icon" v-if="!!item.meta.icon" class="anticon1"></i>
             <span>{{ item.meta.title }}</span>
           </a-menu-item>
         </template>
@@ -50,13 +39,13 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref, toRaw, watch, onMounted, toRefs } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
-import {createNamespace} from "../utils/create";
-import { BreadcrumbRoute } from '../../typings/antd';
+import { computed, defineComponent, ref, toRaw, watch, onMounted, toRefs } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { createNamespace } from "../utils/create";
+import { BreadcrumbRoute } from "../../typings/antd";
 
 export default defineComponent({
-  name: createNamespace('menu'),
+  name: createNamespace("menu"),
   props: {
     collapsed: {
       type: Boolean,
@@ -65,23 +54,23 @@ export default defineComponent({
     // Logo图片路径
     logo: {
       type: String,
-      default: null
+      default: null,
     },
     // 系统名称
     title: {
       type: String,
-      default: null
+      default: null,
     },
     // 系统二级名称，一般放城市
     subTitle: {
       type: String,
-      default: null
+      default: null,
     },
     // 菜单数据
     nav: {
       type: Array,
       default: [],
-    }
+    },
   },
   setup(props) {
     const { collapsed } = toRefs(props);
@@ -93,9 +82,7 @@ export default defineComponent({
     const selectedKeys = ref<string[]>([]);
 
     const _changeSelect = () => {
-      const matched: BreadcrumbRoute[] = [
-        ...toRaw((route.meta.breadcrumb || []) as BreadcrumbRoute[]),
-      ];
+      const matched: BreadcrumbRoute[] = [...toRaw((route.meta.breadcrumb || []) as BreadcrumbRoute[])];
       if (!collapsed.value) {
         openKeys.value = matched.map((_matched: BreadcrumbRoute) => _matched.name) as string[];
       }
@@ -109,17 +96,15 @@ export default defineComponent({
     watch(() => route.name, _changeSelect);
 
     watch(
-        () => collapsed.value,
-        newCollapsed => {
-          if (!newCollapsed) {
-            const matched: BreadcrumbRoute[] = [
-              ...toRaw((route.meta.breadcrumb || []) as BreadcrumbRoute[]),
-            ];
-            openKeys.value = matched.map((_matched: BreadcrumbRoute) => _matched.name) as string[];
-          } else {
-            openKeys.value = [];
-          }
-        },
+      () => collapsed.value,
+      (newCollapsed) => {
+        if (!newCollapsed) {
+          const matched: BreadcrumbRoute[] = [...toRaw((route.meta.breadcrumb || []) as BreadcrumbRoute[])];
+          openKeys.value = matched.map((_matched: BreadcrumbRoute) => _matched.name) as string[];
+        } else {
+          openKeys.value = [];
+        }
+      }
     );
 
     const toPage = (key: string) => {
@@ -132,9 +117,7 @@ export default defineComponent({
       toPage,
     };
   },
-})
+});
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
