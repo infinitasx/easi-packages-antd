@@ -6388,9 +6388,6 @@
   border-bottom-color: #303030;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 [data-pro-theme=antdv-pro-theme-dark] .loading-container {
   background: rgba(50, 50, 50, 0.8);
 }
@@ -6552,6 +6549,9 @@
     transform: translateX(6px) rotate(90deg);
   }
 }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 .error-full-page {
   height: calc(100vh - 160px);
 }
@@ -6783,10 +6783,6 @@
   z-index: 1;
 }
 
-.page-breadcrumb-wrap .ant-page-header-footer {
-  margin: 0;
-}
-
 .page-header {
   border-bottom: 2px solid #f1f1f1;
 }
@@ -6804,6 +6800,10 @@
 .side-placeholder {
   flex-shrink: 0;
   overflow: hidden;
+}
+
+.page-breadcrumb-wrap .ant-page-header-footer {
+  margin: 0;
 }
 
 .page-tab {

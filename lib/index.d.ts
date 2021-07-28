@@ -1,5 +1,4 @@
 import "./css/index.scss";
-import "tailwindcss/tailwind.css";
 import type { App } from "vue";
 import EASIText from "./text";
 import EASIButton from "./button";
@@ -16,7 +15,7 @@ import { useModalVisible } from "./useModalVisible";
 import { usePagination } from "./usePagination";
 import { setLocale } from "./locale";
 declare const install: (app: App) => void;
-export { EASIText, EASIButton, EASIDrawer, EASIError, EASILayout, EASILoading, EASIModal, EASIPage, EASITable, install, setLocale, vPermission, vLoading, useModalVisible, usePagination, };
+export { EASIText, EASIButton, EASIDrawer, EASIError, EASILayout, EASILoading, EASIModal, EASIPage, EASITable, install, setLocale, vPermission, vLoading, useModalVisible, usePagination };
 declare const _default: {
     version: string;
     install: (app: App<any>) => void;

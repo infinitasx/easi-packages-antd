@@ -6,6 +6,9 @@
   "main": "dist/index.es.js",
   "module": "dist/index.cjs.js",
   "typings": "lib/index.d.ts",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "serve": "vite",
     "gc": "bash ./scripts/gc.sh",
@@ -53,14 +56,14 @@
   },
   "peerDependencies": {
     "ant-design-vue": "^2.1.x",
-    "easi-web-utils": "https://github.com/infinitasx/easi-web-utils.git#main",
+    "easi-web-utils": "git+https://github.com/infinitasx/easi-web-utils.git#main",
     "vue": "^3.1.x",
     "vue-i18n": "9",
     "vue-router": "^4.0.10"
   },
   "dependencies": {
     "ant-design-vue": "^2.2.2",
-    "easi-web-utils": "https://github.com/infinitasx/easi-web-utils.git#main",
+    "easi-web-utils": "git+https://github.com/infinitasx/easi-web-utils.git#main",
     "vue-i18n": "^9.1.7",
     "vue-router": "^4.0.10"
   },
