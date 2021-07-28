@@ -55,14 +55,14 @@
     "vue-tsc": "^0.2.1"
   },
   "peerDependencies": {
-    "ant-design-vue": "^2.1.x",
-    "easi-web-utils": "git+https://github.com/infinitasx/easi-web-utils.git#main",
+    "ant-design-vue": "^2",
     "vue": "^3.1.x",
     "vue-i18n": "9",
-    "vue-router": "^4.0.10"
+    "vue-router": "^4.0.10",
+    "easi-web-utils": "git+https://github.com/infinitasx/easi-web-utils.git#main"
   },
   "dependencies": {
-    "ant-design-vue": "^2.2.2",
+    "ant-design-vue": "^2",
     "easi-web-utils": "git+https://github.com/infinitasx/easi-web-utils.git#main",
     "vue-i18n": "^9.1.7",
     "vue-router": "^4.0.10"

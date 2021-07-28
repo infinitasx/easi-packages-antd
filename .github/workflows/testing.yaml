@@ -15,5 +15,4 @@ jobs:
       - name: build
         env:
           REPO_ACCESS_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
         run: cmdb build

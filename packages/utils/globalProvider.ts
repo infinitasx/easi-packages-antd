@@ -1,6 +1,6 @@
 import { nextTick, reactive, toRaw } from "vue";
 import { RouteLocationNormalizedLoaded } from "vue-router";
-import { EASILocal } from "easi-web-utils";
+import { getLocal, setLocal } from "easi-web-utils";
 
 export interface IProvider {
   reloadPage: boolean;
@@ -16,7 +16,7 @@ const SETTING_KEY = "setting";
 const HTML = document.querySelector("html") as HTMLHtmlElement;
 
 export function initProvider() {
-  const defaultData = EASILocal.get(SETTING_KEY) || {
+  const defaultData = getLocal(SETTING_KEY) || {
     mode: false,
     fixedTab: true,
     showTab: true,
@@ -38,7 +38,7 @@ export function setProvider(provide: IProvider) {
   } else {
     HTML.removeAttribute("data-pro-theme");
   }
-  EASILocal.set(SETTING_KEY, other);
+  setLocal(SETTING_KEY, other);
 }
 
 // 刷新页面面组件的方法
