@@ -124,7 +124,7 @@ function render$5(_ctx, _cache, $props, $setup, $data, $options) {
                   createVNode("span", _hoisted_4$1, [
                     !!item.meta.icon ? (openBlock(), createBlock("i", {
                       key: 0,
-                      class: [item.meta.icon, "anticon1"]
+                      class: [item.meta.icon, "anticon"]
                     }, null, 2)) : createCommentVNode("v-if", true),
                     createVNode("span", null, toDisplayString(item.meta.title), 1)
                   ])
@@ -142,7 +142,7 @@ function render$5(_ctx, _cache, $props, $setup, $data, $options) {
                         default: withCtx(() => [
                           !!child.meta.icon ? (openBlock(), createBlock("i", {
                             key: 0,
-                            class: [child.meta.icon, "anticon1"]
+                            class: [child.meta.icon, "anticon"]
                           }, null, 2)) : createCommentVNode("v-if", true),
                           createVNode("span", null, toDisplayString(child.meta.title), 1)
                         ]),
@@ -160,7 +160,7 @@ function render$5(_ctx, _cache, $props, $setup, $data, $options) {
                 default: withCtx(() => [
                   !!item.meta.icon ? (openBlock(), createBlock("i", {
                     key: 0,
-                    class: [item.meta.icon, "anticon1"]
+                    class: [item.meta.icon, "anticon"]
                   }, null, 2)) : createCommentVNode("v-if", true),
                   createVNode("span", null, toDisplayString(item.meta.title), 1)
                 ]),

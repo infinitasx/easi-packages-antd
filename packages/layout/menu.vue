@@ -15,13 +15,13 @@
           <a-sub-menu :key="item.name">
             <template #title>
               <span class="flex items-center">
-                <i :class="item.meta.icon" v-if="!!item.meta.icon" class="anticon1"></i>
+                <i :class="item.meta.icon" v-if="!!item.meta.icon" class="anticon"></i>
                 <span>{{ item.meta.title }}</span>
               </span>
             </template>
             <template v-for="child in item.children" :key="child.name">
               <a-menu-item :key="child.name" v-if="!child.meta.hideMenu" class="flex items-center" @click="toPage(child.name)">
-                <i :class="child.meta.icon" v-if="!!child.meta.icon" class="anticon1"></i>
+                <i :class="child.meta.icon" v-if="!!child.meta.icon" class="anticon"></i>
                 <span>{{ child.meta.title }}</span>
               </a-menu-item>
             </template>
@@ -29,7 +29,7 @@
         </template>
         <template v-else-if="!item.children && !item.meta.hideMenu">
           <a-menu-item :key="item.name" class="flex items-center" @click="toPage(item.name)">
-            <i :class="item.meta.icon" v-if="!!item.meta.icon" class="anticon1"></i>
+            <i :class="item.meta.icon" v-if="!!item.meta.icon" class="anticon"></i>
             <span>{{ item.meta.title }}</span>
           </a-menu-item>
         </template>

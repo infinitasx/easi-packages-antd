@@ -47,6 +47,9 @@
 .iconfont.anticon {
   vertical-align: inherit;
 }
+.iconfont.anticon::before {
+  display: inline-block !important;
+}
 
 .ant-table-row td .ant-btn:last-of-type + .ant-divider-vertical {
   display: none !important;
@@ -6552,10 +6555,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.page-breadcrumb-wrap .ant-page-header-footer {
-  margin: 0;
-}
-
 .has-footer {
   padding-bottom: 35px;
 }
@@ -6577,10 +6576,6 @@
   z-index: 1;
 }
 
-.error-full-page {
-  height: calc(100vh - 160px);
-}
-
 .page-header {
   border-bottom: 2px solid #f1f1f1;
 }
@@ -6598,6 +6593,14 @@
 .side-placeholder {
   flex-shrink: 0;
   overflow: hidden;
+}
+
+.error-full-page {
+  height: calc(100vh - 160px);
+}
+
+.page-breadcrumb-wrap .ant-page-header-footer {
+  margin: 0;
 }
 
 .page-tab {
