@@ -183,11 +183,11 @@ export default defineComponent({
       background-color: rgba(190, 190, 190, 0.2);
     }
   }
+}
 
-  [data-pro-theme="antdv-pro-theme-dark"] .dropdown-trigger {
-    &:hover {
-      background-color: rgba(190, 190, 190, 0);
-    }
+[data-pro-theme="antdv-pro-theme-dark"] .dropdown-trigger {
+  &:hover {
+    background-color: rgba(190, 190, 190, 0) !important;
   }
 }
 
