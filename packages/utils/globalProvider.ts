@@ -22,7 +22,7 @@ export function initProvider() {
     showTab: true,
   };
 
-  defaultData.mode === "dark" && HTML.setAttribute("data-pro-theme", "antdv-pro-theme-dark");
+  defaultData.mode && HTML.setAttribute("data-pro-theme", "antdv-pro-theme-dark");
 
   return reactive<IProvider>({
     ...defaultData,
