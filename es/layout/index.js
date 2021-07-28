@@ -2082,7 +2082,7 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
     ]),
     _hoisted_1$3,
     createVNode("span", {
-      class: "dropdown-trigger px-8 cursor-pointer hover:bg-gray-100",
+      class: "dropdown-trigger px-8 cursor-pointer",
       onClick: _cache[1] || (_cache[1] = (...args) => _ctx.handleShowSetting && _ctx.handleShowSetting(...args))
     }, [
       _ctx.avatar ? (openBlock(), createBlock(_component_a_avatar, {

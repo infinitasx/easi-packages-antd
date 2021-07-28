@@ -2,7 +2,7 @@
   <MenuFoldOutlined v-show="!collapsed" class="text-18" @click="colToggle" />
   <MenuUnfoldOutlined v-show="collapsed" class="text-18" @click="colToggle" />
   <div class="flex-1"></div>
-  <span class="dropdown-trigger px-8 cursor-pointer hover:bg-gray-100" @click="handleShowSetting">
+  <span class="dropdown-trigger px-8 cursor-pointer" @click="handleShowSetting">
     <a-avatar shape="circle" size="default" v-if="avatar" :src="avatar" :style="{ backgroundColor: '#ffbf00', verticalAlign: 'middle' }"> </a-avatar>
     <span class="pl-8">{{ userInfo?.name || "用户名" }}</span>
   </span>
@@ -27,7 +27,7 @@ export default defineComponent({
     },
     avatar: {
       type: String,
-    }
+    },
   },
   setup(props, { emit }) {
     return {
