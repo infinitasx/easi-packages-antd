@@ -10,7 +10,7 @@ declare const _default: import("vue").DefineComponent<{
     };
 }, {
     globalProvider: IProvider | undefined;
-    setSetting: (key: string, value: boolean) => void;
+    setSetting: (key: string, value: boolean | string) => void;
     handleLogout(): void;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("update:visible" | "logout")[], "update:visible" | "logout", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
     userInfo?: unknown;

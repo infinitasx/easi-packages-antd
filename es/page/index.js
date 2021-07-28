@@ -78,7 +78,6 @@ var script = defineComponent({
   setup(props, { emit }) {
     const { breadcrumb, title, desc, hasPermission } = toRefs(props);
     const route = useRoute();
-    console.log("getCurrentInstance", getCurrentInstance);
     const { appContext } = getCurrentInstance();
     const breadcrumbRoutes = computed(() => {
       return breadcrumb.value || route.meta.breadcrumb || route.matched.map((_route) => {

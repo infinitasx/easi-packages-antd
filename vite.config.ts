@@ -34,7 +34,7 @@ export default () => {
             "..moment": "moment",
             "easi-web-utils": "EASI-Utils",
             "ant-design-vue/dist/antd.css": "antd",
-            "vue-i18n": "I18n",
+            "vue-i18n": "VueI18n",
           },
         },
         plugins: [json()],
@@ -42,7 +42,7 @@ export default () => {
       terserOptions: {
         compress: {
           ecma: 2015,
-          drop_console: true,
+          drop_console: false,
         },
       },
       commonjsOptions: {

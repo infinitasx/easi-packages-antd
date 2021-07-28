@@ -1,7 +1,7 @@
-import { RouteLocationNormalizedLoaded } from 'vue-router';
+import { RouteLocationNormalizedLoaded } from "vue-router";
 export interface IProvider {
     reloadPage: boolean;
-    mode: 'light' | 'dark';
+    mode: "light" | "dark";
     showTab: boolean;
     fixedTab: boolean;
     cachedPage: string[];

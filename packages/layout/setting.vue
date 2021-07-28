@@ -15,7 +15,7 @@
         <a-typography-text type="secondary"> {{ $t("darkSetting") }} </a-typography-text>
       </span>
       <div>
-        <a-switch :checked="globalProvider.mode" checkedValue="dark" unCheckedValue="light" @change="setSetting('mode', $event)" />
+        <a-switch :checked="globalProvider.mode" @change="setSetting('mode', $event)" />
       </div>
     </div>
     <div class="flex items-center mb-32">
@@ -62,14 +62,14 @@ export default defineComponent({
       default: () => ({}),
     },
     avatar: {
-      type: String
-    }
+      type: String,
+    },
   },
   setup(props, { emit }) {
     const globalProvider = inject<IProvider>("globalProvider");
     const { t } = useI18n();
 
-    const setSetting = (key: string, value: boolean) => {
+    const setSetting = (key: string, value: boolean | string) => {
       (globalProvider as IProvider)[key] = value;
       setProvider(globalProvider as IProvider);
     };

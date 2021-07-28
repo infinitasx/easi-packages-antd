@@ -2112,7 +2112,7 @@ const SETTING_KEY = "setting";
 const HTML = document.querySelector("html");
 function initProvider() {
   const defaultData = EASILocal.get(SETTING_KEY) || {
-    mode: "light",
+    mode: false,
     fixedTab: true,
     showTab: true
   };
@@ -2125,7 +2125,7 @@ function initProvider() {
 }
 function setProvider(provide) {
   const { cachedPage, reloadPage, ...other } = toRaw(provide);
-  if (other.mode === "dark") {
+  if (other.mode) {
     HTML.setAttribute("data-pro-theme", "antdv-pro-theme-dark");
   } else {
     HTML.removeAttribute("data-pro-theme");
@@ -2242,8 +2242,6 @@ function render$2(_ctx, _cache, $props, $setup, $data, $options) {
         createVNode("div", null, [
           createVNode(_component_a_switch, {
             checked: _ctx.globalProvider.mode,
-            checkedValue: "dark",
-            unCheckedValue: "light",
             onChange: _cache[1] || (_cache[1] = ($event) => _ctx.setSetting("mode", $event))
           }, null, 8, ["checked"])
         ])
