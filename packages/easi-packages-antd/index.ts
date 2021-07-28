@@ -28,7 +28,7 @@ const components = [EASIText, EASIButton, EASIDrawer, EASIError, EASILayout, EAS
 // 初始化组件内部国际化
 const i18n = initI18n();
 
-const plugins: Plugin[] = [i18n, vPermission, vLoading];
+const plugins: Plugin[] = [i18n, vPermission];
 
 const install = (app: App): void => {
   components.forEach((component) => {
@@ -38,6 +38,7 @@ const install = (app: App): void => {
   plugins.forEach((plugin) => {
     app.use(plugin);
   });
+  app.use(vLoading, { i18n });
 };
 
 export { EASIText, EASIButton, EASIDrawer, EASIError, EASILayout, EASILoading, EASIModal, EASIPage, EASITable, install, setLocale, vPermission, vLoading, useModalVisible, usePagination };
