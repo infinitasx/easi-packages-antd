@@ -6552,8 +6552,8 @@
     transform: translateX(6px) rotate(90deg);
   }
 }
-.page-breadcrumb-wrap .ant-page-header-footer {
-  margin: 0;
+.error-full-page {
+  height: calc(100vh - 160px);
 }
 
 .easi-btn-primary {
@@ -6783,6 +6783,10 @@
   z-index: 1;
 }
 
+.page-breadcrumb-wrap .ant-page-header-footer {
+  margin: 0;
+}
+
 .page-header {
   border-bottom: 2px solid #f1f1f1;
 }
@@ -6800,10 +6804,6 @@
 .side-placeholder {
   flex-shrink: 0;
   overflow: hidden;
-}
-
-.error-full-page {
-  height: calc(100vh - 160px);
 }
 
 .page-tab {

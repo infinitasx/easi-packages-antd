@@ -31,6 +31,7 @@ export default () => {
             "vue-router": "VueRouter",
             "ant-design-vue": "antd",
             moment: "moment",
+            "..moment": "moment",
             "easi-web-utils": "EASI-Utils",
             "ant-design-vue/dist/antd.css": "antd",
             "vue-i18n": "I18n",

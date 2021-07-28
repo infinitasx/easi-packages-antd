@@ -6,16 +6,15 @@
   "main": "dist/index.es.js",
   "module": "dist/index.cjs.js",
   "typings": "lib/index.d.ts",
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
     "serve": "vite",
     "gc": "bash ./scripts/gc.sh",
     "build": "rimraf ./dist && rimraf ./es && rimraf ./lib && vite build && yarn build:components && yarn build:bundle",
     "build:bundle": "rollup -c ./build/rollup.config.bundle.js && node ./build/movefile.js",
     "build:components": "rollup -c ./build/rollup.config.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "easi-auto-tag": "easi-auto-tag",
+    "easi-assets-deploy": "easi-assets-deploy"
   },
   "author": "",
   "license": "ISC",
@@ -31,6 +30,8 @@
     "@vue/compiler-sfc": "^3.1.4",
     "autoprefixer": "^10.3.1",
     "babel-preset-env": "^1.7.0",
+    "easi-assets-deploy": "https://github.com/infinitasx/easi-assets-deploy.git#main",
+    "easi-auto-tag": "https://github.com/infinitasx/easi-auto-tag.git#main",
     "lerna": "^4.0.0",
     "rimraf": "^3.0.2",
     "rollup-plugin-commonjs": "^10.1.0",
@@ -62,5 +63,15 @@
     "easi-web-utils": "https://github.com/infinitasx/easi-web-utils.git#main",
     "vue-i18n": "^9.1.7",
     "vue-router": "^4.0.10"
+  },
+  "easiAssetsDeployConfig": {
+    "backend": {
+      "projectName": "",
+      "repositoryUrl": "",
+      "templateDir": "",
+      "branchName": ""
+    },
+    "assetsFilePattern": "*.html",
+    "asLibrary": true
   }
 }

@@ -1,0 +1,19 @@
+name: 生产环境
+on:
+  release:
+    types:
+      - created
+jobs:
+  build:
+    runs-on:
+      - self-hosted
+      - linux
+      - x64
+      - jp
+    steps:
+      - uses: actions/checkout@v2
+      - name: 发布到生产环境
+        env:
+          EASI_PROFILE: production
+          REPO_ACCESS_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
+        run: cmdb build

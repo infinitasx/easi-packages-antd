@@ -1,0 +1,6 @@
+group: fe
+name: easi-packages-antd
+build: yarn install --pure-lockfile && yarn easi-assets-deploy --env ${profile} --version ${version} --versionBuild ${version_build}
+artifacts:
+  - destination: append-to-notification
+    artifact: ./devops-notification
