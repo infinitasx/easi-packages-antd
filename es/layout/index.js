@@ -2467,7 +2467,7 @@ script$1.__scopeId = "data-v-8afcfb18";
 script$1.__file = "packages/layout/tab.vue";
 
 var script = defineComponent({
-  name: createNamespace("Page"),
+  name: createNamespace("Layout"),
   emits: ["logout"],
   props: {
     logo: {
@@ -2602,7 +2602,7 @@ const render = /* @__PURE__ */ _withId((_ctx, _cache, $props, $setup, $data, $op
         default: _withId(() => [
           _hoisted_1,
           createVNode(_component_a_layout_header, {
-            class: ["\n          page-header\n          fixed\n          top-0\n          right-0\n          bg-white\n          flex\n          items-center\n          h-48\n          leading-48\n          pl-16\n          pr-16\n          z-10\n        ", { "transition-width": !_ctx.isH5 }],
+            class: ["page-header fixed top-0 right-0 bg-white flex items-center h-48 leading-48 pl-16 pr-16 z-10", { "transition-width": !_ctx.isH5 }],
             style: { width: _ctx.isH5 ? "100%" : `calc(100% - ${_ctx.collWidth})` }
           }, {
             default: _withId(() => [
@@ -2619,10 +2619,7 @@ const render = /* @__PURE__ */ _withId((_ctx, _cache, $props, $setup, $data, $op
           }, 8, ["class", "style"]),
           _ctx.globalProvider.showTab ? (openBlock(), createBlock(_component_PageTab, {
             key: 0,
-            class: ["page-tab pt-6 bg-white", [
-              _ctx.globalProvider.fixedTab ? "fixed top-48 right-0 z-10" : "",
-              !_ctx.isH5 && _ctx.addTransition ? "transition-width" : ""
-            ]],
+            class: ["page-tab pt-6 bg-white", [_ctx.globalProvider.fixedTab ? "fixed top-48 right-0 z-10" : "", !_ctx.isH5 && _ctx.addTransition ? "transition-width" : ""]],
             style: { width: _ctx.globalProvider.fixedTab && !_ctx.isH5 ? `calc(100% - ${_ctx.collWidth})` : `100%` },
             onReloadPage: _ctx.onReloadPage
           }, null, 8, ["class", "style", "onReloadPage"])) : createCommentVNode("v-if", true),

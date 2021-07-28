@@ -1,5 +1,5 @@
-import { PropType } from 'vue';
-import { RouteLocationNormalized } from 'vue-router';
+import { PropType } from "vue";
+import { RouteLocationNormalized } from "vue-router";
 declare const _default: import("vue").DefineComponent<{
     logo: {
         type: StringConstructor;
