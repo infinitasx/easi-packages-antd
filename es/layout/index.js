@@ -2,7 +2,7 @@ import * as _vue from 'vue';
 import { defineComponent, toRefs, ref, onMounted, watch, toRaw, pushScopeId, popScopeId, resolveComponent, openBlock, createBlock, Fragment, createVNode, withDirectives, toDisplayString, createCommentVNode, vShow, renderList, withScopeId, withCtx, h, nextTick, reactive, inject, mergeProps, createTextVNode, renderSlot, withModifiers, provide, onBeforeUnmount, computed, Transition, KeepAlive, resolveDynamicComponent } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { Modal } from 'ant-design-vue';
-import { EASILocal, isMobile, debounced } from 'easi-web-utils';
+import { getLocal, setLocal, isMobile, debounced } from 'easi-web-utils';
 import { useI18n } from 'vue-i18n';
 
 function createNamespace(name) {
@@ -2111,7 +2111,7 @@ script$3.__file = "packages/layout/header.vue";
 const SETTING_KEY = "setting";
 const HTML = document.querySelector("html");
 function initProvider() {
-  const defaultData = EASILocal.get(SETTING_KEY) || {
+  const defaultData = getLocal(SETTING_KEY) || {
     mode: false,
     fixedTab: true,
     showTab: true
@@ -2130,7 +2130,7 @@ function setProvider(provide) {
   } else {
     HTML.removeAttribute("data-pro-theme");
   }
-  EASILocal.set(SETTING_KEY, other);
+  setLocal(SETTING_KEY, other);
 }
 async function useReload(provide, route, refreshAll = false) {
   if (refreshAll) {
