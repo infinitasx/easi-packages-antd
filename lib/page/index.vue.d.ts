@@ -29,7 +29,7 @@ declare const _default: import("vue").DefineComponent<{
     breadcrumbRoutes: ComputedRef<BreadcrumbRoute[]>;
     pageTitle: ComputedRef<string>;
     pageDesc: ComputedRef<string>;
-}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
+}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "initPage"[], "initPage", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
     showPageHeader?: unknown;
     breadcrumb?: unknown;
     title?: unknown;
