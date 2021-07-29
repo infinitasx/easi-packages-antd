@@ -11,7 +11,7 @@
 一个基于 Vue3.0 及 Ant Design Vue 2.0 封装的基础组件库
 </p>
 <p align='center'>
-国际化：cn / en / ja 
+国际化：zh / en / ja 
 </p>
 <br>
 

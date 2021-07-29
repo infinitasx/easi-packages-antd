@@ -2145,9 +2145,6 @@ var script$2 = defineComponent({
       type: Object,
       default: () => ({})
     },
-    avatar: {
-      type: String
-    },
     onLogout: {
       type: Function,
       default: () => Promise.resolve()

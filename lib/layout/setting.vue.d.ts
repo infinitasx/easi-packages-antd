@@ -1,12 +1,10 @@
 import { PropType } from "vue";
 import { IProvider } from "../utils/globalProvider";
+import { UserInfo } from '../../typings/antd';
 declare const _default: import("vue").DefineComponent<{
     userInfo: {
-        type: PropType<any>;
+        type: PropType<UserInfo>;
         default: () => {};
-    };
-    avatar: {
-        type: StringConstructor;
     };
     onLogout: {
         type: FunctionConstructor;
@@ -18,15 +16,12 @@ declare const _default: import("vue").DefineComponent<{
     handleLogout(): void;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "update:visible"[], "update:visible", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
     userInfo?: unknown;
-    avatar?: unknown;
     onLogout?: unknown;
 } & {
-    userInfo: {};
+    userInfo: UserInfo;
     onLogout: Function;
-} & {
-    avatar?: string | undefined;
-}>, {
-    userInfo: {};
+} & {}>, {
+    userInfo: UserInfo;
     onLogout: Function;
 }>;
 export default _default;

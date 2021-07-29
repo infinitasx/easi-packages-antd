@@ -1,10 +1,12 @@
+import { PropType } from "vue";
+import { UserInfo } from '../../typings/antd';
 declare const _default: import("vue").DefineComponent<{
     collapsed: {
         type: BooleanConstructor;
         default: boolean;
     };
     userInfo: {
-        type: ObjectConstructor;
+        type: PropType<UserInfo>;
         default: () => {};
     };
 }, {
@@ -15,9 +17,9 @@ declare const _default: import("vue").DefineComponent<{
     userInfo?: unknown;
 } & {
     collapsed: boolean;
-    userInfo: Record<string, any>;
+    userInfo: UserInfo;
 } & {}>, {
     collapsed: boolean;
-    userInfo: Record<string, any>;
+    userInfo: UserInfo;
 }>;
 export default _default;

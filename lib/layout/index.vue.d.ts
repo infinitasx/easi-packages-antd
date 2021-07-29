@@ -1,5 +1,6 @@
 import { PropType } from "vue";
 import { RouteLocationNormalized } from "vue-router";
+import { UserInfo } from '../../typings/antd';
 declare const _default: import("vue").DefineComponent<{
     logo: {
         type: StringConstructor;
@@ -18,7 +19,7 @@ declare const _default: import("vue").DefineComponent<{
         default: () => never[];
     };
     userInfo: {
-        type: ObjectConstructor;
+        type: PropType<UserInfo>;
         default: () => {};
     };
     onLogout: {
@@ -55,14 +56,14 @@ declare const _default: import("vue").DefineComponent<{
     title: string;
     subTitle: string;
     nav: RouteLocationNormalized[];
-    userInfo: Record<string, any>;
+    userInfo: UserInfo;
     onLogout: Function;
 } & {}>, {
     logo: string;
     title: string;
     subTitle: string;
     nav: RouteLocationNormalized[];
-    userInfo: Record<string, any>;
+    userInfo: UserInfo;
     onLogout: Function;
 }>;
 export default _default;

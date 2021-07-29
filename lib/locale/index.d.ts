@@ -1,6 +1,6 @@
-declare type Lang = "cn" | "en" | "ja";
+declare type Lang = "zh" | "en" | "ja";
 export declare function initI18n(): import("vue-i18n").I18n<{
-    cn: {
+    zh: {
         confirm: string;
         cancel: string;
         loading: string;

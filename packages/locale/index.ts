@@ -1,24 +1,30 @@
 import { createI18n, useI18n } from "vue-i18n";
-import defaultCN from "./lang/cn";
+import ZH from "./lang/zh";
+import EN from "./lang/en";
+import JA from "./lang/ja";
 
-type Lang = "cn" | "en" | "ja";
+type Lang = "zh" | "en" | "ja";
+
+const langMap = {
+  zh: ZH,
+  en: EN,
+  ja: JA,
+}
 
 export function initI18n() {
   return createI18n({
     legacy: false,
     globalInjection: true,
     useScope: "global",
-    locale: "cn",
-    fallbackLocale: "cn",
+    locale: "zh",
+    fallbackLocale: "zh",
     messages: {
-      cn: defaultCN,
+      zh: ZH,
     },
   });
 }
 
 export function setLocale(lang: Lang) {
   const { setLocaleMessage } = useI18n();
-  import(/* @vite-ignore */ `./lang/${lang}.ts`).then((message) => {
-    setLocaleMessage(lang, message.default);
-  });
+  setLocaleMessage(lang, langMap[lang]);
 }
