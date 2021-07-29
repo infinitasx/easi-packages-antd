@@ -36,15 +36,15 @@ export default {
 
     const removeDom = (el: CustomerDom) => {
       el &&
-      setTimeout(() => {
-        el.domInserted = false;
-        (el as CustomerDom)?.loadingRoot?.parentElement?.removeChild(el?.loadingRoot);
-        // el.removeChild(el.loadingRoot);
-      }, 300);
+        setTimeout(() => {
+          el.domInserted = false;
+          (el as CustomerDom)?.loadingRoot?.parentElement?.removeChild(el?.loadingRoot);
+          // el.removeChild(el.loadingRoot);
+        }, 300);
     };
 
     const toggleLoading = async (el: CustomerDom, binding: DirectiveBinding) => {
-      let _title = "common.loading";
+      let _title = "loading";
       let _show = true;
       let _size = "normal";
 
