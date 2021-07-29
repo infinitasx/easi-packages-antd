@@ -2040,9 +2040,6 @@ var script$3 = defineComponent({
     userInfo: {
       type: Object,
       default: () => ({})
-    },
-    avatar: {
-      type: String
     }
   },
   setup(props, { emit }) {
@@ -2085,11 +2082,11 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
       class: "dropdown-trigger px-8 cursor-pointer",
       onClick: _cache[1] || (_cache[1] = (...args) => _ctx.handleShowSetting && _ctx.handleShowSetting(...args))
     }, [
-      _ctx.avatar ? (openBlock(), createBlock(_component_a_avatar, {
+      _ctx.userInfo?.avatar ? (openBlock(), createBlock(_component_a_avatar, {
         key: 0,
         shape: "circle",
         size: "default",
-        src: _ctx.avatar,
+        src: _ctx.userInfo.avatar,
         style: { backgroundColor: "#ffbf00", verticalAlign: "middle" }
       }, null, 8, ["src"])) : createCommentVNode("v-if", true),
       createVNode("span", _hoisted_2$3, toDisplayString(_ctx.userInfo?.name || "\u7528\u6237\u540D"), 1)
@@ -2142,7 +2139,7 @@ async function useReload(provide, route, refreshAll = false) {
 
 var script$2 = defineComponent({
   name: createNamespace("Setting"),
-  emits: ["update:visible", "logout"],
+  emits: ["update:visible"],
   props: {
     userInfo: {
       type: Object,
@@ -2150,6 +2147,10 @@ var script$2 = defineComponent({
     },
     avatar: {
       type: String
+    },
+    onLogout: {
+      type: Function,
+      default: () => Promise.resolve()
     }
   },
   setup(props, { emit }) {
@@ -2169,7 +2170,7 @@ var script$2 = defineComponent({
           content: t("logoutMessage"),
           centered: true,
           onOk() {
-            emit("logout");
+            return props?.onLogout && props.onLogout();
           }
         });
       }
@@ -2203,11 +2204,11 @@ function render$2(_ctx, _cache, $props, $setup, $data, $options) {
   }), {
     title: withCtx(() => [
       createVNode("header", _hoisted_1$2, [
-        _ctx.avatar ? (openBlock(), createBlock(_component_a_avatar, {
+        _ctx.userInfo?.avatar ? (openBlock(), createBlock(_component_a_avatar, {
           key: 0,
           shape: "circle",
           size: "default",
-          src: _ctx.avatar,
+          src: _ctx.userInfo.avatar,
           style: { backgroundColor: "#ffbf00", verticalAlign: "middle", marginRight: "8px" }
         }, null, 8, ["src"])) : createCommentVNode("v-if", true),
         createTextVNode(" " + toDisplayString(_ctx.userInfo?.name || "\u7528\u6237\u540D"), 1)
@@ -2457,7 +2458,6 @@ script$1.__file = "packages/layout/tab.vue";
 
 var script = defineComponent({
   name: createNamespace("Layout"),
-  emits: ["logout"],
   props: {
     logo: {
       type: String,
@@ -2479,8 +2479,9 @@ var script = defineComponent({
       type: Object,
       default: () => ({})
     },
-    avatar: {
-      type: String
+    onLogout: {
+      type: Function,
+      default: () => Promise.resolve()
     }
   },
   setup(props) {
@@ -2598,11 +2599,10 @@ const render = /* @__PURE__ */ _withId((_ctx, _cache, $props, $setup, $data, $op
               createVNode(_component_PageHeader, {
                 collapsed: _ctx.collapsed,
                 userInfo: _ctx.userInfo,
-                avatar: _ctx.avatar,
                 onColToggle: _ctx.setCollapsed,
                 onHandleShowSetting: _ctx.handleShowSetting,
                 onLogout: _cache[2] || (_cache[2] = ($event) => _ctx.$emit("logout"))
-              }, null, 8, ["collapsed", "userInfo", "avatar", "onColToggle", "onHandleShowSetting"])
+              }, null, 8, ["collapsed", "userInfo", "onColToggle", "onHandleShowSetting"])
             ]),
             _: 1
           }, 8, ["class", "style"]),
@@ -2651,14 +2651,13 @@ const render = /* @__PURE__ */ _withId((_ctx, _cache, $props, $setup, $data, $op
         visible: _ctx.showSetting,
         "onUpdate:visible": _cache[3] || (_cache[3] = ($event) => _ctx.showSetting = $event),
         userInfo: _ctx.userInfo,
-        avatar: _ctx.avatar,
-        onLogout: _cache[4] || (_cache[4] = ($event) => _ctx.$emit("logout"))
+        onLogout: _ctx.onLogout
       }, {
         "action-render": _withId(() => [
           renderSlot(_ctx.$slots, "action-render")
         ]),
         _: 3
-      }, 8, ["visible", "userInfo", "avatar"])
+      }, 8, ["visible", "userInfo", "onLogout"])
     ]),
     _: 1
   });

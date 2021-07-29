@@ -21,8 +21,9 @@ declare const _default: import("vue").DefineComponent<{
         type: ObjectConstructor;
         default: () => {};
     };
-    avatar: {
-        type: StringConstructor;
+    onLogout: {
+        type: FunctionConstructor;
+        default: () => Promise<void>;
     };
 }, {
     isH5: import("vue").Ref<boolean>;
@@ -42,26 +43,26 @@ declare const _default: import("vue").DefineComponent<{
     cachedPage: import("vue").ComputedRef<string[]>;
     onReloadPage(): Promise<void>;
     handleShowSetting(): void;
-}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "logout"[], "logout", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
+}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
     logo?: unknown;
     title?: unknown;
     subTitle?: unknown;
     nav?: unknown;
     userInfo?: unknown;
-    avatar?: unknown;
+    onLogout?: unknown;
 } & {
     logo: string;
     title: string;
     subTitle: string;
     nav: RouteLocationNormalized[];
     userInfo: Record<string, any>;
-} & {
-    avatar?: string | undefined;
-}>, {
+    onLogout: Function;
+} & {}>, {
     logo: string;
     title: string;
     subTitle: string;
     nav: RouteLocationNormalized[];
     userInfo: Record<string, any>;
+    onLogout: Function;
 }>;
 export default _default;

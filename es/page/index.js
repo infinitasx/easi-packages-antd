@@ -49,6 +49,7 @@ script$1.install = (app) => {
 
 var script = defineComponent({
   name: createNamespace("Page"),
+  emits: ["initPage"],
   props: {
     showPageHeader: {
       type: Boolean,
@@ -68,11 +69,11 @@ var script = defineComponent({
     },
     layoutType: {
       type: String,
-      default: "card"
+      default: "customer"
     },
     hasPermission: {
       type: Boolean,
-      default: true
+      default: false
     }
   },
   setup(props, { emit }) {
@@ -121,7 +122,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_a_card = resolveComponent("a-card");
   const _component_NoPermission = resolveComponent("NoPermission");
   return openBlock(), createBlock("div", null, [
-    _ctx.$usePermissions(_ctx.$route.meta.permission) && _ctx.hasPermission ? (openBlock(), createBlock(Fragment, { key: 0 }, [
+    _ctx.$usePermissions(_ctx.$route.meta.permission) || _ctx.hasPermission ? (openBlock(), createBlock(Fragment, { key: 0 }, [
       _ctx.showPageHeader ? (openBlock(), createBlock("div", _hoisted_1, [
         createVNode(_component_a_page_header, { title: _ctx.pageTitle }, {
           breadcrumb: withCtx(() => [
