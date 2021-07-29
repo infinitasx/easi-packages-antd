@@ -1,7 +1,7 @@
 {
   "name": "easi-packages-antd",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.2-alpha0",
   "description": "",
   "main": "dist/index.es.js",
   "module": "dist/index.cjs.js",
@@ -16,8 +16,8 @@
     "build:bundle": "rollup -c ./build/rollup.config.bundle.js && node ./build/movefile.js",
     "build:components": "rollup -c ./build/rollup.config.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "easi-auto-tag": "easi-auto-tag",
-    "easi-assets-deploy": "easi-assets-deploy"
+    "easi-assets-deploy": "easi-assets-deploy",
+    "easi-auto-tag": "easi-auto-tag"
   },
   "author": "",
   "license": "ISC",
@@ -56,16 +56,16 @@
   },
   "peerDependencies": {
     "ant-design-vue": "^2",
+    "easi-web-utils": "git+https://github.com/infinitasx/easi-web-utils.git#main",
     "vue": "^3.1.x",
     "vue-i18n": "^9.1.7",
-    "vue-router": "^4.0.10",
-    "easi-web-utils": "git+https://github.com/infinitasx/easi-web-utils.git#main"
+    "vue-router": "^4.0.10"
   },
   "dependencies": {
     "ant-design-vue": "^2",
+    "easi-web-utils": "git+https://github.com/infinitasx/easi-web-utils.git#main",
     "vue-i18n": "^9.1.7",
-    "vue-router": "^4.0.10",
-    "easi-web-utils": "git+https://github.com/infinitasx/easi-web-utils.git#main"
+    "vue-router": "^4.0.10"
   },
   "easiAssetsDeployConfig": {
     "backend": {
