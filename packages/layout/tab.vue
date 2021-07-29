@@ -74,11 +74,12 @@ export default defineComponent({
           panes.value.length === 0 ||
           !panes.value.some((pane: TabPane) => pane.fullPath === route.fullPath)
       ) {
+        const meta = route.meta as RouteMeta;
         panes.value.push({
           title: (route.query.title as string) || route.meta.title,
           fullPath: route.fullPath,
           name: route.name as string,
-          cached: !!(route.meta as RouteMeta)?.cached,
+          cached: meta.cached === true || meta.cached === undefined,
         } as TabPane);
       }
     };

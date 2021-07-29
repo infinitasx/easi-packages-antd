@@ -51,14 +51,14 @@ export async function useReload(
     provide.cachedPage = [];
   } else {
     // 清除当前路由缓存
-    if (route.meta.cached) {
+    if (route.meta.cached !== false) {
       provide.cachedPage = provide.cachedPage.filter((name: string) => route.name !== name);
     }
   }
   provide.reloadPage = false;
   await nextTick();
   // 添加当前路由缓存
-  if (route.meta.cached) {
+  if (route.meta.cached !== false) {
     provide.cachedPage = [...provide.cachedPage, route.name as string];
   }
   provide.reloadPage = true;
