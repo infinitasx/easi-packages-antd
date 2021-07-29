@@ -1,6 +1,6 @@
 <template>
   <div>
-    <template v-if="$usePermissions($route.meta.permission) && hasPermission">
+    <template v-if="$usePermissions($route.meta.permission) || hasPermission">
       <div class="page-breadcrumb-wrap" v-if="showPageHeader">
         <a-page-header :title="pageTitle">
           <template #breadcrumb>
@@ -41,6 +41,7 @@ import { createNamespace } from "../utils/create";
 
 export default defineComponent({
   name: createNamespace("Page"),
+  emits: ['initPage'],
   props: {
     showPageHeader: {
       type: Boolean,
@@ -61,12 +62,12 @@ export default defineComponent({
     // 如果不想要默认card模式布局，则可以传入'customer'，这样slot不会被card包裹
     layoutType: {
       type: String as PropType<"card" | "customer">,
-      default: "card",
+      default: "customer",
     },
-    // 传false则会强制显示403页面
+    // 传true则会跳过用户权限检查
     hasPermission: {
       type: Boolean,
-      default: true,
+      default: false,
     },
   },
   setup(props, { emit }) {

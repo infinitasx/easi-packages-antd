@@ -10,7 +10,7 @@
         :class="{ 'transition-width': !isH5 }"
         :style="{ width: isH5 ? '100%' : `calc(100% - ${collWidth})` }"
       >
-        <PageHeader :collapsed="collapsed" :userInfo="userInfo" :avatar="avatar" @colToggle="setCollapsed" @handleShowSetting="handleShowSetting" @logout="$emit('logout')" />
+        <PageHeader :collapsed="collapsed" :userInfo="userInfo" @colToggle="setCollapsed" @handleShowSetting="handleShowSetting" @logout="$emit('logout')" />
       </a-layout-header>
       <PageTab
         class="page-tab pt-6 bg-white"
@@ -31,7 +31,7 @@
       </a-layout-content>
       <a-layout-footer class="px-16 py-12 text-center"> &copy;Copyright EASI, Make life easier. </a-layout-footer>
     </a-layout>
-    <PageSetting v-model:visible="showSetting" :userInfo="userInfo" :avatar="avatar" @logout="$emit('logout')">
+    <PageSetting v-model:visible="showSetting" :userInfo="userInfo" :onLogout="onLogout">
       <!--  开发时可自定义插入内容  -->
       <template #action-render>
         <slot name="action-render"></slot>
@@ -53,7 +53,6 @@ import { initProvider, useReload } from "../utils/globalProvider";
 
 export default defineComponent({
   name: createNamespace("Layout"),
-  emits: ["logout"], // 退出登录
   props: {
     // Logo图片路径
     logo: {
@@ -80,10 +79,11 @@ export default defineComponent({
       type: Object,
       default: () => ({}),
     },
-    // 用户头像
-    avatar: {
-      type: String,
-    },
+    // 退出登陆的方法
+    onLogout: {
+      type: Function,
+      default: () => Promise.resolve(),
+    }
   },
   setup(props) {
     const { nav } = toRefs(props);

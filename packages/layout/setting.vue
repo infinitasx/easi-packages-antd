@@ -2,7 +2,7 @@
   <a-drawer placement="right" width="320px" v-bind="$attrs" @close="$emit('update:visible', false)">
     <template #title>
       <header class="flex items-center">
-        <a-avatar shape="circle" size="default" v-if="avatar" :src="avatar" :style="{ backgroundColor: '#ffbf00', verticalAlign: 'middle', marginRight: '8px' }"> </a-avatar>
+        <a-avatar shape="circle" size="default" v-if="userInfo?.avatar" :src="userInfo.avatar" :style="{ backgroundColor: '#ffbf00', verticalAlign: 'middle', marginRight: '8px' }"> </a-avatar>
         {{ userInfo?.name || "用户名" }}
       </header>
     </template>
@@ -55,7 +55,7 @@ import { useI18n } from "vue-i18n";
 
 export default defineComponent({
   name: createNamespace("Setting"),
-  emits: ["update:visible", "logout"],
+  emits: ["update:visible"],
   props: {
     userInfo: {
       type: Object as PropType<any>,
@@ -64,8 +64,13 @@ export default defineComponent({
     avatar: {
       type: String,
     },
+    onLogout: {
+      type: Function,
+      default: () => Promise.resolve(),
+    }
   },
   setup(props, { emit }) {
+
     const globalProvider = inject<IProvider>("globalProvider");
     const { t } = useI18n();
 
@@ -84,7 +89,7 @@ export default defineComponent({
           content: t("logoutMessage"),
           centered: true,
           onOk() {
-            emit("logout");
+            return props?.onLogout && props.onLogout()
           },
         });
       },

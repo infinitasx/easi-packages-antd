@@ -3,7 +3,7 @@
   <MenuUnfoldOutlined v-show="collapsed" class="text-18" @click="colToggle" />
   <div class="flex-1"></div>
   <span class="dropdown-trigger px-8 cursor-pointer" @click="handleShowSetting">
-    <a-avatar shape="circle" size="default" v-if="avatar" :src="avatar" :style="{ backgroundColor: '#ffbf00', verticalAlign: 'middle' }"> </a-avatar>
+    <a-avatar shape="circle" size="default" v-if="userInfo?.avatar" :src="userInfo.avatar" :style="{ backgroundColor: '#ffbf00', verticalAlign: 'middle' }"> </a-avatar>
     <span class="pl-8">{{ userInfo?.name || "用户名" }}</span>
   </span>
 </template>
@@ -24,9 +24,6 @@ export default defineComponent({
     userInfo: {
       type: Object,
       default: () => ({}),
-    },
-    avatar: {
-      type: String,
     },
   },
   setup(props, { emit }) {
