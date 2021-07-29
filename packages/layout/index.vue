@@ -50,6 +50,7 @@ import PageSetting from "./setting.vue";
 import PageTab from "./tab.vue";
 import { isMobile, debounced } from "easi-web-utils";
 import { initProvider, useReload } from "../utils/globalProvider";
+import { UserInfo } from '../../typings/antd'
 
 export default defineComponent({
   name: createNamespace("Layout"),
@@ -76,7 +77,7 @@ export default defineComponent({
     },
     // 用户信息
     userInfo: {
-      type: Object,
+      type: Object as PropType<UserInfo>,
       default: () => ({}),
     },
     // 退出登陆的方法

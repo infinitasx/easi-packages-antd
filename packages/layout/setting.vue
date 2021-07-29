@@ -52,17 +52,15 @@ import { Modal } from "ant-design-vue";
 import { setProvider, IProvider } from "../utils/globalProvider";
 import { ExclamationCircleOutlined, LogoutOutlined } from "@ant-design/icons-vue";
 import { useI18n } from "vue-i18n";
+import { UserInfo } from '../../typings/antd'
 
 export default defineComponent({
   name: createNamespace("Setting"),
   emits: ["update:visible"],
   props: {
     userInfo: {
-      type: Object as PropType<any>,
+      type: Object as PropType<UserInfo>,
       default: () => ({}),
-    },
-    avatar: {
-      type: String,
     },
     onLogout: {
       type: Function,

@@ -9,9 +9,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, PropType } from "vue";
 import { createNamespace } from "../utils/create";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons-vue";
+import { UserInfo } from '../../typings/antd'
+
 
 export default defineComponent({
   name: createNamespace("Header"),
@@ -22,7 +24,7 @@ export default defineComponent({
       default: false,
     },
     userInfo: {
-      type: Object,
+      type: Object as PropType<UserInfo>,
       default: () => ({}),
     },
   },

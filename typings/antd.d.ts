@@ -37,3 +37,8 @@ export interface Pagination {
   total: number;
   buildOptionText?: (props: { value: number }) => string;
 }
+
+export interface UserInfo {
+  name?: string; // 用户名称
+  avatar?: string; // 用户头像
+}
