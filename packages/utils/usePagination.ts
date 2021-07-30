@@ -7,7 +7,7 @@ export function usePagination(initValue: Pagination) {
     // pageSizeOptions: ['15', '20', '25', '30', '35', '40'],
     showQuickJumper: true,
     showSizeChanger: true,
-    showTotal: (total: number) => getEASIText('pageTotal', { total }),
+    showTotal: (total: number) => getEASIText('pageTotal', { 'total': total }),
     showSizeChange: () => null,
     onShowSizeChange: () => null,
     ...initValue,
