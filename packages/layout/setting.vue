@@ -9,10 +9,10 @@
 
     <slot name="action-render"></slot>
 
-    <a-typography-text class="block mb-32"> {{ $t("styleSetting") }}</a-typography-text>
+    <a-typography-text class="block mb-32"> {{ getEASIText("styleSetting") }}</a-typography-text>
     <div class="flex items-center mb-32">
       <span class="flex-1">
-        <a-typography-text type="secondary"> {{ $t("darkSetting") }} </a-typography-text>
+        <a-typography-text type="secondary"> {{ getEASIText("darkSetting") }} </a-typography-text>
       </span>
       <div>
         <a-switch :checked="globalProvider.mode" @change="setSetting('mode', $event)" />
@@ -20,7 +20,7 @@
     </div>
     <div class="flex items-center mb-32">
       <span class="flex-1">
-        <a-typography-text type="secondary"> {{ $t("showTabSetting") }} </a-typography-text>
+        <a-typography-text type="secondary"> {{ getEASIText("showTabSetting") }} </a-typography-text>
       </span>
       <div>
         <a-switch :checked="globalProvider.showTab" @change="setSetting('showTab', $event)" />
@@ -28,7 +28,7 @@
     </div>
     <div class="flex items-center mb-32">
       <span class="flex-1">
-        <a-typography-text type="secondary"> {{ $t("fixedTabSetting") }} </a-typography-text>
+        <a-typography-text type="secondary"> {{ getEASIText("fixedTabSetting") }} </a-typography-text>
       </span>
       <div>
         <a-switch :checked="globalProvider.fixedTab" @change="setSetting('fixedTab', $event)" />
@@ -37,10 +37,10 @@
 
     <a-divider />
 
-    <a-typography-text class="block mb-32"> {{ $t("more") }}</a-typography-text>
+    <a-typography-text class="block mb-32"> {{ getEASIText("more") }}</a-typography-text>
     <div class="more-item flex items-center mb-32 cursor-pointer" style="color: #f5222d" @click="handleLogout">
       <LogoutOutlined class="mr-8 text-14" />
-      <div>{{ $t("logout") }}</div>
+      <div>{{ getEASIText("logout") }}</div>
     </div>
   </a-drawer>
 </template>
@@ -51,8 +51,8 @@ import { createNamespace } from "../utils/create";
 import { Modal } from "ant-design-vue";
 import { setProvider, IProvider } from "../utils/globalProvider";
 import { ExclamationCircleOutlined, LogoutOutlined } from "@ant-design/icons-vue";
-import { useI18n } from "vue-i18n";
 import { UserInfo } from '../../typings/antd'
+import { getEASIText } from '../locale'
 
 export default defineComponent({
   name: createNamespace("Setting"),
@@ -70,7 +70,6 @@ export default defineComponent({
   setup(props, { emit }) {
 
     const globalProvider = inject<IProvider>("globalProvider");
-    const { t } = useI18n();
 
     const setSetting = (key: string, value: boolean | string) => {
       (globalProvider as IProvider)[key] = value;
@@ -82,15 +81,16 @@ export default defineComponent({
       setSetting,
       handleLogout() {
         Modal.confirm({
-          title: t("logoutTitle"),
+          title: getEASIText("logoutTitle"),
           icon: createVNode(ExclamationCircleOutlined),
-          content: t("logoutMessage"),
+          content: getEASIText("logoutMessage"),
           centered: true,
           onOk() {
             return props?.onLogout && props.onLogout()
           },
         });
       },
+      getEASIText,
     };
   },
   components: {

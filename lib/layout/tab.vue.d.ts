@@ -1,4 +1,5 @@
 import { MenuInfo } from '../../typings/antd';
+import { getEASIText } from '../locale';
 export interface TabPane {
     title: string;
     fullPath: string;
@@ -17,5 +18,6 @@ declare const _default: import("vue").DefineComponent<{}, {
     reloadPage: () => void;
     removeTab: (index: number) => void;
     action({ key }: MenuInfo): void;
+    getEASIText: typeof getEASIText;
 }, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "reloadPage"[], "reloadPage", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{} & {} & {}>, {}>;
 export default _default;

@@ -1,10 +1,14 @@
-import { createI18n } from "vue-i18n";
+import { provide, inject, reactive } from 'vue';
 import ZH from "./lang/zh";
 import EN from "./lang/en";
 import JA from "./lang/ja";
 
 
-type Lang = "zh" | "en" | "ja";
+export type Lang = "zh" | "en" | "ja";
+
+export interface IGlobalLocal {
+  message: any
+}
 
 const langMap = {
   zh: ZH,
@@ -12,24 +16,37 @@ const langMap = {
   ja: JA,
 }
 
-let _EASII18n: any;
-
-export function initI18n() {
-  _EASII18n =  createI18n({
-    legacy: false,
-    globalInjection: true,
-    inheritLocale: false,
-    locale: "zh",
-    fallbackLocale: "zh",
-    messages: {
-      zh: ZH,
-    },
-  });
-  return _EASII18n;
+export function initI18n(lang: Lang) {
+  const locale = reactive<IGlobalLocal>({
+    message: langMap[lang]
+  })
+  provide('globalEASILocale', locale);
+  return langMap[lang]
 }
 
 export function setLocale(lang: Lang) {
-  // const { setLocaleMessage } = useI18n();
-  _EASII18n.setLocaleMessage(lang, langMap[lang]);
-  console.log(_EASII18n);
+  const globalLocale = inject<IGlobalLocal>('globalEASILocale', {message: {}});
+  globalLocale.message = langMap[lang];
+  console.log(globalLocale);
+}
+
+
+export function getEASIText(key: string, value?: {[props: string]: string | number}){
+  const globalEASILocale = inject<IGlobalLocal>('globalEASILocale', {message: {}});
+  let message = globalEASILocale?.message[key];
+  if(message){
+    if(value){
+      const reg = /(?<=\{).*?(?=\})/g;
+      const keyArray = message.match(reg);
+      keyArray.forEach((key: string) => {
+        let realKey = key.trim();
+        const reg1 = new RegExp(`\{${key}\}`, 'g')
+        message = message.replace(reg1, value[realKey])
+      })
+    }
+    return message
+  } else {
+    console.warn('未匹配到文案key');
+    return key
+  }
 }

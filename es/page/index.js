@@ -1,4 +1,4 @@
-import { defineComponent, resolveComponent, openBlock, createBlock, createVNode, createSlots, renderList, renderSlot, withScopeId, toRefs, getCurrentInstance, computed, Fragment, withCtx, createTextVNode, toDisplayString, createCommentVNode } from 'vue';
+import { defineComponent, resolveComponent, openBlock, createBlock, createVNode, createSlots, renderList, renderSlot, withScopeId, inject, toRefs, getCurrentInstance, computed, Fragment, withCtx, createTextVNode, toDisplayString, createCommentVNode } from 'vue';
 import { useRoute } from 'vue-router';
 
 function createNamespace(name) {
@@ -47,6 +47,26 @@ script$1.install = (app) => {
   app.component(script$1.name, script$1);
 };
 
+function getEASIText(key, value) {
+  const globalEASILocale = inject("globalEASILocale", { message: {} });
+  let message = globalEASILocale?.message[key];
+  if (message) {
+    if (value) {
+      const reg = /(?<=\{).*?(?=\})/g;
+      const keyArray = message.match(reg);
+      keyArray.forEach((key2) => {
+        let realKey = key2.trim();
+        const reg1 = new RegExp(`{${key2}}`, "g");
+        message = message.replace(reg1, value[realKey]);
+      });
+    }
+    return message;
+  } else {
+    console.warn("\u672A\u5339\u914D\u5230\u6587\u6848key");
+    return key;
+  }
+}
+
 var script = defineComponent({
   name: createNamespace("Page"),
   emits: ["initPage"],
@@ -79,6 +99,7 @@ var script = defineComponent({
   setup(props, { emit }) {
     const { breadcrumb, title, desc, hasPermission } = toRefs(props);
     const route = useRoute();
+    inject("globalEASILocale", { message: {} });
     const { appContext } = getCurrentInstance();
     const breadcrumbRoutes = computed(() => {
       return breadcrumb.value || route.meta.breadcrumb || route.matched.map((_route) => {
@@ -100,7 +121,8 @@ var script = defineComponent({
     return {
       breadcrumbRoutes,
       pageTitle,
-      pageDesc
+      pageDesc,
+      getEASIText
     };
   },
   components: {
@@ -163,7 +185,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         _hoisted_4
       ]),
       "sub-title": withCtx(() => [
-        createTextVNode(toDisplayString(_ctx.$t("noPermission")), 1)
+        createTextVNode(toDisplayString(_ctx.getEASIText("noPermission")), 1)
       ]),
       _: 1
     }))

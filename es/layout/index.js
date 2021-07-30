@@ -1,9 +1,8 @@
 import * as _vue from 'vue';
-import { defineComponent, toRefs, ref, onMounted, watch, toRaw, resolveComponent, openBlock, createBlock, Fragment, createVNode, withDirectives, toDisplayString, createCommentVNode, vShow, withCtx, renderList, h, nextTick, reactive, inject, mergeProps, createTextVNode, renderSlot, pushScopeId, popScopeId, withModifiers, withScopeId, provide, onBeforeUnmount, computed, Transition, KeepAlive, resolveDynamicComponent } from 'vue';
+import { defineComponent, toRefs, ref, onMounted, watch, toRaw, resolveComponent, openBlock, createBlock, Fragment, createVNode, withDirectives, toDisplayString, createCommentVNode, vShow, withCtx, renderList, h, nextTick, reactive, inject, mergeProps, createTextVNode, renderSlot, pushScopeId, popScopeId, withModifiers, withScopeId, onBeforeUnmount, computed, Transition, KeepAlive, resolveDynamicComponent } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { Modal } from 'ant-design-vue';
 import { getLocal, setLocal, isMobile, debounced } from 'easi-web-utils';
-import { useI18n } from 'vue-i18n';
 
 function createNamespace(name) {
   return `EASI${name}`;
@@ -2137,6 +2136,26 @@ async function useReload(provide, route, refreshAll = false) {
   provide.reloadPage = true;
 }
 
+function getEASIText(key, value) {
+  const globalEASILocale = inject("globalEASILocale", { message: {} });
+  let message = globalEASILocale?.message[key];
+  if (message) {
+    if (value) {
+      const reg = /(?<=\{).*?(?=\})/g;
+      const keyArray = message.match(reg);
+      keyArray.forEach((key2) => {
+        let realKey = key2.trim();
+        const reg1 = new RegExp(`{${key2}}`, "g");
+        message = message.replace(reg1, value[realKey]);
+      });
+    }
+    return message;
+  } else {
+    console.warn("\u672A\u5339\u914D\u5230\u6587\u6848key");
+    return key;
+  }
+}
+
 var script$2 = defineComponent({
   name: createNamespace("Setting"),
   emits: ["update:visible"],
@@ -2152,7 +2171,6 @@ var script$2 = defineComponent({
   },
   setup(props, { emit }) {
     const globalProvider = inject("globalProvider");
-    const { t } = useI18n();
     const setSetting = (key, value) => {
       globalProvider[key] = value;
       setProvider(globalProvider);
@@ -2162,15 +2180,16 @@ var script$2 = defineComponent({
       setSetting,
       handleLogout() {
         Modal.confirm({
-          title: t("logoutTitle"),
+          title: getEASIText("logoutTitle"),
           icon: createVNode(ExclamationCircleOutlined),
-          content: t("logoutMessage"),
+          content: getEASIText("logoutMessage"),
           centered: true,
           onOk() {
             return props?.onLogout && props.onLogout();
           }
         });
-      }
+      },
+      getEASIText
     };
   },
   components: {
@@ -2215,7 +2234,7 @@ function render$2(_ctx, _cache, $props, $setup, $data, $options) {
       renderSlot(_ctx.$slots, "action-render"),
       createVNode(_component_a_typography_text, { class: "block mb-32" }, {
         default: withCtx(() => [
-          createTextVNode(toDisplayString(_ctx.$t("styleSetting")), 1)
+          createTextVNode(toDisplayString(_ctx.getEASIText("styleSetting")), 1)
         ]),
         _: 1
       }),
@@ -2223,7 +2242,7 @@ function render$2(_ctx, _cache, $props, $setup, $data, $options) {
         createVNode("span", _hoisted_3$1, [
           createVNode(_component_a_typography_text, { type: "secondary" }, {
             default: withCtx(() => [
-              createTextVNode(toDisplayString(_ctx.$t("darkSetting")), 1)
+              createTextVNode(toDisplayString(_ctx.getEASIText("darkSetting")), 1)
             ]),
             _: 1
           })
@@ -2239,7 +2258,7 @@ function render$2(_ctx, _cache, $props, $setup, $data, $options) {
         createVNode("span", _hoisted_5, [
           createVNode(_component_a_typography_text, { type: "secondary" }, {
             default: withCtx(() => [
-              createTextVNode(toDisplayString(_ctx.$t("showTabSetting")), 1)
+              createTextVNode(toDisplayString(_ctx.getEASIText("showTabSetting")), 1)
             ]),
             _: 1
           })
@@ -2255,7 +2274,7 @@ function render$2(_ctx, _cache, $props, $setup, $data, $options) {
         createVNode("span", _hoisted_7, [
           createVNode(_component_a_typography_text, { type: "secondary" }, {
             default: withCtx(() => [
-              createTextVNode(toDisplayString(_ctx.$t("fixedTabSetting")), 1)
+              createTextVNode(toDisplayString(_ctx.getEASIText("fixedTabSetting")), 1)
             ]),
             _: 1
           })
@@ -2270,7 +2289,7 @@ function render$2(_ctx, _cache, $props, $setup, $data, $options) {
       createVNode(_component_a_divider),
       createVNode(_component_a_typography_text, { class: "block mb-32" }, {
         default: withCtx(() => [
-          createTextVNode(toDisplayString(_ctx.$t("more")), 1)
+          createTextVNode(toDisplayString(_ctx.getEASIText("more")), 1)
         ]),
         _: 1
       }),
@@ -2280,7 +2299,7 @@ function render$2(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[4] || (_cache[4] = (...args) => _ctx.handleLogout && _ctx.handleLogout(...args))
       }, [
         createVNode(_component_LogoutOutlined, { class: "mr-8 text-14" }),
-        createVNode("div", null, toDisplayString(_ctx.$t("logout")), 1)
+        createVNode("div", null, toDisplayString(_ctx.getEASIText("logout")), 1)
       ])
     ]),
     _: 3
@@ -2353,7 +2372,8 @@ var script$1 = defineComponent({
             reloadPage();
             break;
         }
-      }
+      },
+      getEASIText
     };
   },
   components: {
@@ -2391,13 +2411,13 @@ const render$1 = /* @__PURE__ */ _withId$1((_ctx, _cache, $props, $setup, $data,
             default: _withId$1(() => [
               createVNode(_component_a_menu_item, { key: "closeAll" }, {
                 default: _withId$1(() => [
-                  createTextVNode(toDisplayString(_ctx.$t("closeOther")), 1)
+                  createTextVNode(toDisplayString(_ctx.getEASIText("closeOther")), 1)
                 ]),
                 _: 1
               }),
               createVNode(_component_a_menu_item, { key: "refresh" }, {
                 default: _withId$1(() => [
-                  createTextVNode(toDisplayString(_ctx.$t("refreshPage")), 1)
+                  createTextVNode(toDisplayString(_ctx.getEASIText("refreshPage")), 1)
                 ]),
                 _: 1
               })
@@ -2489,7 +2509,6 @@ var script = defineComponent({
     const collapsed = ref(isH5.value);
     const showSetting = ref(false);
     const globalProvider = initProvider();
-    provide("globalProvider", globalProvider);
     let timeout;
     watch(() => globalProvider.fixedTab, () => {
       clearTimeout(timeout);

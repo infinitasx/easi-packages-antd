@@ -31,8 +31,8 @@
         </a>
         <template #overlay>
           <a-menu @click="action">
-            <a-menu-item key="closeAll">{{$t('closeOther')}}</a-menu-item>
-            <a-menu-item key="refresh">{{$t('refreshPage')}}</a-menu-item>
+            <a-menu-item key="closeAll">{{getEASIText('closeOther')}}</a-menu-item>
+            <a-menu-item key="refresh">{{getEASIText('refreshPage')}}</a-menu-item>
           </a-menu>
         </template>
       </a-dropdown>
@@ -47,6 +47,7 @@ import { MenuInfo } from '../../typings/antd';
 import { IProvider } from '../utils/globalProvider';
 import { useRoute, useRouter, RouteLocationNormalizedLoaded, Router, RouteMeta } from 'vue-router';
 import { MoreOutlined, ReloadOutlined, CloseOutlined } from '@ant-design/icons-vue';
+import { getEASIText } from '../locale'
 
 export interface TabPane {
   title: string;
@@ -135,6 +136,7 @@ export default defineComponent({
             break;
         }
       },
+      getEASIText
     }
   },
   components: {

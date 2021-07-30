@@ -14,7 +14,7 @@ export declare function usePagination(initValue: Pagination): {
     showLessItems?: boolean | undefined;
     showQuickJumper: boolean;
     showSizeChanger: boolean;
-    showTotal: ((total: number) => string) | ((total: number, range: [number, number]) => string);
+    showTotal: ((total: number) => any) | ((total: number, range: [number, number]) => string);
     simple?: boolean | undefined;
     size?: string | undefined;
     total: number;

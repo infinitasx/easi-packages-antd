@@ -6552,13 +6552,13 @@
     transform: translateX(6px) rotate(90deg);
   }
 }
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 .error-full-page {
   height: calc(100vh - 160px);
 }
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 .page-breadcrumb-wrap .ant-page-header-footer {
   margin: 0;
 }

@@ -4,8 +4,8 @@
 // 也可以接受对象，{show: boolean, title: 'common.loading', size: 'small' | 'normal'}
 
 import Loading from "../loading/index.vue";
-import { I18n } from "vue-i18n";
-import { createApp, nextTick, DirectiveBinding, App } from "vue";
+import { IGlobalLocal } from '../locale'
+import { createApp, nextTick, inject, DirectiveBinding, App } from "vue";
 
 interface CustomerDom extends HTMLElement {
   originalPosition: string;
@@ -14,13 +14,8 @@ interface CustomerDom extends HTMLElement {
   loadingRoot: HTMLElement;
 }
 
-interface Options {
-  i18n?: I18n;
-}
-
 export default {
-  install: (app: App, options: Options) => {
-    const { i18n } = options || {};
+  install: (app: App) => {
 
     const insertDom = (el: CustomerDom, title: string, size: string) => {
       if (getComputedStyle(el, null).display !== "none" && getComputedStyle(el, null).visibility !== "hidden") {
@@ -44,7 +39,8 @@ export default {
     };
 
     const toggleLoading = async (el: CustomerDom, binding: DirectiveBinding) => {
-      let _title = "loading";
+      const globalEASILocale = inject<IGlobalLocal>('globalEASILocale', {message: {}})
+      let _title = globalEASILocale.message.loading;
       let _show = true;
       let _size = "normal";
 
@@ -72,7 +68,8 @@ export default {
 
     app.directive("loading", {
       async beforeMount(el, binding) {
-        const loading = createApp(Loading).use(i18n as I18n);
+        const loading = createApp(Loading);
+
         el.loading = el;
         el.loadingRoot = document.createElement("div");
         el.comp = loading.mount(el.loadingRoot);

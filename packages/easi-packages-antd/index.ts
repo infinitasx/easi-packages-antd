@@ -28,14 +28,13 @@ const components = [EASIText, EASIButton, EASIDrawer, EASIError, EASILayout, EAS
 const plugins: Plugin[] = [vPermission];
 
 const install = (app: App): void => {
-  // 初始化组件内部国际化
-  const EASII18n = initI18n();
-  plugins.push(EASII18n);
+
+  initI18n('zh');
 
   plugins.forEach((plugin) => {
     app.use(plugin);
   });
-  app.use(vLoading, { i18n: EASII18n });
+  app.use(vLoading);
 
   components.forEach((component) => {
     app.component(component.name, component);

@@ -41,7 +41,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onBeforeUnmount, onMounted, provide, ref, toRefs, watch, PropType } from "vue";
+import { computed, defineComponent, onBeforeUnmount, onMounted, ref, toRefs, watch, PropType } from "vue";
 import { useRoute, useRouter, RouteLocationNormalized } from "vue-router";
 import { createNamespace } from "../utils/create";
 import PageNav from "./nav.vue";
@@ -84,7 +84,7 @@ export default defineComponent({
     onLogout: {
       type: Function,
       default: () => Promise.resolve(),
-    }
+    },
   },
   setup(props) {
     const { nav } = toRefs(props);
@@ -102,7 +102,6 @@ export default defineComponent({
     const showSetting = ref<boolean>(false);
 
     const globalProvider = initProvider();
-    provide("globalProvider", globalProvider);
 
     let timeout: any;
     watch(

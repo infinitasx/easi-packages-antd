@@ -1,4 +1,5 @@
 import { PropType } from 'vue';
+import { getEASIText } from '../locale';
 declare const _default: import("vue").DefineComponent<{
     visible: {
         type: BooleanConstructor;
@@ -78,6 +79,7 @@ declare const _default: import("vue").DefineComponent<{
     onConfirm: () => Promise<void>;
     onCancel: () => void;
     showModal: () => void;
+    getEASIText: typeof getEASIText;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("ok" | "cancel" | "update:visible" | "show")[], "ok" | "cancel" | "update:visible" | "show", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
     visible?: unknown;
     title?: unknown;

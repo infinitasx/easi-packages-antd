@@ -21,7 +21,7 @@
       <slot name="footer"></slot>
       <div class="footer" v-if="!$slots.footer && footer">
         <a-button v-if="showCancel" @click="onCancel">
-          {{ cancelText || $t('cancel') }}
+          {{ cancelText || getEASIText('cancel') }}
         </a-button>
         <a-button
             v-if="showOk"
@@ -29,7 +29,7 @@
             :loading="autoLoading || confirmLoading"
             @click="onConfirm"
         >
-          {{ okText || $t('confirm') }}
+          {{ okText || getEASIText('confirm') }}
         </a-button>
       </div>
     </template>
@@ -39,6 +39,7 @@
 <script lang="ts">
 import { defineComponent, ref, toRefs, watch, PropType } from 'vue';
 import { createNamespace } from "../utils/create";
+import { getEASIText } from '../locale'
 
 export default defineComponent({
   name: createNamespace('Modal'),
@@ -173,6 +174,7 @@ export default defineComponent({
       onConfirm,
       onCancel,
       showModal,
+      getEASIText,
     };
   },
 });

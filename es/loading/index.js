@@ -1,8 +1,27 @@
-import { defineComponent, toRefs, ref, watch, pushScopeId, popScopeId, openBlock, createBlock, Transition, createVNode, toDisplayString, createCommentVNode, withScopeId } from 'vue';
-import { useI18n } from 'vue-i18n';
+import { inject, defineComponent, toRefs, ref, watch, pushScopeId, popScopeId, openBlock, createBlock, Transition, createVNode, toDisplayString, createCommentVNode, withScopeId } from 'vue';
 
 function createNamespace(name) {
   return `EASI${name}`;
+}
+
+function getEASIText(key, value) {
+  const globalEASILocale = inject("globalEASILocale", { message: {} });
+  let message = globalEASILocale?.message[key];
+  if (message) {
+    if (value) {
+      const reg = /(?<=\{).*?(?=\})/g;
+      const keyArray = message.match(reg);
+      keyArray.forEach((key2) => {
+        let realKey = key2.trim();
+        const reg1 = new RegExp(`{${key2}}`, "g");
+        message = message.replace(reg1, value[realKey]);
+      });
+    }
+    return message;
+  } else {
+    console.warn("\u672A\u5339\u914D\u5230\u6587\u6848key");
+    return key;
+  }
 }
 
 var script = defineComponent({
@@ -24,9 +43,8 @@ var script = defineComponent({
   },
   setup(props, { emit }) {
     const { pTitle, pShow, pSize } = toRefs(props);
-    const { t } = useI18n();
     const show = ref(true);
-    const title = ref(t("loading"));
+    const title = ref(getEASIText("loading"));
     const size = ref("normal");
     watch(() => pTitle.value, (newVal) => {
       title.value = newVal;
@@ -43,8 +61,7 @@ var script = defineComponent({
     return {
       show,
       title,
-      size,
-      t
+      size
     };
   }
 });

@@ -26,18 +26,19 @@
     <NoPermission status="403" v-else>
       <template #title> 403 </template>
       <template #sub-title>
-        {{ $t("noPermission") }}
+        {{ getEASIText("noPermission") }}
       </template>
     </NoPermission>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, toRefs, PropType, ComputedRef, getCurrentInstance, ComponentInternalInstance } from "vue";
+import { computed, defineComponent, inject, toRefs, PropType, ComputedRef, getCurrentInstance, ComponentInternalInstance } from "vue";
 import { useRoute, RouteLocationNormalizedLoaded, RouteLocationMatched } from "vue-router";
 import { BreadcrumbRoute } from "../../typings/antd";
 import NoPermission from "../../packages/error/index";
 import { createNamespace } from "../utils/create";
+import { getEASIText } from '../locale'
 
 export default defineComponent({
   name: createNamespace("Page"),
@@ -75,6 +76,8 @@ export default defineComponent({
 
     const route: RouteLocationNormalizedLoaded = useRoute();
 
+    const globalEASILocale = inject('globalEASILocale', {message: {}})
+
     const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 
     const breadcrumbRoutes: ComputedRef<BreadcrumbRoute[]> = computed((): BreadcrumbRoute[] => {
@@ -105,6 +108,7 @@ export default defineComponent({
       breadcrumbRoutes,
       pageTitle,
       pageDesc,
+      getEASIText,
     };
   },
   components: {

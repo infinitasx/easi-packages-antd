@@ -19,8 +19,8 @@
 
 <script lang="ts">
 import {defineComponent, PropType, ref, toRefs, watch} from 'vue';
-import {useI18n} from 'vue-i18n';
 import { createNamespace } from "../utils/create";
+import { getEASIText } from '../locale'
 
 export default defineComponent({
   name: createNamespace('Loading'),
@@ -44,10 +44,8 @@ export default defineComponent({
   setup(props, {emit}) {
     const {pTitle, pShow, pSize} = toRefs(props);
 
-    const {t} = useI18n();
-
     const show = ref<boolean>(true);
-    const title = ref(t('loading'));
+    const title = ref(getEASIText('loading'));
     const size = ref<'normal' | 'small'>('normal');
 
     watch(
@@ -82,7 +80,6 @@ export default defineComponent({
       show,
       title,
       size,
-      t,
     };
   },
 })

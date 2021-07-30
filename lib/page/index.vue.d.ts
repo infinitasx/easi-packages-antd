@@ -1,5 +1,6 @@
 import { PropType, ComputedRef } from "vue";
 import { BreadcrumbRoute } from "../../typings/antd";
+import { getEASIText } from '../locale';
 declare const _default: import("vue").DefineComponent<{
     showPageHeader: {
         type: BooleanConstructor;
@@ -29,6 +30,7 @@ declare const _default: import("vue").DefineComponent<{
     breadcrumbRoutes: ComputedRef<BreadcrumbRoute[]>;
     pageTitle: ComputedRef<string>;
     pageDesc: ComputedRef<string>;
+    getEASIText: typeof getEASIText;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "initPage"[], "initPage", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
     showPageHeader?: unknown;
     breadcrumb?: unknown;

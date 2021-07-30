@@ -1,7 +1,27 @@
-import { defineComponent, toRefs, ref, watch, resolveComponent, openBlock, createBlock, Fragment, createCommentVNode, createVNode, withCtx, renderSlot, createTextVNode, toDisplayString } from 'vue';
+import { inject, defineComponent, toRefs, ref, watch, resolveComponent, openBlock, createBlock, Fragment, createCommentVNode, createVNode, withCtx, renderSlot, createTextVNode, toDisplayString } from 'vue';
 
 function createNamespace(name) {
   return `EASI${name}`;
+}
+
+function getEASIText(key, value) {
+  const globalEASILocale = inject("globalEASILocale", { message: {} });
+  let message = globalEASILocale?.message[key];
+  if (message) {
+    if (value) {
+      const reg = /(?<=\{).*?(?=\})/g;
+      const keyArray = message.match(reg);
+      keyArray.forEach((key2) => {
+        let realKey = key2.trim();
+        const reg1 = new RegExp(`{${key2}}`, "g");
+        message = message.replace(reg1, value[realKey]);
+      });
+    }
+    return message;
+  } else {
+    console.warn("\u672A\u5339\u914D\u5230\u6587\u6848key");
+    return key;
+  }
 }
 
 var script = defineComponent({
@@ -123,7 +143,8 @@ var script = defineComponent({
       bodyScrollStyle,
       onConfirm,
       onCancel,
-      showModal
+      showModal,
+      getEASIText
     };
   }
 });
@@ -160,7 +181,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             onClick: _ctx.onCancel
           }, {
             default: withCtx(() => [
-              createTextVNode(toDisplayString(_ctx.cancelText || _ctx.$t("cancel")), 1)
+              createTextVNode(toDisplayString(_ctx.cancelText || _ctx.getEASIText("cancel")), 1)
             ]),
             _: 1
           }, 8, ["onClick"])) : createCommentVNode("v-if", true),
@@ -171,7 +192,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             onClick: _ctx.onConfirm
           }, {
             default: withCtx(() => [
-              createTextVNode(toDisplayString(_ctx.okText || _ctx.$t("confirm")), 1)
+              createTextVNode(toDisplayString(_ctx.okText || _ctx.getEASIText("confirm")), 1)
             ]),
             _: 1
           }, 8, ["type", "loading", "onClick"])) : createCommentVNode("v-if", true)
