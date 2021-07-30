@@ -49,7 +49,7 @@
 import { createVNode, defineComponent, inject, PropType } from "vue";
 import { createNamespace } from "../utils/create";
 import { Modal } from "ant-design-vue";
-import { setProvider, IProvider } from "../utils/globalProvider";
+import { setProvider, IProvider, defaultProvider } from "../utils/globalProvider";
 import { ExclamationCircleOutlined, LogoutOutlined } from "@ant-design/icons-vue";
 import { UserInfo } from '../../typings/antd'
 import { getEASIText } from '../locale'
@@ -69,7 +69,7 @@ export default defineComponent({
   },
   setup(props, { emit }) {
 
-    const globalProvider = inject<IProvider>("globalProvider");
+    const globalProvider = inject<IProvider>("globalProvider", {...defaultProvider});
 
     const setSetting = (key: string, value: boolean | string) => {
       (globalProvider as IProvider)[key] = value;

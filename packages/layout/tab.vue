@@ -44,7 +44,7 @@
 import {defineComponent, watch, inject, ref} from "vue"
 import {createNamespace} from "../utils/create";
 import { MenuInfo } from '../../typings/antd';
-import { IProvider } from '../utils/globalProvider';
+import { IProvider, defaultProvider } from '../utils/globalProvider';
 import { useRoute, useRouter, RouteLocationNormalizedLoaded, Router, RouteMeta } from 'vue-router';
 import { MoreOutlined, ReloadOutlined, CloseOutlined } from '@ant-design/icons-vue';
 import { getEASIText } from '../locale'
@@ -63,7 +63,7 @@ export default defineComponent({
     const route: RouteLocationNormalizedLoaded = useRoute();
     const router: Router = useRouter();
 
-    const globalProvider = inject<IProvider>('globalProvider')
+    const globalProvider = inject<IProvider>('globalProvider', {...defaultProvider})
 
     const activeKey = ref<string>('');
     const panes = ref<TabPane[]>([]);

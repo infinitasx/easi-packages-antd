@@ -1,5 +1,6 @@
 import "./css/index.scss";
 import type { App } from "vue";
+import EASIProvider from "./config-provider";
 import EASIText from "./text";
 import EASIButton from "./button";
 import EASIDrawer from "./drawer";
@@ -15,7 +16,7 @@ import { useModalVisible } from "./utils/useModalVisible";
 import { usePagination } from "./utils/usePagination";
 import { setLocale } from "./locale";
 declare const install: (app: App) => void;
-export { EASIText, EASIButton, EASIDrawer, EASIError, EASILayout, EASILoading, EASIModal, EASIPage, EASITable, install, setLocale, vPermission, vLoading, useModalVisible, usePagination };
+export { EASIProvider, EASIText, EASIButton, EASIDrawer, EASIError, EASILayout, EASILoading, EASIModal, EASIPage, EASITable, install, setLocale, vPermission, vLoading, useModalVisible, usePagination };
 declare const _default: {
     version: string;
     install: (app: App<any>) => void;

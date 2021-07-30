@@ -41,7 +41,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onBeforeUnmount, onMounted, ref, toRefs, watch, PropType } from "vue";
+import { computed, defineComponent, inject, onBeforeUnmount, onMounted, ref, toRefs, watch, PropType } from "vue";
 import { useRoute, useRouter, RouteLocationNormalized } from "vue-router";
 import { createNamespace } from "../utils/create";
 import PageNav from "./nav.vue";
@@ -49,9 +49,8 @@ import PageHeader from "./header.vue";
 import PageSetting from "./setting.vue";
 import PageTab from "./tab.vue";
 import { isMobile, debounced } from "easi-web-utils";
-import { initProvider, useReload } from "../utils/globalProvider";
+import { useReload, IProvider, defaultProvider } from "../utils/globalProvider";
 import { UserInfo } from '../../typings/antd'
-import { initI18n } from "../locale";
 
 export default defineComponent({
   name: createNamespace("Layout"),
@@ -102,9 +101,7 @@ export default defineComponent({
 
     const showSetting = ref<boolean>(false);
 
-    const globalProvider = initProvider();
-
-    initI18n("zh");
+    const globalProvider = inject<IProvider>('globalProvider', {...defaultProvider});
 
     let timeout: any;
     watch(

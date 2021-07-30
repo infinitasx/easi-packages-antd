@@ -2,6 +2,7 @@ import "../css/index.scss";
 
 import type { App, Plugin } from "vue";
 
+import EASIProvider from "../config-provider";
 import EASIText from "../text";
 import EASIButton from "../button";
 import EASIDrawer from "../drawer";
@@ -23,7 +24,7 @@ import { setLocale } from "../locale";
 import { version as version_ } from "./version";
 const version = version_;
 
-const components = [EASIText, EASIButton, EASIDrawer, EASIError, EASILayout, EASILoading, EASIModal, EASIPage, EASITable];
+const components = [EASIProvider, EASIText, EASIButton, EASIDrawer, EASIError, EASILayout, EASILoading, EASIModal, EASIPage, EASITable];
 
 const plugins: Plugin[] = [vPermission];
 
@@ -39,7 +40,7 @@ const install = (app: App): void => {
   });
 };
 
-export { EASIText, EASIButton, EASIDrawer, EASIError, EASILayout, EASILoading, EASIModal, EASIPage, EASITable, install, setLocale, vPermission, vLoading, useModalVisible, usePagination };
+export { EASIProvider, EASIText, EASIButton, EASIDrawer, EASIError, EASILayout, EASILoading, EASIModal, EASIPage, EASITable, install, setLocale, vPermission, vLoading, useModalVisible, usePagination };
 
 export default {
   version,

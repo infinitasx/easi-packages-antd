@@ -15,6 +15,14 @@ const SETTING_KEY = "setting";
 
 const HTML = document.querySelector("html") as HTMLHtmlElement;
 
+export const defaultProvider: IProvider = {
+  reloadPage: true,
+  mode: "light",
+  showTab: true,
+  fixedTab: true,
+  cachedPage: [],
+}
+
 export function initProvider() {
   const defaultData = getLocal(SETTING_KEY) || {
     mode: false,

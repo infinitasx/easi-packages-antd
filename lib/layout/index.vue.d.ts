@@ -1,5 +1,6 @@
 import { PropType } from "vue";
 import { RouteLocationNormalized } from "vue-router";
+import { IProvider } from "../utils/globalProvider";
 import { UserInfo } from '../../typings/antd';
 declare const _default: import("vue").DefineComponent<{
     logo: {
@@ -33,14 +34,7 @@ declare const _default: import("vue").DefineComponent<{
     addTransition: import("vue").Ref<boolean>;
     setCollapsed(): void;
     collWidth: import("vue").ComputedRef<"80px" | "200px">;
-    globalProvider: {
-        [x: string]: any;
-        reloadPage: boolean;
-        mode: "light" | "dark";
-        showTab: boolean;
-        fixedTab: boolean;
-        cachedPage: string[];
-    };
+    globalProvider: IProvider;
     cachedPage: import("vue").ComputedRef<string[]>;
     onReloadPage(): Promise<void>;
     handleShowSetting(): void;

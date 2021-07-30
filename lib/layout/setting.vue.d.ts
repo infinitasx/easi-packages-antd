@@ -12,7 +12,7 @@ declare const _default: import("vue").DefineComponent<{
         default: () => Promise<void>;
     };
 }, {
-    globalProvider: IProvider | undefined;
+    globalProvider: IProvider;
     setSetting: (key: string, value: boolean | string) => void;
     handleLogout(): void;
     getEASIText: typeof getEASIText;

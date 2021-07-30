@@ -7,6 +7,7 @@ export interface IProvider {
     cachedPage: string[];
     [props: string]: any;
 }
+export declare const defaultProvider: IProvider;
 export declare function initProvider(): {
     [x: string]: any;
     reloadPage: boolean;
