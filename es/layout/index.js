@@ -2558,7 +2558,7 @@ const _hoisted_2 = {
   key: 1,
   class: "h-64"
 };
-const _hoisted_3 = /* @__PURE__ */ createTextVNode(" \xA9Copyright EASI, Make life easier. ");
+const _hoisted_3 = /* @__PURE__ */ createTextVNode(" \xA9Copyright EASI, Make Life Easier. ");
 popScopeId();
 const render = /* @__PURE__ */ _withId((_ctx, _cache, $props, $setup, $data, $options) => {
   const _component_PageNav = resolveComponent("PageNav");

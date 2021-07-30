@@ -29,7 +29,7 @@
           </transition>
         </router-view>
       </a-layout-content>
-      <a-layout-footer class="px-16 py-12 text-center"> &copy;Copyright EASI, Make life easier. </a-layout-footer>
+      <a-layout-footer class="px-16 py-12 text-center"> &copy;Copyright EASI, Make Life Easier. </a-layout-footer>
     </a-layout>
     <PageSetting v-model:visible="showSetting" :userInfo="userInfo" :onLogout="onLogout">
       <!--  开发时可自定义插入内容  -->

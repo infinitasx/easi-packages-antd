@@ -27,6 +27,6 @@ export function initI18n() {
 
 export function setLocale(lang: Lang) {
   // const { setLocaleMessage } = useI18n();
-  _EASII18n.locale.setLocaleMessage(lang, langMap[lang]);
+  // _EASII18n.locale.setLocaleMessage(lang, langMap[lang]);
   console.log(_EASII18n);
 }
