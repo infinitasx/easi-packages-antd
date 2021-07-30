@@ -16,9 +16,6 @@ let _EASII18n: any;
 
 export function initI18n() {
   _EASII18n =  createI18n({
-    legacy: false,
-    globalInjection: true,
-    useScope: "global",
     locale: "zh",
     fallbackLocale: "zh",
     messages: {
@@ -30,5 +27,6 @@ export function initI18n() {
 
 export function setLocale(lang: Lang) {
   // const { setLocaleMessage } = useI18n();
-  _EASII18n.global.setLocaleMessage(lang, langMap[lang]);
+  _EASII18n.locale.setLocaleMessage(lang, langMap[lang]);
+  console.log(_EASII18n);
 }
