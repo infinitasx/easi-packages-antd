@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, inject, toRefs, PropType, ComputedRef, getCurrentInstance, ComponentInternalInstance } from "vue";
+import { computed, defineComponent, toRefs, PropType, ComputedRef, getCurrentInstance, ComponentInternalInstance } from "vue";
 import { useRoute, RouteLocationNormalizedLoaded, RouteLocationMatched } from "vue-router";
 import { BreadcrumbRoute } from "../../typings/antd";
 import NoPermission from "../../packages/error/index";
@@ -75,8 +75,6 @@ export default defineComponent({
     const { breadcrumb, title, desc, hasPermission } = toRefs(props);
 
     const route: RouteLocationNormalizedLoaded = useRoute();
-
-    const globalEASILocale = inject('globalEASILocale', {message: {}})
 
     const { appContext } = getCurrentInstance() as ComponentInternalInstance;
 

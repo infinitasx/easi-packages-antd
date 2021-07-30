@@ -40,7 +40,7 @@ export default {
 
     const toggleLoading = async (el: CustomerDom, binding: DirectiveBinding) => {
       const globalEASILocale = inject<IGlobalLocal>('globalEASILocale', {message: {}})
-      let _title = globalEASILocale.message.loading;
+      let _title = globalEASILocale?.message?.loading;
       let _show = true;
       let _size = "normal";
 
