@@ -10,7 +10,7 @@
         :class="{ 'transition-width': !isH5 }"
         :style="{ width: isH5 ? '100%' : `calc(100% - ${collWidth})` }"
       >
-        <PageHeader :collapsed="collapsed" :userInfo="userInfo" @colToggle="setCollapsed" @handleShowSetting="handleShowSetting" @logout="$emit('logout')" />
+        <PageHeader :collapsed="collapsed" :userInfo="userInfo" @colToggle="setCollapsed" @handleShowSetting="handleShowSetting" />
       </a-layout-header>
       <PageTab
         class="page-tab pt-6 bg-white"
