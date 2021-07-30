@@ -17,17 +17,15 @@ const langMap = {
 }
 
 export function initI18n(lang: Lang) {
-  const locale = reactive<IGlobalLocal>({
+  return reactive<IGlobalLocal>({
     message: langMap[lang]
   })
-  provide('globalEASILocale', locale);
-  return langMap[lang]
 }
 
 export function setLocale(lang: Lang) {
   const globalLocale = inject<IGlobalLocal>('globalEASILocale', {message: {}});
+  console.log('setLocale', globalLocale);
   globalLocale.message = langMap[lang];
-  console.log(globalLocale);
 }
 
 

@@ -12,8 +12,10 @@ export default defineComponent({
   name: createNamespace('Provider'),
   setup() {
     const globalProvider = initProvider();
-    provide('globalProvider', globalProvider)
-    initI18n("zh");
+    const globalEASILocale = initI18n("zh");
+    provide('globalProvider', globalProvider);
+    provide('globalEASILocale', globalEASILocale);
+    console.log(globalProvider, globalEASILocale);
   },
 })
 </script>
