@@ -31,8 +31,8 @@
         </a>
         <template #overlay>
           <a-menu @click="action">
-            <a-menu-item key="closeAll">关闭其他</a-menu-item>
-            <a-menu-item key="refresh">刷新当前页</a-menu-item>
+            <a-menu-item key="closeAll">{{$t('closeOther')}}</a-menu-item>
+            <a-menu-item key="refresh">{{$t('refreshPage')}}</a-menu-item>
           </a-menu>
         </template>
       </a-dropdown>

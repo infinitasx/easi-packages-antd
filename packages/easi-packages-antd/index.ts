@@ -25,20 +25,21 @@ const version = version_;
 
 const components = [EASIText, EASIButton, EASIDrawer, EASIError, EASILayout, EASILoading, EASIModal, EASIPage, EASITable];
 
-// 初始化组件内部国际化
-export const i18n = initI18n();
-
-const plugins: Plugin[] = [i18n, vPermission];
+const plugins: Plugin[] = [vPermission];
 
 const install = (app: App): void => {
   components.forEach((component) => {
     app.component(component.name, component);
   });
 
+  // 初始化组件内部国际化
+  const EASII18n = initI18n();
+  plugins.push(EASII18n);
+
   plugins.forEach((plugin) => {
     app.use(plugin);
   });
-  app.use(vLoading, { i18n });
+  app.use(vLoading, { i18n: EASII18n });
 };
 
 export { EASIText, EASIButton, EASIDrawer, EASIError, EASILayout, EASILoading, EASIModal, EASIPage, EASITable, install, setLocale, vPermission, vLoading, useModalVisible, usePagination };

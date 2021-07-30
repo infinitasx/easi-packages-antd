@@ -1,5 +1,4 @@
 import { createI18n } from "vue-i18n";
-import { i18n } from '../easi-packages-antd/index'
 import ZH from "./lang/zh";
 import EN from "./lang/en";
 import JA from "./lang/ja";
@@ -13,8 +12,10 @@ const langMap = {
   ja: JA,
 }
 
+let _EASII18n: any;
+
 export function initI18n() {
-  return createI18n({
+  _EASII18n =  createI18n({
     legacy: false,
     globalInjection: true,
     useScope: "global",
@@ -24,9 +25,10 @@ export function initI18n() {
       zh: ZH,
     },
   });
+  return _EASII18n;
 }
 
 export function setLocale(lang: Lang) {
   // const { setLocaleMessage } = useI18n();
-  i18n.global.setLocaleMessage(lang, langMap[lang]);
+  _EASII18n.global.setLocaleMessage(lang, langMap[lang]);
 }

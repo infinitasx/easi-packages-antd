@@ -12,5 +12,7 @@ declare const _default: {
     logout: string;
     logoutTitle: string;
     logoutMessage: string;
+    closeOther: string;
+    refreshPage: string;
 };
 export default _default;

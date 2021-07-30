@@ -11,5 +11,7 @@ export default {
   more: '更多操作',
   logout: '退出登录',
   logoutTitle: '退出确认',
-  logoutMessage: '您确定要退出本系统吗?'
+  logoutMessage: '您确定要退出本系统吗?',
+  closeOther: '关闭其他',
+  refreshPage: '刷新当前页'
 }

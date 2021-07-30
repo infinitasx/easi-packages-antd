@@ -14,23 +14,6 @@ import vLoading from "./directives/v-loading";
 import { useModalVisible } from "./utils/useModalVisible";
 import { usePagination } from "./utils/usePagination";
 import { setLocale } from "./locale";
-export declare const i18n: import("vue-i18n").I18n<{
-    zh: {
-        confirm: string;
-        cancel: string;
-        loading: string;
-        pageTotal: string;
-        noPermission: string;
-        styleSetting: string;
-        darkSetting: string;
-        showTabSetting: string;
-        fixedTabSetting: string;
-        more: string;
-        logout: string;
-        logoutTitle: string;
-        logoutMessage: string;
-    };
-}, unknown, unknown, false>;
 declare const install: (app: App) => void;
 export { EASIText, EASIButton, EASIDrawer, EASIError, EASILayout, EASILoading, EASIModal, EASIPage, EASITable, install, setLocale, vPermission, vLoading, useModalVisible, usePagination };
 declare const _default: {

@@ -11,5 +11,7 @@ export default {
   more: 'More',
   logout: 'ログアウト',
   logoutTitle: '終了確認',
-  logoutMessage: 'このシステムからログアウトしてもよろしいですか?'
+  logoutMessage: 'このシステムからログアウトしてもよろしいですか?',
+  closeOther: '他のタブを閉じる',
+  refreshPage: '現在のページを更新'
 }

@@ -73,11 +73,11 @@ const _hoisted_1$4 = {
   key: 0,
   class: "admin-title text-white ml-16 truncate"
 };
-const _hoisted_2$4 = {
+const _hoisted_2$3 = {
   key: 1,
   class: "text-12 truncate text-gray-400"
 };
-const _hoisted_3$3 = { class: "flex-1 overflow-y-auto overflow-x-hidden" };
+const _hoisted_3$2 = { class: "flex-1 overflow-y-auto overflow-x-hidden" };
 const _hoisted_4$1 = { class: "flex items-center" };
 function render$5(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_a_menu_item = resolveComponent("a-menu-item");
@@ -97,12 +97,12 @@ function render$5(_ctx, _cache, $props, $setup, $data, $options) {
           key: 0,
           class: ["text-14 truncate", [_ctx.subTitle ? "text-14" : "text-18"]]
         }, toDisplayString(_ctx.title), 3)) : createCommentVNode("v-if", true),
-        _ctx.subTitle ? (openBlock(), createBlock("p", _hoisted_2$4, toDisplayString(_ctx.subTitle), 1)) : createCommentVNode("v-if", true)
+        _ctx.subTitle ? (openBlock(), createBlock("p", _hoisted_2$3, toDisplayString(_ctx.subTitle), 1)) : createCommentVNode("v-if", true)
       ], 512)), [
         [vShow, !_ctx.collapsed]
       ]) : createCommentVNode("v-if", true)
     ], 2),
-    createVNode("div", _hoisted_3$3, [
+    createVNode("div", _hoisted_3$2, [
       createVNode(_component_a_menu, {
         mode: "inline",
         inlineCollapsed: false,
@@ -2059,7 +2059,7 @@ var script$3 = defineComponent({
 });
 
 const _hoisted_1$3 = /* @__PURE__ */ createVNode("div", { class: "flex-1" }, null, -1);
-const _hoisted_2$3 = { class: "pl-8" };
+const _hoisted_2$2 = { class: "pl-8" };
 function render$3(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_MenuFoldOutlined = resolveComponent("MenuFoldOutlined");
   const _component_MenuUnfoldOutlined = resolveComponent("MenuUnfoldOutlined");
@@ -2089,7 +2089,7 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
         src: _ctx.userInfo.avatar,
         style: { backgroundColor: "#ffbf00", verticalAlign: "middle" }
       }, null, 8, ["src"])) : createCommentVNode("v-if", true),
-      createVNode("span", _hoisted_2$3, toDisplayString(_ctx.userInfo?.name || "\u7528\u6237\u540D"), 1)
+      createVNode("span", _hoisted_2$2, toDisplayString(_ctx.userInfo?.name || "\u7528\u6237\u540D"), 1)
     ])
   ], 64);
 }
@@ -2180,8 +2180,8 @@ var script$2 = defineComponent({
 });
 
 const _hoisted_1$2 = { class: "flex items-center" };
-const _hoisted_2$2 = { class: "flex items-center mb-32" };
-const _hoisted_3$2 = { class: "flex-1" };
+const _hoisted_2$1 = { class: "flex items-center mb-32" };
+const _hoisted_3$1 = { class: "flex-1" };
 const _hoisted_4 = { class: "flex items-center mb-32" };
 const _hoisted_5 = { class: "flex-1" };
 const _hoisted_6 = { class: "flex items-center mb-32" };
@@ -2219,8 +2219,8 @@ function render$2(_ctx, _cache, $props, $setup, $data, $options) {
         ]),
         _: 1
       }),
-      createVNode("div", _hoisted_2$2, [
-        createVNode("span", _hoisted_3$2, [
+      createVNode("div", _hoisted_2$1, [
+        createVNode("span", _hoisted_3$1, [
           createVNode(_component_a_typography_text, { type: "secondary" }, {
             default: withCtx(() => [
               createTextVNode(toDisplayString(_ctx.$t("darkSetting")), 1)
@@ -2366,8 +2366,6 @@ var script$1 = defineComponent({
 const _withId$1 = /* @__PURE__ */ withScopeId("data-v-8afcfb18");
 pushScopeId("data-v-8afcfb18");
 const _hoisted_1$1 = { class: "flex items-center" };
-const _hoisted_2$1 = /* @__PURE__ */ createTextVNode("\u5173\u95ED\u5176\u4ED6");
-const _hoisted_3$1 = /* @__PURE__ */ createTextVNode("\u5237\u65B0\u5F53\u524D\u9875");
 popScopeId();
 const render$1 = /* @__PURE__ */ _withId$1((_ctx, _cache, $props, $setup, $data, $options) => {
   const _component_ReloadOutlined = resolveComponent("ReloadOutlined");
@@ -2393,13 +2391,13 @@ const render$1 = /* @__PURE__ */ _withId$1((_ctx, _cache, $props, $setup, $data,
             default: _withId$1(() => [
               createVNode(_component_a_menu_item, { key: "closeAll" }, {
                 default: _withId$1(() => [
-                  _hoisted_2$1
+                  createTextVNode(toDisplayString(_ctx.$t("closeOther")), 1)
                 ]),
                 _: 1
               }),
               createVNode(_component_a_menu_item, { key: "refresh" }, {
                 default: _withId$1(() => [
-                  _hoisted_3$1
+                  createTextVNode(toDisplayString(_ctx.$t("refreshPage")), 1)
                 ]),
                 _: 1
               })
