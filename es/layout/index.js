@@ -2125,13 +2125,13 @@ async function useReload(provide, route, refreshAll = false) {
   if (refreshAll) {
     provide.cachedPage = [];
   } else {
-    if (route.meta.cached) {
+    if (route.meta.cached !== false) {
       provide.cachedPage = provide.cachedPage.filter((name) => route.name !== name);
     }
   }
   provide.reloadPage = false;
   await nextTick();
-  if (route.meta.cached) {
+  if (route.meta.cached !== false) {
     provide.cachedPage = [...provide.cachedPage, route.name];
   }
   provide.reloadPage = true;
@@ -2304,11 +2304,12 @@ var script$1 = defineComponent({
       if (route.name === "Index")
         return;
       if (panes.value.length === 0 || !panes.value.some((pane) => pane.fullPath === route.fullPath)) {
+        const meta = route.meta;
         panes.value.push({
           title: route.query.title || route.meta.title,
           fullPath: route.fullPath,
           name: route.name,
-          cached: !!route.meta?.cached
+          cached: meta.cached === true || meta.cached === void 0
         });
       }
     };
@@ -2597,8 +2598,7 @@ const render = /* @__PURE__ */ _withId((_ctx, _cache, $props, $setup, $data, $op
                 collapsed: _ctx.collapsed,
                 userInfo: _ctx.userInfo,
                 onColToggle: _ctx.setCollapsed,
-                onHandleShowSetting: _ctx.handleShowSetting,
-                onLogout: _cache[2] || (_cache[2] = ($event) => _ctx.$emit("logout"))
+                onHandleShowSetting: _ctx.handleShowSetting
               }, null, 8, ["collapsed", "userInfo", "onColToggle", "onHandleShowSetting"])
             ]),
             _: 1
@@ -2646,7 +2646,7 @@ const render = /* @__PURE__ */ _withId((_ctx, _cache, $props, $setup, $data, $op
       }),
       createVNode(_component_PageSetting, {
         visible: _ctx.showSetting,
-        "onUpdate:visible": _cache[3] || (_cache[3] = ($event) => _ctx.showSetting = $event),
+        "onUpdate:visible": _cache[2] || (_cache[2] = ($event) => _ctx.showSetting = $event),
         userInfo: _ctx.userInfo,
         onLogout: _ctx.onLogout
       }, {

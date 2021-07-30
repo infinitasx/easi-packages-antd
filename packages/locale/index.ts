@@ -1,7 +1,9 @@
-import { createI18n, useI18n } from "vue-i18n";
+import { createI18n } from "vue-i18n";
+import { i18n } from '../easi-packages-antd/index'
 import ZH from "./lang/zh";
 import EN from "./lang/en";
 import JA from "./lang/ja";
+
 
 type Lang = "zh" | "en" | "ja";
 
@@ -25,6 +27,6 @@ export function initI18n() {
 }
 
 export function setLocale(lang: Lang) {
-  const { setLocaleMessage } = useI18n();
-  setLocaleMessage(lang, langMap[lang]);
+  // const { setLocaleMessage } = useI18n();
+  i18n.global.setLocaleMessage(lang, langMap[lang]);
 }

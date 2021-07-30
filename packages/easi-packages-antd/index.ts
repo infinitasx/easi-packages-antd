@@ -26,7 +26,7 @@ const version = version_;
 const components = [EASIText, EASIButton, EASIDrawer, EASIError, EASILayout, EASILoading, EASIModal, EASIPage, EASITable];
 
 // 初始化组件内部国际化
-const i18n = initI18n();
+export const i18n = initI18n();
 
 const plugins: Plugin[] = [i18n, vPermission];
 
