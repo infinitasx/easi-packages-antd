@@ -18,7 +18,7 @@ import vLoading from "../directives/v-loading";
 import { useModalVisible } from "../utils/useModalVisible";
 import { usePagination } from "../utils/usePagination";
 
-import { initI18n, setLocale } from "../locale";
+import { setLocale } from "../locale";
 
 import { version as version_ } from "./version";
 const version = version_;
@@ -28,8 +28,6 @@ const components = [EASIText, EASIButton, EASIDrawer, EASIError, EASILayout, EAS
 const plugins: Plugin[] = [vPermission];
 
 const install = (app: App): void => {
-
-  initI18n('zh');
 
   plugins.forEach((plugin) => {
     app.use(plugin);

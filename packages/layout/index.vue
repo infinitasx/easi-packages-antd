@@ -51,6 +51,7 @@ import PageTab from "./tab.vue";
 import { isMobile, debounced } from "easi-web-utils";
 import { initProvider, useReload } from "../utils/globalProvider";
 import { UserInfo } from '../../typings/antd'
+import { initI18n } from "../locale";
 
 export default defineComponent({
   name: createNamespace("Layout"),
@@ -102,6 +103,8 @@ export default defineComponent({
     const showSetting = ref<boolean>(false);
 
     const globalProvider = initProvider();
+
+    initI18n("zh");
 
     let timeout: any;
     watch(
