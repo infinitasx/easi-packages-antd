@@ -74,8 +74,8 @@ var script = defineComponent({
   emits: ["update:pShow"],
   props: {
     pTitle: {
-      default: "loading",
-      type: String
+      type: String,
+      default: void 0
     },
     pShow: {
       default: true,
@@ -84,14 +84,11 @@ var script = defineComponent({
     pSize: {
       default: "normal",
       type: String
-    },
-    lang: {
-      type: String,
-      default: "zh"
     }
   },
   setup(props, { emit }) {
-    const { lang, pShow, pSize } = toRefs(props);
+    const { pShow, pSize } = toRefs(props);
+    const lang = ref("zh");
     const locale = initI18n(lang.value);
     const defaultTitle = locale.message.loading;
     const show = ref(true);
@@ -106,9 +103,7 @@ var script = defineComponent({
     watch(() => lang.value, (newVal) => {
       if (newVal) {
         locale.message = langMap[newVal];
-        if (!props.pTitle) {
-          title.value = locale.message.loading;
-        }
+        title.value = locale.message.loading;
       }
     });
     watch(() => show.value, (newVal) => {

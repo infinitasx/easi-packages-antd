@@ -5,7 +5,6 @@
 
 import Loading from "../loading/index.vue";
 import { createApp, nextTick, DirectiveBinding, App, ComponentInternalInstance } from "vue";
-import { initI18n } from '../locale'
 
 interface CustomerDom extends HTMLElement {
   originalPosition: string;
@@ -23,6 +22,7 @@ export default {
           el.style.position = "relative";
         }
         el?.appendChild(el?.loadingRoot);
+        el.comp.lang = ((app._instance as ComponentInternalInstance)?.root?.proxy as any)?.lang || "zh"
         el.comp.show = true;
         if(title){
           el.comp.title = title;
@@ -71,9 +71,7 @@ export default {
 
     app.directive("loading", {
       async beforeMount(el, binding) {
-        const loading = createApp(Loading, {
-          lang: ((app._instance as ComponentInternalInstance)?.root?.proxy as any)?.lang || "zh"
-        });
+        const loading = createApp(Loading);
 
         el.loading = el;
         el.loadingRoot = document.createElement("div");

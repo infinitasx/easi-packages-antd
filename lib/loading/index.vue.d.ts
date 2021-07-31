@@ -1,9 +1,8 @@
 import { PropType } from 'vue';
-import { Lang } from '../locale';
 declare const _default: import("vue").DefineComponent<{
     pTitle: {
-        default: string;
         type: StringConstructor;
+        default: undefined;
     };
     pShow: {
         default: boolean;
@@ -13,10 +12,6 @@ declare const _default: import("vue").DefineComponent<{
         default: string;
         type: PropType<"normal" | "small">;
     };
-    lang: {
-        type: PropType<Lang>;
-        default: string;
-    };
 }, {
     show: import("vue").Ref<boolean>;
     title: any;
@@ -25,16 +20,14 @@ declare const _default: import("vue").DefineComponent<{
     pTitle?: unknown;
     pShow?: unknown;
     pSize?: unknown;
-    lang?: unknown;
 } & {
+    pShow: boolean;
+    pSize: "normal" | "small";
+} & {
+    pTitle?: string | undefined;
+}>, {
     pTitle: string;
     pShow: boolean;
     pSize: "normal" | "small";
-    lang: Lang;
-} & {}>, {
-    pTitle: string;
-    pShow: boolean;
-    pSize: "normal" | "small";
-    lang: Lang;
 }>;
 export default _default;

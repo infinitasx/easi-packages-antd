@@ -28,6 +28,7 @@ export default defineComponent({
   props: {
     pTitle: {
       type: String,
+      default: undefined
     },
 
     pShow: {
@@ -38,14 +39,12 @@ export default defineComponent({
       default: 'normal',
       type: String as PropType<'normal' | 'small'>,
     },
-    lang: {
-      type: String as PropType<Lang>,
-      default: 'zh'
-    }
   },
 
   setup(props, {emit}) {
-    const {lang, pShow, pSize} = toRefs(props);
+    const {pShow, pSize} = toRefs(props);
+
+    const lang = ref<Lang>('zh')
 
     const locale = initI18n(lang.value)
 
@@ -72,9 +71,7 @@ export default defineComponent({
     watch(() => lang.value, newVal => {
       if(newVal){
         locale.message = langMap[newVal];
-        if(!props.pTitle){
-          title.value = locale.message.loading;
-        }
+        title.value = locale.message.loading;
       }
     })
 
