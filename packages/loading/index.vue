@@ -32,7 +32,7 @@ export default defineComponent({
     },
 
     pShow: {
-      default: true,
+      default: false,
       type: Boolean,
     },
     pSize: {
@@ -54,9 +54,7 @@ export default defineComponent({
 
     const defaultTitle = locale?.message?.loading;
 
-    console.log(lang.value, defaultTitle, 'init');
-
-    const show = ref<boolean>(true);
+    const show = ref<boolean>(false);
     const title = ref<string>(defaultTitle);
     const size = ref<'normal' | 'small'>('normal');
 
@@ -78,7 +76,6 @@ export default defineComponent({
       if(newVal){
         locale.message = langMap[newVal];
         title.value = locale.message.loading;
-        console.log(newVal, title.value, 'watch');
       }
     })
 
