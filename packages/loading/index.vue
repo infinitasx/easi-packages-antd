@@ -99,7 +99,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 [data-pro-theme='antdv-pro-theme-dark'] .loading-container {
-  background: rgba(50, 50, 50, 0.8);
+  background: rgba(20, 20, 20, 0.8);
 
   .loading {
     background-color: #000;

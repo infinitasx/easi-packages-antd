@@ -45,4 +45,16 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.dropdown-trigger{
+  &:hover{
+    background: rgba(0,0,0,0.05);
+  }
+}
+
+[data-pro-theme=antdv-pro-theme-dark] .dropdown-trigger{
+  &:hover{
+    background: rgba(255,255,255,0.05);
+  }
+}
+</style>

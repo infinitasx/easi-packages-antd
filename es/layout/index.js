@@ -1,5 +1,5 @@
 import * as _vue from 'vue';
-import { defineComponent, toRefs, ref, onMounted, watch, toRaw, resolveComponent, openBlock, createBlock, Fragment, createVNode, withDirectives, toDisplayString, createCommentVNode, vShow, withCtx, renderList, h, nextTick, inject, mergeProps, createTextVNode, renderSlot, pushScopeId, popScopeId, withModifiers, withScopeId, onBeforeUnmount, computed, Transition, KeepAlive, resolveDynamicComponent } from 'vue';
+import { defineComponent, toRefs, ref, onMounted, watch, toRaw, resolveComponent, openBlock, createBlock, Fragment, createVNode, withDirectives, toDisplayString, createCommentVNode, vShow, withCtx, renderList, h, nextTick, pushScopeId, popScopeId, withScopeId, inject, mergeProps, createTextVNode, renderSlot, withModifiers, onBeforeUnmount, computed, Transition, KeepAlive, resolveDynamicComponent } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { Modal } from 'ant-design-vue';
 import { setLocal, isMobile, debounced } from 'easi-web-utils';
@@ -2073,9 +2073,12 @@ var script$3 = defineComponent({
   }
 });
 
+const _withId$2 = /* @__PURE__ */ withScopeId("data-v-6637da7e");
+pushScopeId("data-v-6637da7e");
 const _hoisted_1$3 = /* @__PURE__ */ createVNode("div", { class: "flex-1" }, null, -1);
 const _hoisted_2$2 = { class: "pl-8" };
-function render$3(_ctx, _cache, $props, $setup, $data, $options) {
+popScopeId();
+const render$3 = /* @__PURE__ */ _withId$2((_ctx, _cache, $props, $setup, $data, $options) => {
   const _component_MenuFoldOutlined = resolveComponent("MenuFoldOutlined");
   const _component_MenuUnfoldOutlined = resolveComponent("MenuUnfoldOutlined");
   const _component_a_avatar = resolveComponent("a-avatar");
@@ -2107,9 +2110,10 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
       createVNode("span", _hoisted_2$2, toDisplayString(_ctx.userInfo?.name || "\u7528\u6237\u540D"), 1)
     ])
   ], 64);
-}
+});
 
 script$3.render = render$3;
+script$3.__scopeId = "data-v-6637da7e";
 script$3.__file = "packages/layout/header.vue";
 
 const SETTING_KEY = "setting";
