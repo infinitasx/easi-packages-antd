@@ -1,4 +1,4 @@
-import { reactive, defineComponent, toRefs, ref, watch, pushScopeId, popScopeId, openBlock, createBlock, Transition, createVNode, toDisplayString, createCommentVNode, withScopeId } from 'vue';
+import { reactive, defineComponent, toRefs, getCurrentInstance, ref, watch, pushScopeId, popScopeId, openBlock, createBlock, Transition, createVNode, toDisplayString, createCommentVNode, withScopeId } from 'vue';
 
 function createNamespace(name) {
   return `EASI${name}`;
@@ -88,9 +88,11 @@ var script = defineComponent({
   },
   setup(props, { emit }) {
     const { pShow, pSize } = toRefs(props);
-    const lang = ref("zh");
+    const { root } = getCurrentInstance();
+    const lang = ref(root?.proxy?.lang || "zh");
     const locale = initI18n(lang.value);
     const defaultTitle = locale.message.loading;
+    console.log(lang, defaultTitle, "init");
     const show = ref(true);
     const title = ref(defaultTitle);
     const size = ref("normal");
@@ -104,6 +106,7 @@ var script = defineComponent({
       if (newVal) {
         locale.message = langMap[newVal];
         title.value = locale.message.loading;
+        console.log(newVal, title.value, "watch");
       }
     });
     watch(() => show.value, (newVal) => {
@@ -112,7 +115,8 @@ var script = defineComponent({
     return {
       show,
       title,
-      size
+      size,
+      lang
     };
   }
 });

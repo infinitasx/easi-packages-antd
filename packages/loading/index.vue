@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType, ref, toRefs, watch} from 'vue';
+import {defineComponent, PropType, ref, toRefs, watch, getCurrentInstance, ComponentInternalInstance} from 'vue';
 import { createNamespace } from "../utils/create";
 import {Lang, langMap, initI18n} from '../locale'
 
@@ -44,11 +44,15 @@ export default defineComponent({
   setup(props, {emit}) {
     const {pShow, pSize} = toRefs(props);
 
-    const lang = ref<Lang>('zh')
+    const { root } = getCurrentInstance() as ComponentInternalInstance;
+
+    const lang = ref<Lang>((root?.proxy as any)?.lang || 'zh')
 
     const locale = initI18n(lang.value)
 
     const defaultTitle = locale.message.loading;
+
+    console.log(lang, defaultTitle, 'init');
 
     const show = ref<boolean>(true);
     const title = ref(defaultTitle);
@@ -72,6 +76,7 @@ export default defineComponent({
       if(newVal){
         locale.message = langMap[newVal];
         title.value = locale.message.loading;
+        console.log(newVal, title.value, 'watch');
       }
     })
 
@@ -86,6 +91,7 @@ export default defineComponent({
       show,
       title,
       size,
+      lang,
     };
   },
 })

@@ -1,4 +1,5 @@
 import { PropType } from 'vue';
+import { Lang } from '../locale';
 declare const _default: import("vue").DefineComponent<{
     pTitle: {
         type: StringConstructor;
@@ -16,6 +17,7 @@ declare const _default: import("vue").DefineComponent<{
     show: import("vue").Ref<boolean>;
     title: any;
     size: import("vue").Ref<"normal" | "small">;
+    lang: import("vue").Ref<Lang>;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "update:pShow"[], "update:pShow", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
     pTitle?: unknown;
     pShow?: unknown;
