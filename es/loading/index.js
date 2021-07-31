@@ -78,7 +78,7 @@ var script = defineComponent({
       default: void 0
     },
     pShow: {
-      default: true,
+      default: false,
       type: Boolean
     },
     pSize: {
@@ -93,8 +93,7 @@ var script = defineComponent({
     const lang = ref(root.value?.lang || "zh");
     const locale = initI18n(lang.value);
     const defaultTitle = locale?.message?.loading;
-    console.log(lang.value, defaultTitle, "init");
-    const show = ref(true);
+    const show = ref(false);
     const title = ref(defaultTitle);
     const size = ref("normal");
     watch(() => pShow.value, (newVal) => {
@@ -107,7 +106,6 @@ var script = defineComponent({
       if (newVal) {
         locale.message = langMap[newVal];
         title.value = locale.message.loading;
-        console.log(newVal, title.value, "watch");
       }
     });
     watch(() => show.value, (newVal) => {
