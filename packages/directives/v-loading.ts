@@ -72,7 +72,7 @@ export default {
     app.directive("loading", {
       async beforeMount(el, binding) {
         const loading = createApp(Loading, {
-          pTitle: initI18n(((app._instance as ComponentInternalInstance)?.root?.proxy as any)?.lang || "zh")?.message?.loading
+          lang: ((app._instance as ComponentInternalInstance)?.root?.proxy as any)?.lang || "zh"
         });
 
         el.loading = el;

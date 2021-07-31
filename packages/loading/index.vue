@@ -11,7 +11,7 @@
             <div></div>
           </div>
         </div>
-        <p class="tips" v-if="title">{{ title }}</p>
+        <p class="tips" v-if="pTitle || title">{{ pTitle || title }}</p>
       </div>
     </div>
   </transition>
@@ -20,7 +20,7 @@
 <script lang="ts">
 import {defineComponent, PropType, ref, toRefs, watch} from 'vue';
 import { createNamespace } from "../utils/create";
-import { getEASIText } from '../locale'
+import {Lang, langMap, initI18n} from '../locale'
 
 export default defineComponent({
   name: createNamespace('Loading'),
@@ -39,22 +39,22 @@ export default defineComponent({
       default: 'normal',
       type: String as PropType<'normal' | 'small'>,
     },
+    lang: {
+      type: String as PropType<Lang>,
+      default: 'zh'
+    }
   },
 
   setup(props, {emit}) {
-    const {pTitle, pShow, pSize} = toRefs(props);
-    const defaultTitle = getEASIText('loading');
+    const {lang, pShow, pSize} = toRefs(props);
+
+    const locale = initI18n(lang.value)
+
+    const defaultTitle = locale.message.loading;
 
     const show = ref<boolean>(true);
-    const title = ref(props.pTitle || defaultTitle);
+    const title = ref(defaultTitle);
     const size = ref<'normal' | 'small'>('normal');
-
-    watch(
-        () => pTitle.value,
-        newVal => {
-          title.value = newVal;
-        },
-    );
 
     watch(
         () => pShow.value,
@@ -69,6 +69,15 @@ export default defineComponent({
           size.value = newVal;
         },
     );
+
+    watch(() => lang.value, newVal => {
+      if(newVal){
+        locale.message = langMap[newVal];
+        if(!props.pTitle){
+          title.value = locale.message.loading;
+        }
+      }
+    })
 
     watch(
         () => show.value,
