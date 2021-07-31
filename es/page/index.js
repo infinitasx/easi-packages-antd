@@ -102,7 +102,7 @@ var script = defineComponent({
     const route = useRoute();
     const { appContext } = getCurrentInstance();
     const breadcrumbRoutes = computed(() => {
-      return breadcrumb.value || route.meta.breadcrumb || route.matched.map((_route) => {
+      return breadcrumb.value || route.meta.breadcrumb || route.matched.slice(1).map((_route) => {
         return {
           path: _route.path,
           breadcrumbName: _route.meta.title
@@ -199,4 +199,4 @@ script.install = (app) => {
   app.component(script.name, script);
 };
 
-export default script;
+export { script as default };

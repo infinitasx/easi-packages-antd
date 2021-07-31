@@ -81,7 +81,7 @@ export default defineComponent({
     const breadcrumbRoutes: ComputedRef<BreadcrumbRoute[]> = computed((): BreadcrumbRoute[] => {
       return (breadcrumb.value ||
         route.meta.breadcrumb ||
-        route.matched.map((_route: RouteLocationMatched) => {
+        route.matched.slice(1).map((_route: RouteLocationMatched) => {
           return {
             path: _route.path,
             breadcrumbName: _route.meta.title,
