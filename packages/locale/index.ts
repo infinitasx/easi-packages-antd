@@ -24,7 +24,6 @@ export function initI18n(lang: Lang) {
 
 export function getEASIText(key: string, value?: {[props: string]: string | number}){
   const globalEASILocale = inject<IGlobalLocal>('globalEASILocale', {message: {}});
-  console.log(globalEASILocale, 'globalEASILocale');
   let message = globalEASILocale?.message[key];
   if(message){
     if(value){

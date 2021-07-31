@@ -49,7 +49,6 @@ script$1.install = (app) => {
 
 function getEASIText(key, value) {
   const globalEASILocale = inject("globalEASILocale", { message: {} });
-  console.log(globalEASILocale, "globalEASILocale");
   let message = globalEASILocale?.message[key];
   if (message) {
     if (value) {

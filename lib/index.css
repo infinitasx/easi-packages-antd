@@ -6412,8 +6412,8 @@
   z-index: 1;
 }
 
-.page-breadcrumb-wrap .ant-page-header-footer {
-  margin: 0;
+.error-full-page {
+  height: calc(100vh - 160px);
 }
 
 [data-pro-theme=antdv-pro-theme-dark] .loading-container {
@@ -6577,8 +6577,8 @@
     transform: translateX(6px) rotate(90deg);
   }
 }
-.error-full-page {
-  height: calc(100vh - 160px);
+.page-breadcrumb-wrap .ant-page-header-footer {
+  margin: 0;
 }
 
 .page-header {

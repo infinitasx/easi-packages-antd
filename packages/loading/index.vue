@@ -43,10 +43,10 @@ export default defineComponent({
 
   setup(props, {emit}) {
     const {pTitle, pShow, pSize} = toRefs(props);
-
     const defaultTitle = getEASIText('loading');
+
     const show = ref<boolean>(true);
-    const title = ref(defaultTitle);
+    const title = ref(props.pTitle || defaultTitle);
     const size = ref<'normal' | 'small'>('normal');
 
     watch(

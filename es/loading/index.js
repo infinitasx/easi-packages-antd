@@ -6,7 +6,6 @@ function createNamespace(name) {
 
 function getEASIText(key, value) {
   const globalEASILocale = inject("globalEASILocale", { message: {} });
-  console.log(globalEASILocale, "globalEASILocale");
   let message = globalEASILocale?.message[key];
   if (message) {
     if (value) {
@@ -46,7 +45,7 @@ var script = defineComponent({
     const { pTitle, pShow, pSize } = toRefs(props);
     const defaultTitle = getEASIText("loading");
     const show = ref(true);
-    const title = ref(defaultTitle);
+    const title = ref(props.pTitle || defaultTitle);
     const size = ref("normal");
     watch(() => pTitle.value, (newVal) => {
       title.value = newVal;

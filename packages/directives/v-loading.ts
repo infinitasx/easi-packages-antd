@@ -4,7 +4,8 @@
 // 也可以接受对象，{show: boolean, title: 'common.loading', size: 'small' | 'normal'}
 
 import Loading from "../loading/index.vue";
-import { createApp, nextTick, inject, DirectiveBinding, App } from "vue";
+import { createApp, nextTick, DirectiveBinding, App, ComponentInternalInstance } from "vue";
+import { initI18n } from '../locale'
 
 interface CustomerDom extends HTMLElement {
   originalPosition: string;
@@ -42,7 +43,7 @@ export default {
     };
 
     const toggleLoading = async (el: CustomerDom, binding: DirectiveBinding) => {
-      let _title: string | undefined = undefined;
+      let _title = ''
       let _show = true;
       let _size = "normal";
 
@@ -70,7 +71,9 @@ export default {
 
     app.directive("loading", {
       async beforeMount(el, binding) {
-        const loading = createApp(Loading);
+        const loading = createApp(Loading, {
+          pTitle: initI18n(((app._instance as ComponentInternalInstance)?.root?.proxy as any)?.lang || "zh")?.message?.loading
+        });
 
         el.loading = el;
         el.loadingRoot = document.createElement("div");
