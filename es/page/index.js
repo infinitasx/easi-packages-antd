@@ -148,7 +148,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       _ctx.showPageHeader ? (openBlock(), createBlock("div", _hoisted_1, [
         createVNode(_component_a_page_header, { title: _ctx.pageTitle }, {
           breadcrumb: withCtx(() => [
-            createVNode(_component_a_breadcrumb, { routes: _ctx.breadcrumbRoutes }, {
+            _ctx.breadcrumbRoutes.length > 1 ? (openBlock(), createBlock(_component_a_breadcrumb, {
+              key: 0,
+              routes: _ctx.breadcrumbRoutes
+            }, {
               itemRender: withCtx(({ route }) => [
                 createVNode(_component_router_link, {
                   to: route.path
@@ -160,7 +163,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 }, 1032, ["to"])
               ]),
               _: 1
-            }, 8, ["routes"])
+            }, 8, ["routes"])) : createCommentVNode("v-if", true)
           ]),
           default: withCtx(() => [
             _ctx.pageDesc ? (openBlock(), createBlock("p", _hoisted_2, toDisplayString(_ctx.pageDesc), 1)) : createCommentVNode("v-if", true),

@@ -4,7 +4,7 @@
       <div class="page-breadcrumb-wrap" v-if="showPageHeader">
         <a-page-header :title="pageTitle">
           <template #breadcrumb>
-            <a-breadcrumb :routes="breadcrumbRoutes">
+            <a-breadcrumb :routes="breadcrumbRoutes" v-if="breadcrumbRoutes.length > 1">
               <template #itemRender="{ route }">
                 <router-link :to="route.path">
                   {{ route.breadcrumbName }}

@@ -4,7 +4,6 @@
 // 也可以接受对象，{show: boolean, title: 'common.loading', size: 'small' | 'normal'}
 
 import Loading from "../loading/index.vue";
-import { IGlobalLocal } from '../locale'
 import { createApp, nextTick, inject, DirectiveBinding, App } from "vue";
 
 interface CustomerDom extends HTMLElement {
@@ -17,15 +16,19 @@ interface CustomerDom extends HTMLElement {
 export default {
   install: (app: App) => {
 
-    const insertDom = (el: CustomerDom, title: string, size: string) => {
+    const insertDom = (el: CustomerDom, title?: string, size?: string) => {
       if (getComputedStyle(el, null).display !== "none" && getComputedStyle(el, null).visibility !== "hidden") {
         if (el.originalPosition !== "absolute" && el.originalPosition !== "fixed") {
           el.style.position = "relative";
         }
         el?.appendChild(el?.loadingRoot);
         el.comp.show = true;
-        el.comp.title = title;
-        el.comp.size = size;
+        if(title){
+          el.comp.title = title;
+        }
+        if(size){
+          el.comp.size = size;
+        }
       }
     };
 
@@ -39,8 +42,7 @@ export default {
     };
 
     const toggleLoading = async (el: CustomerDom, binding: DirectiveBinding) => {
-      const globalEASILocale = inject<IGlobalLocal>('globalEASILocale', {message: {}})
-      let _title = globalEASILocale?.message?.loading;
+      let _title: string | undefined = undefined;
       let _show = true;
       let _size = "normal";
 
