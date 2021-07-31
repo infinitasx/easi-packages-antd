@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType, ref, toRefs, watch, getCurrentInstance, ComponentInternalInstance} from 'vue';
+import {defineComponent, PropType, ref, toRefs, watch, getCurrentInstance, ComponentInternalInstance, ComponentPublicInstance} from 'vue';
 import { createNamespace } from "../utils/create";
 import {Lang, langMap, initI18n} from '../locale'
 
@@ -44,18 +44,20 @@ export default defineComponent({
   setup(props, {emit}) {
     const {pShow, pSize} = toRefs(props);
 
-    const { root } = getCurrentInstance() as ComponentInternalInstance;
+    const app = getCurrentInstance() as ComponentInternalInstance;
 
-    const lang = ref<Lang>((root?.proxy as any)?.lang || 'zh')
+    const root = ref<{ lang: Lang }>(app.root.proxy as unknown as { lang: Lang });
+
+    const lang = ref<Lang>((root.value?.lang as Lang) || 'zh')
 
     const locale = initI18n(lang.value)
 
-    const defaultTitle = locale.message.loading;
+    const defaultTitle = locale?.message?.loading;
 
-    console.log(lang, defaultTitle, 'init');
+    console.log(lang.value, defaultTitle, 'init');
 
     const show = ref<boolean>(true);
-    const title = ref(defaultTitle);
+    const title = ref<string>(defaultTitle);
     const size = ref<'normal' | 'small'>('normal');
 
     watch(
@@ -72,7 +74,7 @@ export default defineComponent({
         },
     );
 
-    watch(() => lang.value, newVal => {
+    watch(() => root.value.lang, newVal => {
       if(newVal){
         locale.message = langMap[newVal];
         title.value = locale.message.loading;
@@ -92,6 +94,7 @@ export default defineComponent({
       title,
       size,
       lang,
+      root
     };
   },
 })

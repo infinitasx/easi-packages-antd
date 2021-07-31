@@ -22,7 +22,8 @@ export default {
           el.style.position = "relative";
         }
         el?.appendChild(el?.loadingRoot);
-        el.comp.lang = ((app._instance as ComponentInternalInstance)?.root?.proxy as any)?.lang || "zh"
+        el.comp.root= (app._instance as ComponentInternalInstance)?.root?.proxy;
+        el.comp.lang = el.comp.root?.lang || "zh";
         el.comp.show = true;
         if(title){
           el.comp.title = title;

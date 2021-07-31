@@ -88,11 +88,12 @@ var script = defineComponent({
   },
   setup(props, { emit }) {
     const { pShow, pSize } = toRefs(props);
-    const { root } = getCurrentInstance();
-    const lang = ref(root?.proxy?.lang || "zh");
+    const app = getCurrentInstance();
+    const root = ref(app.root.proxy);
+    const lang = ref(root.value?.lang || "zh");
     const locale = initI18n(lang.value);
-    const defaultTitle = locale.message.loading;
-    console.log(lang, defaultTitle, "init");
+    const defaultTitle = locale?.message?.loading;
+    console.log(lang.value, defaultTitle, "init");
     const show = ref(true);
     const title = ref(defaultTitle);
     const size = ref("normal");
@@ -102,7 +103,7 @@ var script = defineComponent({
     watch(() => pSize.value, (newVal) => {
       size.value = newVal;
     });
-    watch(() => lang.value, (newVal) => {
+    watch(() => root.value.lang, (newVal) => {
       if (newVal) {
         locale.message = langMap[newVal];
         title.value = locale.message.loading;
@@ -116,7 +117,8 @@ var script = defineComponent({
       show,
       title,
       size,
-      lang
+      lang,
+      root
     };
   }
 });
