@@ -21,16 +21,17 @@ export default {
         if (el.originalPosition !== "absolute" && el.originalPosition !== "fixed") {
           el.style.position = "relative";
         }
-        el?.appendChild(el?.loadingRoot);
-        el.comp.root= (app._instance as ComponentInternalInstance)?.root?.proxy;
-        el.comp.lang = el.comp.root?.lang || "zh";
         el.comp.show = true;
+
         if(title){
           el.comp.title = title;
         }
         if(size){
           el.comp.size = size;
         }
+        el.comp.root= (app._instance as ComponentInternalInstance)?.root?.proxy;
+        el.comp.lang = el.comp.root?.lang || "zh";
+        el?.appendChild(el?.loadingRoot);
       }
     };
 
