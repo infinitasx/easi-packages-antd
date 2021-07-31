@@ -157,8 +157,9 @@ export default defineComponent({
       }),
       globalProvider,
       cachedPage: computed(() => (globalProvider.showTab ? globalProvider.cachedPage : [])),
-      async onReloadPage() {
-        await useReload(globalProvider, route);
+      async onReloadPage(refresh = false) {
+        await useReload(globalProvider, route, refresh);
+        return true;
       },
       handleShowSetting() {
         showSetting.value = true;
