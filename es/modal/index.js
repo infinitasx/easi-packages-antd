@@ -6,6 +6,7 @@ function createNamespace(name) {
 
 function getEASIText(key, value) {
   const globalEASILocale = inject("globalEASILocale", { message: {} });
+  console.log(globalEASILocale, "globalEASILocale");
   let message = globalEASILocale?.message[key];
   if (message) {
     if (value) {

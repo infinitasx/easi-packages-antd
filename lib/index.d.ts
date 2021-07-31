@@ -14,9 +14,8 @@ import vPermission from "./directives/v-permissions";
 import vLoading from "./directives/v-loading";
 import { useModalVisible } from "./utils/useModalVisible";
 import { usePagination } from "./utils/usePagination";
-import { setLocale } from "./locale";
 declare const install: (app: App) => void;
-export { EASIProvider, EASIText, EASIButton, EASIDrawer, EASIError, EASILayout, EASILoading, EASIModal, EASIPage, EASITable, install, setLocale, vPermission, vLoading, useModalVisible, usePagination };
+export { EASIProvider, EASIText, EASIButton, EASIDrawer, EASIError, EASILayout, EASILoading, EASIModal, EASIPage, EASITable, install, vPermission, vLoading, useModalVisible, usePagination };
 declare const _default: {
     version: string;
     install: (app: App<any>) => void;

@@ -10,7 +10,7 @@ export interface IGlobalLocal {
   message: any
 }
 
-const langMap = {
+export const langMap = {
   zh: ZH,
   en: EN,
   ja: JA,
@@ -22,15 +22,9 @@ export function initI18n(lang: Lang) {
   })
 }
 
-export function setLocale(lang: Lang) {
-  const globalLocale = inject<IGlobalLocal>('globalEASILocale', {message: {}});
-  console.log('setLocale', globalLocale);
-  globalLocale.message = langMap[lang];
-}
-
-
 export function getEASIText(key: string, value?: {[props: string]: string | number}){
   const globalEASILocale = inject<IGlobalLocal>('globalEASILocale', {message: {}});
+  console.log(globalEASILocale, 'globalEASILocale');
   let message = globalEASILocale?.message[key];
   if(message){
     if(value){
