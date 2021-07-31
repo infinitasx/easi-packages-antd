@@ -27,7 +27,6 @@ export default defineComponent({
   emits: ['update:pShow'],
   props: {
     pTitle: {
-      default: 'loading',
       type: String,
     },
 
