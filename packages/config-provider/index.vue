@@ -8,7 +8,7 @@
 import {defineComponent, provide, watch, toRefs, PropType} from "vue"
 import {createNamespace} from "../utils/create";
 import {initProvider} from "../utils/globalProvider";
-import {initI18n, langMap, Lang} from "../locale";
+import {initI18n, langMap} from "../locale";
 
 interface ILocale {
   locale: 'zh-cn' | 'ja' | 'en',

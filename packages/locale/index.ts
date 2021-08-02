@@ -10,7 +10,7 @@ export interface IGlobalLocal {
   message: any
 }
 
-export const langMap = {
+export const langMap: any = {
   "zh-cn": ZH,
   en: EN,
   ja: JA,

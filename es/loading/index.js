@@ -90,8 +90,7 @@ var script = defineComponent({
     const { pShow, pSize } = toRefs(props);
     const app = getCurrentInstance();
     const root = ref(app.root.proxy);
-    const lang = ref(root.value?.lang || "zh-cn");
-    const locale = initI18n(lang.value);
+    const locale = initI18n(root.value?.locale || "zh-cn");
     const defaultTitle = locale?.message?.loading;
     const show = ref(false);
     const title = ref(defaultTitle);
@@ -102,7 +101,7 @@ var script = defineComponent({
     watch(() => pSize.value, (newVal) => {
       size.value = newVal;
     });
-    watch(() => root.value.lang, (newVal) => {
+    watch(() => root.value.locale, (newVal) => {
       if (newVal) {
         locale.message = langMap[newVal];
         title.value = locale.message.loading;
@@ -115,7 +114,6 @@ var script = defineComponent({
       show,
       title,
       size,
-      lang,
       root
     };
   }
