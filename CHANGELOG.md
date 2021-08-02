@@ -8,5 +8,5 @@
 ### Added
 * 添加EASIProvider组件，初始化语言及全局配置
 
-#### Removed
+### Removed
 * 移除vue-i18n依赖
