@@ -2177,10 +2177,12 @@ var script$2 = defineComponent({
       globalProvider,
       setSetting,
       handleLogout() {
+        const title = getEASIText("logoutTitle");
+        const content = getEASIText("logoutMessage");
         Modal.confirm({
-          title: getEASIText("logoutTitle"),
+          title,
           icon: createVNode(ExclamationCircleOutlined),
-          content: getEASIText("logoutMessage"),
+          content,
           centered: true,
           onOk() {
             return props?.onLogout && props.onLogout();

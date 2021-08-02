@@ -80,10 +80,12 @@ export default defineComponent({
       globalProvider,
       setSetting,
       handleLogout() {
+        const title = getEASIText("logoutTitle");
+        const content = getEASIText("logoutMessage");
         Modal.confirm({
-          title: getEASIText("logoutTitle"),
+          title: title,
           icon: createVNode(ExclamationCircleOutlined),
-          content: getEASIText("logoutMessage"),
+          content: content,
           centered: true,
           onOk() {
             return props?.onLogout && props.onLogout()
