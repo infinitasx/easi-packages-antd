@@ -11,7 +11,7 @@
 一个基于 Vue3.0 及 Ant Design Vue 2.0 封装的基础组件库
 </p>
 <p align='center'>
-国际化：zh / en / ja 
+国际化：中文 / 英文 / 日文
 </p>
 <br>
 
@@ -47,22 +47,18 @@
 <hr />
 <p><strong id="UIComponent" style="font-size: 22px">UI组件</strong></p>
 <p><strong id="EASIProvider" style="font-size: 18px">EASIProvider - 国际化配置根组件</strong></p>
-> 在App.vue根组件使用，用于基础组件国际化语种切换，必须使用
+> 在App.vue根组件使用，替换ant的config-provider组件
 
 #### Props
+与ant-design-vue v2.2.2 [ConfigProvider组件](https://2x.antdv.com/components/config-provider-cn) 一致
 
-| props        | type        | default     | required      |    remark      |
-| :------------: | :-----------: | :-----------: | :-----------: | -------------- |
-| lang  |  'zh' or 'en' or 'ja'   |    |  是  | 国际化文案 |
 
 #### 如何使用
 ```vue
-// a-config-provider 为ant全局配置
-<a-config-provider>
-  <EASIProvider :lang="lang">
-    <router-view />
-  </EASIProvider>
-</a-config-provider>
+// 传入国际化文案，与antd-config-provider一致
+<EASIProvider :locale="localeMessage">
+  <router-view />
+</EASIProvider>
 ```
 
 

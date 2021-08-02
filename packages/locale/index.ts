@@ -1,17 +1,17 @@
-import { inject, reactive } from 'vue';
+import {inject, reactive} from 'vue';
 import ZH from "./lang/zh";
 import EN from "./lang/en";
 import JA from "./lang/ja";
 
 
-export type Lang = "zh" | "en" | "ja";
+export type Lang = "zh-cn" | "en" | "ja";
 
 export interface IGlobalLocal {
   message: any
 }
 
 export const langMap = {
-  zh: ZH,
+  "zh-cn": ZH,
   en: EN,
   ja: JA,
 }
