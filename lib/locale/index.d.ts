@@ -1,9 +1,9 @@
-export declare type Lang = "zh" | "en" | "ja";
+export declare type Lang = "zh-cn" | "en" | "ja";
 export interface IGlobalLocal {
     message: any;
 }
 export declare const langMap: {
-    zh: {
+    "zh-cn": {
         confirm: string;
         cancel: string;
         loading: string;

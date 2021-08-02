@@ -21,6 +21,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.dropdown-trigger:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+[data-pro-theme=antdv-pro-theme-dark] .dropdown-trigger:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
 .page-tab {
   height: 64px;
 }
@@ -39,12 +47,4 @@
 }
 [data-pro-theme=antdv-pro-theme-dark] .icon-action:hover {
   color: #177ddc;
-}
-
-.dropdown-trigger:hover {
-  background: rgba(0, 0, 0, 0.05);
-}
-
-[data-pro-theme=antdv-pro-theme-dark] .dropdown-trigger:hover {
-  background: rgba(255, 255, 255, 0.05);
 }

@@ -59,7 +59,7 @@ var JA = {
 };
 
 const langMap = {
-  zh: ZH,
+  "zh-cn": ZH,
   en: EN,
   ja: JA
 };

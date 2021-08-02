@@ -1,15 +1,20 @@
 import { PropType } from "vue";
-import { Lang } from "../locale";
+interface ILocale {
+    locale: 'zh-cn' | 'ja' | 'en';
+    [props: string]: any;
+}
 declare const _default: import("vue").DefineComponent<{
-    lang: {
-        type: PropType<Lang>;
-        default: string;
+    locale: {
+        type: PropType<ILocale>;
+        default: () => {
+            locale: string;
+        };
     };
 }, void, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
-    lang?: unknown;
+    locale?: unknown;
 } & {
-    lang: Lang;
+    locale: ILocale;
 } & {}>, {
-    lang: Lang;
+    locale: ILocale;
 }>;
 export default _default;
