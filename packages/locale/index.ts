@@ -1,4 +1,4 @@
-import { provide, inject, reactive } from 'vue';
+import { inject, reactive } from 'vue';
 import ZH from "./lang/zh";
 import EN from "./lang/en";
 import JA from "./lang/ja";
