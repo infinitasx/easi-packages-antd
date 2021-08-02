@@ -52,7 +52,7 @@ import { Modal } from "ant-design-vue";
 import { setProvider, IProvider, defaultProvider } from "../utils/globalProvider";
 import { ExclamationCircleOutlined, LogoutOutlined } from "@ant-design/icons-vue";
 import { UserInfo } from '../../typings/antd'
-import { getEASIText } from '../locale'
+import {getEASIText, IGlobalLocal} from '../locale'
 
 export default defineComponent({
   name: createNamespace("Setting"),
@@ -70,6 +70,7 @@ export default defineComponent({
   setup(props, { emit }) {
 
     const globalProvider = inject<IProvider>("globalProvider", {...defaultProvider});
+    const globalEASILocale = inject<IGlobalLocal>('globalEASILocale', {message: {}});
 
     const setSetting = (key: string, value: boolean | string) => {
       (globalProvider as IProvider)[key] = value;
@@ -80,15 +81,13 @@ export default defineComponent({
       globalProvider,
       setSetting,
       handleLogout() {
-        const title = getEASIText("logoutTitle");
-        const content = getEASIText("logoutMessage");
         Modal.confirm({
-          title: title,
+          title: globalEASILocale.message.logoutTitle,
           icon: createVNode(ExclamationCircleOutlined),
-          content: content,
+          content: globalEASILocale.message.logoutMessage,
           centered: true,
-          onOk() {
-            return props?.onLogout && props.onLogout()
+          async onOk() {
+            return props?.onLogout ? props.onLogout() : true;
           },
         });
       },

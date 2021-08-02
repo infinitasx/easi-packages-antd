@@ -2169,6 +2169,7 @@ var script$2 = defineComponent({
   },
   setup(props, { emit }) {
     const globalProvider = inject("globalProvider", { ...defaultProvider });
+    const globalEASILocale = inject("globalEASILocale", { message: {} });
     const setSetting = (key, value) => {
       globalProvider[key] = value;
       setProvider(globalProvider);
@@ -2177,15 +2178,13 @@ var script$2 = defineComponent({
       globalProvider,
       setSetting,
       handleLogout() {
-        const title = getEASIText("logoutTitle");
-        const content = getEASIText("logoutMessage");
         Modal.confirm({
-          title,
+          title: globalEASILocale.message.logoutTitle,
           icon: createVNode(ExclamationCircleOutlined),
-          content,
+          content: globalEASILocale.message.logoutMessage,
           centered: true,
-          onOk() {
-            return props?.onLogout && props.onLogout();
+          async onOk() {
+            return props?.onLogout ? props.onLogout() : true;
           }
         });
       },
