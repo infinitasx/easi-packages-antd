@@ -8,12 +8,7 @@
 import {defineComponent, provide, watch, toRefs, PropType} from "vue"
 import {createNamespace} from "../utils/create";
 import {initProvider} from "../utils/globalProvider";
-import {initI18n, langMap} from "../locale";
-
-interface ILocale {
-  locale: 'zh-cn' | 'ja' | 'en',
-  [props: string]: any,
-}
+import {initI18n, ILocale, langMap} from "../locale";
 
 export default defineComponent({
   name: createNamespace('Provider'),
@@ -28,12 +23,12 @@ export default defineComponent({
   setup(props) {
     const { locale } = toRefs(props);
     const globalProvider = initProvider();
-    const globalEASILocale = initI18n(props.locale.locale);
+    const globalEASILocale = initI18n(props.locale ? props.locale.locale : 'zh-cn');
     provide('globalProvider', globalProvider);
     provide('globalEASILocale', globalEASILocale);
 
-    watch(() => locale.value.locale, (newVal) => {
-      globalEASILocale.message = langMap[newVal];
+    watch(() => locale.value, (newVal) => {
+      globalEASILocale.message = newVal?.locale ? langMap[newVal.locale] : langMap['zh-cn'];
     })
   },
 })

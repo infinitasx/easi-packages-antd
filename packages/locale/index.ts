@@ -10,6 +10,11 @@ export interface IGlobalLocal {
   message: any
 }
 
+export interface ILocale {
+  locale: Lang,
+  [props: string]: any,
+}
+
 export const langMap: any = {
   "zh-cn": ZH,
   en: EN,

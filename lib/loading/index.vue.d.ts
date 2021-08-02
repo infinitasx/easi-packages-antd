@@ -18,7 +18,10 @@ declare const _default: import("vue").DefineComponent<{
     title: import("vue").Ref<string>;
     size: import("vue").Ref<"normal" | "small">;
     root: import("vue").Ref<{
-        locale: Lang;
+        localeMessage: {
+            [x: string]: any;
+            locale: Lang;
+        };
     }>;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "update:pShow"[], "update:pShow", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
     pTitle?: unknown;

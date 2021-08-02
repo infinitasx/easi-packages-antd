@@ -1,8 +1,5 @@
 import { PropType } from "vue";
-interface ILocale {
-    locale: 'zh-cn' | 'ja' | 'en';
-    [props: string]: any;
-}
+import { ILocale } from "../locale";
 declare const _default: import("vue").DefineComponent<{
     locale: {
         type: PropType<ILocale>;

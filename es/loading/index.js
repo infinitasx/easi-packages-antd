@@ -90,7 +90,7 @@ var script = defineComponent({
     const { pShow, pSize } = toRefs(props);
     const app = getCurrentInstance();
     const root = ref(app.root.proxy);
-    const locale = initI18n(root.value?.locale || "zh-cn");
+    const locale = initI18n(root.value?.localeMessage?.locale || "zh-cn");
     const defaultTitle = locale?.message?.loading;
     const show = ref(false);
     const title = ref(defaultTitle);
@@ -101,9 +101,9 @@ var script = defineComponent({
     watch(() => pSize.value, (newVal) => {
       size.value = newVal;
     });
-    watch(() => root.value.locale, (newVal) => {
+    watch(() => root.value.localeMessage, (newVal) => {
       if (newVal) {
-        locale.message = langMap[newVal];
+        locale.message = langMap[newVal?.locale || "zh-cn"];
         title.value = locale.message.loading;
       }
     });
