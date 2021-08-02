@@ -11,28 +11,28 @@
             <div></div>
           </div>
         </div>
-        <p class="tips" v-if="title">{{ title }}</p>
+        <p class="tips" v-if="pTitle || title">{{ pTitle || title }}</p>
       </div>
     </div>
   </transition>
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType, ref, toRefs, watch} from 'vue';
+import {defineComponent, PropType, ref, toRefs, watch, getCurrentInstance, ComponentInternalInstance, ComponentPublicInstance} from 'vue';
 import { createNamespace } from "../utils/create";
-import { getEASIText } from '../locale'
+import {Lang, langMap, initI18n} from '../locale'
 
 export default defineComponent({
   name: createNamespace('Loading'),
   emits: ['update:pShow'],
   props: {
     pTitle: {
-      default: 'loading',
       type: String,
+      default: undefined
     },
 
     pShow: {
-      default: true,
+      default: false,
       type: Boolean,
     },
     pSize: {
@@ -42,18 +42,21 @@ export default defineComponent({
   },
 
   setup(props, {emit}) {
-    const {pTitle, pShow, pSize} = toRefs(props);
+    const {pShow, pSize} = toRefs(props);
 
-    const show = ref<boolean>(true);
-    const title = ref(getEASIText('loading'));
+    const app = getCurrentInstance() as ComponentInternalInstance;
+
+    const root = ref<{ lang: Lang }>(app.root.proxy as unknown as { lang: Lang });
+
+    const lang = ref<Lang>((root.value?.lang as Lang) || 'zh')
+
+    const locale = initI18n(lang.value)
+
+    const defaultTitle = locale?.message?.loading;
+
+    const show = ref<boolean>(false);
+    const title = ref<string>(defaultTitle);
     const size = ref<'normal' | 'small'>('normal');
-
-    watch(
-        () => pTitle.value,
-        newVal => {
-          title.value = newVal;
-        },
-    );
 
     watch(
         () => pShow.value,
@@ -69,6 +72,13 @@ export default defineComponent({
         },
     );
 
+    watch(() => root.value.lang, newVal => {
+      if(newVal){
+        locale.message = langMap[newVal];
+        title.value = locale.message.loading;
+      }
+    })
+
     watch(
         () => show.value,
         newVal => {
@@ -80,6 +90,8 @@ export default defineComponent({
       show,
       title,
       size,
+      lang,
+      root
     };
   },
 })
@@ -87,7 +99,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 [data-pro-theme='antdv-pro-theme-dark'] .loading-container {
-  background: rgba(50, 50, 50, 0.8);
+  background: rgba(20, 20, 20, 0.8);
 
   .loading {
     background-color: #000;

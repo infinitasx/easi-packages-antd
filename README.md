@@ -27,6 +27,7 @@
 ### 说明导航
 
 - <a href="#UIComponent">UI组件</a>
+  - <a href="#EASIProvider">EASIProvider - 国际化配置根组件</a>
   - <a href="#EASILayout">EASILayout - 布局基础组件</a>
   - <a href="#EASIPage">EASIPage - 页面基础组件</a>
   - <a href="#EASITable">EASITable - Table基础组件</a>
@@ -46,6 +47,28 @@
 <br/>
 <hr />
 <p><strong id="UIComponent" style="font-size: 22px">UI组件</strong></p>
+<p><strong id="EASIProvider" style="font-size: 18px">EASIProvider - 国际化配置根组件</strong></p>
+> 在App.vue根组件使用，用于基础组件国际化语种切换，必须使用
+
+#### Props
+
+| props        | type        | default     | required      |    remark      |
+| :------------: | :-----------: | :-----------: | :-----------: | -------------- |
+| lang  |  'zh' or 'en' or 'ja'   |    |  是  | 国际化文案 |
+
+#### 如何使用
+```vue
+// a-config-provider 为ant全局配置
+<a-config-provider>
+  <EASIProvider :lang="lang">
+    <router-view />
+  </EASIProvider>
+</a-config-provider>
+```
+
+
+<hr />
+
 <p><strong id="EASILayout" style="font-size: 18px">EASILayout - 布局基础组件</strong></p>
 
 > 此组件是根路由挂载的基础布局组件，包含侧边栏menu，顶部栏，tab切换栏，用户自定义抽屉
@@ -85,6 +108,13 @@
 | :------------: | :-----------: | :-----------: | :-----------: | -------------- |
 | name  |  string   |    |  是  | 用户名称 |
 | avatar   |  string    |   |  否  | 用户头像地址 |
+
+#### Methods
+
+| name         |    remark      |
+| :------------: | -------------- |
+| onReloadPage( refreshAll: = false ) => Promise<void>  | 刷新当前页面或刷新tab下所有页面缓存，默认只刷新当前页面 |
+
 
 <hr />
 <p><strong id="EASIPage" style="font-size: 18px">EASIPage - 页面基础组件</strong></p>

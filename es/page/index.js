@@ -49,7 +49,6 @@ script$1.install = (app) => {
 
 function getEASIText(key, value) {
   const globalEASILocale = inject("globalEASILocale", { message: {} });
-  console.log(globalEASILocale, "globalEASILocale");
   let message = globalEASILocale?.message[key];
   if (message) {
     if (value) {
@@ -102,7 +101,7 @@ var script = defineComponent({
     const route = useRoute();
     const { appContext } = getCurrentInstance();
     const breadcrumbRoutes = computed(() => {
-      return breadcrumb.value || route.meta.breadcrumb || route.matched.map((_route) => {
+      return breadcrumb.value || route.meta.breadcrumb || route.matched.slice(1).map((_route) => {
         return {
           path: _route.path,
           breadcrumbName: _route.meta.title
@@ -148,7 +147,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       _ctx.showPageHeader ? (openBlock(), createBlock("div", _hoisted_1, [
         createVNode(_component_a_page_header, { title: _ctx.pageTitle }, {
           breadcrumb: withCtx(() => [
-            createVNode(_component_a_breadcrumb, { routes: _ctx.breadcrumbRoutes }, {
+            _ctx.breadcrumbRoutes.length > 1 ? (openBlock(), createBlock(_component_a_breadcrumb, {
+              key: 0,
+              routes: _ctx.breadcrumbRoutes
+            }, {
               itemRender: withCtx(({ route }) => [
                 createVNode(_component_router_link, {
                   to: route.path
@@ -160,7 +162,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 }, 1032, ["to"])
               ]),
               _: 1
-            }, 8, ["routes"])
+            }, 8, ["routes"])) : createCommentVNode("v-if", true)
           ]),
           default: withCtx(() => [
             _ctx.pageDesc ? (openBlock(), createBlock("p", _hoisted_2, toDisplayString(_ctx.pageDesc), 1)) : createCommentVNode("v-if", true),
@@ -199,4 +201,4 @@ script.install = (app) => {
   app.component(script.name, script);
 };
 
-export default script;
+export { script as default };

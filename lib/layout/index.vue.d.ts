@@ -36,7 +36,7 @@ declare const _default: import("vue").DefineComponent<{
     collWidth: import("vue").ComputedRef<"80px" | "200px">;
     globalProvider: IProvider;
     cachedPage: import("vue").ComputedRef<string[]>;
-    onReloadPage(): Promise<void>;
+    onReloadPage(refresh?: boolean): Promise<boolean>;
     handleShowSetting(): void;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
     logo?: unknown;

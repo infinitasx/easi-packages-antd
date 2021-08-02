@@ -31,8 +31,7 @@ export default {
         // 如果为字符串则直接判断是否有权限
         flag = !!permissions[value];
       }
-      // return flag;
-      return true;
+      return flag;
     };
 
     app.directive("permission", {

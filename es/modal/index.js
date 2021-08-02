@@ -6,7 +6,6 @@ function createNamespace(name) {
 
 function getEASIText(key, value) {
   const globalEASILocale = inject("globalEASILocale", { message: {} });
-  console.log(globalEASILocale, "globalEASILocale");
   let message = globalEASILocale?.message[key];
   if (message) {
     if (value) {
@@ -214,4 +213,4 @@ script.install = (app) => {
   app.component(script.name, script);
 };
 
-export default script;
+export { script as default };

@@ -4,7 +4,7 @@
       <div class="page-breadcrumb-wrap" v-if="showPageHeader">
         <a-page-header :title="pageTitle">
           <template #breadcrumb>
-            <a-breadcrumb :routes="breadcrumbRoutes">
+            <a-breadcrumb :routes="breadcrumbRoutes" v-if="breadcrumbRoutes.length > 1">
               <template #itemRender="{ route }">
                 <router-link :to="route.path">
                   {{ route.breadcrumbName }}
@@ -81,7 +81,7 @@ export default defineComponent({
     const breadcrumbRoutes: ComputedRef<BreadcrumbRoute[]> = computed((): BreadcrumbRoute[] => {
       return (breadcrumb.value ||
         route.meta.breadcrumb ||
-        route.matched.map((_route: RouteLocationMatched) => {
+        route.matched.slice(1).map((_route: RouteLocationMatched) => {
           return {
             path: _route.path,
             breadcrumbName: _route.meta.title,
