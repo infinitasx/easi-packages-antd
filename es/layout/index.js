@@ -72,7 +72,7 @@ const _hoisted_1$4 = {
   key: 0,
   class: "admin-title text-white ml-16 truncate"
 };
-const _hoisted_2$3 = {
+const _hoisted_2$2 = {
   key: 1,
   class: "text-12 truncate text-gray-400"
 };
@@ -96,7 +96,7 @@ function render$5(_ctx, _cache, $props, $setup, $data, $options) {
           key: 0,
           class: ["text-14 truncate", [_ctx.subTitle ? "text-14" : "text-18"]]
         }, toDisplayString(_ctx.title), 3)) : createCommentVNode("v-if", true),
-        _ctx.subTitle ? (openBlock(), createBlock("p", _hoisted_2$3, toDisplayString(_ctx.subTitle), 1)) : createCommentVNode("v-if", true)
+        _ctx.subTitle ? (openBlock(), createBlock("p", _hoisted_2$2, toDisplayString(_ctx.subTitle), 1)) : createCommentVNode("v-if", true)
       ], 512)), [
         [vShow, !_ctx.collapsed]
       ]) : createCommentVNode("v-if", true)
@@ -2060,7 +2060,6 @@ var script$3 = defineComponent({
 const _withId$2 = /* @__PURE__ */ withScopeId("data-v-6637da7e");
 pushScopeId("data-v-6637da7e");
 const _hoisted_1$3 = /* @__PURE__ */ createVNode("div", { class: "flex-1" }, null, -1);
-const _hoisted_2$2 = { class: "pl-8" };
 popScopeId();
 const render$3 = /* @__PURE__ */ _withId$2((_ctx, _cache, $props, $setup, $data, $options) => {
   const _component_MenuFoldOutlined = resolveComponent("MenuFoldOutlined");
@@ -2086,12 +2085,13 @@ const render$3 = /* @__PURE__ */ _withId$2((_ctx, _cache, $props, $setup, $data,
     }, [
       _ctx.userInfo?.avatar ? (openBlock(), createBlock(_component_a_avatar, {
         key: 0,
+        class: "mr-8",
         shape: "circle",
         size: "default",
         src: _ctx.userInfo.avatar,
         style: { backgroundColor: "#ffbf00", verticalAlign: "middle" }
       }, null, 8, ["src"])) : createCommentVNode("v-if", true),
-      createVNode("span", _hoisted_2$2, toDisplayString(_ctx.userInfo?.name || "\u7528\u6237\u540D"), 1)
+      createVNode("span", null, toDisplayString(_ctx.userInfo?.name || "\u7528\u6237\u540D"), 1)
     ])
   ], 64);
 });

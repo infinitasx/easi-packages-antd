@@ -48,7 +48,7 @@ export default defineComponent({
 
     const root = ref<{ lang: Lang }>(app.root.proxy as unknown as { lang: Lang });
 
-    const lang = ref<Lang>((root.value?.lang as Lang) || 'zh')
+    const lang = ref<Lang>((root.value?.lang as Lang) || 'zh-cn')
 
     const locale = initI18n(lang.value)
 

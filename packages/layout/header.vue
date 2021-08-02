@@ -3,8 +3,8 @@
   <MenuUnfoldOutlined v-show="collapsed" class="text-18" @click="colToggle" />
   <div class="flex-1"></div>
   <span class="dropdown-trigger px-8 cursor-pointer" @click="handleShowSetting">
-    <a-avatar shape="circle" size="default" v-if="userInfo?.avatar" :src="userInfo.avatar" :style="{ backgroundColor: '#ffbf00', verticalAlign: 'middle' }"> </a-avatar>
-    <span class="pl-8">{{ userInfo?.name || "用户名" }}</span>
+    <a-avatar class="mr-8" shape="circle" size="default" v-if="userInfo?.avatar" :src="userInfo.avatar" :style="{ backgroundColor: '#ffbf00', verticalAlign: 'middle' }"> </a-avatar>
+    <span>{{ userInfo?.name || "用户名" }}</span>
   </span>
 </template>
 

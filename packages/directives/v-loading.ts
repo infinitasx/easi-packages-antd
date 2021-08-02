@@ -30,7 +30,7 @@ export default {
           el.comp.size = size;
         }
         el.comp.root= (app._instance as ComponentInternalInstance)?.root?.proxy;
-        el.comp.lang = el.comp.root?.lang || "zh";
+        el.comp.lang = el.comp.root?.lang || "zh-cn";
         el?.appendChild(el?.loadingRoot);
       }
     };
