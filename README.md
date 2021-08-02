@@ -20,7 +20,6 @@
 - [Vue 3+](https://github.com/vuejs/vue-next)
 - [Vue Router 4+](https://github.com/vuejs/vue-router-next)  
 - [ant-design-vue 2+](https://github.com/vueComponent/ant-design-vue)
-- [vue-i18n 9+](https://github.com/intlify/vue-i18n-next)
 - [easi-web-utils](https://github.com/infinitasx/easi-web-utils.git#main)
 
 
