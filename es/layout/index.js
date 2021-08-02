@@ -1788,7 +1788,6 @@ IconBase.inheritAttrs = false;
 IconBase.displayName = 'IconBase';
 IconBase.getTwoToneColors = getTwoToneColors;
 IconBase.setTwoToneColors = setTwoToneColors;
-var VueIcon = IconBase;
 
 function _slicedToArray$1(arr, i) { return _arrayWithHoles$1(arr) || _iterableToArrayLimit$1(arr, i) || _unsupportedIterableToArray$1(arr, i) || _nonIterableRest$1(); }
 
@@ -1807,13 +1806,13 @@ function setTwoToneColor(twoToneColor) {
       primaryColor = _normalizeTwoToneColo2[0],
       secondaryColor = _normalizeTwoToneColo2[1];
 
-  return VueIcon.setTwoToneColors({
+  return IconBase.setTwoToneColors({
     primaryColor: primaryColor,
     secondaryColor: secondaryColor
   });
 }
 function getTwoToneColor() {
-  var colors = VueIcon.getTwoToneColors();
+  var colors = IconBase.getTwoToneColors();
 
   if (!colors.calculated) {
     return colors.primaryColor;
@@ -1883,7 +1882,7 @@ var Icon = function Icon(props, context) {
     "aria-label": icon.name,
     "onClick": onClick,
     "class": classObj
-  }), [_vue.createVNode(VueIcon, {
+  }), [_vue.createVNode(IconBase, {
     "class": svgClassString,
     "icon": icon,
     "primaryColor": primaryColor,
@@ -1902,11 +1901,9 @@ Icon.displayName = 'AntdIcon';
 Icon.inheritAttrs = false;
 Icon.getTwoToneColor = getTwoToneColor;
 Icon.setTwoToneColor = setTwoToneColor;
-var AntdIcon = Icon;
 
 // This icon file is generated automatically.
-var CloseOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 00203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z" } }] }, "name": "close", "theme": "outlined" };
-var CloseOutlinedSvg = CloseOutlined$2;
+var CloseOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 00203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z" } }] }, "name": "close", "theme": "outlined" };
 
 function _objectSpread$6(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? Object(arguments[i]) : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty$6(target, key, source[key]); }); } return target; }
 
@@ -1915,18 +1912,16 @@ function _defineProperty$6(obj, key, value) { if (key in obj) { Object.definePro
 var CloseOutlined = function CloseOutlined(props, context) {
   var p = _objectSpread$6({}, props, context.attrs);
 
-  return _vue.createVNode(AntdIcon, _vue.mergeProps(p, {
-    "icon": CloseOutlinedSvg
+  return _vue.createVNode(Icon, _vue.mergeProps(p, {
+    "icon": CloseOutlined$1
   }), null);
 };
 
 CloseOutlined.displayName = 'CloseOutlined';
 CloseOutlined.inheritAttrs = false;
-var CloseOutlined$1 = CloseOutlined;
 
 // This icon file is generated automatically.
-var ExclamationCircleOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z" } }, { "tag": "path", "attrs": { "d": "M464 688a48 48 0 1096 0 48 48 0 10-96 0zm24-112h48c4.4 0 8-3.6 8-8V296c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8z" } }] }, "name": "exclamation-circle", "theme": "outlined" };
-var ExclamationCircleOutlinedSvg = ExclamationCircleOutlined$2;
+var ExclamationCircleOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z" } }, { "tag": "path", "attrs": { "d": "M464 688a48 48 0 1096 0 48 48 0 10-96 0zm24-112h48c4.4 0 8-3.6 8-8V296c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8z" } }] }, "name": "exclamation-circle", "theme": "outlined" };
 
 function _objectSpread$5(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? Object(arguments[i]) : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty$5(target, key, source[key]); }); } return target; }
 
@@ -1935,18 +1930,16 @@ function _defineProperty$5(obj, key, value) { if (key in obj) { Object.definePro
 var ExclamationCircleOutlined = function ExclamationCircleOutlined(props, context) {
   var p = _objectSpread$5({}, props, context.attrs);
 
-  return _vue.createVNode(AntdIcon, _vue.mergeProps(p, {
-    "icon": ExclamationCircleOutlinedSvg
+  return _vue.createVNode(Icon, _vue.mergeProps(p, {
+    "icon": ExclamationCircleOutlined$1
   }), null);
 };
 
 ExclamationCircleOutlined.displayName = 'ExclamationCircleOutlined';
 ExclamationCircleOutlined.inheritAttrs = false;
-var ExclamationCircleOutlined$1 = ExclamationCircleOutlined;
 
 // This icon file is generated automatically.
-var LogoutOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M868 732h-70.3c-4.8 0-9.3 2.1-12.3 5.8-7 8.5-14.5 16.7-22.4 24.5a353.84 353.84 0 01-112.7 75.9A352.8 352.8 0 01512.4 866c-47.9 0-94.3-9.4-137.9-27.8a353.84 353.84 0 01-112.7-75.9 353.28 353.28 0 01-76-112.5C167.3 606.2 158 559.9 158 512s9.4-94.2 27.8-137.8c17.8-42.1 43.4-80 76-112.5s70.5-58.1 112.7-75.9c43.6-18.4 90-27.8 137.9-27.8 47.9 0 94.3 9.3 137.9 27.8 42.2 17.8 80.1 43.4 112.7 75.9 7.9 7.9 15.3 16.1 22.4 24.5 3 3.7 7.6 5.8 12.3 5.8H868c6.3 0 10.2-7 6.7-12.3C798 160.5 663.8 81.6 511.3 82 271.7 82.6 79.6 277.1 82 516.4 84.4 751.9 276.2 942 512.4 942c152.1 0 285.7-78.8 362.3-197.7 3.4-5.3-.4-12.3-6.7-12.3zm88.9-226.3L815 393.7c-5.3-4.2-13-.4-13 6.3v76H488c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h314v76c0 6.7 7.8 10.5 13 6.3l141.9-112a8 8 0 000-12.6z" } }] }, "name": "logout", "theme": "outlined" };
-var LogoutOutlinedSvg = LogoutOutlined$2;
+var LogoutOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M868 732h-70.3c-4.8 0-9.3 2.1-12.3 5.8-7 8.5-14.5 16.7-22.4 24.5a353.84 353.84 0 01-112.7 75.9A352.8 352.8 0 01512.4 866c-47.9 0-94.3-9.4-137.9-27.8a353.84 353.84 0 01-112.7-75.9 353.28 353.28 0 01-76-112.5C167.3 606.2 158 559.9 158 512s9.4-94.2 27.8-137.8c17.8-42.1 43.4-80 76-112.5s70.5-58.1 112.7-75.9c43.6-18.4 90-27.8 137.9-27.8 47.9 0 94.3 9.3 137.9 27.8 42.2 17.8 80.1 43.4 112.7 75.9 7.9 7.9 15.3 16.1 22.4 24.5 3 3.7 7.6 5.8 12.3 5.8H868c6.3 0 10.2-7 6.7-12.3C798 160.5 663.8 81.6 511.3 82 271.7 82.6 79.6 277.1 82 516.4 84.4 751.9 276.2 942 512.4 942c152.1 0 285.7-78.8 362.3-197.7 3.4-5.3-.4-12.3-6.7-12.3zm88.9-226.3L815 393.7c-5.3-4.2-13-.4-13 6.3v76H488c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h314v76c0 6.7 7.8 10.5 13 6.3l141.9-112a8 8 0 000-12.6z" } }] }, "name": "logout", "theme": "outlined" };
 
 function _objectSpread$4(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? Object(arguments[i]) : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty$4(target, key, source[key]); }); } return target; }
 
@@ -1955,18 +1948,16 @@ function _defineProperty$4(obj, key, value) { if (key in obj) { Object.definePro
 var LogoutOutlined = function LogoutOutlined(props, context) {
   var p = _objectSpread$4({}, props, context.attrs);
 
-  return _vue.createVNode(AntdIcon, _vue.mergeProps(p, {
-    "icon": LogoutOutlinedSvg
+  return _vue.createVNode(Icon, _vue.mergeProps(p, {
+    "icon": LogoutOutlined$1
   }), null);
 };
 
 LogoutOutlined.displayName = 'LogoutOutlined';
 LogoutOutlined.inheritAttrs = false;
-var LogoutOutlined$1 = LogoutOutlined;
 
 // This icon file is generated automatically.
-var MenuFoldOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 000 13.8z" } }] }, "name": "menu-fold", "theme": "outlined" };
-var MenuFoldOutlinedSvg = MenuFoldOutlined$2;
+var MenuFoldOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 000 13.8z" } }] }, "name": "menu-fold", "theme": "outlined" };
 
 function _objectSpread$3(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? Object(arguments[i]) : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty$3(target, key, source[key]); }); } return target; }
 
@@ -1975,18 +1966,16 @@ function _defineProperty$3(obj, key, value) { if (key in obj) { Object.definePro
 var MenuFoldOutlined = function MenuFoldOutlined(props, context) {
   var p = _objectSpread$3({}, props, context.attrs);
 
-  return _vue.createVNode(AntdIcon, _vue.mergeProps(p, {
-    "icon": MenuFoldOutlinedSvg
+  return _vue.createVNode(Icon, _vue.mergeProps(p, {
+    "icon": MenuFoldOutlined$1
   }), null);
 };
 
 MenuFoldOutlined.displayName = 'MenuFoldOutlined';
 MenuFoldOutlined.inheritAttrs = false;
-var MenuFoldOutlined$1 = MenuFoldOutlined;
 
 // This icon file is generated automatically.
-var MenuUnfoldOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM142.4 642.1L298.7 519a8.84 8.84 0 000-13.9L142.4 381.9c-5.8-4.6-14.4-.5-14.4 6.9v246.3a8.9 8.9 0 0014.4 7z" } }] }, "name": "menu-unfold", "theme": "outlined" };
-var MenuUnfoldOutlinedSvg = MenuUnfoldOutlined$2;
+var MenuUnfoldOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM142.4 642.1L298.7 519a8.84 8.84 0 000-13.9L142.4 381.9c-5.8-4.6-14.4-.5-14.4 6.9v246.3a8.9 8.9 0 0014.4 7z" } }] }, "name": "menu-unfold", "theme": "outlined" };
 
 function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? Object(arguments[i]) : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty$2(target, key, source[key]); }); } return target; }
 
@@ -1995,18 +1984,16 @@ function _defineProperty$2(obj, key, value) { if (key in obj) { Object.definePro
 var MenuUnfoldOutlined = function MenuUnfoldOutlined(props, context) {
   var p = _objectSpread$2({}, props, context.attrs);
 
-  return _vue.createVNode(AntdIcon, _vue.mergeProps(p, {
-    "icon": MenuUnfoldOutlinedSvg
+  return _vue.createVNode(Icon, _vue.mergeProps(p, {
+    "icon": MenuUnfoldOutlined$1
   }), null);
 };
 
 MenuUnfoldOutlined.displayName = 'MenuUnfoldOutlined';
 MenuUnfoldOutlined.inheritAttrs = false;
-var MenuUnfoldOutlined$1 = MenuUnfoldOutlined;
 
 // This icon file is generated automatically.
-var MoreOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M456 231a56 56 0 10112 0 56 56 0 10-112 0zm0 280a56 56 0 10112 0 56 56 0 10-112 0zm0 280a56 56 0 10112 0 56 56 0 10-112 0z" } }] }, "name": "more", "theme": "outlined" };
-var MoreOutlinedSvg = MoreOutlined$2;
+var MoreOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M456 231a56 56 0 10112 0 56 56 0 10-112 0zm0 280a56 56 0 10112 0 56 56 0 10-112 0zm0 280a56 56 0 10112 0 56 56 0 10-112 0z" } }] }, "name": "more", "theme": "outlined" };
 
 function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? Object(arguments[i]) : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty$1(target, key, source[key]); }); } return target; }
 
@@ -2015,18 +2002,16 @@ function _defineProperty$1(obj, key, value) { if (key in obj) { Object.definePro
 var MoreOutlined = function MoreOutlined(props, context) {
   var p = _objectSpread$1({}, props, context.attrs);
 
-  return _vue.createVNode(AntdIcon, _vue.mergeProps(p, {
-    "icon": MoreOutlinedSvg
+  return _vue.createVNode(Icon, _vue.mergeProps(p, {
+    "icon": MoreOutlined$1
   }), null);
 };
 
 MoreOutlined.displayName = 'MoreOutlined';
 MoreOutlined.inheritAttrs = false;
-var MoreOutlined$1 = MoreOutlined;
 
 // This icon file is generated automatically.
-var ReloadOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M909.1 209.3l-56.4 44.1C775.8 155.1 656.2 92 521.9 92 290 92 102.3 279.5 102 511.5 101.7 743.7 289.8 932 521.9 932c181.3 0 335.8-115 394.6-276.1 1.5-4.2-.7-8.9-4.9-10.3l-56.7-19.5a8 8 0 00-10.1 4.8c-1.8 5-3.8 10-5.9 14.9-17.3 41-42.1 77.8-73.7 109.4A344.77 344.77 0 01655.9 829c-42.3 17.9-87.4 27-133.8 27-46.5 0-91.5-9.1-133.8-27A341.5 341.5 0 01279 755.2a342.16 342.16 0 01-73.7-109.4c-17.9-42.4-27-87.4-27-133.9s9.1-91.5 27-133.9c17.3-41 42.1-77.8 73.7-109.4 31.6-31.6 68.4-56.4 109.3-73.8 42.3-17.9 87.4-27 133.8-27 46.5 0 91.5 9.1 133.8 27a341.5 341.5 0 01109.3 73.8c9.9 9.9 19.2 20.4 27.8 31.4l-60.2 47a8 8 0 003 14.1l175.6 43c5 1.2 9.9-2.6 9.9-7.7l.8-180.9c-.1-6.6-7.8-10.3-13-6.2z" } }] }, "name": "reload", "theme": "outlined" };
-var ReloadOutlinedSvg = ReloadOutlined$2;
+var ReloadOutlined$1 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M909.1 209.3l-56.4 44.1C775.8 155.1 656.2 92 521.9 92 290 92 102.3 279.5 102 511.5 101.7 743.7 289.8 932 521.9 932c181.3 0 335.8-115 394.6-276.1 1.5-4.2-.7-8.9-4.9-10.3l-56.7-19.5a8 8 0 00-10.1 4.8c-1.8 5-3.8 10-5.9 14.9-17.3 41-42.1 77.8-73.7 109.4A344.77 344.77 0 01655.9 829c-42.3 17.9-87.4 27-133.8 27-46.5 0-91.5-9.1-133.8-27A341.5 341.5 0 01279 755.2a342.16 342.16 0 01-73.7-109.4c-17.9-42.4-27-87.4-27-133.9s9.1-91.5 27-133.9c17.3-41 42.1-77.8 73.7-109.4 31.6-31.6 68.4-56.4 109.3-73.8 42.3-17.9 87.4-27 133.8-27 46.5 0 91.5 9.1 133.8 27a341.5 341.5 0 01109.3 73.8c9.9 9.9 19.2 20.4 27.8 31.4l-60.2 47a8 8 0 003 14.1l175.6 43c5 1.2 9.9-2.6 9.9-7.7l.8-180.9c-.1-6.6-7.8-10.3-13-6.2z" } }] }, "name": "reload", "theme": "outlined" };
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? Object(arguments[i]) : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
@@ -2035,14 +2020,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var ReloadOutlined = function ReloadOutlined(props, context) {
   var p = _objectSpread({}, props, context.attrs);
 
-  return _vue.createVNode(AntdIcon, _vue.mergeProps(p, {
-    "icon": ReloadOutlinedSvg
+  return _vue.createVNode(Icon, _vue.mergeProps(p, {
+    "icon": ReloadOutlined$1
   }), null);
 };
 
 ReloadOutlined.displayName = 'ReloadOutlined';
 ReloadOutlined.inheritAttrs = false;
-var ReloadOutlined$1 = ReloadOutlined;
 
 var script$3 = defineComponent({
   name: createNamespace("Header"),
@@ -2068,8 +2052,8 @@ var script$3 = defineComponent({
     };
   },
   components: {
-    MenuFoldOutlined: MenuFoldOutlined$1,
-    MenuUnfoldOutlined: MenuUnfoldOutlined$1
+    MenuFoldOutlined,
+    MenuUnfoldOutlined
   }
 });
 
@@ -2195,7 +2179,7 @@ var script$2 = defineComponent({
       handleLogout() {
         Modal.confirm({
           title: getEASIText("logoutTitle"),
-          icon: createVNode(ExclamationCircleOutlined$1),
+          icon: createVNode(ExclamationCircleOutlined),
           content: getEASIText("logoutMessage"),
           centered: true,
           onOk() {
@@ -2207,8 +2191,8 @@ var script$2 = defineComponent({
     };
   },
   components: {
-    LogoutOutlined: LogoutOutlined$1,
-    ExclamationCircleOutlined: ExclamationCircleOutlined$1
+    LogoutOutlined,
+    ExclamationCircleOutlined
   }
 });
 
@@ -2391,9 +2375,9 @@ var script$1 = defineComponent({
     };
   },
   components: {
-    MoreOutlined: MoreOutlined$1,
-    ReloadOutlined: ReloadOutlined$1,
-    CloseOutlined: CloseOutlined$1
+    MoreOutlined,
+    ReloadOutlined,
+    CloseOutlined
   }
 });
 
@@ -2700,4 +2684,4 @@ script.install = (app) => {
   app.component(script.name, script);
 };
 
-export { script as default };
+export default script;
