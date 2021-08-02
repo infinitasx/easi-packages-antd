@@ -98,7 +98,7 @@ export default defineComponent({
     });
 
     // 是否可以执行初始化渲染请求数据
-    if (hasPermission.value && appContext.config.globalProperties.$usePermissions(route.meta.permission)) {
+    if (hasPermission.value || appContext.config.globalProperties.$usePermissions(route.meta.permission)) {
       emit("initPage");
     }
 

@@ -114,7 +114,7 @@ var script = defineComponent({
     const pageDesc = computed(() => {
       return desc.value || route.meta.desc && route.meta.desc;
     });
-    if (hasPermission.value && appContext.config.globalProperties.$usePermissions(route.meta.permission)) {
+    if (hasPermission.value || appContext.config.globalProperties.$usePermissions(route.meta.permission)) {
       emit("initPage");
     }
     return {
