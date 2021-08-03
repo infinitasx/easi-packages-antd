@@ -12,6 +12,7 @@
 | nav  |  NavItem[]  |   []  |  是  | 需要渲染的侧边栏菜单数据 |
 | userInfo  |  UserInfo  |    |  是  | 用户信息 |
 | onLogout  |  () => Promise<any>  |  () => Promise.resolve()  |  是  | 退出登录的方法，返回Promise |
+| toDashboard | () => void |  |  否  | 跳转到dashboard的方法 |
 
 <strong>NavItem</strong> <br/>
 
@@ -37,3 +38,9 @@
 | :------------: | :-----------: | :-----------: | :-----------: | -------------- |
 | name  |  string   |    |  是  | 用户名称 |
 | avatar   |  string    |   |  否  | 用户头像地址 |
+
+#### Methods
+
+| name         |    remark      |
+| :------------: | -------------- |
+| onReloadPage( refreshAll: = false ) => Promise<void>  | 刷新当前页面或刷新tab下所有页面缓存，默认只刷新当前页面 |

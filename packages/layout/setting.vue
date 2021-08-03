@@ -38,6 +38,10 @@
     <a-divider />
 
     <a-typography-text class="block mb-32"> {{ getEASIText("more") }}</a-typography-text>
+    <div class="more-item flex items-center mb-32 cursor-pointer gray" @click="toDashBoard" v-if="!!toDashboard">
+      <RollbackOutlined class="mr-8 text-14" />
+      <div>回到Dashboard</div>
+    </div>
     <div class="more-item flex items-center mb-32 cursor-pointer" style="color: #f5222d" @click="handleLogout">
       <LogoutOutlined class="mr-8 text-14" />
       <div>{{ getEASIText("logout") }}</div>
@@ -50,7 +54,7 @@ import { createVNode, defineComponent, inject, PropType } from "vue";
 import { createNamespace } from "../utils/create";
 import { Modal } from "ant-design-vue";
 import { setProvider, IProvider, defaultProvider } from "../utils/globalProvider";
-import { ExclamationCircleOutlined, LogoutOutlined } from "@ant-design/icons-vue";
+import { ExclamationCircleOutlined, LogoutOutlined, RollbackOutlined } from "@ant-design/icons-vue";
 import { UserInfo } from '../../typings/antd'
 import {getEASIText, IGlobalLocal} from '../locale'
 
@@ -65,9 +69,13 @@ export default defineComponent({
     onLogout: {
       type: Function,
       default: () => Promise.resolve(),
+    },
+    toDashboard: {
+      type: Function,
+      default: undefined,
     }
   },
-  setup(props, { emit }) {
+  setup(props) {
 
     const globalProvider = inject<IProvider>("globalProvider", {...defaultProvider});
     const globalEASILocale = inject<IGlobalLocal>('globalEASILocale', {message: {}});
@@ -91,12 +99,16 @@ export default defineComponent({
           },
         });
       },
+      toDashBoard(){
+        props?.toDashboard && props.toDashboard();
+      },
       getEASIText,
     };
   },
   components: {
     LogoutOutlined,
     ExclamationCircleOutlined,
+    RollbackOutlined,
   },
 });
 </script>

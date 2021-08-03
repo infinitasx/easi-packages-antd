@@ -31,7 +31,7 @@
       </a-layout-content>
       <a-layout-footer class="px-16 py-12 text-center"> &copy;Copyright EASI, Make Life Easier. </a-layout-footer>
     </a-layout>
-    <PageSetting v-model:visible="showSetting" :userInfo="userInfo" :onLogout="onLogout">
+    <PageSetting v-model:visible="showSetting" :userInfo="userInfo" :onLogout="onLogout" :toDashboard="toDashboard">
       <!--  开发时可自定义插入内容  -->
       <template #action-render>
         <slot name="action-render"></slot>
@@ -85,6 +85,11 @@ export default defineComponent({
       type: Function,
       default: () => Promise.resolve(),
     },
+    // 回到dashboard的方法
+    toDashboard: {
+      type: Function,
+      default: undefined
+    }
   },
   setup(props) {
     const { nav } = toRefs(props);

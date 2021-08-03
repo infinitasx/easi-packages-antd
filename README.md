@@ -78,6 +78,7 @@
 | nav  |  NavItem[]  |   []  |  是  | 需要渲染的侧边栏菜单数据 |
 | userInfo  |  UserInfo  |    |  是  | 用户信息 |
 | onLogout  |  () => Promise<any>  |  () => Promise.resolve()  |  是  | 退出登录的方法，返回Promise |
+| toDashboard | () => void |  |  否  | 跳转到dashboard的方法 |
 
  <strong>NavItem</strong> <br/>
 

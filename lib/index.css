@@ -6555,6 +6555,14 @@
     transform: translateX(6px) rotate(90deg);
   }
 }
+.error-full-page {
+  height: calc(100vh - 160px);
+}
+
+.page-breadcrumb-wrap .ant-page-header-footer {
+  margin: 0;
+}
+
 .has-footer {
   padding-bottom: 35px;
 }
@@ -6574,14 +6582,6 @@
   background: #fff;
   text-align: right;
   z-index: 1;
-}
-
-.error-full-page {
-  height: calc(100vh - 160px);
-}
-
-.page-breadcrumb-wrap .ant-page-header-footer {
-  margin: 0;
 }
 
 .page-header {
@@ -6630,4 +6630,35 @@
 }
 [data-pro-theme=antdv-pro-theme-dark] .icon-action:hover {
   color: #177ddc;
+}
+
+.logo {
+  width: 28px;
+  height: 28px;
+}
+
+.iconfont {
+  vertical-align: middle;
+}
+.iconfont:before {
+  display: block !important;
+}
+
+.admin-title {
+  animation: fade-in 0.2s;
+}
+
+@keyframes fade-in {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  99% {
+    display: none;
+    opacity: 0;
+  }
+  100% {
+    display: block;
+    opacity: 1;
+  }
 }

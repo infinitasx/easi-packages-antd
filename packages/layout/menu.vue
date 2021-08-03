@@ -1,8 +1,8 @@
 <template>
-  <div class="p-16 flex items-center" :class="[collapsed ? 'py-16 px-24' : 'p-16']">
+  <div class="py-10 flex items-center" :class="[collapsed ? 'px-24' : 'px-16']">
     <img :src="logo" alt="" class="logo" />
     <div class="admin-title text-white ml-16 truncate" v-if="title || subTitle" v-show="!collapsed">
-      <p class="text-14 truncate" v-if="title" :class="[subTitle ? 'text-14' : 'text-18']">{{ title }}</p>
+      <p class="truncate" v-if="title" :class="[subTitle ? 'text-14' : 'text-16']">{{ title }}</p>
       <p class="text-12 truncate text-gray-400" v-if="subTitle">
         {{ subTitle }}
       </p>
@@ -120,4 +120,37 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.logo {
+  width: 28px;
+  height: 28px;
+}
+
+.iconfont {
+  vertical-align: middle;
+  &:before {
+    display: block !important;
+  }
+}
+
+.admin-title {
+  animation: fade-in 0.2s;
+}
+
+@keyframes fade-in {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  99% {
+    display: none;
+    opacity: 0;
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+</style>
