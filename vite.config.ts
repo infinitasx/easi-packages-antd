@@ -19,12 +19,12 @@ export default () => {
       lib: {
         entry: resolve(__dirname, "packages/easi-packages-antd/index.ts"),
         name: "EASI",
-        formats: ["cjs", "es"],
+        formats: ["cjs", "es", "umd"],
         fileName: "index",
       },
       outDir: "dist",
       rollupOptions: {
-        external: ["vue", "ant-design-vue", "ant-design-vue/dist/antd.css", "moment", "../moment" ,"easi-web-utils", "vue-router", "vue-i18n"],
+        external: ["vue", "ant-design-vue", "ant-design-vue/dist/antd.css", "moment", "../moment", "easi-web-utils", "vue-router", "vue-i18n"],
         output: {
           exports: "named",
           globals: {
