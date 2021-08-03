@@ -1,0 +1,23 @@
+import "./css/index.scss";
+import type { App } from "vue";
+import EASIProvider from "./config-provider";
+import EASIText from "./text";
+import EASIButton from "./button";
+import EASIDrawer from "./drawer";
+import EASIError from "./error";
+import EASIPage from "./page";
+import EASILoading from "./loading";
+import EASIModal from "./modal";
+import EASILayout from "./layout";
+import EASITable from "./table";
+import vPermission from "./directives/v-permissions";
+import vLoading from "./directives/v-loading";
+import { useModalVisible } from "./utils/useModalVisible";
+import { usePagination } from "./utils/usePagination";
+declare const install: (app: App) => void;
+export { EASIProvider, EASIText, EASIButton, EASIDrawer, EASIError, EASILayout, EASILoading, EASIModal, EASIPage, EASITable, install, vPermission, vLoading, useModalVisible, usePagination };
+declare const _default: {
+    version: string;
+    install: (app: App<any>) => void;
+};
+export default _default;
