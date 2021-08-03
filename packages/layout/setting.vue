@@ -39,10 +39,10 @@
 
     <a-typography-text class="block mb-32"> {{ getEASIText("more") }}</a-typography-text>
     <div class="more-item flex items-center mb-32 cursor-pointer text-blue-400 hover:text-blue-500" @click="toDashBoard" v-if="!!toDashboard">
-      <RollbackOutlined class="mr-8 text-14" />
+      <CompassOutlined class="mr-8 text-14" />
       <div>回到Dashboard</div>
     </div>
-    <div class="more-item flex items-center mb-32 cursor-pointer" style="color: #f5222d" @click="handleLogout">
+    <div class="more-item flex items-center mb-32 cursor-pointer text-red-400	hover:text-red-500" @click="handleLogout">
       <LogoutOutlined class="mr-8 text-14" />
       <div>{{ getEASIText("logout") }}</div>
     </div>
@@ -54,7 +54,7 @@ import { createVNode, defineComponent, inject, PropType } from "vue";
 import { createNamespace } from "../utils/create";
 import { Modal } from "ant-design-vue";
 import { setProvider, IProvider, defaultProvider } from "../utils/globalProvider";
-import { ExclamationCircleOutlined, LogoutOutlined, RollbackOutlined } from "@ant-design/icons-vue";
+import { ExclamationCircleOutlined, LogoutOutlined, CompassOutlined } from "@ant-design/icons-vue";
 import { UserInfo } from '../../typings/antd'
 import {getEASIText, IGlobalLocal} from '../locale'
 
@@ -108,7 +108,7 @@ export default defineComponent({
   components: {
     LogoutOutlined,
     ExclamationCircleOutlined,
-    RollbackOutlined,
+    CompassOutlined,
   },
 });
 </script>
