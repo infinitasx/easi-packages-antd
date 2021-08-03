@@ -13,5 +13,6 @@ export default {
   logoutTitle: 'Tips',
   logoutMessage: 'Are you sure you want to log out of this system?',
   closeOther: 'Close other tabs',
-  refreshPage: 'Refresh current page'
+  refreshPage: 'Refresh current page',
+  backToDashBoard: 'Back to Dashboard',
 }

@@ -14,5 +14,6 @@ declare const _default: {
     logoutMessage: string;
     closeOther: string;
     refreshPage: string;
+    backToDashBoard: string;
 };
 export default _default;

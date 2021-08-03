@@ -13,5 +13,6 @@ export default {
   logoutTitle: '退出确认',
   logoutMessage: '您确定要退出本系统吗?',
   closeOther: '关闭其他',
-  refreshPage: '刷新当前页'
+  refreshPage: '刷新当前页',
+  backToDashBoard: '回到Dashboard',
 }

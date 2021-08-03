@@ -38,11 +38,11 @@
     <a-divider />
 
     <a-typography-text class="block mb-32"> {{ getEASIText("more") }}</a-typography-text>
-    <div class="more-item flex items-center mb-32 cursor-pointer text-blue-400 hover:text-blue-500" @click="toDashBoard" v-if="!!toDashboard">
+    <div class="more-item flex items-center mb-32 cursor-pointer easi-hover-block" @click="toDashBoard" v-if="!!toDashboard">
       <CompassOutlined class="mr-8 text-14" />
-      <div>回到Dashboard</div>
+      <div>{{ getEASIText("backToDashBoard") }}</div>
     </div>
-    <div class="more-item flex items-center mb-32 cursor-pointer text-red-400	hover:text-red-500" @click="handleLogout">
+    <div class="more-item flex items-center mb-32 cursor-pointer text-red-400 easi-hover-block" @click="handleLogout">
       <LogoutOutlined class="mr-8 text-14" />
       <div>{{ getEASIText("logout") }}</div>
     </div>
@@ -113,4 +113,5 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>

@@ -13,5 +13,6 @@ export default {
   logoutTitle: '終了確認',
   logoutMessage: 'このシステムからログアウトしてもよろしいですか?',
   closeOther: '他のタブを閉じる',
-  refreshPage: '現在のページを更新'
+  refreshPage: '現在のページを更新',
+  backToDashBoard: 'Dashboard に戻る',
 }

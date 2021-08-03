@@ -6391,6 +6391,14 @@
   border-bottom-color: #303030 !important;
 }
 
+.easi-hover-block:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+[data-pro-theme=antdv-pro-theme-dark] .easi-hover-block:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6576,6 +6584,10 @@
   z-index: 1;
 }
 
+.error-full-page {
+  height: calc(100vh - 160px);
+}
+
 .page-header {
   border-bottom: 2px solid #f1f1f1;
 }
@@ -6594,10 +6606,6 @@
 .side-placeholder {
   flex-shrink: 0;
   overflow: hidden;
-}
-
-.error-full-page {
-  height: calc(100vh - 160px);
 }
 
 .page-breadcrumb-wrap .ant-page-header-footer {
@@ -6622,14 +6630,6 @@
 }
 [data-pro-theme=antdv-pro-theme-dark] .icon-action:hover {
   color: #177ddc;
-}
-
-.dropdown-trigger:hover {
-  background: rgba(0, 0, 0, 0.05);
-}
-
-[data-pro-theme=antdv-pro-theme-dark] .dropdown-trigger:hover {
-  background: rgba(255, 255, 255, 0.05);
 }
 
 .logo {
