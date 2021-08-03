@@ -38,7 +38,7 @@
     <a-divider />
 
     <a-typography-text class="block mb-32"> {{ getEASIText("more") }}</a-typography-text>
-    <div class="more-item flex items-center mb-32 cursor-pointer gray" @click="toDashBoard" v-if="!!toDashboard">
+    <div class="more-item flex items-center mb-32 cursor-pointer text-blue-400 hover:text-blue-500" @click="toDashBoard" v-if="!!toDashboard">
       <RollbackOutlined class="mr-8 text-14" />
       <div>回到Dashboard</div>
     </div>

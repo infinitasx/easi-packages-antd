@@ -1,5 +1,5 @@
 <template>
-  <div class="py-10 flex items-center" :class="[collapsed ? 'px-24' : 'px-16']">
+  <div class="py-6 flex items-center" :class="[collapsed ? 'px-24' : 'px-16']">
     <img :src="logo" alt="" class="logo" />
     <div class="admin-title text-white ml-16 truncate" v-if="title || subTitle" v-show="!collapsed">
       <p class="truncate" v-if="title" :class="[subTitle ? 'text-14' : 'text-16']">{{ title }}</p>
@@ -122,8 +122,8 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .logo {
-  width: 28px;
-  height: 28px;
+  width: 34px;
+  height: 34px;
 }
 
 .iconfont {
