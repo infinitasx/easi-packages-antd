@@ -4,6 +4,14 @@
 
 本文件格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/) ，并且遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 。
 
+## [0.0.8] - 2021-08-03
+
+### Changed
+
+- 从EASILayout组件内独立出EASISetting，并暴露给调用方
+- 优化EASISetting样式和国际化
+
+
 ## [0.0.5] - 2021-08-03
 
 ### Added
