@@ -15,4 +15,5 @@ export default {
   closeOther: 'Close other tabs',
   refreshPage: 'Refresh current page',
   backToDashBoard: 'Back to Dashboard',
+  editPassword: 'Change Password'
 }

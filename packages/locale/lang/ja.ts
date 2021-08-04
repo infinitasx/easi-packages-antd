@@ -15,4 +15,5 @@ export default {
   closeOther: '他のタブを閉じる',
   refreshPage: '現在のページを更新',
   backToDashBoard: 'Dashboard に戻る',
+  editPassword: 'パスワードを変更する',
 }

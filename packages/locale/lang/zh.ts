@@ -15,4 +15,5 @@ export default {
   closeOther: '关闭其他',
   refreshPage: '刷新当前页',
   backToDashBoard: '回到Dashboard',
+  editPassword: '修改密码'
 }

@@ -15,5 +15,6 @@ declare const _default: {
     closeOther: string;
     refreshPage: string;
     backToDashBoard: string;
+    editPassword: string;
 };
 export default _default;

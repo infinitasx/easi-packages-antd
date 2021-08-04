@@ -41,6 +41,19 @@
   color: #177ddc;
 }
 
+.margin-bottom {
+  margin-bottom: 20px;
+}
+
+.more-item {
+  padding-left: 24px;
+  padding-right: 24px;
+  margin-bottom: 10px;
+  margin-left: -24px;
+  margin-right: -24px;
+  height: 44px;
+}
+
 .logo {
   width: 34px;
   height: 34px;

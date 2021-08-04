@@ -31,7 +31,7 @@
       </a-layout-content>
       <a-layout-footer class="px-16 py-12 text-center"> &copy;Copyright EASI, Make Life Easier. </a-layout-footer>
     </a-layout>
-    <PageSetting v-model:visible="showSetting" :userInfo="userInfo" :onLogout="onLogout" :toDashboard="toDashboard">
+    <PageSetting v-model:visible="showSetting" :userInfo="userInfo" :showTabSetting="showTabSetting" :onLogout="onLogout" :toDashboard="toDashboard" :editPassword="editPassword">
       <!--  开发时可自定义插入内容  -->
       <template #action-render>
         <slot name="action-render"></slot>
@@ -46,7 +46,7 @@ import { useRoute, useRouter, RouteLocationNormalized } from "vue-router";
 import { createNamespace } from "../utils/create";
 import PageNav from "./nav.vue";
 import PageHeader from "./header.vue";
-import PageSetting from "./setting.vue";
+import PageSetting from "../setting/index.vue";
 import PageTab from "./tab.vue";
 import { isMobile, debounced } from "easi-web-utils";
 import { useReload, IProvider, defaultProvider } from "../utils/globalProvider";
@@ -80,15 +80,25 @@ export default defineComponent({
       type: Object as PropType<UserInfo>,
       default: () => ({}),
     },
+    // 是否显示tab相关的设置
+    showTabSetting: {
+      type: Boolean,
+      default: true,
+    },
     // 退出登陆的方法
     onLogout: {
       type: Function,
-      default: () => Promise.resolve(),
+      default: undefined,
     },
     // 回到dashboard的方法
     toDashboard: {
       type: Function,
       default: undefined
+    },
+    // 修改密码的方法
+    editPassword: {
+      type: Function,
+      default: undefined,
     }
   },
   setup(props) {

@@ -23,11 +23,19 @@ declare const _default: import("vue").DefineComponent<{
         type: PropType<UserInfo>;
         default: () => {};
     };
+    showTabSetting: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
     onLogout: {
         type: FunctionConstructor;
-        default: () => Promise<void>;
+        default: undefined;
     };
     toDashboard: {
+        type: FunctionConstructor;
+        default: undefined;
+    };
+    editPassword: {
         type: FunctionConstructor;
         default: undefined;
     };
@@ -48,24 +56,30 @@ declare const _default: import("vue").DefineComponent<{
     subTitle?: unknown;
     nav?: unknown;
     userInfo?: unknown;
+    showTabSetting?: unknown;
     onLogout?: unknown;
     toDashboard?: unknown;
+    editPassword?: unknown;
 } & {
     logo: string;
     title: string;
     subTitle: string;
     nav: RouteLocationNormalized[];
     userInfo: UserInfo;
-    onLogout: Function;
+    showTabSetting: boolean;
 } & {
+    onLogout?: Function | undefined;
     toDashboard?: Function | undefined;
+    editPassword?: Function | undefined;
 }>, {
     logo: string;
     title: string;
     subTitle: string;
     nav: RouteLocationNormalized[];
     userInfo: UserInfo;
+    showTabSetting: boolean;
     onLogout: Function;
     toDashboard: Function;
+    editPassword: Function;
 }>;
 export default _default;

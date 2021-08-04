@@ -9,26 +9,26 @@
 
     <slot name="action-render"></slot>
 
-    <a-typography-text class="block mb-32"> {{ getEASIText("styleSetting") }}</a-typography-text>
-    <div class="flex items-center mb-32">
+    <a-typography-text strong class="block mb-32"> {{ message.styleSetting }}</a-typography-text>
+    <div class="flex items-center mb-24">
       <span class="flex-1">
-        <a-typography-text type="secondary"> {{ getEASIText("darkSetting") }} </a-typography-text>
+        <a-typography-text> {{ message.darkSetting }} </a-typography-text>
       </span>
       <div>
         <a-switch :checked="globalProvider.mode" @change="setSetting('mode', $event)" />
       </div>
     </div>
-    <div class="flex items-center mb-32">
+    <div class="flex items-center mb-24" v-if="showTabSetting">
       <span class="flex-1">
-        <a-typography-text type="secondary"> {{ getEASIText("showTabSetting") }} </a-typography-text>
+        <a-typography-text> {{ message.showTabSetting }} </a-typography-text>
       </span>
       <div>
         <a-switch :checked="globalProvider.showTab" @change="setSetting('showTab', $event)" />
       </div>
     </div>
-    <div class="flex items-center mb-32">
+    <div class="flex items-center mb-24" v-if="showTabSetting">
       <span class="flex-1">
-        <a-typography-text type="secondary"> {{ getEASIText("fixedTabSetting") }} </a-typography-text>
+        <a-typography-text> {{ message.fixedTabSetting }} </a-typography-text>
       </span>
       <div>
         <a-switch :checked="globalProvider.fixedTab" @change="setSetting('fixedTab', $event)" />
@@ -37,14 +37,18 @@
 
     <a-divider />
 
-    <a-typography-text class="block mb-32"> {{ getEASIText("more") }}</a-typography-text>
-    <div class="more-item flex items-center mb-32 cursor-pointer easi-hover-block" @click="toDashBoard" v-if="!!toDashboard">
+    <a-typography-text strong class="block margin-bottom" v-if="!!onLogout || !!toDashboard || !!editPassword"> {{ message.more }}</a-typography-text>
+    <div class="more-item flex items-center cursor-pointer easi-hover-block" @click="handleToDashBoard" v-if="!!toDashboard">
       <CompassOutlined class="mr-8 text-14" />
-      <div>{{ getEASIText("backToDashBoard") }}</div>
+      <a-typography-text>{{ message.backToDashBoard }}</a-typography-text>
     </div>
-    <div class="more-item flex items-center mb-32 cursor-pointer text-red-400 easi-hover-block" @click="handleLogout">
+    <div class="more-item flex items-center cursor-pointer easi-hover-block" @click="handleEditPassword" v-if="!!editPassword">
+      <UnlockOutlined class="mr-8 text-14" />
+      <a-typography-text>{{ message.editPassword }}</a-typography-text>
+    </div>
+    <div class="more-item flex items-center cursor-pointer text-red-400 easi-hover-block" @click="handleLogout" v-if="!!onLogout">
       <LogoutOutlined class="mr-8 text-14" />
-      <div>{{ getEASIText("logout") }}</div>
+      <a-typography-text type="danger">{{ message.logout }}</a-typography-text>
     </div>
   </a-drawer>
 </template>
@@ -54,9 +58,9 @@ import { createVNode, defineComponent, inject, PropType } from "vue";
 import { createNamespace } from "../utils/create";
 import { Modal } from "ant-design-vue";
 import { setProvider, IProvider, defaultProvider } from "../utils/globalProvider";
-import { ExclamationCircleOutlined, LogoutOutlined, CompassOutlined } from "@ant-design/icons-vue";
+import { ExclamationCircleOutlined, LogoutOutlined, CompassOutlined, UnlockOutlined } from "@ant-design/icons-vue";
 import { UserInfo } from '../../typings/antd'
-import {getEASIText, IGlobalLocal} from '../locale'
+import { IGlobalLocal } from '../locale'
 
 export default defineComponent({
   name: createNamespace("Setting"),
@@ -66,11 +70,19 @@ export default defineComponent({
       type: Object as PropType<UserInfo>,
       default: () => ({}),
     },
+    showTabSetting: {
+      type: Boolean,
+      default: true,
+    },
     onLogout: {
       type: Function,
-      default: () => Promise.resolve(),
+      default: undefined,
     },
     toDashboard: {
+      type: Function,
+      default: undefined,
+    },
+    editPassword: {
       type: Function,
       default: undefined,
     }
@@ -94,24 +106,41 @@ export default defineComponent({
           icon: createVNode(ExclamationCircleOutlined),
           content: globalEASILocale.message.logoutMessage,
           centered: true,
+          okText: globalEASILocale.message.confirm,
+          cancelText: globalEASILocale.message.cancel,
           async onOk() {
             return props?.onLogout ? props.onLogout() : true;
           },
         });
       },
-      toDashBoard(){
+      handleToDashBoard(){
         props?.toDashboard && props.toDashboard();
       },
-      getEASIText,
+      handleEditPassword(){
+        props?.editPassword && props.editPassword();
+      },
+      message: globalEASILocale.message,
     };
   },
   components: {
     LogoutOutlined,
     ExclamationCircleOutlined,
     CompassOutlined,
+    UnlockOutlined,
   },
 });
 </script>
 
 <style lang="scss" scoped>
+.margin-bottom{
+  margin-bottom: 20px;
+}
+.more-item{
+  padding-left: 24px;
+  padding-right: 24px;
+  margin-bottom: 10px;
+  margin-left: -24px;
+  margin-right: -24px;
+  height: 44px;
+}
 </style>
