@@ -1,6 +1,7 @@
 import { PropType } from "vue";
 import { IProvider } from "../utils/globalProvider";
 import { UserInfo } from '../../typings/antd';
+import { IGlobalLocal } from '../locale';
 declare const _default: import("vue").DefineComponent<{
     userInfo: {
         type: PropType<UserInfo>;
@@ -28,7 +29,7 @@ declare const _default: import("vue").DefineComponent<{
     handleLogout(): void;
     handleToDashBoard(): void;
     handleEditPassword(): void;
-    message: any;
+    globalEASILocale: IGlobalLocal;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "update:visible"[], "update:visible", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
     userInfo?: unknown;
     showTabSetting?: unknown;

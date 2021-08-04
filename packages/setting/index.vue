@@ -9,10 +9,10 @@
 
     <slot name="action-render"></slot>
 
-    <a-typography-text strong class="block mb-32"> {{ message.styleSetting }}</a-typography-text>
+    <a-typography-text strong class="block mb-32"> {{ globalEASILocale.message.styleSetting }}</a-typography-text>
     <div class="flex items-center mb-24">
       <span class="flex-1">
-        <a-typography-text> {{ message.darkSetting }} </a-typography-text>
+        <a-typography-text> {{ globalEASILocale.message.darkSetting }} </a-typography-text>
       </span>
       <div>
         <a-switch :checked="globalProvider.mode" @change="setSetting('mode', $event)" />
@@ -20,7 +20,7 @@
     </div>
     <div class="flex items-center mb-24" v-if="showTabSetting">
       <span class="flex-1">
-        <a-typography-text> {{ message.showTabSetting }} </a-typography-text>
+        <a-typography-text> {{ globalEASILocale.message.showTabSetting }} </a-typography-text>
       </span>
       <div>
         <a-switch :checked="globalProvider.showTab" @change="setSetting('showTab', $event)" />
@@ -28,7 +28,7 @@
     </div>
     <div class="flex items-center mb-24" v-if="showTabSetting">
       <span class="flex-1">
-        <a-typography-text> {{ message.fixedTabSetting }} </a-typography-text>
+        <a-typography-text> {{ globalEASILocale.message.fixedTabSetting }} </a-typography-text>
       </span>
       <div>
         <a-switch :checked="globalProvider.fixedTab" @change="setSetting('fixedTab', $event)" />
@@ -37,18 +37,18 @@
 
     <a-divider />
 
-    <a-typography-text strong class="block margin-bottom" v-if="!!onLogout || !!toDashboard || !!editPassword"> {{ message.more }}</a-typography-text>
+    <a-typography-text strong class="block margin-bottom" v-if="!!onLogout || !!toDashboard || !!editPassword"> {{ globalEASILocale.message.more }}</a-typography-text>
     <div class="more-item flex items-center cursor-pointer easi-hover-block" @click="handleToDashBoard" v-if="!!toDashboard">
       <CompassOutlined class="mr-8 text-14" />
-      <a-typography-text>{{ message.backToDashBoard }}</a-typography-text>
+      <a-typography-text>{{ globalEASILocale.message.backToDashBoard }}</a-typography-text>
     </div>
     <div class="more-item flex items-center cursor-pointer easi-hover-block" @click="handleEditPassword" v-if="!!editPassword">
       <UnlockOutlined class="mr-8 text-14" />
-      <a-typography-text>{{ message.editPassword }}</a-typography-text>
+      <a-typography-text>{{ globalEASILocale.message.editPassword }}</a-typography-text>
     </div>
     <div class="more-item flex items-center cursor-pointer text-red-400 easi-hover-block" @click="handleLogout" v-if="!!onLogout">
       <LogoutOutlined class="mr-8 text-14" />
-      <a-typography-text type="danger">{{ message.logout }}</a-typography-text>
+      <a-typography-text type="danger">{{ globalEASILocale.message.logout }}</a-typography-text>
     </div>
   </a-drawer>
 </template>
@@ -119,7 +119,7 @@ export default defineComponent({
       handleEditPassword(){
         props?.editPassword && props.editPassword();
       },
-      message: globalEASILocale.message,
+      globalEASILocale,
     };
   },
   components: {

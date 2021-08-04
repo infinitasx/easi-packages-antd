@@ -2228,7 +2228,7 @@ var script$2 = defineComponent({
       handleEditPassword() {
         props?.editPassword && props.editPassword();
       },
-      message: globalEASILocale.message
+      globalEASILocale
     };
   },
   components: {
@@ -2289,7 +2289,7 @@ const render$2 = /* @__PURE__ */ _withId$2((_ctx, _cache, $props, $setup, $data,
         class: "block mb-32"
       }, {
         default: _withId$2(() => [
-          createTextVNode(toDisplayString(_ctx.message.styleSetting), 1)
+          createTextVNode(toDisplayString(_ctx.globalEASILocale.message.styleSetting), 1)
         ]),
         _: 1
       }),
@@ -2297,7 +2297,7 @@ const render$2 = /* @__PURE__ */ _withId$2((_ctx, _cache, $props, $setup, $data,
         createVNode("span", _hoisted_3$1, [
           createVNode(_component_a_typography_text, null, {
             default: _withId$2(() => [
-              createTextVNode(toDisplayString(_ctx.message.darkSetting), 1)
+              createTextVNode(toDisplayString(_ctx.globalEASILocale.message.darkSetting), 1)
             ]),
             _: 1
           })
@@ -2313,7 +2313,7 @@ const render$2 = /* @__PURE__ */ _withId$2((_ctx, _cache, $props, $setup, $data,
         createVNode("span", _hoisted_5, [
           createVNode(_component_a_typography_text, null, {
             default: _withId$2(() => [
-              createTextVNode(toDisplayString(_ctx.message.showTabSetting), 1)
+              createTextVNode(toDisplayString(_ctx.globalEASILocale.message.showTabSetting), 1)
             ]),
             _: 1
           })
@@ -2329,7 +2329,7 @@ const render$2 = /* @__PURE__ */ _withId$2((_ctx, _cache, $props, $setup, $data,
         createVNode("span", _hoisted_7, [
           createVNode(_component_a_typography_text, null, {
             default: _withId$2(() => [
-              createTextVNode(toDisplayString(_ctx.message.fixedTabSetting), 1)
+              createTextVNode(toDisplayString(_ctx.globalEASILocale.message.fixedTabSetting), 1)
             ]),
             _: 1
           })
@@ -2348,7 +2348,7 @@ const render$2 = /* @__PURE__ */ _withId$2((_ctx, _cache, $props, $setup, $data,
         class: "block margin-bottom"
       }, {
         default: _withId$2(() => [
-          createTextVNode(toDisplayString(_ctx.message.more), 1)
+          createTextVNode(toDisplayString(_ctx.globalEASILocale.message.more), 1)
         ]),
         _: 1
       })) : createCommentVNode("v-if", true),
@@ -2360,7 +2360,7 @@ const render$2 = /* @__PURE__ */ _withId$2((_ctx, _cache, $props, $setup, $data,
         createVNode(_component_CompassOutlined, { class: "mr-8 text-14" }),
         createVNode(_component_a_typography_text, null, {
           default: _withId$2(() => [
-            createTextVNode(toDisplayString(_ctx.message.backToDashBoard), 1)
+            createTextVNode(toDisplayString(_ctx.globalEASILocale.message.backToDashBoard), 1)
           ]),
           _: 1
         })
@@ -2373,7 +2373,7 @@ const render$2 = /* @__PURE__ */ _withId$2((_ctx, _cache, $props, $setup, $data,
         createVNode(_component_UnlockOutlined, { class: "mr-8 text-14" }),
         createVNode(_component_a_typography_text, null, {
           default: _withId$2(() => [
-            createTextVNode(toDisplayString(_ctx.message.editPassword), 1)
+            createTextVNode(toDisplayString(_ctx.globalEASILocale.message.editPassword), 1)
           ]),
           _: 1
         })
@@ -2386,7 +2386,7 @@ const render$2 = /* @__PURE__ */ _withId$2((_ctx, _cache, $props, $setup, $data,
         createVNode(_component_LogoutOutlined, { class: "mr-8 text-14" }),
         createVNode(_component_a_typography_text, { type: "danger" }, {
           default: _withId$2(() => [
-            createTextVNode(toDisplayString(_ctx.message.logout), 1)
+            createTextVNode(toDisplayString(_ctx.globalEASILocale.message.logout), 1)
           ]),
           _: 1
         })
