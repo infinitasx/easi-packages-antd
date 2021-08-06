@@ -69,7 +69,7 @@ export default defineComponent({
     // 菜单数据
     nav: {
       type: Array,
-      default: [],
+      default: () => [],
     },
   },
   setup(props) {

@@ -17,7 +17,7 @@ declare const _default: import("vue").DefineComponent<{
     };
     nav: {
         type: ArrayConstructor;
-        default: never[];
+        default: () => never[];
     };
 }, {
     openKeys: import("vue").Ref<string[]>;

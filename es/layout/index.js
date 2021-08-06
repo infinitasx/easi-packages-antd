@@ -29,7 +29,7 @@ var script$5 = defineComponent({
     },
     nav: {
       type: Array,
-      default: []
+      default: () => []
     }
   },
   setup(props) {
@@ -211,7 +211,7 @@ var script$4 = defineComponent({
     },
     nav: {
       type: Array,
-      default: []
+      default: () => []
     }
   },
   components: {
