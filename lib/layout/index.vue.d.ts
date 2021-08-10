@@ -71,7 +71,7 @@ declare const _default: import("vue").DefineComponent<{
     onLogout?: Function | undefined;
     toDashboard?: Function | undefined;
     editPassword?: Function | undefined;
-}>, {
+}> & {}, {
     logo: string;
     title: string;
     subTitle: string;

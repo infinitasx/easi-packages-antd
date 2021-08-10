@@ -30,7 +30,7 @@
     "@types/js-cookie": "^2.2.7",
     "@types/node": "^16.3.3",
     "@vitejs/plugin-vue": "^1.2.5",
-    "@vue/compiler-sfc": "^3.1.4",
+    "@vue/compiler-sfc": "3.1.5",
     "autoprefixer": "^10.3.1",
     "babel-preset-env": "^1.7.0",
     "easi-assets-deploy": "https://github.com/infinitasx/easi-assets-deploy.git#main",
@@ -56,8 +56,8 @@
   },
   "peerDependencies": {
     "ant-design-vue": "^2",
-    "vue": "^3.1.x",
     "easi-web-utils": "git+https://github.com/infinitasx/easi-web-utils.git#main",
+    "vue": "^3.1.x",
     "vue-router": "^4.0.10"
   },
   "dependencies": {

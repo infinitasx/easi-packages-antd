@@ -6,9 +6,14 @@
 
 ## [0.0.11] - 2021-08-10
 
+### Changed
+
+- 锁定@vue/compiler-sfc
+
 ### Fixed
 
 - Vite 版本部分方法 TS 校验报错
+- 修复@vue/compiler-sfc 版本引起的错误
 
 ## [0.0.10] - 2021-08-04
 
