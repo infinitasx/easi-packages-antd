@@ -107,7 +107,7 @@ var script = defineComponent({
     watch(() => pSize.value, (newVal) => {
       size.value = newVal;
     });
-    watch(() => root.value.localeMessage, (newVal) => {
+    watch(() => root.value?.localeMessage, (newVal) => {
       if (newVal) {
         locale.message = langMap[newVal?.locale || "zh-cn"];
         title.value = locale.message.loading;

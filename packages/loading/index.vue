@@ -70,7 +70,7 @@ export default defineComponent({
         },
     );
 
-    watch(() => root.value.localeMessage, newVal => {
+    watch(() => root.value?.localeMessage, newVal => {
       if(newVal){
         locale.message = langMap[newVal?.locale || 'zh-cn'];
         title.value = locale.message.loading;
