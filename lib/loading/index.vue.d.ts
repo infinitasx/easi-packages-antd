@@ -1,5 +1,4 @@
 import { PropType } from 'vue';
-import { Lang } from '../locale';
 declare const _default: import("vue").DefineComponent<{
     pTitle: {
         type: StringConstructor;
@@ -20,7 +19,7 @@ declare const _default: import("vue").DefineComponent<{
     root: import("vue").Ref<{
         localeMessage: {
             [x: string]: any;
-            locale: Lang;
+            locale: import("../locale").Lang;
         };
     }>;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "update:pShow"[], "update:pShow", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{

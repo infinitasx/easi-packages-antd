@@ -20,7 +20,7 @@
 <script lang="ts">
 import {defineComponent, PropType, ref, toRefs, watch, getCurrentInstance, ComponentInternalInstance, ComponentPublicInstance} from 'vue';
 import { createNamespace } from "../utils/create";
-import {Lang, langMap, initI18n, ILocale} from '../locale'
+import {langMap, initI18n, ILocale} from '../locale'
 
 export default defineComponent({
   name: createNamespace('Loading'),
@@ -50,7 +50,7 @@ export default defineComponent({
 
     const root = ref<{ localeMessage: ILocale }>(defaultProxy);
 
-    const locale = initI18n(root.value?.localeMessage?.locale || 'zh-cn')
+    const locale = initI18n((app?.root?.proxy as unknown as any)?.localeMessage?.locale || 'zh-cn')
 
     const defaultTitle = locale?.message?.loading;
 
@@ -72,7 +72,7 @@ export default defineComponent({
         },
     );
 
-    watch(() => root.value.localeMessage, newVal => {
+    watch(() => root.value?.localeMessage, newVal => {
       if(newVal){
         locale.message = langMap[newVal?.locale || 'zh-cn'];
         title.value = locale.message.loading;
