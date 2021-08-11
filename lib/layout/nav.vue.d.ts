@@ -43,7 +43,9 @@ declare const _default: import("vue").DefineComponent<{
     title: string;
     subTitle: string;
     nav: unknown[];
-} & {}>, {
+} & {}> & {
+    onHideMenu?: ((...args: any[]) => any) | undefined;
+}, {
     collapsed: boolean;
     collWidth: string;
     isH5: boolean;

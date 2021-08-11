@@ -23,7 +23,11 @@ declare const _default: import("vue").DefineComponent<{
     visible: boolean;
     width: string;
     bodyStyle: {};
-} & {}>, {
+} & {}> & {
+    "onUpdate:visible"?: ((...args: any[]) => any) | undefined;
+    onClose?: ((...args: any[]) => any) | undefined;
+    onShow?: ((...args: any[]) => any) | undefined;
+}, {
     visible: boolean;
     width: string;
     bodyStyle: {};
