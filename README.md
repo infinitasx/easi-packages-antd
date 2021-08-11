@@ -108,7 +108,7 @@ yarn workspace package add 依赖名称  // 给某个package安装依赖
 |  subTitle   |       string       |                         |    否    | 系统二级名称，一般用来放城市名称 |
 |     nav     |     NavItem[]      |           []            |    是    | 需要渲染的侧边栏菜单数据         |
 |  userInfo   |      UserInfo      |                         |    是    | 用户信息                         |
-|  showTabSetting   |    boolean    |  true  |    否    | 用户信息                         |
+|  showTabSetting   |    boolean    |  true  |    否    | 是否显示tab风格设置                         |
 |  onLogout   | () => Promise<any> |   |    否   | 退出登录的方法，返回 Promise，不传则不会显示退出登录按钮     |
 | toDashboard |     () => void     |                         |    否    | 跳转到 dashboard 的方法，不传则不会显示跳转dashboard按钮  |
 | editPassword |     () => void     |                         |    否    | 点击修改密码要执行的方法，不传则不会显示修改密码按钮  |
