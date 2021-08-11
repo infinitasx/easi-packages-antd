@@ -95,7 +95,8 @@ var script = defineComponent({
   setup(props, { emit }) {
     const { pShow, pSize } = toRefs(props);
     const app = getCurrentInstance();
-    const root = ref(app.root.proxy);
+    const defaultProxy = app?.root?.proxy || { localeMessage: { locale: "zh-cn" } };
+    const root = ref(defaultProxy);
     const locale = initI18n(root.value?.localeMessage?.locale || "zh-cn");
     const defaultTitle = locale?.message?.loading;
     const show = ref(false);

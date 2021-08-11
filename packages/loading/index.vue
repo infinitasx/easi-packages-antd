@@ -46,7 +46,9 @@ export default defineComponent({
 
     const app = getCurrentInstance() as ComponentInternalInstance;
 
-    const root = ref<{ localeMessage: ILocale }>(app.root.proxy as unknown as { localeMessage: ILocale });
+    const defaultProxy: any = app?.root?.proxy || {localeMessage: { locale: 'zh-cn' } };
+
+    const root = ref<{ localeMessage: ILocale }>(defaultProxy);
 
     const locale = initI18n(root.value?.localeMessage?.locale || 'zh-cn')
 
@@ -70,7 +72,7 @@ export default defineComponent({
         },
     );
 
-    watch(() => root.value?.localeMessage, newVal => {
+    watch(() => root.value.localeMessage, newVal => {
       if(newVal){
         locale.message = langMap[newVal?.locale || 'zh-cn'];
         title.value = locale.message.loading;
