@@ -4,6 +4,13 @@
 
 本文件格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/) ，并且遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 。
 
+## [0.0.12] - 2021-08-11
+
+### Changed
+
+- 修复KeepAlive组件缓存未生效的Bug
+
+
 ## [0.0.11] - 2021-08-10
 
 ### Changed
