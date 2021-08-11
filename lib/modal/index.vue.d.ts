@@ -121,12 +121,7 @@ declare const _default: import("vue").DefineComponent<{
     cancelText?: string | undefined;
     okText?: string | undefined;
     afterClose?: Function | undefined;
-}> & {
-    onOk?: ((...args: any[]) => any) | undefined;
-    onCancel?: ((...args: any[]) => any) | undefined;
-    "onUpdate:visible"?: ((...args: any[]) => any) | undefined;
-    onShow?: ((...args: any[]) => any) | undefined;
-}, {
+}>, {
     visible: boolean;
     title: string;
     showCancel: boolean;
