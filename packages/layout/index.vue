@@ -130,10 +130,15 @@ export default defineComponent({
       }
     );
 
-    watch(() => route.name, (name) => {
-      if(route.meta.cached && !globalProvider.cachedPage.includes(name as string)){
+    const handleCachedPage = () => {
+      if(route.meta.cached && !globalProvider.cachedPage.includes(route.name as string)){
         globalProvider.cachedPage = [...globalProvider.cachedPage, route.name as string]
       }
+    }
+
+    handleCachedPage();
+    watch(() => route.name, (name) => {
+      handleCachedPage();
     })
 
     // 监听页面resize事件

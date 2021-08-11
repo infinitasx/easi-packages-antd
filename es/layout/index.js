@@ -2640,10 +2640,14 @@ var script = defineComponent({
         addTransition.value = true;
       }, 200);
     });
-    watch(() => route.name, (name) => {
-      if (route.meta.cached && !globalProvider.cachedPage.includes(name)) {
+    const handleCachedPage = () => {
+      if (route.meta.cached && !globalProvider.cachedPage.includes(route.name)) {
         globalProvider.cachedPage = [...globalProvider.cachedPage, route.name];
       }
+    };
+    handleCachedPage();
+    watch(() => route.name, (name) => {
+      handleCachedPage();
     });
     const handleResize = () => {
       debounced(() => {
