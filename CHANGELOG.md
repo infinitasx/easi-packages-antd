@@ -4,6 +4,13 @@
 
 本文件格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/) ，并且遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 。
 
+## [0.0.14] - 2021-08-11
+
+### Fixed
+
+- 修复Loading组件初始化时未获取到语言报错
+
+
 ## [0.0.13] - 2021-08-11
 
 ### Fixed
