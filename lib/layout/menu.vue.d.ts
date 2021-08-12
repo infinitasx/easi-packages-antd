@@ -35,7 +35,7 @@ declare const _default: import("vue").DefineComponent<{
     title: string;
     subTitle: string;
     nav: unknown[];
-} & {}>, {
+} & {}> & {}, {
     collapsed: boolean;
     logo: string;
     title: string;
