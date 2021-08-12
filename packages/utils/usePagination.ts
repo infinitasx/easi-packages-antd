@@ -1,13 +1,14 @@
-import { reactive } from 'vue';
+import {inject, reactive} from 'vue';
 import { Pagination } from '../../typings/antd';
-import { getEASIText } from '../locale'
-// 公共的table 页码初始化函数，2.2.0 rc.1版本showSizeChanger开启后antd要报错，原因不明，待官方修复
+import {getEASIText, IGlobalLocal} from '../locale'
+
 export function usePagination(initValue: Pagination) {
+  const globalEASILocale = inject<IGlobalLocal>('globalEASILocale', {message: {}});
   return reactive({
     // pageSizeOptions: ['15', '20', '25', '30', '35', '40'],
     showQuickJumper: true,
     showSizeChanger: true,
-    showTotal: (total: number) => getEASIText('pageTotal', { 'total': total || 0 }),
+    showTotal: (total: number) => getEASIText(globalEASILocale,'pageTotal', { 'total': total || 0 }),
     showSizeChange: () => null,
     onShowSizeChange: () => null,
     ...initValue,

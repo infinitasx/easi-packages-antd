@@ -26,19 +26,28 @@
     <NoPermission status="403" v-else>
       <template #title> 403 </template>
       <template #sub-title>
-        {{ getEASIText("noPermission") }}
+        {{ getText("noPermission") }}
       </template>
     </NoPermission>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, toRefs, PropType, ComputedRef, getCurrentInstance, ComponentInternalInstance } from "vue";
+import {
+  computed,
+  defineComponent,
+  toRefs,
+  PropType,
+  ComputedRef,
+  getCurrentInstance,
+  ComponentInternalInstance,
+  inject
+} from "vue";
 import { useRoute, RouteLocationNormalizedLoaded, RouteLocationMatched } from "vue-router";
 import { BreadcrumbRoute } from "../../typings/antd";
 import NoPermission from "../../packages/error/index";
 import { createNamespace } from "../utils/create";
-import { getEASIText } from '../locale'
+import {getEASIText, IGlobalLocal} from '../locale'
 
 export default defineComponent({
   name: createNamespace("Page"),
@@ -74,6 +83,8 @@ export default defineComponent({
   setup(props, { emit }) {
     const { breadcrumb, title, desc, hasPermission } = toRefs(props);
 
+    const globalEASILocale = inject<IGlobalLocal>('globalEASILocale', {message: {}});
+
     const route: RouteLocationNormalizedLoaded = useRoute();
 
     const { appContext } = getCurrentInstance() as ComponentInternalInstance;
@@ -106,7 +117,9 @@ export default defineComponent({
       breadcrumbRoutes,
       pageTitle,
       pageDesc,
-      getEASIText,
+      getText(key: string, value?: {[props: string]: string | number}){
+        return getEASIText(globalEASILocale, key, value)
+      },
     };
   },
   components: {

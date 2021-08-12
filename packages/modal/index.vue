@@ -14,6 +14,7 @@
       :afterClose="afterClose"
       class="modal-top"
       :class="{ 'no-footer': !footer }"
+      v-bind="$attrs"
       @cancel="onCancel"
   >
     <slot></slot>
@@ -21,7 +22,7 @@
       <slot name="footer"></slot>
       <div class="footer" v-if="!$slots.footer && footer">
         <a-button v-if="showCancel" @click="onCancel">
-          {{ cancelText || getEASIText('cancel') }}
+          {{ cancelText || getText('cancel') }}
         </a-button>
         <a-button
             v-if="showOk"
@@ -29,7 +30,7 @@
             :loading="autoLoading || confirmLoading"
             @click="onConfirm"
         >
-          {{ okText || getEASIText('confirm') }}
+          {{ okText || getText('confirm') }}
         </a-button>
       </div>
     </template>
@@ -37,9 +38,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, toRefs, watch, PropType } from 'vue';
+import {defineComponent, ref, toRefs, watch, PropType, inject} from 'vue';
 import { createNamespace } from "../utils/create";
-import { getEASIText } from '../locale'
+import {getEASIText, IGlobalLocal} from '../locale'
 
 export default defineComponent({
   name: createNamespace('Modal'),
@@ -120,6 +121,8 @@ export default defineComponent({
     const { handleOk, visible } = toRefs(props);
     const symbolVisible = ref(false);
 
+    const globalEASILocale = inject<IGlobalLocal>('globalEASILocale', {message: {}});
+
     const bodyScrollStyle = {
       maxHeight: 'calc(100vh - 160px)',
       overflow: 'auto',
@@ -174,7 +177,9 @@ export default defineComponent({
       onConfirm,
       onCancel,
       showModal,
-      getEASIText,
+      getText(key: string, value?: {[props: string]: string | number}){
+        return getEASIText(globalEASILocale, key, value)
+      },
     };
   },
 });

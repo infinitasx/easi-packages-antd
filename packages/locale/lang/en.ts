@@ -15,5 +15,9 @@ export default {
   closeOther: 'Close other tabs',
   refreshPage: 'Refresh current page',
   backToDashBoard: 'Back to Dashboard',
-  editPassword: 'Change Password'
+  editPassword: 'Change Password',
+  uploaderTitle: 'Upload Image',
+  uploaderTab0: 'Upload From Local',
+  uploaderTab1: 'Picture Library',
+  uploaderPrimary: 'Upload',
 }

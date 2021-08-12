@@ -16,4 +16,8 @@ export default {
   refreshPage: '現在のページを更新',
   backToDashBoard: 'Dashboard に戻る',
   editPassword: 'パスワードを変更する',
+  uploaderTitle: '画像をアップロード',
+  uploaderTab0: 'ローカルアップロード',
+  uploaderTab1: '画像ライブラリ',
+  uploaderPrimary: 'アップロード',
 }

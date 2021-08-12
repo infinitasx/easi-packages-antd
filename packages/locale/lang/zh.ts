@@ -15,5 +15,9 @@ export default {
   closeOther: '关闭其他',
   refreshPage: '刷新当前页',
   backToDashBoard: '回到Dashboard',
-  editPassword: '修改密码'
+  editPassword: '修改密码',
+  uploaderTitle: '上传图片',
+  uploaderTab0: '本地上传',
+  uploaderTab1: '图片库',
+  uploaderPrimary: '上 传',
 }

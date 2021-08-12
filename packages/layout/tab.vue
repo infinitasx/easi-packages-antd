@@ -31,8 +31,8 @@
         </a>
         <template #overlay>
           <a-menu @click="action">
-            <a-menu-item key="closeAll">{{getEASIText('closeOther')}}</a-menu-item>
-            <a-menu-item key="refresh">{{getEASIText('refreshPage')}}</a-menu-item>
+            <a-menu-item key="closeAll">{{getText('closeOther')}}</a-menu-item>
+            <a-menu-item key="refresh">{{getText('refreshPage')}}</a-menu-item>
           </a-menu>
         </template>
       </a-dropdown>
@@ -47,7 +47,7 @@ import { MenuInfo } from '../../typings/antd';
 import { IProvider, defaultProvider } from '../utils/globalProvider';
 import { useRoute, useRouter, RouteLocationNormalizedLoaded, Router, RouteMeta } from 'vue-router';
 import { MoreOutlined, ReloadOutlined, CloseOutlined } from '@ant-design/icons-vue';
-import { getEASIText } from '../locale'
+import {getEASIText, IGlobalLocal} from '../locale'
 
 export interface TabPane {
   title: string;
@@ -63,7 +63,8 @@ export default defineComponent({
     const route: RouteLocationNormalizedLoaded = useRoute();
     const router: Router = useRouter();
 
-    const globalProvider = inject<IProvider>('globalProvider', {...defaultProvider})
+    const globalProvider = inject<IProvider>('globalProvider', {...defaultProvider});
+    const globalEASILocale = inject<IGlobalLocal>('globalEASILocale', {message: {}});
 
     const activeKey = ref<string>('');
     const panes = ref<TabPane[]>([]);
@@ -136,7 +137,9 @@ export default defineComponent({
             break;
         }
       },
-      getEASIText
+      getText(key: string, value?: {[props: string]: string | number}){
+        return getEASIText(globalEASILocale, key, value)
+      },
     }
   },
   components: {

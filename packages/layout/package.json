@@ -4,7 +4,7 @@
   "main": "index.ts",
   "license": "MIT",
   "peerDependencies": {
-    "vue": "3.1.1",
+    "vue": "3.1.5",
     "vue-router": "4",
     "easi-web-utils": "https://github.com/infinitasx/easi-web-utils.git#main",
     "@ant-design/icons-vue": "6"

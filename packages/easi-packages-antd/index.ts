@@ -13,6 +13,7 @@ import EASIModal from "../modal";
 import EASILayout from "../layout";
 import EASITable from "../table";
 import EASISetting from "../setting";
+import EASIUploader from "../uploader";
 
 import vPermission from "../directives/v-permissions";
 import vLoading from "../directives/v-loading";
@@ -23,7 +24,7 @@ import { usePagination } from "../utils/usePagination";
 import { version as version_ } from "./version";
 const version = version_;
 
-const components = [EASIProvider, EASIText, EASIButton, EASIDrawer, EASIError, EASILayout, EASILoading, EASIModal, EASIPage, EASITable, EASISetting];
+const components = [EASIProvider, EASIText, EASIButton, EASIDrawer, EASIError, EASILayout, EASILoading, EASIModal, EASIPage, EASITable, EASISetting, EASIUploader];
 
 const plugins: Plugin[] = [vPermission];
 
@@ -39,7 +40,7 @@ const install = (app: App): void => {
   });
 };
 
-export { EASIProvider, EASIText, EASIButton, EASIDrawer, EASIError, EASILayout, EASILoading, EASIModal, EASIPage, EASITable, EASISetting, install, vPermission, vLoading, useModalVisible, usePagination };
+export { EASIProvider, EASIText, EASIButton, EASIDrawer, EASIError, EASILayout, EASILoading, EASIModal, EASIPage, EASITable, EASISetting, EASIUploader, install, vPermission, vLoading, useModalVisible, usePagination };
 
 export default {
   version,
