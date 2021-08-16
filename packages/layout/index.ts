@@ -1,5 +1,5 @@
 import { App } from "vue";
-import Layout from "./index.vue";
+import Layout from "./Index.vue";
 import "tailwindcss/tailwind.css";
 
 Layout.install = (app: App): void => {

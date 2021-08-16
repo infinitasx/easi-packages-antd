@@ -83,10 +83,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 }
 
 script.render = render;
-script.__file = "packages/table/index.vue";
+script.__file = "packages/table/Index.vue";
 
 script.install = (app) => {
   app.component(script.name, script);
 };
 
-export { script as default };
+export default script;

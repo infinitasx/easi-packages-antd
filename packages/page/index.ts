@@ -1,5 +1,5 @@
 import { App } from "vue";
-import Page from "./index.vue";
+import Page from "./Index.vue";
 import "tailwindcss/tailwind.css";
 
 Page.install = (app: App): void => {

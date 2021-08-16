@@ -4,7 +4,7 @@ import { getLocal, setLocal } from "easi-web-utils";
 
 export interface IProvider {
   reloadPage: boolean;
-  mode: "light" | "dark";
+  mode: boolean;
   showTab: boolean;
   fixedTab: boolean;
   cachedPage: string[];
@@ -17,7 +17,7 @@ const HTML = document.querySelector("html") as HTMLHtmlElement;
 
 export const defaultProvider: IProvider = {
   reloadPage: true,
-  mode: "light",
+  mode: false,
   showTab: true,
   fixedTab: true,
   cachedPage: [],
@@ -30,7 +30,9 @@ export function initProvider() {
     showTab: true,
   };
 
-  defaultData.mode && HTML.setAttribute("data-pro-theme", "antdv-pro-theme-dark");
+  if(defaultData.mode === true || (defaultData.mode as any) === 'dark'){
+    defaultData.mode && HTML.setAttribute("data-pro-theme", "antdv-pro-theme-dark");
+  }
 
   return reactive<IProvider>({
     ...defaultData,
@@ -41,7 +43,7 @@ export function initProvider() {
 
 export function setProvider(provide: IProvider) {
   const { cachedPage, reloadPage, ...other } = toRaw(provide);
-  if (other.mode) {
+  if (other.mode === true || (other.mode as any) === 'dark') {
     HTML.setAttribute("data-pro-theme", "antdv-pro-theme-dark");
   } else {
     HTML.removeAttribute("data-pro-theme");

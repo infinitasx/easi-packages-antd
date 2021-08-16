@@ -1,3 +1,3 @@
-import Modal from "./index.vue";
+import Modal from "./Index.vue";
 import "tailwindcss/tailwind.css";
 export default Modal;

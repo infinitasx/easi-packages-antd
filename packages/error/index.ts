@@ -1,5 +1,5 @@
 import { App } from "vue";
-import Error from "./index.vue";
+import Error from "./Index.vue";
 import "tailwindcss/tailwind.css";
 
 Error.install = (app: App): void => {

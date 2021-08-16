@@ -8,7 +8,7 @@ declare const _default: import("vue").DefineComponent<{
     status?: unknown;
 } & {
     status: "" | "403" | "404" | "success" | "warning" | "500" | "error";
-} & {}> & {}, {
+} & {}>, {
     status: "" | "403" | "404" | "success" | "warning" | "500" | "error";
 }>;
 export default _default;

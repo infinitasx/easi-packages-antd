@@ -207,10 +207,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 }
 
 script.render = render;
-script.__file = "packages/modal/index.vue";
+script.__file = "packages/modal/Index.vue";
 
 script.install = (app) => {
   app.component(script.name, script);
 };
 
-export { script as default };
+export default script;

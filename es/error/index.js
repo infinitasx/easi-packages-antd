@@ -14,7 +14,7 @@ var script = defineComponent({
   }
 });
 
-const _withId = /* @__PURE__ */ withScopeId("data-v-57502012");
+const _withId = /* @__PURE__ */ withScopeId("data-v-4bca0fd7");
 const render = /* @__PURE__ */ _withId((_ctx, _cache, $props, $setup, $data, $options) => {
   const _component_a_result = resolveComponent("a-result");
   const _component_a_card = resolveComponent("a-card");
@@ -39,11 +39,11 @@ const render = /* @__PURE__ */ _withId((_ctx, _cache, $props, $setup, $data, $op
 });
 
 script.render = render;
-script.__scopeId = "data-v-57502012";
-script.__file = "packages/error/index.vue";
+script.__scopeId = "data-v-4bca0fd7";
+script.__file = "packages/error/Index.vue";
 
 script.install = (app) => {
   app.component(script.name, script);
 };
 
-export { script as default };
+export default script;

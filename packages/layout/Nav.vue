@@ -36,7 +36,7 @@
 <script lang="ts">
 import {defineComponent} from "vue"
 import {createNamespace} from "../utils/create";
-import NavMenu from './menu.vue';
+import NavMenu from './Menu.vue';
 
 export default defineComponent({
   name: createNamespace('Nav'),

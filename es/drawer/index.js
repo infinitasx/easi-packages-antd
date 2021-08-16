@@ -41,8 +41,8 @@ var script = defineComponent({
   }
 });
 
-const _withId = /* @__PURE__ */ withScopeId("data-v-5cb92078");
-pushScopeId("data-v-5cb92078");
+const _withId = /* @__PURE__ */ withScopeId("data-v-57a97f50");
+pushScopeId("data-v-57a97f50");
 const _hoisted_1 = {
   key: 0,
   class: "drawer-footer"
@@ -68,11 +68,11 @@ const render = /* @__PURE__ */ _withId((_ctx, _cache, $props, $setup, $data, $op
 });
 
 script.render = render;
-script.__scopeId = "data-v-5cb92078";
-script.__file = "packages/drawer/index.vue";
+script.__scopeId = "data-v-57a97f50";
+script.__file = "packages/drawer/Index.vue";
 
 script.install = (app) => {
   app.component(script.name, script);
 };
 
-export { script as default };
+export default script;

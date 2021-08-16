@@ -31,9 +31,7 @@ declare const _default: import("vue").DefineComponent<{
     pSize: "normal" | "small";
 } & {
     pTitle?: string | undefined;
-}> & {
-    "onUpdate:pShow"?: ((...args: any[]) => any) | undefined;
-}, {
+}>, {
     pTitle: string;
     pShow: boolean;
     pSize: "normal" | "small";

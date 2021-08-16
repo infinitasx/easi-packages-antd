@@ -44,10 +44,10 @@
 import { computed, defineComponent, inject, onBeforeUnmount, onMounted, ref, toRefs, watch, PropType } from "vue";
 import { useRoute, useRouter, RouteLocationNormalized } from "vue-router";
 import { createNamespace } from "../utils/create";
-import PageNav from "./nav.vue";
-import PageHeader from "./header.vue";
-import PageSetting from "../setting/index.vue";
-import PageTab from "./tab.vue";
+import PageNav from "./Nav.vue";
+import PageHeader from "./Header.vue";
+import PageSetting from "../setting/Index.vue";
+import PageTab from "./Tab.vue";
 import { isMobile, debounced } from "easi-web-utils";
 import { useReload, IProvider, defaultProvider } from "../utils/globalProvider";
 import { UserInfo } from '../../typings/antd'
