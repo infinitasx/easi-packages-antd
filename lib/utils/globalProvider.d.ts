@@ -1,7 +1,7 @@
 import { RouteLocationNormalizedLoaded } from "vue-router";
 export interface IProvider {
     reloadPage: boolean;
-    mode: "light" | "dark";
+    mode: boolean;
     showTab: boolean;
     fixedTab: boolean;
     cachedPage: string[];
@@ -11,7 +11,7 @@ export declare const defaultProvider: IProvider;
 export declare function initProvider(): {
     [x: string]: any;
     reloadPage: boolean;
-    mode: "light" | "dark";
+    mode: boolean;
     showTab: boolean;
     fixedTab: boolean;
     cachedPage: string[];

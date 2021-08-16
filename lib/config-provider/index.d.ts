@@ -1,3 +1,3 @@
-import ConfigProvider from "./index.vue";
+import ConfigProvider from "./Index.vue";
 import "tailwindcss/tailwind.css";
 export default ConfigProvider;

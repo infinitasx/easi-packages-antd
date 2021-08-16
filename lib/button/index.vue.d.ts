@@ -10,7 +10,7 @@ declare const _default: import("vue").DefineComponent<{
     type?: unknown;
 } & {
     type: "primary" | "ghost" | "dashed" | "link" | "text" | "default";
-} & {}> & {}, {
+} & {}>, {
     type: "primary" | "ghost" | "dashed" | "link" | "text" | "default";
 }>;
 export default _default;

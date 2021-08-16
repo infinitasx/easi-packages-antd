@@ -46,9 +46,7 @@ declare const _default: import("vue").DefineComponent<{
     hasPermission: boolean;
 } & {
     breadcrumb?: BreadcrumbRoute[] | undefined;
-}> & {
-    onInitPage?: ((...args: any[]) => any) | undefined;
-}, {
+}>, {
     showPageHeader: boolean;
     breadcrumb: BreadcrumbRoute[];
     title: string;

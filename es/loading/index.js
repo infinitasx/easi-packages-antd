@@ -126,8 +126,8 @@ var script = defineComponent({
   }
 });
 
-const _withId = /* @__PURE__ */ withScopeId("data-v-044ca92b");
-pushScopeId("data-v-044ca92b");
+const _withId = /* @__PURE__ */ withScopeId("data-v-7bbec90b");
+pushScopeId("data-v-7bbec90b");
 const _hoisted_1 = {
   key: 0,
   class: "loading-container",
@@ -167,11 +167,11 @@ const render = /* @__PURE__ */ _withId((_ctx, _cache, $props, $setup, $data, $op
 });
 
 script.render = render;
-script.__scopeId = "data-v-044ca92b";
-script.__file = "packages/loading/index.vue";
+script.__scopeId = "data-v-7bbec90b";
+script.__file = "packages/loading/Index.vue";
 
 script.install = (app) => {
   app.component(script.name, script);
 };
 
-export { script as default };
+export default script;

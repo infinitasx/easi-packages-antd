@@ -11,7 +11,7 @@ declare const _default: import("vue").DefineComponent<{
     locale?: unknown;
 } & {
     locale: ILocale;
-} & {}> & {}, {
+} & {}>, {
     locale: ILocale;
 }>;
 export default _default;

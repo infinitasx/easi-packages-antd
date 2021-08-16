@@ -43,9 +43,7 @@ declare const _default: import("vue").DefineComponent<{
     onLogout?: Function | undefined;
     toDashboard?: Function | undefined;
     editPassword?: Function | undefined;
-}> & {
-    "onUpdate:visible"?: ((...args: any[]) => any) | undefined;
-}, {
+}>, {
     userInfo: UserInfo;
     showTabSetting: boolean;
     onLogout: Function;
