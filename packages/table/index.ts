@@ -1,5 +1,5 @@
 import { App } from "vue";
-import Table from "./index.vue";
+import Table from "./Index.vue";
 import "tailwindcss/tailwind.css";
 
 Table.install = (app: App): void => {

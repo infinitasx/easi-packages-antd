@@ -1,5 +1,5 @@
 import { App } from "vue";
-import Text from "./index.vue";
+import Text from "./Index.vue";
 import "tailwindcss/tailwind.css";
 
 Text.install = (app: App): void => {
