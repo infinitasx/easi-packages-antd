@@ -12,7 +12,8 @@
   "scripts": {
     "serve": "vite",
     "gc": "bash ./scripts/gc.sh",
-    "build": "rimraf ./dist && rimraf ./es && rimraf ./lib && vite build && yarn build:components && yarn build:bundle",
+    "gen:version": "node build/gen-version.js",
+    "build": "rimraf ./dist && rimraf ./es && rimraf ./lib && yarn gen:version && vite build && yarn build:components && yarn build:bundle",
     "build:bundle": "rollup -c ./build/rollup.config.bundle.js && node ./build/movefile.js",
     "build:components": "rollup -c ./build/rollup.config.js",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -36,6 +37,7 @@
     "easi-assets-deploy": "https://github.com/infinitasx/easi-assets-deploy.git#main",
     "easi-auto-tag": "https://github.com/infinitasx/easi-auto-tag.git#main",
     "lerna": "^4.0.0",
+    "postcss": "^8.3.6",
     "rimraf": "^3.0.2",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-css-only": "^3.1.0",
