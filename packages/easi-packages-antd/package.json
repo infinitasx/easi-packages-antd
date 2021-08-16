@@ -2,6 +2,7 @@
   "name": "easi-packages-antd",
   "license": "ISC",
   "version": "0.0.1",
+  "module": "index.ts",
   "dependencies": {
     "@easi-packages-antd/button": "^0.0.0",
     "@easi-packages-antd/text": "^0.0.0",

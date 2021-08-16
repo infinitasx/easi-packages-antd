@@ -14,7 +14,7 @@
     "sourceMap": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["packages/*", "src/*"]
+      "@/*": ["packages/*", "src/*", "website/*"]
     },
     "lib": ["esnext", "dom", "dom.iterable"]
   },

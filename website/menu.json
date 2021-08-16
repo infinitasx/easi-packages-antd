@@ -1,0 +1,57 @@
+[
+  {
+    "tag": "基础控件",
+    "children": [
+      {
+        "name": "文本",
+        "components": "Text",
+        "path": "/text"
+      },
+      {
+        "name": "按钮",
+        "components": "Button",
+        "path": "/button"
+      },
+      {
+        "name": "抽屉",
+        "components": "Drawer",
+        "path": "/drawer"
+      },
+      {
+        "name": "加载",
+        "components": "Loading",
+        "path": "/loading"
+      },
+      {
+        "name": "对话框",
+        "components": "Modal",
+        "path": "/modal"
+      },
+      {
+        "name": "表格",
+        "components": "Table",
+        "path": "/table"
+      }
+    ]
+  },
+  {
+    "tag": "页面组件",
+    "children": [
+      {
+        "name": "错误页",
+        "components": "Error",
+        "path": "/error"
+      },
+      {
+        "name": "布局",
+        "components": "Layout",
+        "path": "/layout"
+      },
+      {
+        "name": "页面",
+        "components": "Page",
+        "path": "/page"
+      }
+    ]
+  }
+]
