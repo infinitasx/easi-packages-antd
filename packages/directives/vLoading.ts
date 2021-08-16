@@ -3,7 +3,7 @@
 // true：显示； false：隐藏
 // 也可以接受对象，{show: boolean, title: 'common.loading', size: 'small' | 'normal'}
 
-import Loading from "../loading/index.vue";
+import Loading from "../loading/Index.vue";
 import { createApp, nextTick, DirectiveBinding, App, ComponentInternalInstance } from "vue";
 
 interface CustomerDom extends HTMLElement {
