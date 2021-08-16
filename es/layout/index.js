@@ -106,6 +106,7 @@ const render$5 = /* @__PURE__ */ _withId$4((_ctx, _cache, $props, $setup, $data,
     ], 2),
     createVNode("div", _hoisted_3$2, [
       createVNode(_component_a_menu, {
+        class: "layout-menu",
         mode: "inline",
         inlineCollapsed: false,
         openKeys: _ctx.openKeys,
