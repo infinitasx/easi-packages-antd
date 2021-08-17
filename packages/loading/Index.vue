@@ -80,7 +80,7 @@ export default defineComponent({
     })
 
     watch(
-        () => show.value,
+        () => cShow.value,
         newVal => {
           emit('update:show', newVal);
         },

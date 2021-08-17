@@ -77,50 +77,50 @@ function initI18n(lang) {
 
 var script = defineComponent({
   name: createNamespace("Loading"),
-  emits: ["update:pShow"],
+  emits: ["update:show"],
   props: {
-    pTitle: {
+    title: {
       type: String,
       default: void 0
     },
-    pShow: {
+    show: {
       default: false,
       type: Boolean
     },
-    pSize: {
+    size: {
       default: "normal",
       type: String
     }
   },
   setup(props, { emit }) {
-    const { pShow, pSize } = toRefs(props);
+    const { show, size } = toRefs(props);
     const app = getCurrentInstance();
     const defaultProxy = app?.root?.proxy || { localeMessage: { locale: "zh-cn" } };
     const root = ref(defaultProxy);
     const locale = initI18n(app?.root?.proxy?.localeMessage?.locale || "zh-cn");
     const defaultTitle = locale?.message?.loading;
-    const show = ref(false);
-    const title = ref(defaultTitle);
-    const size = ref("normal");
-    watch(() => pShow.value, (newVal) => {
-      show.value = newVal;
+    const cShow = ref(props.show);
+    const cTitle = ref(defaultTitle);
+    const cSize = ref("normal");
+    watch(() => show.value, (newVal) => {
+      cShow.value = newVal;
     });
-    watch(() => pSize.value, (newVal) => {
-      size.value = newVal;
+    watch(() => size.value, (newVal) => {
+      cSize.value = newVal;
     });
     watch(() => root.value?.localeMessage, (newVal) => {
       if (newVal) {
         locale.message = langMap[newVal?.locale || "zh-cn"];
-        title.value = locale.message.loading;
+        cTitle.value = locale.message.loading;
       }
     });
-    watch(() => show.value, (newVal) => {
-      emit("update:pShow", newVal);
+    watch(() => cShow.value, (newVal) => {
+      emit("update:show", newVal);
     });
     return {
-      show,
-      title,
-      size,
+      cShow,
+      cTitle,
+      cSize,
       root
     };
   }
@@ -153,12 +153,12 @@ const render = /* @__PURE__ */ _withId((_ctx, _cache, $props, $setup, $data, $op
     mode: "out-in"
   }, {
     default: _withId(() => [
-      _ctx.show ? (openBlock(), createBlock("div", _hoisted_1, [
+      _ctx.cShow ? (openBlock(), createBlock("div", _hoisted_1, [
         createVNode("div", {
-          class: ["loading", _ctx.size]
+          class: ["loading", _ctx.cSize]
         }, [
           _hoisted_2,
-          _ctx.pTitle || _ctx.title ? (openBlock(), createBlock("p", _hoisted_3, toDisplayString(_ctx.pTitle || _ctx.title), 1)) : createCommentVNode("v-if", true)
+          _ctx.title || _ctx.cTitle ? (openBlock(), createBlock("p", _hoisted_3, toDisplayString(_ctx.title || _ctx.cTitle), 1)) : createCommentVNode("v-if", true)
         ], 2)
       ])) : createCommentVNode("v-if", true)
     ]),
@@ -174,4 +174,4 @@ script.install = (app) => {
   app.component(script.name, script);
 };
 
-export { script as default };
+export default script;
