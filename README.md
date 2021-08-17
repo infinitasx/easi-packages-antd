@@ -15,6 +15,8 @@
 </p>
 <br>
 
+[文档地址](https://static.easiglobal.com/easi-packages-antd/0.0.18/website/index.html)
+
 ### 开发前置
 
 - 自动生成组件
@@ -38,13 +40,19 @@ yarn build
 - 安装 root 依赖
 
 ```
-yarn add -W -D 依赖名称
+yarn add -W 依赖名称
 ```
 
 - 安装组件依赖
 
 ```
 yarn workspace package add 依赖名称  // 给某个package安装依赖
+```
+
+- 预览 MD 文档
+
+```
+yarn website
 ```
 
 ### 预装依赖
@@ -59,7 +67,7 @@ yarn workspace package add 依赖名称  // 给某个package安装依赖
 - <a href="#UIComponent">UI 组件</a>
   - <a href="#EASIProvider">EASIProvider - 国际化配置根组件</a>
   - <a href="#EASILayout">EASILayout - 布局基础组件</a>
-  - <a href="#EASISetting">EASISetting - 用户设置抽屉（如果使用了EASILayout组件则不需要使用此组件）</a>
+  - <a href="#EASISetting">EASISetting - 用户设置抽屉（如果使用了 EASILayout 组件则不需要使用此组件）</a>
   - <a href="#EASIPage">EASIPage - 页面基础组件</a>
   - <a href="#EASITable">EASITable - Table 基础组件</a>
   - <a href="#EASIButton">EASIButton - 按钮</a>
@@ -101,17 +109,17 @@ yarn workspace package add 依赖名称  // 给某个package安装依赖
 
 #### Props
 
-|    props    |        type        |         default         | required | remark                           |
-| :---------: | :----------------: | :---------------------: | :------: | -------------------------------- |
-|    logo     |       string       |                         |    是    | 系统 Logo 图片                   |
-|    title    |       string       |                         |    是    | 系统名称                         |
-|  subTitle   |       string       |                         |    否    | 系统二级名称，一般用来放城市名称 |
-|     nav     |     NavItem[]      |           []            |    是    | 需要渲染的侧边栏菜单数据         |
-|  userInfo   |      UserInfo      |                         |    是    | 用户信息                         |
-|  showTabSetting   |    boolean    |  true  |    否    | 是否显示tab风格设置                         |
-|  onLogout   | () => Promise<any> |   |    否   | 退出登录的方法，返回 Promise，不传则不会显示退出登录按钮     |
-| toDashboard |     () => void     |                         |    否    | 跳转到 dashboard 的方法，不传则不会显示跳转dashboard按钮  |
-| editPassword |     () => void     |                         |    否    | 点击修改密码要执行的方法，不传则不会显示修改密码按钮  |
+|     props      |        type        | default | required | remark                                                     |
+| :------------: | :----------------: | :-----: | :------: | ---------------------------------------------------------- |
+|      logo      |       string       |         |    是    | 系统 Logo 图片                                             |
+|     title      |       string       |         |    是    | 系统名称                                                   |
+|    subTitle    |       string       |         |    否    | 系统二级名称，一般用来放城市名称                           |
+|      nav       |     NavItem[]      |   []    |    是    | 需要渲染的侧边栏菜单数据                                   |
+|    userInfo    |      UserInfo      |         |    是    | 用户信息                                                   |
+| showTabSetting |      boolean       |  true   |    否    | 是否显示 tab 风格设置                                      |
+|    onLogout    | () => Promise<any> |         |    否    | 退出登录的方法，返回 Promise，不传则不会显示退出登录按钮   |
+|  toDashboard   |     () => void     |         |    否    | 跳转到 dashboard 的方法，不传则不会显示跳转 dashboard 按钮 |
+|  editPassword  |     () => void     |         |    否    | 点击修改密码要执行的方法，不传则不会显示修改密码按钮       |
 
 <strong>NavItem</strong> <br/>
 
@@ -164,7 +172,7 @@ yarn workspace package add 依赖名称  // 给某个package安装依赖
 
 |   name   | required | remark                                                                                                                                                                                          |
 | :------: | :------: | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| initPage |   是   | 用户在有权限的情况下进入页面的回调，需在此传入初始化页面数据的方法，【必传】，不需要再在页面组件的 beforeMounted, onMounted, onActivated 内调用页面初始化方法，因为无权限时也会进组件的钩子函数 |
+| initPage |    是    | 用户在有权限的情况下进入页面的回调，需在此传入初始化页面数据的方法，【必传】，不需要再在页面组件的 beforeMounted, onMounted, onActivated 内调用页面初始化方法，因为无权限时也会进组件的钩子函数 |
 
 <hr />
 
@@ -172,15 +180,14 @@ yarn workspace package add 依赖名称  // 给某个package安装依赖
 
 #### Props
 
-|    props    |        type        |         default         | required | remark                           |
-| :---------: | :----------------: | :---------------------: | :------: | -------------------------------- |
-|  visible(v-model)   |      boolean      |       false                  |    是    | 显示/隐藏抽屉   |
-|  userInfo   |      UserInfo      |                         |    是    | 用户信息                         |
-|  showTabSetting   |    boolean    |  true  |    否    | 用户信息                         |
-|  onLogout   | () => Promise<any> |   |    否   | 退出登录的方法，返回 Promise，不传则不会显示退出登录按钮     |
-| toDashboard |     () => void     |                         |    否    | 跳转到 dashboard 的方法，不传则不会显示跳转dashboard按钮  |
-| editPassword |     () => void     |                         |    否    | 点击修改密码要执行的方法，不传则不会显示修改密码按钮  |
-
+|      props       |        type        | default | required | remark                                                     |
+| :--------------: | :----------------: | :-----: | :------: | ---------------------------------------------------------- |
+| visible(v-model) |      boolean       |  false  |    是    | 显示/隐藏抽屉                                              |
+|     userInfo     |      UserInfo      |         |    是    | 用户信息                                                   |
+|  showTabSetting  |      boolean       |  true   |    否    | 用户信息                                                   |
+|     onLogout     | () => Promise<any> |         |    否    | 退出登录的方法，返回 Promise，不传则不会显示退出登录按钮   |
+|   toDashboard    |     () => void     |         |    否    | 跳转到 dashboard 的方法，不传则不会显示跳转 dashboard 按钮 |
+|   editPassword   |     () => void     |         |    否    | 点击修改密码要执行的方法，不传则不会显示修改密码按钮       |
 
 <hr />
 <p><strong id="EASITable" style="font-size: 18px">EASITable - Table基础组件</strong></p>
@@ -214,6 +221,7 @@ yarn workspace package add 依赖名称  // 给某个package安装依赖
 #### Props
 
 与 ant-design-vue v2.2.2 [Button 组件](https://2x.antdv.com/components/button-cn) 一致
+
 <p>按钮有五种不同状态：info、danger、success、warning或都不传入</p>
 
 ```vue
@@ -304,8 +312,8 @@ yarn workspace package add 依赖名称  // 给某个package安装依赖
 
 |   props    |        type        | default | required | remark                                                                                                                                                                                                                             |
 | :--------: | :----------------: | :-----: | :------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-|   showOk   |      boolean         |  true   |    否    |   是否显示确认按钮，默认显示                                                                                                                                                                                     |
-| showCancel |   boolean            |  true   |    否    |   是否显示取消按钮，默认显示                                                                                                                                                                                |
+|   showOk   |      boolean       |  true   |    否    | 是否显示确认按钮，默认显示                                                                                                                                                                                                         |
+| showCancel |      boolean       |  true   |    否    | 是否显示取消按钮，默认显示                                                                                                                                                                                                         |
 |   width    |  string or number  |  1000   |    否    | 修改了默认的宽度，一般情况下不需要修改这个参数                                                                                                                                                                                     |
 |  handleOk  | () => Promise<any> |         |    否    | 如果没有传入 footer slot，则点击默认 footer 内的确认按钮，会调用此方法，如果此方法状态为 resolve 则会自动关闭弹框，如果为 reject 则不会关闭弹框。传入此方法后确认按钮的 loading 状态在组件内部管理，无需传入 confirmLoading 参数。 |
 | autoHeight |      boolean       |  true   |    否    | 是否撑开弹框，如果传入 false，弹框的 body 会有滚动条，弹框不会超过屏幕高度                                                                                                                                                         |
@@ -338,11 +346,11 @@ yarn workspace package add 依赖名称  // 给某个package安装依赖
 
 #### Props
 
-|      props      |      type       | default | required | remark                        |
-| :-------------: | :-------------: | :-----: | :------: | ----------------------------- |
-|     title      |     string      | 加载中  |    否    | 默认为【加载中...】国际化文案 |
+|     props     |      type       | default | required | remark                        |
+| :-----------: | :-------------: | :-----: | :------: | ----------------------------- |
+|     title     |     string      | 加载中  |    否    | 默认为【加载中...】国际化文案 |
 | show(v-model) |     boolean     |  true   |    否    | 默认渲染时就会显示            |
-|      size      | normal or small | normal  |    否    | loading 图标的尺寸大小        |
+|     size      | normal or small | normal  |    否    | loading 图标的尺寸大小        |
 
 <br/>
 <hr />
