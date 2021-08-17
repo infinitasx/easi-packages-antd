@@ -24,7 +24,7 @@ import {langMap, initI18n, ILocale} from '../locale'
 
 export default defineComponent({
   name: createNamespace('Loading'),
-  emits: ['update:pShow'],
+  emits: ['update:show'],
   props: {
     title: {
       type: String,
@@ -82,7 +82,7 @@ export default defineComponent({
     watch(
         () => show.value,
         newVal => {
-          emit('update:pShow', newVal);
+          emit('update:show', newVal);
         },
     );
 
