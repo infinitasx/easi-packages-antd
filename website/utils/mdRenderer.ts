@@ -46,12 +46,11 @@ function createRenderer(wrapCodeWithCard = true) {
       return `<router-link to="${href}" #="{ navigate, href }" custom><a-typography-link :href="href" @click="navigate">${text}</a-typography-link></router-link>`;
     },
     list(body, ordered, start) {
-      const type = ordered ? "n-ol" : "n-ul";
-      const startatt = ordered && start !== 1 ? ' start="' + start + '"' : "";
-      return `<${type}${startatt}>\n` + body + `</${type}>\n`;
+      const type = ordered ? "ol" : "ul";
+      return `<${type}>\n` + body + `</${type}>\n`;
     },
     listitem(text) {
-      return `<n-li>${text}</n-li>`;
+      return `<li>${text}</li>`;
     },
     codespan(code) {
       return `<a-typography-text code>${code}</a-typography-text>`;
