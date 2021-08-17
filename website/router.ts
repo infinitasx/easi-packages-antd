@@ -15,11 +15,11 @@ const routes = [
   },
   {
     path: "/error",
-    component: () => import("../packages/error/index.md"),
+    component: () => import("../packages/error/docs/index.md"),
   },
   {
     path: "/layout",
-    component: () => import("../packages/layout/index.md"),
+    component: () => import("../packages/layout/docs/index.md"),
   },
   {
     path: "/loading",
@@ -35,7 +35,7 @@ const routes = [
   },
   {
     path: "/table",
-    component: () => import("../packages/table/index.md"),
+    component: () => import("../packages/table/docs/index.md"),
   },
 ];
 const router = createRouter({

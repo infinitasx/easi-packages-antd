@@ -48,5 +48,7 @@ export default {
   min-height: 100px;
   text-align: left;
   background: #f0f0f0;
+  white-space: pre;
+  overflow-x: scroll;
 }
 </style>
