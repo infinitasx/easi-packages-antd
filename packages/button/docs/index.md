@@ -2,6 +2,7 @@
 
 ```demo
 base
+loading
 ```
 
 #### Props

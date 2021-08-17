@@ -66,6 +66,7 @@ export const genVueComponent = (parts) => {
   const scriptReg = /<!--SCRIPT_SLOT-->/;
   const styleReg = /<!--STYLE_SLOT-->/;
   const demoReg = /<!--DEMO_SLOT-->/;
+
   let src = demoBlock;
   if (parts.content) {
     src = src.replace(contentReg, parts.content);
@@ -77,7 +78,7 @@ export const genVueComponent = (parts) => {
     src = src.replace(codeReg, parts.code);
   }
   if (parts.script) {
-    src = src.replace(scriptReg, parts.script);
+    src = src.replace(scriptReg, `<script>\n${parts.script}\n</script>`);
   }
   if (parts.style) {
     // const style = genStyle(parts.style);

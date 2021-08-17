@@ -11,7 +11,7 @@ const routes = [
   },
   {
     path: "/drawer",
-    component: () => import("../packages/drawer/index.md"),
+    component: () => import("../packages/drawer/docs/index.md"),
   },
   {
     path: "/error",
@@ -23,11 +23,11 @@ const routes = [
   },
   {
     path: "/loading",
-    component: () => import("../packages/loading/index.md"),
+    component: () => import("../packages/loading/docs/index.md"),
   },
   {
     path: "/modal",
-    component: () => import("../packages/modal/index.md"),
+    component: () => import("../packages/modal/docs/index.md"),
   },
   {
     path: "/page",

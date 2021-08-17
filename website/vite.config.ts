@@ -16,7 +16,7 @@ const prefetch = ["https://cdn.jsdelivr.net", "https://static.easiglobal.com"];
 
 const externalJS = ["vue", "ant-design-vue", "vue-router"],
   cdnJS = [],
-  cdnCSS = ["https://cdn.jsdelivr.net/npm/ant-design-vue@2.2.2/dist/antd.min.css", "https://static.easiglobal.com/easi-packages-antd/0.0.11/style.css"];
+  cdnCSS = ["https://cdn.jsdelivr.net/npm/ant-design-vue@2.2.2/dist/antd.min.css", `https://static.easiglobal.com/easi-packages-antd/${version}/style.css`];
 externalJS.forEach((item, index) => {
   if (item === "ant-design-vue") {
     return (cdnJS[index] = `https://cdn.jsdelivr.net/npm/${item}@${getVersion(item)}/dist/antd.js`);

@@ -1,7 +1,7 @@
 {
   "name": "easi-packages-antd",
   "private": true,
-  "version": "0.0.20",
+  "version": "0.0.21",
   "description": "",
   "main": "dist/index.es.js",
   "module": "dist/index.cjs.js",
@@ -18,10 +18,10 @@
     "build:bundle": "rollup -c ./build/rollup.config.bundle.js && node ./build/move-file.js",
     "build:components": "rollup -c ./build/rollup.config.js",
     "build:ws": "vite build --config ./website/vite.config.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "easi-assets-deploy": "easi-assets-deploy",
     "easi-auto-tag": "easi-auto-tag",
-    "website": "vite --config ./website/vite.config.ts"
+    "website": "vite --config ./website/vite.config.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
