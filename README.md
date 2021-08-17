@@ -15,7 +15,7 @@
 </p>
 <br>
 
-[文档地址](https://static.easiglobal.com/easi-packages-antd/0.0.20/website/index.html)
+[文档地址](https://static.easiglobal.com/easi-packages-antd/0.0.21/website/index.html)
 
 ### 开发前置
 

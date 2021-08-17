@@ -28,7 +28,7 @@ declare const _default: import("vue").DefineComponent<{
     success: boolean;
     warning: boolean;
     info: boolean;
-} & {}>, {
+} & {}> & {}, {
     type: "primary" | "ghost" | "dashed" | "link" | "text" | "default";
     success: boolean;
     warning: boolean;
