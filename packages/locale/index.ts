@@ -32,11 +32,11 @@ export function getEASIText(key: string, value?: {[props: string]: string | numb
   let message = globalEASILocale?.message[key];
   if(message){
     if(value){
-      const reg = new RegExp('(?<=\{).*?(?=\})', 'g');
+      const reg = /(\{).*?(\})/g;
       const keyArray = message.match(reg);
       keyArray.forEach((key: string) => {
-        let realKey = key.trim();
-        const reg1 = new RegExp(`\{${key}\}`, 'g')
+        let realKey = key.replace(/\{|\}|\s|\n|\t/g, '');
+        const reg1 = new RegExp(`${key}`, 'g')
         message = message.replace(reg1, value[realKey])
       })
     }
