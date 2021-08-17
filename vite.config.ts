@@ -1,7 +1,6 @@
 import { defineConfig } from "vite";
 import json from "@rollup/plugin-json";
 import vue from "@vitejs/plugin-vue";
-// import dts from "vite-plugin-dts";
 import html from "vite-plugin-html";
 import { resolve } from "path";
 
