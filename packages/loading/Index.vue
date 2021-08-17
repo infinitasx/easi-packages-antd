@@ -1,7 +1,7 @@
 <template>
   <transition name="fade" mode="out-in">
-    <div class="loading-container" id="cus-loading" v-if="show">
-      <div class="loading" :class="size">
+    <div class="loading-container" id="cus-loading" v-if="cShow">
+      <div class="loading" :class="cSize">
         <div class="loading-wrap">
           <div class="ball">
             <i class="bg spoon"></i>
@@ -11,7 +11,7 @@
             <div></div>
           </div>
         </div>
-        <p class="tips" v-if="pTitle || title">{{ pTitle || title }}</p>
+        <p class="tips" v-if="title || cTitle">{{ title || cTitle }}</p>
       </div>
     </div>
   </transition>
@@ -26,23 +26,23 @@ export default defineComponent({
   name: createNamespace('Loading'),
   emits: ['update:pShow'],
   props: {
-    pTitle: {
+    title: {
       type: String,
       default: undefined
     },
 
-    pShow: {
+    show: {
       default: false,
       type: Boolean,
     },
-    pSize: {
+    size: {
       default: 'normal',
       type: String as PropType<'normal' | 'small'>,
     },
   },
 
   setup(props, {emit}) {
-    const {pShow, pSize} = toRefs(props);
+    const {show, size} = toRefs(props);
 
     const app = getCurrentInstance() as ComponentInternalInstance;
 
@@ -54,28 +54,28 @@ export default defineComponent({
 
     const defaultTitle = locale?.message?.loading;
 
-    const show = ref<boolean>(false);
-    const title = ref<string>(defaultTitle);
-    const size = ref<'normal' | 'small'>('normal');
+    const cShow = ref<boolean>(props.show);
+    const cTitle = ref<string>(defaultTitle);
+    const cSize = ref<'normal' | 'small'>('normal');
 
     watch(
-        () => pShow.value,
+        () => show.value,
         newVal => {
-          show.value = newVal;
+          cShow.value = newVal;
         },
     );
 
     watch(
-        () => pSize.value,
+        () => size.value,
         newVal => {
-          size.value = newVal;
+          cSize.value = newVal;
         },
     );
 
     watch(() => root.value?.localeMessage, newVal => {
       if(newVal){
         locale.message = langMap[newVal?.locale || 'zh-cn'];
-        title.value = locale.message.loading;
+        cTitle.value = locale.message.loading;
       }
     })
 
@@ -87,9 +87,9 @@ export default defineComponent({
     );
 
     return {
-      show,
-      title,
-      size,
+      cShow,
+      cTitle,
+      cSize,
       root
     };
   },

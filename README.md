@@ -174,7 +174,7 @@ yarn workspace package add 依赖名称  // 给某个package安装依赖
 
 |    props    |        type        |         default         | required | remark                           |
 | :---------: | :----------------: | :---------------------: | :------: | -------------------------------- |
-|  visible(v-model:)   |      boolean      |       false                  |    是    | 显示/隐藏抽屉   |
+|  visible(v-model)   |      boolean      |       false                  |    是    | 显示/隐藏抽屉   |
 |  userInfo   |      UserInfo      |                         |    是    | 用户信息                         |
 |  showTabSetting   |    boolean    |  true  |    否    | 用户信息                         |
 |  onLogout   | () => Promise<any> |   |    否   | 退出登录的方法，返回 Promise，不传则不会显示退出登录按钮     |
@@ -214,6 +214,62 @@ yarn workspace package add 依赖名称  // 给某个package安装依赖
 #### Props
 
 与 ant-design-vue v2.2.2 [Button 组件](https://2x.antdv.com/components/button-cn) 一致
+<p>按钮有五种不同状态：info、danger、success、warning或都不传入</p>
+
+```vue
+<template>
+  <div style="margin-bottom: 10px">
+    <a-space>
+      <EASIButton type="link">link</EASIButton>
+      <EASIButton type="text">text</EASIButton>
+      <EASIButton type="primary">primary</EASIButton>
+      <EASIButton type="ghost">ghost</EASIButton>
+      <EASIButton type="dashed">dashed</EASIButton>
+      <EASIButton type="default">default</EASIButton>
+    </a-space>
+  </div>
+  <div style="margin-bottom: 10px">
+    <a-space>
+      <EASIButton type="link" info>link</EASIButton>
+      <EASIButton type="text" info>text</EASIButton>
+      <EASIButton type="primary" info>primary</EASIButton>
+      <EASIButton type="ghost" info>ghost</EASIButton>
+      <EASIButton type="dashed" info>dashed</EASIButton>
+      <EASIButton type="default" info>default</EASIButton>
+    </a-space>
+  </div>
+  <div style="margin-bottom: 10px">
+    <a-space>
+      <EASIButton type="link" danger>link</EASIButton>
+      <EASIButton type="text" danger>text</EASIButton>
+      <EASIButton type="primary" danger>primary</EASIButton>
+      <EASIButton type="ghost" danger>ghost</EASIButton>
+      <EASIButton type="dashed" danger>dashed</EASIButton>
+      <EASIButton type="default" danger>default</EASIButton>
+    </a-space>
+  </div>
+  <div style="margin-bottom: 10px">
+    <a-space>
+      <EASIButton type="link" success>link</EASIButton>
+      <EASIButton type="text" success>text</EASIButton>
+      <EASIButton type="primary" success>primary</EASIButton>
+      <EASIButton type="ghost" success>ghost</EASIButton>
+      <EASIButton type="dashed" success>dashed</EASIButton>
+      <EASIButton type="default" success>default</EASIButton>
+    </a-space>
+  </div>
+  <div>
+    <a-space>
+      <EASIButton type="link" warning>link</EASIButton>
+      <EASIButton type="text" warning>text</EASIButton>
+      <EASIButton type="primary" warning>primary</EASIButton>
+      <EASIButton type="ghost" warning>ghost</EASIButton>
+      <EASIButton type="dashed" warning>dashed</EASIButton>
+      <EASIButton type="default" warning>default</EASIButton>
+    </a-space>
+  </div>
+</template>
+```
 
 #### Event
 
@@ -248,6 +304,8 @@ yarn workspace package add 依赖名称  // 给某个package安装依赖
 
 |   props    |        type        | default | required | remark                                                                                                                                                                                                                             |
 | :--------: | :----------------: | :-----: | :------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|   showOk   |      boolean         |  true   |    否    |   是否显示确认按钮，默认显示                                                                                                                                                                                     |
+| showCancel |   boolean            |  true   |    否    |   是否显示取消按钮，默认显示                                                                                                                                                                                |
 |   width    |  string or number  |  1000   |    否    | 修改了默认的宽度，一般情况下不需要修改这个参数                                                                                                                                                                                     |
 |  handleOk  | () => Promise<any> |         |    否    | 如果没有传入 footer slot，则点击默认 footer 内的确认按钮，会调用此方法，如果此方法状态为 resolve 则会自动关闭弹框，如果为 reject 则不会关闭弹框。传入此方法后确认按钮的 loading 状态在组件内部管理，无需传入 confirmLoading 参数。 |
 | autoHeight |      boolean       |  true   |    否    | 是否撑开弹框，如果传入 false，弹框的 body 会有滚动条，弹框不会超过屏幕高度                                                                                                                                                         |
@@ -282,9 +340,9 @@ yarn workspace package add 依赖名称  // 给某个package安装依赖
 
 |      props      |      type       | default | required | remark                        |
 | :-------------: | :-------------: | :-----: | :------: | ----------------------------- |
-|     pTitle      |     string      | 加载中  |    否    | 默认为【加载中...】国际化文案 |
-| :pShow(v-model) |     boolean     |  true   |    否    | 默认渲染时就会显示            |
-|      pSize      | normal or small | normal  |    否    | loading 图标的尺寸大小        |
+|     title      |     string      | 加载中  |    否    | 默认为【加载中...】国际化文案 |
+| show(v-model) |     boolean     |  true   |    否    | 默认渲染时就会显示            |
+|      size      | normal or small | normal  |    否    | loading 图标的尺寸大小        |
 
 <br/>
 <hr />
