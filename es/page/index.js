@@ -52,11 +52,11 @@ function getEASIText(key, value) {
   let message = globalEASILocale?.message[key];
   if (message) {
     if (value) {
-      const reg = /(?<=\{).*?(?=\})/g;
+      const reg = /(\{).*?(\})/g;
       const keyArray = message.match(reg);
       keyArray.forEach((key2) => {
-        let realKey = key2.trim();
-        const reg1 = new RegExp(`{${key2}}`, "g");
+        let realKey = key2.replace(/\{|\}|\s|\n|\t/g, "");
+        const reg1 = new RegExp(`${key2}`, "g");
         message = message.replace(reg1, value[realKey]);
       });
     }
@@ -201,4 +201,4 @@ script.install = (app) => {
   app.component(script.name, script);
 };
 
-export default script;
+export { script as default };

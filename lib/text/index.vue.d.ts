@@ -48,7 +48,7 @@ declare const _default: import("vue").DefineComponent<Readonly<import("vue").Com
     [x: string]: unknown;
 } & {} & {
     [x: string]: import("vue").Prop<unknown, unknown> | null | undefined;
-})>, {
+})> & {}, {
     [x: number]: string;
 } | {}>;
 export default _default;

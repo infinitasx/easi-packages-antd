@@ -3,7 +3,7 @@ import { resolve } from "path";
 import marked from "marked";
 import mdRenderer from "./mdRenderer";
 
-const demoBlock = fs.readFileSync(resolve(__dirname, "demo.vue")).toString();
+const demoBlock = fs.readFileSync(resolve(__dirname, "Demo.vue")).toString();
 
 export const getPartsOfDemo = (tokens) => {
   let template = null;

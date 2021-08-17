@@ -13,7 +13,7 @@
     "serve": "vite",
     "gc": "bash ./scripts/gc.sh",
     "gen:version": "node build/gen-version.js",
-    "build": "rimraf ./dist && rimraf ./es && rimraf ./lib && yarn gen:version && yarn build:ws && vite build && yarn build:components && yarn build:bundle",
+    "build": "rimraf ./dist && rimraf ./es && rimraf ./lib && yarn gen:version && vite build && yarn build:ws && yarn build:components && yarn build:bundle",
     "build:bundle": "rollup -c ./build/rollup.config.bundle.js && node ./build/movefile.js",
     "build:components": "rollup -c ./build/rollup.config.js",
     "test": "echo \"Error: no test specified\" && exit 1",

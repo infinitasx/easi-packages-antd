@@ -21,7 +21,7 @@ declare const _default: import("vue").DefineComponent<{
     scroll: Record<string, any>;
 } & {
     styleClass?: string | undefined;
-}>, {
+}> & {}, {
     loading: boolean;
     scroll: Record<string, any>;
 }>;
