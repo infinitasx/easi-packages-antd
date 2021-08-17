@@ -6,6 +6,6 @@
 
 | props        | type        | default     | required      |    remark      |
 | :------------: | :-----------: | :-----------: | :-----------: | -------------- |
-| pTitle  |  string   |   加载中  |  否  | 默认为【加载中...】国际化文案 |
-| :pShow(v-model)   |  boolean    |    true    |  否  | 默认渲染时就会显示 |
-| pSize  |  normal or small  |   normal  |  否  | loading图标的尺寸大小 |
+| title  |  string   |   加载中  |  否  | 默认为【加载中...】国际化文案 |
+| show(v-model)   |  boolean    |    true    |  否  | 默认渲染时就会显示 |
+| size  |  normal or small  |   normal  |  否  | loading图标的尺寸大小 |
