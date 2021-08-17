@@ -4,16 +4,25 @@
 
 本文件格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/) ，并且遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 。
 
+## [0.0.20] - 2021-08-17
+
+### Added
+
+- 添加 homepage
+
+### Changed
+
+- 测试环境和生产环境只构建 es、umd、readme 文档
 
 ## [0.0.19] - 2021-08-17
 
 ### Added
 
-- EASIButton 新增info、success、danger、warning四种颜色状态
+- EASIButton 新增 info、success、danger、warning 四种颜色状态
 
 ### Changed
 
-- EASILoading Props改为show(v-model)、size、title
+- EASILoading Props 改为 show(v-model)、size、title
 
 ## [0.0.18] - 2021-08-17
 

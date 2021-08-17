@@ -1,7 +1,7 @@
 {
   "name": "easi-packages-antd",
   "private": true,
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "",
   "main": "dist/index.es.js",
   "module": "dist/index.cjs.js",
@@ -13,14 +13,15 @@
     "serve": "vite",
     "gc": "bash ./scripts/gc.sh",
     "gen:version": "node build/gen-version.js",
-    "build": "rimraf ./dist && rimraf ./es && rimraf ./lib && yarn gen:version && vite build && yarn build:ws && yarn build:components && yarn build:bundle",
-    "build:bundle": "rollup -c ./build/rollup.config.bundle.js && node ./build/movefile.js",
+    "build": "rimraf ./dist && yarn gen:version && vite build && yarn build:ws",
+    "build:lib": "rimraf ./dist && rimraf ./es && rimraf ./lib && yarn gen:version && vite build && yarn build:ws && yarn build:components && yarn build:bundle",
+    "build:bundle": "rollup -c ./build/rollup.config.bundle.js && node ./build/move-file.js",
     "build:components": "rollup -c ./build/rollup.config.js",
+    "build:ws": "vite build --config ./website/vite.config.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "easi-assets-deploy": "easi-assets-deploy",
     "easi-auto-tag": "easi-auto-tag",
-    "website": "vite --config ./website/vite.config.ts",
-    "build:ws": "vite build --config ./website/vite.config.ts"
+    "website": "vite --config ./website/vite.config.ts"
   },
   "author": "",
   "license": "ISC",
@@ -84,5 +85,6 @@
     },
     "assetsFilePattern": "*.html",
     "asLibrary": true
-  }
+  },
+  "homepage": "https://static.easiglobal.com/easi-packages-antd/0.0.20/website/index.html"
 }
