@@ -15,6 +15,8 @@
 </p>
 <br>
 
+[文档地址](https://static.easiglobal.com/easi-packages-antd/0.0.18/website/index.html)
+
 ### 开发前置
 
 - 自动生成组件
@@ -38,13 +40,19 @@ yarn build
 - 安装 root 依赖
 
 ```
-yarn add -W -D 依赖名称
+yarn add -W 依赖名称
 ```
 
 - 安装组件依赖
 
 ```
 yarn workspace package add 依赖名称  // 给某个package安装依赖
+```
+
+- 预览 MD 文档
+
+```
+yarn website
 ```
 
 ### 预装依赖
@@ -59,7 +67,7 @@ yarn workspace package add 依赖名称  // 给某个package安装依赖
 - <a href="#UIComponent">UI 组件</a>
   - <a href="#EASIProvider">EASIProvider - 国际化配置根组件</a>
   - <a href="#EASILayout">EASILayout - 布局基础组件</a>
-  - <a href="#EASISetting">EASISetting - 用户设置抽屉（如果使用了EASILayout组件则不需要使用此组件）</a>
+  - <a href="#EASISetting">EASISetting - 用户设置抽屉（如果使用了 EASILayout 组件则不需要使用此组件）</a>
   - <a href="#EASIPage">EASIPage - 页面基础组件</a>
   - <a href="#EASITable">EASITable - Table 基础组件</a>
   - <a href="#EASIButton">EASIButton - 按钮</a>
@@ -101,17 +109,17 @@ yarn workspace package add 依赖名称  // 给某个package安装依赖
 
 #### Props
 
-|    props    |        type        |         default         | required | remark                           |
-| :---------: | :----------------: | :---------------------: | :------: | -------------------------------- |
-|    logo     |       string       |                         |    是    | 系统 Logo 图片                   |
-|    title    |       string       |                         |    是    | 系统名称                         |
-|  subTitle   |       string       |                         |    否    | 系统二级名称，一般用来放城市名称 |
-|     nav     |     NavItem[]      |           []            |    是    | 需要渲染的侧边栏菜单数据         |
-|  userInfo   |      UserInfo      |                         |    是    | 用户信息                         |
-|  showTabSetting   |    boolean    |  true  |    否    | 是否显示tab风格设置                         |
-|  onLogout   | () => Promise<any> |   |    否   | 退出登录的方法，返回 Promise，不传则不会显示退出登录按钮     |
-| toDashboard |     () => void     |                         |    否    | 跳转到 dashboard 的方法，不传则不会显示跳转dashboard按钮  |
-| editPassword |     () => void     |                         |    否    | 点击修改密码要执行的方法，不传则不会显示修改密码按钮  |
+|     props      |        type        | default | required | remark                                                     |
+| :------------: | :----------------: | :-----: | :------: | ---------------------------------------------------------- |
+|      logo      |       string       |         |    是    | 系统 Logo 图片                                             |
+|     title      |       string       |         |    是    | 系统名称                                                   |
+|    subTitle    |       string       |         |    否    | 系统二级名称，一般用来放城市名称                           |
+|      nav       |     NavItem[]      |   []    |    是    | 需要渲染的侧边栏菜单数据                                   |
+|    userInfo    |      UserInfo      |         |    是    | 用户信息                                                   |
+| showTabSetting |      boolean       |  true   |    否    | 是否显示 tab 风格设置                                      |
+|    onLogout    | () => Promise<any> |         |    否    | 退出登录的方法，返回 Promise，不传则不会显示退出登录按钮   |
+|  toDashboard   |     () => void     |         |    否    | 跳转到 dashboard 的方法，不传则不会显示跳转 dashboard 按钮 |
+|  editPassword  |     () => void     |         |    否    | 点击修改密码要执行的方法，不传则不会显示修改密码按钮       |
 
 <strong>NavItem</strong> <br/>
 
@@ -164,7 +172,7 @@ yarn workspace package add 依赖名称  // 给某个package安装依赖
 
 |   name   | required | remark                                                                                                                                                                                          |
 | :------: | :------: | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| initPage |   是   | 用户在有权限的情况下进入页面的回调，需在此传入初始化页面数据的方法，【必传】，不需要再在页面组件的 beforeMounted, onMounted, onActivated 内调用页面初始化方法，因为无权限时也会进组件的钩子函数 |
+| initPage |    是    | 用户在有权限的情况下进入页面的回调，需在此传入初始化页面数据的方法，【必传】，不需要再在页面组件的 beforeMounted, onMounted, onActivated 内调用页面初始化方法，因为无权限时也会进组件的钩子函数 |
 
 <hr />
 
@@ -172,15 +180,14 @@ yarn workspace package add 依赖名称  // 给某个package安装依赖
 
 #### Props
 
-|    props    |        type        |         default         | required | remark                           |
-| :---------: | :----------------: | :---------------------: | :------: | -------------------------------- |
-|  visible(v-model:)   |      boolean      |       false                  |    是    | 显示/隐藏抽屉   |
-|  userInfo   |      UserInfo      |                         |    是    | 用户信息                         |
-|  showTabSetting   |    boolean    |  true  |    否    | 用户信息                         |
-|  onLogout   | () => Promise<any> |   |    否   | 退出登录的方法，返回 Promise，不传则不会显示退出登录按钮     |
-| toDashboard |     () => void     |                         |    否    | 跳转到 dashboard 的方法，不传则不会显示跳转dashboard按钮  |
-| editPassword |     () => void     |                         |    否    | 点击修改密码要执行的方法，不传则不会显示修改密码按钮  |
-
+|       props       |        type        | default | required | remark                                                     |
+| :---------------: | :----------------: | :-----: | :------: | ---------------------------------------------------------- |
+| visible(v-model:) |      boolean       |  false  |    是    | 显示/隐藏抽屉                                              |
+|     userInfo      |      UserInfo      |         |    是    | 用户信息                                                   |
+|  showTabSetting   |      boolean       |  true   |    否    | 用户信息                                                   |
+|     onLogout      | () => Promise<any> |         |    否    | 退出登录的方法，返回 Promise，不传则不会显示退出登录按钮   |
+|    toDashboard    |     () => void     |         |    否    | 跳转到 dashboard 的方法，不传则不会显示跳转 dashboard 按钮 |
+|   editPassword    |     () => void     |         |    否    | 点击修改密码要执行的方法，不传则不会显示修改密码按钮       |
 
 <hr />
 <p><strong id="EASITable" style="font-size: 18px">EASITable - Table基础组件</strong></p>
