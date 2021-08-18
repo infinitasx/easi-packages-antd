@@ -19,7 +19,7 @@ export const route = createRouter({
           name: 'Test',
           component: Test,
           meta: {
-            title: 'test',
+            title: 'template',
           },
         }
       ]

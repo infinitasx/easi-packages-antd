@@ -9,3 +9,8 @@ declare module '*.json' {
   const version: any;
   export default version;
 }
+
+declare module '*.md'
+
+declare module '*.css'
+declare module '*.scss'

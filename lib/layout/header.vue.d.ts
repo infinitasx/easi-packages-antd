@@ -18,7 +18,10 @@ declare const _default: import("vue").DefineComponent<{
 } & {
     collapsed: boolean;
     userInfo: UserInfo;
-} & {}>, {
+} & {}> & {
+    onColToggle?: ((...args: any[]) => any) | undefined;
+    onHandleShowSetting?: ((...args: any[]) => any) | undefined;
+}, {
     collapsed: boolean;
     userInfo: UserInfo;
 }>;

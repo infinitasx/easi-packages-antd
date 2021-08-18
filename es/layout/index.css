@@ -70,6 +70,10 @@
   animation: fade-in 0.2s;
 }
 
+.layout-menu {
+  min-height: 100%;
+}
+
 @keyframes fade-in {
   0% {
     display: none;

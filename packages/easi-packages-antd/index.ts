@@ -15,8 +15,8 @@ import EASITable from "../table";
 import EASISetting from "../setting";
 import EASIUploader from "../uploader";
 
-import vPermission from "../directives/v-permissions";
-import vLoading from "../directives/v-loading";
+import vPermission from "../directives/vPermissions";
+import vLoading from "../directives/vLoading";
 
 import { useModalVisible } from "../utils/useModalVisible";
 import { usePagination } from "../utils/usePagination";

@@ -1,3 +1,3 @@
-import Layout from "./index.vue";
+import Layout from "./Index.vue";
 import "tailwindcss/tailwind.css";
 export default Layout;

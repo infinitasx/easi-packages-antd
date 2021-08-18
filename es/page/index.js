@@ -15,7 +15,7 @@ var script$1 = defineComponent({
   }
 });
 
-const _withId = /* @__PURE__ */ withScopeId("data-v-57502012");
+const _withId = /* @__PURE__ */ withScopeId("data-v-4bca0fd7");
 const render$1 = /* @__PURE__ */ _withId((_ctx, _cache, $props, $setup, $data, $options) => {
   const _component_a_result = resolveComponent("a-result");
   const _component_a_card = resolveComponent("a-card");
@@ -40,8 +40,8 @@ const render$1 = /* @__PURE__ */ _withId((_ctx, _cache, $props, $setup, $data, $
 });
 
 script$1.render = render$1;
-script$1.__scopeId = "data-v-57502012";
-script$1.__file = "packages/error/index.vue";
+script$1.__scopeId = "data-v-4bca0fd7";
+script$1.__file = "packages/error/Index.vue";
 
 script$1.install = (app) => {
   app.component(script$1.name, script$1);
@@ -52,11 +52,11 @@ function getEASIText(key, value) {
   let message = globalEASILocale?.message[key];
   if (message) {
     if (value) {
-      const reg = /(?<=\{).*?(?=\})/g;
+      const reg = /(\{).*?(\})/g;
       const keyArray = message.match(reg);
       keyArray.forEach((key2) => {
-        let realKey = key2.trim();
-        const reg1 = new RegExp(`{${key2}}`, "g");
+        let realKey = key2.replace(/\{|\}|\s|\n|\t/g, "");
+        const reg1 = new RegExp(`${key2}`, "g");
         message = message.replace(reg1, value[realKey]);
       });
     }
@@ -195,10 +195,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 }
 
 script.render = render;
-script.__file = "packages/page/index.vue";
+script.__file = "packages/page/Index.vue";
 
 script.install = (app) => {
   app.component(script.name, script);
 };
 
-export default script;
+export { script as default };

@@ -1,39 +1,41 @@
 import { PropType } from 'vue';
 declare const _default: import("vue").DefineComponent<{
-    pTitle: {
+    title: {
         type: StringConstructor;
         default: undefined;
     };
-    pShow: {
+    show: {
         default: boolean;
         type: BooleanConstructor;
     };
-    pSize: {
+    size: {
         default: string;
         type: PropType<"normal" | "small">;
     };
 }, {
-    show: import("vue").Ref<boolean>;
-    title: import("vue").Ref<string>;
-    size: import("vue").Ref<"normal" | "small">;
+    cShow: import("vue").Ref<boolean>;
+    cTitle: import("vue").Ref<string>;
+    cSize: import("vue").Ref<"normal" | "small">;
     root: import("vue").Ref<{
         localeMessage: {
             [x: string]: any;
             locale: import("../locale").Lang;
         };
     }>;
-}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "update:pShow"[], "update:pShow", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
-    pTitle?: unknown;
-    pShow?: unknown;
-    pSize?: unknown;
+}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "update:show"[], "update:show", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
+    title?: unknown;
+    show?: unknown;
+    size?: unknown;
 } & {
-    pShow: boolean;
-    pSize: "normal" | "small";
+    show: boolean;
+    size: "normal" | "small";
 } & {
-    pTitle?: string | undefined;
-}>, {
-    pTitle: string;
-    pShow: boolean;
-    pSize: "normal" | "small";
+    title?: string | undefined;
+}> & {
+    "onUpdate:show"?: ((...args: any[]) => any) | undefined;
+}, {
+    title: string;
+    show: boolean;
+    size: "normal" | "small";
 }>;
 export default _default;

@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="flex-1 overflow-y-auto overflow-x-hidden">
-    <a-menu mode="inline" :inlineCollapsed="false" v-model:openKeys="openKeys" v-model:selectedKeys="selectedKeys" theme="dark">
+    <a-menu class="layout-menu" mode="inline" :inlineCollapsed="false" v-model:openKeys="openKeys" v-model:selectedKeys="selectedKeys" theme="dark">
       <template v-for="item in nav" :key="item.name">
         <template v-if="item.children && item.children.length > 0 && !item.meta.hideMenu">
           <a-sub-menu :key="item.name">
@@ -135,6 +135,10 @@ export default defineComponent({
 
 .admin-title {
   animation: fade-in 0.2s;
+}
+
+.layout-menu{
+  min-height: 100%;
 }
 
 @keyframes fade-in {

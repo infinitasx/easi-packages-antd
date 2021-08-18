@@ -21,10 +21,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 }
 
 script.render = render;
-script.__file = "packages/text/index.vue";
+script.__file = "packages/text/Index.vue";
 
 script.install = (app) => {
   app.component(script.name, script);
 };
 
-export default script;
+export { script as default };

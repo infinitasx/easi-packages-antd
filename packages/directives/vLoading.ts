@@ -3,7 +3,7 @@
 // true：显示； false：隐藏
 // 也可以接受对象，{show: boolean, title: 'common.loading', size: 'small' | 'normal'}
 
-import Loading from "../loading/index.vue";
+import Loading from "../loading/Index.vue";
 import { createApp, nextTick, DirectiveBinding, App, ComponentInternalInstance } from "vue";
 
 interface CustomerDom extends HTMLElement {
@@ -21,13 +21,13 @@ export default {
         if (el.originalPosition !== "absolute" && el.originalPosition !== "fixed") {
           el.style.position = "relative";
         }
-        el.comp.show = true;
+        el.comp.cShow = true;
 
         if(title){
-          el.comp.title = title;
+          el.comp.cTitle = title;
         }
         if(size){
-          el.comp.size = size;
+          el.comp.cSize = size;
         }
         el.comp.root= (app._instance as ComponentInternalInstance)?.root?.proxy;
         el?.appendChild(el?.loadingRoot);
@@ -63,7 +63,7 @@ export default {
         });
         el.domInserted = true;
       } else {
-        el.comp.show = false;
+        el.comp.cShow = false;
         if (el.domInserted) {
           removeDom(el);
         }
