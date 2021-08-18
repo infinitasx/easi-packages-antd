@@ -75,4 +75,4 @@ script.install = (app) => {
   app.component(script.name, script);
 };
 
-export { script as default };
+export default script;

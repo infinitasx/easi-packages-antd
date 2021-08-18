@@ -19,7 +19,5 @@ declare const _default: import("vue").DefineComponent<{}, {
     removeTab: (index: number) => void;
     action({ key }: MenuInfo): void;
     getEASIText: typeof getEASIText;
-}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "reloadPage"[], "reloadPage", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{} & {} & {}> & {
-    onReloadPage?: ((...args: any[]) => any) | undefined;
-}, {}>;
+}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "reloadPage"[], "reloadPage", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{} & {} & {}>, {}>;
 export default _default;

@@ -29,7 +29,7 @@
           </transition>
         </router-view>
       </a-layout-content>
-      <a-layout-footer class="px-16 py-12 text-center"> &copy;Copyright EASI, Make Life Easier. </a-layout-footer>
+      <a-layout-footer class="px-16 py-12 text-center"> &copy; {{copyRightYear()}} EASI, Make Life Easier. </a-layout-footer>
     </a-layout>
     <PageSetting v-model:visible="showSetting" :userInfo="userInfo" :showTabSetting="showTabSetting" :onLogout="onLogout" :toDashboard="toDashboard" :editPassword="editPassword">
       <!--  开发时可自定义插入内容  -->
@@ -99,6 +99,11 @@ export default defineComponent({
     editPassword: {
       type: Function,
       default: undefined,
+    },
+    // 项目开始年份
+    startYear: {
+      type: [String, Number],
+      default: 2021,
     }
   },
   setup(props) {
@@ -190,6 +195,14 @@ export default defineComponent({
       handleShowSetting() {
         showSetting.value = true;
       },
+      copyRightYear(){
+        let year = new Date().getFullYear();
+        if(!props.startYear) return '';
+        if(props.startYear.toString() === year.toString()){
+          return props.startYear;
+        }
+        return `${props.startYear}-${year}`;
+      }
     };
   },
   components: {
