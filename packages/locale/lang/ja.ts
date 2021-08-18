@@ -20,4 +20,6 @@ export default {
   uploaderTab0: 'ローカルアップロード',
   uploaderTab1: '画像ライブラリ',
   uploaderPrimary: 'アップロード',
+  uploaderEmptyTitle: 'こちらの画像をクリックまたはドラッグしてアップロードしてください',
+  uploaderEmptySubTitle: 'サポートファイル拡張子：.jpg、.jpeg、.png、.webp、.gifなど',
 }

@@ -5,20 +5,35 @@
              :title="title || getText('uploaderTitle')"
              centered
              @show="handleShow"
+             @cancel="handleCancel"
   >
     <a-tabs type="card" v-model:activeKey="activeKey">
       <a-tab-pane class="pane-container" :key="0" :tab="getText('uploaderTab0')">
-        本地上传
+        <Empty />
       </a-tab-pane>
       <a-tab-pane class="pane-container" :key="1" :tab="getText('uploaderTab1')">
         图片库
       </a-tab-pane>
+      <template #tabBarExtraContent>
+        <a-form layout="inline">
+          <a-form-item>
+            <a-input-search
+                v-model:value="search"
+                placeholder="input search text"
+                style="width: 180px"
+            />
+          </a-form-item>
+          <a-form-item>
+            <EASIButton type="primary">搜索</EASIButton>
+          </a-form-item>
+        </a-form>
+      </template>
     </a-tabs>
 
     <template #footer>
       <a-space>
         <EASIButton @click="handleCancel">{{ getText('cancel') }}</EASIButton>
-        <EASIButton type="primary" danger>{{ getText('uploaderPrimary') }}</EASIButton>
+        <EASIButton type="primary" success>{{ getText('uploaderPrimary') }}</EASIButton>
         <EASIButton type="primary">{{ getText('confirm') }}</EASIButton>
       </a-space>
     </template>
@@ -28,8 +43,10 @@
 <script lang="ts">
 import {defineComponent, inject, ref, onMounted, onBeforeUnmount, getCurrentInstance, ComponentInternalInstance} from "vue";
 import EASIModal from '../modal/index.vue';
-import { createNamespace } from "../utils/create";
+import { createNamespace } from '../utils/create';
 import {getEASIText, IGlobalLocal} from '../locale'
+import Empty from './empty.vue';
+
 
 export default defineComponent({
   name: createNamespace("Uploader"),
@@ -64,11 +81,9 @@ export default defineComponent({
     }
 
     const handleCancel = () => {
+      symbolVisible.value = false;
+      emit('update:visible', false);
       emit('cancel')
-    }
-
-    const handleOk = () => {
-      emit('ok')
     }
 
     const handleShow = () => {
@@ -89,6 +104,8 @@ export default defineComponent({
       }
     })
 
+    const search = ref<string>();
+
 
     return {
       symbolVisible,
@@ -99,10 +116,12 @@ export default defineComponent({
       getText(key: string, value?: {[props: string]: string | number}){
         return getEASIText(globalEASILocale, key, value)
       },
+      search,
     };
   },
   components: {
-    EASIModal
+    EASIModal,
+    Empty,
   },
 });
 </script>

@@ -20,4 +20,6 @@ export default {
   uploaderTab0: 'Upload From Local',
   uploaderTab1: 'Picture Library',
   uploaderPrimary: 'Upload',
+  uploaderEmptyTitle: 'Click or drag file to this area to upload',
+  uploaderEmptySubTitle: 'Support file extensions: .jpg, .jpeg, .png, .webp, .gif, etc.',
 }

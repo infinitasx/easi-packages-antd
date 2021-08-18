@@ -20,4 +20,6 @@ export default {
   uploaderTab0: '本地上传',
   uploaderTab1: '图片库',
   uploaderPrimary: '上 传',
+  uploaderEmptyTitle: '点击或将图片拖拽到这里上传',
+  uploaderEmptySubTitle: '支持扩展名：.jpg、.jpeg、.png、.webp、.gif等',
 }
