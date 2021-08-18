@@ -39,6 +39,10 @@ declare const _default: import("vue").DefineComponent<{
         type: FunctionConstructor;
         default: undefined;
     };
+    startYear: {
+        type: (StringConstructor | NumberConstructor)[];
+        default: number;
+    };
 }, {
     isH5: import("vue").Ref<boolean>;
     showSetting: import("vue").Ref<boolean>;
@@ -50,6 +54,7 @@ declare const _default: import("vue").DefineComponent<{
     cachedPage: import("vue").ComputedRef<string[]>;
     onReloadPage(refresh?: boolean): Promise<boolean>;
     handleShowSetting(): void;
+    copyRightYear(): string | number;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
     logo?: unknown;
     title?: unknown;
@@ -60,6 +65,7 @@ declare const _default: import("vue").DefineComponent<{
     onLogout?: unknown;
     toDashboard?: unknown;
     editPassword?: unknown;
+    startYear?: unknown;
 } & {
     logo: string;
     title: string;
@@ -67,11 +73,12 @@ declare const _default: import("vue").DefineComponent<{
     nav: RouteLocationNormalized[];
     userInfo: UserInfo;
     showTabSetting: boolean;
+    startYear: string | number;
 } & {
     onLogout?: Function | undefined;
     toDashboard?: Function | undefined;
     editPassword?: Function | undefined;
-}> & {}, {
+}>, {
     logo: string;
     title: string;
     subTitle: string;
@@ -81,5 +88,6 @@ declare const _default: import("vue").DefineComponent<{
     onLogout: Function;
     toDashboard: Function;
     editPassword: Function;
+    startYear: string | number;
 }>;
 export default _default;

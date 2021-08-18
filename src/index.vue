@@ -1,5 +1,5 @@
 <template>
-  <EASILayout :menu="menu" :onLogout="onLogout" :editPassword="editPassword" :toDashboard="toDashboard">
+  <EASILayout :menu="menu" startYear="2028" :onLogout="onLogout" :editPassword="editPassword" :toDashboard="toDashboard">
   </EASILayout>
 </template>
 
