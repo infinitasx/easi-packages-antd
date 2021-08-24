@@ -1,9 +1,11 @@
 import { defineComponent, openBlock, createBlock, renderSlot, createTextVNode } from 'vue';
+import { loadNow } from 'connect-google-maps';
 
 function createNamespace(name) {
   return `EASI${name}`;
 }
 
+console.log(loadNow);
 var script = defineComponent({
   name: createNamespace("Text"),
   props: {},
