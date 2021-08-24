@@ -61,3 +61,56 @@ yarn website
 - [Vue Router 4+](https://github.com/vuejs/vue-router-next)
 - [ant-design-vue 2+](https://github.com/vueComponent/ant-design-vue)
 - [easi-web-utils](https://github.com/infinitasx/easi-web-utils.git#main)
+
+### 按需加载
+
+- webpack 项目
+  安装 babel-plugin-import
+
+```js
+//babel.config.js
+module.exports = {
+  plugins: [
+    [
+      "import",
+      {
+        libraryName: "easi-packages-antd",
+        style: (name) => {
+          return `${name}/index.css`;
+        },
+        customName: (name) => {
+          name = name.slice(8);
+          return `easi-packages-antd/es/${name}`;
+        },
+      },
+    ],
+  ],
+};
+```
+
+- vite 项目
+  安装 vite-plugin-importer
+
+```js
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import usePluginImport from "vite-plugin-importer";
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [
+    vue(),
+    usePluginImport({
+      libraryName: "easi-packages-antd",
+      libraryDirectory: "es",
+      style: (name) => {
+        return `${name}/index.css`;
+      },
+      customName: (name) => {
+        name = name.slice(8);
+        return `easi-packages-antd/es/${name}`;
+      },
+    }),
+  ],
+});
+```
