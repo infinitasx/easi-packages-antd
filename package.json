@@ -10,7 +10,7 @@
     "packages/*"
   ],
   "scripts": {
-    "serve": "vite",
+    "serve": "vite --config ./vite.config.ts",
     "gc": "bash ./scripts/gc.sh",
     "gen:version": "node build/gen-version.js",
     "build": "rimraf ./dist && yarn gen:version && vite build && yarn build:ws",
