@@ -2,6 +2,8 @@ export default {
   confirm: '确 认',
   cancel: '取 消',
   loading: '加载中...',
+  search: '搜 索',
+  searchPlaceholder: '请输入要搜索的关键字',
   pageTotal: '共 {total} 条数据',
   noPermission: '对不起，您没有权限访问此页面！',
   styleSetting: '风格设置',
@@ -22,4 +24,8 @@ export default {
   uploaderPrimary: '上 传',
   uploaderEmptyTitle: '点击或将图片拖拽到这里上传',
   uploaderEmptySubTitle: '支持扩展名：.jpg、.jpeg、.png、.webp、.gif等',
+  uploaderError0: '选择的文件类型不可上传',
+  uploaderError1: '选择的文件数量超过最大限制',
+  uploaderError2: '单个文件内存不能超过：{max}M',
+  uploaderError3: '图片尺寸不能低于：{size}',
 }

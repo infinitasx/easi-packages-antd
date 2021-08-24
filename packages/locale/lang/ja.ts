@@ -2,6 +2,8 @@ export default {
   confirm: '確 認',
   cancel: '取 消',
   loading: '読み込み中...',
+  search: '探す',
+  searchPlaceholder: '検索するキーワードを入力してください',
   pageTotal: '合計 {total} レコード',
   noPermission: '申し訳ありませんが、このページにアクセスする権限がありません。',
   styleSetting: 'スタイル設定',
@@ -22,4 +24,8 @@ export default {
   uploaderPrimary: 'アップロード',
   uploaderEmptyTitle: 'こちらの画像をクリックまたはドラッグしてアップロードしてください',
   uploaderEmptySubTitle: 'サポートファイル拡張子：.jpg、.jpeg、.png、.webp、.gifなど',
+  uploaderError0: '選択したファイルタイプをアップロードできません',
+  uploaderError1: '選択したファイルの数が上限を超えています',
+  uploaderError2: '1つのファイルのメモリは次を超えることはできません：{max}M',
+  uploaderError3: '画像サイズは次の値より小さくすることはできません：{size}',
 }

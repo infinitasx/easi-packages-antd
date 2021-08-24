@@ -8,11 +8,14 @@
 
 <script lang="ts">
 import {defineComponent} from "vue"
+
 export default defineComponent({
-name: "test"
+  name: "test"
 })
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="scss">
+img.ant-image-preview-img{
+  display: inline-block;
+}
 </style>

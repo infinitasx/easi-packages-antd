@@ -1,4 +1,4 @@
-import { defineComponent, resolveComponent, openBlock, createBlock, createVNode, createSlots, renderList, renderSlot, withScopeId, inject, toRefs, getCurrentInstance, computed, Fragment, withCtx, createTextVNode, toDisplayString, createCommentVNode } from 'vue';
+import { defineComponent, resolveComponent, openBlock, createBlock, createVNode, createSlots, renderList, renderSlot, withScopeId, toRefs, inject, getCurrentInstance, computed, Fragment, withCtx, createTextVNode, toDisplayString, createCommentVNode } from 'vue';
 import { useRoute } from 'vue-router';
 
 function createNamespace(name) {
@@ -47,8 +47,7 @@ script$1.install = (app) => {
   app.component(script$1.name, script$1);
 };
 
-function getEASIText(key, value) {
-  const globalEASILocale = inject("globalEASILocale", { message: {} });
+function getEASIText(globalEASILocale, key, value) {
   let message = globalEASILocale?.message[key];
   if (message) {
     if (value) {
@@ -98,6 +97,7 @@ var script = defineComponent({
   },
   setup(props, { emit }) {
     const { breadcrumb, title, desc, hasPermission } = toRefs(props);
+    const globalEASILocale = inject("globalEASILocale", { message: {} });
     const route = useRoute();
     const { appContext } = getCurrentInstance();
     const breadcrumbRoutes = computed(() => {
@@ -121,7 +121,9 @@ var script = defineComponent({
       breadcrumbRoutes,
       pageTitle,
       pageDesc,
-      getEASIText
+      getText(key, value) {
+        return getEASIText(globalEASILocale, key, value);
+      }
     };
   },
   components: {
@@ -187,7 +189,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         _hoisted_4
       ]),
       "sub-title": withCtx(() => [
-        createTextVNode(toDisplayString(_ctx.getEASIText("noPermission")), 1)
+        createTextVNode(toDisplayString(_ctx.getText("noPermission")), 1)
       ]),
       _: 1
     }))

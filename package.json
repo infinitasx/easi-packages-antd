@@ -66,12 +66,14 @@
     "vue-tsc": "^0.2.1"
   },
   "peerDependencies": {
+    "@ant-design/icons-vue": "^6.0.1",
     "ant-design-vue": "^2",
     "easi-web-utils": "git+https://github.com/infinitasx/easi-web-utils.git#main",
     "vue": "^3.1.x",
     "vue-router": "^4.0.10"
   },
   "dependencies": {
+    "@ant-design/icons-vue": "^6.0.1",
     "ant-design-vue": "^2.2.6",
     "easi-web-utils": "git+https://github.com/infinitasx/easi-web-utils.git#main",
     "vue-router": "^4.0.10"

@@ -1,0 +1,21 @@
+<template>
+  <div class="easi-uploader-container overflow-hidden">
+    <a-image-preview-group>
+      <slot></slot>
+    </a-image-preview-group>
+  </div>
+</template>
+
+<script lang="ts">
+import {defineComponent} from "vue"
+
+export default defineComponent({
+  name: "PreviewContainer"
+})
+</script>
+
+<style lang="scss" scoped>
+.easi-uploader-container {
+  margin-left: -2%;
+}
+</style>

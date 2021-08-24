@@ -2401,8 +2401,7 @@ script$2.render = render$2;
 script$2.__scopeId = "data-v-ac52a5c2";
 script$2.__file = "packages/setting/Index.vue";
 
-function getEASIText(key, value) {
-  const globalEASILocale = inject("globalEASILocale", { message: {} });
+function getEASIText(globalEASILocale, key, value) {
   let message = globalEASILocale?.message[key];
   if (message) {
     if (value) {
@@ -2428,6 +2427,7 @@ var script$1 = defineComponent({
     const route = useRoute();
     const router = useRouter();
     const globalProvider = inject("globalProvider", { ...defaultProvider });
+    const globalEASILocale = inject("globalEASILocale", { message: {} });
     const activeKey = ref("");
     const panes = ref([]);
     const handleRouteFullPath = () => {
@@ -2485,7 +2485,9 @@ var script$1 = defineComponent({
             break;
         }
       },
-      getEASIText
+      getText(key, value) {
+        return getEASIText(globalEASILocale, key, value);
+      }
     };
   },
   components: {
@@ -2523,13 +2525,13 @@ const render$1 = /* @__PURE__ */ _withId$1((_ctx, _cache, $props, $setup, $data,
             default: _withId$1(() => [
               createVNode(_component_a_menu_item, { key: "closeAll" }, {
                 default: _withId$1(() => [
-                  createTextVNode(toDisplayString(_ctx.getEASIText("closeOther")), 1)
+                  createTextVNode(toDisplayString(_ctx.getText("closeOther")), 1)
                 ]),
                 _: 1
               }),
               createVNode(_component_a_menu_item, { key: "refresh" }, {
                 default: _withId$1(() => [
-                  createTextVNode(toDisplayString(_ctx.getEASIText("refreshPage")), 1)
+                  createTextVNode(toDisplayString(_ctx.getText("refreshPage")), 1)
                 ]),
                 _: 1
               })

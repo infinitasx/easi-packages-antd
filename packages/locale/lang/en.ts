@@ -2,6 +2,8 @@ export default {
   confirm: 'Confirm',
   cancel: 'Cancel',
   loading: 'Loading...',
+  search: 'Search',
+  searchPlaceholder: 'Please enter the keywords to search',
   pageTotal: 'Total {total} records',
   noPermission: 'Sorry, you do not have permission to access this page!',
   styleSetting: 'Style Setting',
@@ -22,4 +24,8 @@ export default {
   uploaderPrimary: 'Upload',
   uploaderEmptyTitle: 'Click or drag file to this area to upload',
   uploaderEmptySubTitle: 'Support file extensions: .jpg, .jpeg, .png, .webp, .gif, etc.',
+  uploaderError0: 'The selected file type cannot be uploaded',
+  uploaderError1: 'The number of selected files exceeds the maximum limit',
+  uploaderError2: 'The memory of a single file cannot exceed: {max}M',
+  uploaderError3: 'Image size cannot be less than: {size}',
 }
