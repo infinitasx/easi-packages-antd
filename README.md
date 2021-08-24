@@ -92,6 +92,7 @@ module.exports = {
   安装 vite-plugin-importer
 
 ```js
+// vite.config.js
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import usePluginImport from "vite-plugin-importer";
