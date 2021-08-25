@@ -64,8 +64,15 @@ yarn website
 
 ### 按需加载
 
-- webpack 项目
-  安装 babel-plugin-import
+> webpack 项目
+
+- 安装 babel-plugin-import 依赖
+
+```js
+yarn add babel-plugin-import -D
+```
+
+- 配置 babel
 
 ```js
 //babel.config.js
@@ -88,8 +95,15 @@ module.exports = {
 };
 ```
 
-- vite 项目
-  安装 vite-plugin-importer
+> vite 项目
+
+- 安装 vite-plugin-importer 依赖
+
+```js
+yarn add vite-plugin-importer -D
+```
+
+- 配置 vite
 
 ```js
 // vite.config.js
