@@ -6915,6 +6915,10 @@
   height: 44px;
 }
 
+.error-full-page {
+  height: calc(100vh - 160px);
+}
+
 .has-footer {
   padding-bottom: 35px;
 }
@@ -6934,10 +6938,6 @@
   background: #fff;
   text-align: right;
   z-index: 1;
-}
-
-.error-full-page {
-  height: calc(100vh - 160px);
 }
 
 .ant-btn-link.easi-btn-success, .ant-btn-text.easi-btn-success {
