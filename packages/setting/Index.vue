@@ -79,7 +79,7 @@ import { createVNode, defineComponent, inject, PropType } from "vue";
 import { createNamespace } from "../utils/create";
 import { Modal } from "ant-design-vue";
 import { setProvider, IProvider, defaultProvider } from "../utils/globalProvider";
-import { ExclamationCircleOutlined, LogoutOutlined, CompassOutlined, UnlockOutlined } from "@ant-design/icons-vue";
+import { ExclamationCircleOutlined, LogoutOutlined, CompassOutlined, UnlockOutlined, MobileOutlined, DesktopOutlined, TabletOutlined } from "@ant-design/icons-vue";
 import { UserInfo } from '../../typings/antd'
 import { IGlobalLocal } from '../locale'
 import moment from 'moment';
@@ -152,6 +152,9 @@ export default defineComponent({
     ExclamationCircleOutlined,
     CompassOutlined,
     UnlockOutlined,
+    MobileOutlined,
+    DesktopOutlined,
+    TabletOutlined,
   },
 });
 </script>
