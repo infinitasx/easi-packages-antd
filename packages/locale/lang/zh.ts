@@ -15,5 +15,7 @@ export default {
   closeOther: '关闭其他',
   refreshPage: '刷新当前页',
   backToDashBoard: '回到Dashboard',
-  editPassword: '修改密码'
+  editPassword: '修改密码',
+  deviceTitle: '登录设备管理',
+  deviceLoginTime: '登录时间',
 }

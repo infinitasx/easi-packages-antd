@@ -16,5 +16,7 @@ declare const _default: {
     refreshPage: string;
     backToDashBoard: string;
     editPassword: string;
+    deviceTitle: string;
+    deviceLoginTime: string;
 };
 export default _default;

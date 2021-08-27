@@ -9,6 +9,27 @@
 
     <slot name="action-render"></slot>
 
+    <template v-if="userInfo?.devices?.length > 0">
+      <a-typography-text strong class="block mb-32"> {{ globalEASILocale.message.deviceTitle }} </a-typography-text>
+      <div class="mb-32" v-for="item in userInfo.devices" :key="item.id">
+        <p class="flex items-center">
+          <a-typography-text type="secondary">
+            <DesktopOutlined v-if="item.device_type === 'Desktop'" />
+            <MobileOutlined v-else-if="item.device_type === 'Mobile'" />
+            <TabletOutlined v-else-if="item.device_type === 'Tablet'" />
+          </a-typography-text>
+          <a-typography-text class="flex-1 px-8"> IP: {{ item.ip }} </a-typography-text>
+        </p>
+        <p class="m-0">
+          <a-typography-text type="secondary">
+            {{ globalEASILocale.message.deviceLoginTime }} {{ transformTime(item.active_at) }}
+          </a-typography-text>
+        </p>
+      </div>
+
+      <a-divider />
+    </template>
+
     <a-typography-text strong class="block mb-32"> {{ globalEASILocale.message.styleSetting }}</a-typography-text>
     <div class="flex items-center mb-24">
       <span class="flex-1">
@@ -61,6 +82,7 @@ import { setProvider, IProvider, defaultProvider } from "../utils/globalProvider
 import { ExclamationCircleOutlined, LogoutOutlined, CompassOutlined, UnlockOutlined } from "@ant-design/icons-vue";
 import { UserInfo } from '../../typings/antd'
 import { IGlobalLocal } from '../locale'
+import moment from 'moment';
 
 export default defineComponent({
   name: createNamespace("Setting"),
@@ -85,7 +107,7 @@ export default defineComponent({
     editPassword: {
       type: Function,
       default: undefined,
-    }
+    },
   },
   setup(props) {
 
@@ -118,6 +140,9 @@ export default defineComponent({
       },
       handleEditPassword(){
         props?.editPassword && props.editPassword();
+      },
+      transformTime(timestamp: number){
+        return moment(timestamp).format('YYYY-MM-DD HH:mm:ss');
       },
       globalEASILocale,
     };

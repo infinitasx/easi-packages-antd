@@ -16,4 +16,6 @@ export default {
   refreshPage: '現在のページを更新',
   backToDashBoard: 'Dashboard に戻る',
   editPassword: 'パスワードを変更する',
+  deviceTitle: 'デバイス管理にログインします',
+  deviceLoginTime: 'ログイン時間',
 }
