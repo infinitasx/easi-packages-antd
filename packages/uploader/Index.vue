@@ -363,7 +363,7 @@ export default defineComponent({
     }
 
     const handleSearch = () => {
-      imageStoreRef.value?.
+      // imageStoreRef.value?.
     }
 
     return {
@@ -375,6 +375,7 @@ export default defineComponent({
       handleCancel,
       handleShow,
       getText,
+      handleSearch,
       search,
       actionType,
       setActionType,
