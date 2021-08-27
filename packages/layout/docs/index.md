@@ -39,6 +39,16 @@
 | :----: | :----: | :-----: | :------: | ------------ |
 |  name  | string |         |    是    | 用户名称     |
 | avatar | string |         |    否    | 用户头像地址 |
+| devices | DeviceInfo[] |         |    否    | 用户历史登录设备，不存在既不会显示相关内容 |
+
+<strong>DeviceInfo</strong> <br/>
+
+| props  |  type  | default | required | remark       |
+| :----: | :----: | :-----: | :------: | ------------ |
+|  device_type  | Desktop or Mobile or Tablet |         |    是    | 客户端类型   |
+| id | number |         |    是    |  数据表ID  |
+| ip | string |         |    是    | 登录IP |
+| active_at | number |         |    是    | 时间戳 |
 
 #### Methods
 

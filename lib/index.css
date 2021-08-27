@@ -6902,8 +6902,21 @@
     transform: translateX(6px) rotate(90deg);
   }
 }
-.page-breadcrumb-wrap .ant-page-header-footer {
-  margin: 0;
+.margin-bottom {
+  margin-bottom: 20px;
+}
+
+.more-item {
+  padding-left: 24px;
+  padding-right: 24px;
+  margin-bottom: 10px;
+  margin-left: -24px;
+  margin-right: -24px;
+  height: 44px;
+}
+
+.error-full-page {
+  height: calc(100vh - 160px);
 }
 
 .has-footer {
@@ -6925,10 +6938,6 @@
   background: #fff;
   text-align: right;
   z-index: 1;
-}
-
-.error-full-page {
-  height: calc(100vh - 160px);
 }
 
 .ant-btn-link.easi-btn-success, .ant-btn-text.easi-btn-success {
@@ -7240,17 +7249,8 @@
   border-color: #434343;
 }
 
-.margin-bottom {
-  margin-bottom: 20px;
-}
-
-.more-item {
-  padding-left: 24px;
-  padding-right: 24px;
-  margin-bottom: 10px;
-  margin-left: -24px;
-  margin-right: -24px;
-  height: 44px;
+.page-breadcrumb-wrap .ant-page-header-footer {
+  margin: 0;
 }
 
 .page-header {
