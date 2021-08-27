@@ -203,4 +203,4 @@ script.install = (app) => {
   app.component(script.name, script);
 };
 
-export default script;
+export { script as default };

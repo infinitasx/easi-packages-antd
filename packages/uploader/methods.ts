@@ -7,7 +7,7 @@ export type IActionType = 'dragover' | 'dragleave' | 'drop' | '';
 // FILE_MAX_SIZE: 文件内存超过上传内存限制
 // FILE_MIN_WITH_HEIGHT: 文件的宽高小于可裁剪到的最低宽高
 export interface IValidateError {
-  code: 'FILE_TYPE_ERROR' | 'FILE_MAX_COUNT' | 'FILE_MAX_SIZE' | 'FILE_MIN_WITH_HEIGHT';
+  code: 'FILE_TYPE_ERROR' | 'FILE_MAX_COUNT' | 'FILE_MAX_SIZE' | 'FILE_MIN_WITH_HEIGHT' | 'FILE_UPLOAD_ERROR' | 'FILE_LIST_ERROR';
   message: string;
   fileList: File[];
 }
@@ -30,6 +30,37 @@ export interface IPreviewItem {
   name: string;
   url: string;
   size: string;
+  uploadSuccess: boolean;
+  uploadFail: boolean;
+  uploadLoading: boolean;
+  checked?: boolean;
+  aspectRatio?: string;
+}
+
+export interface IUploadOptions {
+  domain: string;
+  system?: string;
+  authorization: string;
+  timeout: number;
+}
+
+export interface IRequestConfig {
+  url: string;
+  method: string;
+  header: {
+    [prop: string]: any
+  };
+  body?: any;
+  params?: {
+    [prop: string]: any
+  };
+  timeout?: number;
+}
+
+export interface IQueryOptions {
+  filename?: string;
+  page: number;
+  size: number;
 }
 
 // 初始化及设置拖动状态
@@ -72,61 +103,173 @@ export function fileToBlob(file: File): Promise<string> {
   });
 }
 
+// 计算文件大小
+export function computedMemorySize(size: number = 0) {
+  const kbSize = Math.floor(size / 1024);
+  if(kbSize < 0){
+    return `${size}byte`
+  }
+  if (kbSize >= 1024) {
+    return `${parseFloat((kbSize / 1024).toString()).toFixed(2)}M`
+  } else {
+    return `${kbSize}kb`
+  }
+}
+
 // 通过选择文件校验后，使用canvas预处理图片，压缩宽高及大小
 export async function canvasToFile(file: File, options: IPrevHandleImageOptions, getText: (key: string, value: any) => string): Promise<IPreviewItem> {
   const {minCropBoxWidth, minCropBoxHeight, maxHeight, maxWidth} = options;
   const src = await fileToBlob(file);
-  console.log(src);
   const {width, height, image} = await getImageSize(src);
-  if((minCropBoxWidth > 0 && width < minCropBoxWidth) || (minCropBoxHeight > 0 && height < minCropBoxHeight)){
-    console.log('FILE_MIN_WITH_HEIGHT');
-    return Promise.reject({
-      code: 'FILE_MIN_WITH_HEIGHT',
-      message: getText('uploaderError3', { size: `${minCropBoxWidth}x${minCropBoxHeight}` }),
-      fileList: [file],
-    } as IValidateError)
-  }
-  if(width > maxWidth || height > maxHeight){
-    let canvas: HTMLCanvasElement | null = document.createElement('canvas');
-    const rate = width / height;
-    if(rate >= 1){
-      canvas.width = maxWidth;
-      canvas.height = Math.floor(maxWidth / rate);
-    } else {
-      canvas.width = Math.floor(maxHeight / rate);
-      canvas.height = maxHeight;
-    }
-    if((minCropBoxWidth > 0 && canvas.width < minCropBoxWidth) || (minCropBoxHeight > 0 && canvas.height < minCropBoxHeight)){
-      console.log('FILE_MIN_WITH_HEIGHT');
+  // gif跳过前端预处理压缩
+  if (file.type !== 'image/gif') {
+    if ((minCropBoxWidth > 0 && width < minCropBoxWidth) || (minCropBoxHeight > 0 && height < minCropBoxHeight)) {
       return Promise.reject({
         code: 'FILE_MIN_WITH_HEIGHT',
-        message: getText('uploaderError3', { size: `${minCropBoxWidth}x${minCropBoxHeight}` }),
+        message: getText('uploaderError3', {size: `${minCropBoxWidth}x${minCropBoxHeight}`}),
         fileList: [file],
       } as IValidateError)
     }
-    const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
-    //通过canvas drawImage方法绘制图片
-    ctx.drawImage(image, 0, 0, canvas.width, canvas.height)
-    return new Promise((resolve) => {
-      console.log('dsadsa');
-      (canvas as HTMLCanvasElement).toBlob((blob) => {
-        const newFile = new File([blob as Blob], file.name, {type: file.type});
-        console.log(newFile);
-        resolve({
-          file: newFile,
-          url: src,
-          name: file.name,
-          size: parseFloat((newFile.size / 1024 / 1024).toString()).toFixed(2) + 'M',
-        });
-        canvas = null;
-      }, file.type)
-    })
-  }else{
-    return {
-      file,
-      url: src,
-      name: file.name,
-      size: parseFloat((file.size / 1024 / 1024).toString()).toFixed(2) + 'M',
+    if (width > maxWidth || height > maxHeight) {
+      let canvas: HTMLCanvasElement | null = document.createElement('canvas');
+      const rate = width / height;
+      if (rate >= 1) {
+        canvas.width = maxWidth;
+        canvas.height = Math.floor(maxWidth / rate);
+      } else {
+        canvas.width = Math.floor(maxHeight / rate);
+        canvas.height = maxHeight;
+      }
+      if ((minCropBoxWidth > 0 && canvas.width < minCropBoxWidth) || (minCropBoxHeight > 0 && canvas.height < minCropBoxHeight)) {
+        return Promise.reject({
+          code: 'FILE_MIN_WITH_HEIGHT',
+          message: getText('uploaderError3', {size: `${minCropBoxWidth}x${minCropBoxHeight}`}),
+          fileList: [file],
+        } as IValidateError)
+      }
+      const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
+      //通过canvas drawImage方法绘制图片
+      ctx.drawImage(image, 0, 0, canvas.width, canvas.height)
+      return new Promise((resolve) => {
+        (canvas as HTMLCanvasElement).toBlob((blob) => {
+          const newFile = new File([blob as Blob], file.name, {type: file.type});
+          resolve({
+            file: newFile,
+            url: src,
+            name: file.name,
+            size: computedMemorySize(newFile.size),
+            aspectRatio: parseFloat(((canvas as HTMLCanvasElement).width / (canvas as HTMLCanvasElement).height).toString()).toFixed(4),
+            uploadSuccess: false,
+            uploadFail: false,
+            uploadLoading: false,
+          });
+          canvas = null;
+        }, file.type)
+      })
+    }
+  }
+  return {
+    file,
+    url: src,
+    name: file.name,
+    size: computedMemorySize(file.size),
+    aspectRatio: parseFloat((width / height).toString()).toFixed(4),
+    uploadSuccess: false,
+    uploadFail: false,
+    uploadLoading: false,
+  };
+}
+
+// 封装请求方法
+export function request(requestConfig: IRequestConfig): Promise<any>{
+  return new Promise((resolve, reject) => {
+    let { url, body = null, header = {}, params = {}, method = 'GET', timeout } = requestConfig;
+    const xhr = new XMLHttpRequest();
+    let timeCount: any = null;
+    xhr.onreadystatechange = () => {
+      if (Number(xhr.readyState) === 4) {
+        clearTimeout(timeCount);
+        if(Number(xhr.status) === 200) {
+          const result = JSON.parse(xhr.response);
+          resolve(result)
+        }else{
+          reject(xhr.responseText)
+        }
+      }
     };
+    let hasParams = url.indexOf('?') > -1;
+    Object.keys(params).map(key => {
+      if(params[key] != null){
+        if(hasParams){
+          url += `&${key}=${params[key]}`;
+        }else{
+          url += `?${key}=${params[key]}`;
+          hasParams = true;
+        }
+      }
+    })
+    xhr.open(method, url, true);
+    Object.keys(header).map(key => {
+      xhr.setRequestHeader(key, header[key]);
+    });
+    timeCount = setTimeout(() => {
+      xhr.abort()
+    }, timeout);
+    xhr.send(body);
+  })
+}
+
+// 上传文件的方法
+export async function uploadPic(previewItem: IPreviewItem, options: IUploadOptions): Promise<IPreviewItem>{
+  const { domain, authorization, system, timeout } = options;
+  const form = new FormData();
+  form.append('file', previewItem.file);
+  form.append('system', system as string);
+  try{
+    const { url, name, size } = await request({
+      url: `${domain}/v1/widget/upload`,
+      method: 'POST',
+      header: {
+        authorization,
+      },
+      body: form,
+      timeout: timeout,
+    });
+    return {
+      ...previewItem,
+      url,
+      name,
+      size: computedMemorySize(size),
+      uploadLoading: false,
+      uploadSuccess: true,
+    }
+  }catch (e) {
+    return Promise.reject({
+      code: 'FILE_UPLOAD_ERROR',
+      message: e,
+      fileList: [previewItem.file]
+    })
+  }
+}
+
+// 获取图片库列表
+export async function getPicsList (params: IQueryOptions, options: IUploadOptions) {
+  const { domain, authorization, timeout } = options;
+  try{
+    return await request({
+      url: `${domain}/v1/widget/list`,
+      method: 'GET',
+      header: {
+        authorization,
+      },
+      params,
+      timeout: timeout,
+    });
+  }catch (e) {
+    return Promise.reject({
+      code: 'FILE_LIST_ERROR',
+      message: e,
+      fileList: []
+    })
   }
 }

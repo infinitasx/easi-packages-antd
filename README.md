@@ -61,3 +61,5 @@ yarn website
 - [Vue Router 4+](https://github.com/vuejs/vue-router-next)
 - [ant-design-vue 2+](https://github.com/vueComponent/ant-design-vue)
 - [easi-web-utils](https://github.com/infinitasx/easi-web-utils.git#main)
+- [cropperjs](https://github.com/fengyuanchen/cropperjs)
+- [@ant-design/icons-vue](https://github.com/ant-design/ant-design-icons/tree/master/packages/icons-vue)

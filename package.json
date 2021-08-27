@@ -10,7 +10,7 @@
     "packages/*"
   ],
   "scripts": {
-    "serve": "vite --config ./vite.config.ts",
+    "serve": "vite",
     "gc": "bash ./scripts/gc.sh",
     "gen:version": "node build/gen-version.js",
     "build": "rimraf ./dist && yarn gen:version && vite build && yarn build:ws",
@@ -70,11 +70,13 @@
     "ant-design-vue": "^2",
     "easi-web-utils": "git+https://github.com/infinitasx/easi-web-utils.git#main",
     "vue": "^3.1.x",
+    "cropperjs": "1.5.11",
     "vue-router": "^4.0.10"
   },
   "dependencies": {
     "@ant-design/icons-vue": "^6.0.1",
     "ant-design-vue": "^2.2.6",
+    "cropperjs": "1.5.11",
     "easi-web-utils": "git+https://github.com/infinitasx/easi-web-utils.git#main",
     "vue-router": "^4.0.10"
   },

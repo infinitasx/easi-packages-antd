@@ -14,7 +14,7 @@
   resolved "https://registry.nlark.com/@ant-design/icons-svg/download/@ant-design/icons-svg-4.1.0.tgz#480b025f4b20ef7fe8f47d4a4846e4fee84ea06c"
   integrity sha1-SAsCX0sg73/o9H1KSEbk/uhOoGw=
 
-"@ant-design/icons-vue@^6.0.0":
+"@ant-design/icons-vue@^6.0.0", "@ant-design/icons-vue@^6.0.1":
   version "6.0.1"
   resolved "https://registry.npm.taobao.org/@ant-design/icons-vue/download/@ant-design/icons-vue-6.0.1.tgz?cache=0&sync_timestamp=1611990835390&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40ant-design%2Ficons-vue%2Fdownload%2F%40ant-design%2Ficons-vue-6.0.1.tgz#9d804c3c74d2cfaf97cb18e582d3b9400934f5fd"
   integrity sha1-nYBMPHTSz6+XyxjlgtO5QAk09f0=
@@ -3924,6 +3924,11 @@ cosmiconfig@^7.0.0:
     parse-json "^5.0.0"
     path-type "^4.0.0"
     yaml "^1.10.0"
+
+cropperjs@1.5.11:
+  version "1.5.11"
+  resolved "https://registry.nlark.com/cropperjs/download/cropperjs-1.5.11.tgz?cache=0&sync_timestamp=1623485609550&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fcropperjs%2Fdownload%2Fcropperjs-1.5.11.tgz#502ae6d8ca098b124de6813601cca70015879fc0"
+  integrity sha1-UCrm2MoJixJN5oE2AcynABWHn8A=
 
 cross-spawn@^7.0.3:
   version "7.0.3"

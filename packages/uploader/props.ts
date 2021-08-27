@@ -1,5 +1,6 @@
 import { PropType } from 'vue';
 
+// 空状态相关属性
 export const emptyProps = {
   // 本地上传空状态标题
   emptyTitle: {
@@ -13,8 +14,51 @@ export const emptyProps = {
   },
 }
 
+// 裁剪相关属性
+export const cropProps = {
+  // 裁剪的宽高比
+  aspectRatio: {
+    type: String,
+    default: undefined,
+  },
+  // 可裁剪到的最小宽度
+  minCropBoxWidth: {
+    type: Number,
+    default: 0,
+  },
+  // 可裁剪到的最小高度
+  minCropBoxHeight: {
+    type: Number,
+    default: 0,
+  },
+}
+
+export const uploadProps = {
+  // 系统名称标示
+  system: {
+    type: String,
+    default: undefined,
+  },
+  // IAM下发的token
+  authorization: {
+    type: String,
+    default: undefined,
+  },
+  // 接口超时时间
+  timeout: {
+    type: Number,
+    default: 20000,
+  },
+  env: {
+    type: String as PropType<'development' | 'production'>,
+    default: window.$EASI_BUILD_ENV,
+  }
+}
+
 export const rootProps = {
   ...emptyProps,
+  ...cropProps,
+  ...uploadProps,
   visible: {
     type: Boolean,
     default: undefined
@@ -23,6 +67,11 @@ export const rootProps = {
   maskClosable: {
     type: Boolean,
     default: false
+  },
+  // 关闭弹框是否初始化内部状态
+  destroyOnClose: {
+    type: Boolean,
+    default: true
   },
   // 弹框标题
   title: {
@@ -37,12 +86,12 @@ export const rootProps = {
   // 允许上传的文件后缀，主要是为了防止拖动上传时可以跳过accept校验
   extType: {
     type: Array as PropType<string[]>,
-    default: ['.jpg', '.png', '.webp', '.jpeg', '.gif']
+    default: ['jpg', 'png', 'webp', 'jpeg', 'gif', 'tif', 'tiff']
   },
   // input输入框的accept参数
   accept: {
     type: Array as PropType<string[]>,
-    default: ['image/*']
+    default: ['image/gif','image/jpeg','image/png','image/tiff','image/webp']
   },
   // 是否支持多选, 最多支持上传几个文件，如果为true则不限制上传数量，如果为number类型则为最多可上传图片数量，如果为false则只能上传一张图片
   multiple: {
@@ -60,14 +109,9 @@ export const rootProps = {
     default: false
   },
   // 图片是否可裁剪，默认可裁剪， gif图片不可裁剪
-  canEdit: {
+  crop: {
     type: Boolean,
     default: true,
-  },
-  // 监听到图片变化，是否自动上传，默认需要用户确认后才会上传，与canEdit互斥
-  autoUpload: {
-    type: Boolean,
-    default: false,
   },
   // 图片最大宽度
   maxWidth: {
@@ -78,15 +122,5 @@ export const rootProps = {
   maxHeight: {
     type: Number,
     default: 2000,
-  },
-  // 可裁剪到的最小宽度
-  minCropBoxWidth: {
-    type: Number,
-    default: 0,
-  },
-  // 可裁剪到的最小高度
-  minCropBoxHeight: {
-    type: Number,
-    default: 0,
   },
 }
