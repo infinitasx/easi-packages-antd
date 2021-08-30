@@ -10,7 +10,7 @@
           <div class="absolute">
             <CheckCircleFilled style="color: #67c23a;font-size: 18px" v-if="item.uploadSuccess && activeKey === 0"/>
             <CloseCircleFilled style="color: #ff4949;font-size: 18px" v-if="item.uploadFail && activeKey === 0"/>
-            <a-checkbox v-if="activeKey === 1" :checked="item.checked" :disabled="disabled" size="large" @change="$emit('handleCheckChange', $event, item, index)" />
+            <a-checkbox v-if="activeKey === 1" :checked="item.checked" :disabled="disabled && !item.checked" size="large" @change="$emit('handleCheckChange', $event, item, index)" />
           </div>
           <span class="easi-uploader-loading flex items-center justify-center" v-show="!item.uploadSuccess && loading">
             <LoadingOutlined />

@@ -39,7 +39,7 @@ import UploaderContainer from './PreviewContainer.vue';
 import UploaderItem from './PreviewItem.vue';
 import Empty from './Empty.vue';
 import { PlusOutlined } from '@ant-design/icons-vue';
-import {fileToBlob, computedMemorySize, IPreviewItem} from './methods'
+import {fileToBlob, IPreviewItem} from './methods'
 import {rootProps} from './props'
 export default defineComponent({
   name: "localStore",
@@ -86,20 +86,20 @@ export default defineComponent({
       // 如果已存在裁剪实例
       if(cropInstance){
         cropInstance.reset();
-        cropInstance.replace(cropperItem.value?.url as string)
+        cropInstance.replace(cropperItem.value?.originUrl as string)
       }else{
         const defaultAspectRatio: number[] = aspectRatio.value ? aspectRatio.value.split('*').map(str => Number(str)) : [0,0];
-        cropImageRef.value.src = cropperItem.value?.url;
+        cropImageRef.value.src = cropperItem.value?.originUrl;
         cropImageRef.value.addEventListener('ready', handleImageReady, false)
         cropInstance = new Cropper(cropImageRef.value, {
-          viewMode: 1,
-          movable: false,
+          viewMode: 0,
+          movable: true,
           autoCropArea: 1,
           aspectRatio: Number(defaultAspectRatio[0]) === 0 || Number(defaultAspectRatio[1]) === 0 ? 0 : (defaultAspectRatio[0] / defaultAspectRatio[1]),
           minCropBoxHeight: minCropBoxHeight.value,
           minCropBoxWidth: minCropBoxWidth.value,
-          zoomable: false,
-          scalable: false
+          zoomable: true,
+          scalable: true
         });
       }
     }
@@ -152,15 +152,19 @@ export default defineComponent({
       return new Promise((resolve) => {
         uploadGlobal.cropLoading = true;
         cropInstance.getCroppedCanvas().toBlob(async (blob: any) => {
-          const { name } = toRaw(cropperItem.value) as IPreviewItem;
+          const { name, originUrl } = toRaw(cropperItem.value) as IPreviewItem;
           const fileNameArray = name.split('.');
           const newFileName = `${fileNameArray.slice(0, fileNameArray.length - 1).join('.')}.webp`;
-          const newFile = new File([blob], newFileName, {type: 'image/webp'})
+          const newFile = new File([blob], newFileName, {type: 'image/webp'});
+          const { naturalWidth, naturalHeight } = cropInstance.getImageData();
           const newPreviewItem: IPreviewItem = {
             url: await fileToBlob(newFile),
+            originUrl,
             file: newFile,
             name: newFileName,
-            size: computedMemorySize(newFile.size),
+            width: naturalWidth,
+            height: naturalHeight,
+            size: newFile.size,
             uploadSuccess: false,
             uploadFail: false,
             uploadLoading: false,

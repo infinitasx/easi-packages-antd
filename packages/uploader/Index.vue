@@ -55,8 +55,10 @@
                     :domain="domain"
                     :timeout="timeout"
                     :checkedList="checkedList"
+                    :multiple="multiple"
                     :getText="getText"
                     @error="$emit('error', $event)"
+                    @handleCheckedChange="handleCheckedChange"
         />
       </a-tab-pane>
       <template #tabBarExtraContent>
@@ -77,28 +79,28 @@
 
     <template #footer>
       <div class="flex items-center justify-end">
-        <a-typography-text type="secondary" class="flex-1 text-left" v-show="activeKey === 1"> {{checkedList.length}} / {{typeof multiple === 'number' ? multiple : 1}}</a-typography-text>
-        <a-typography-text type="secondary" class="flex-1 text-left" v-if="localUploadList.length === 0 && multiple !== true && activeKey === 0">{{getText('uploaderError1', {max: typeof multiple === 'number' ? multiple.toString() : 1})}}</a-typography-text>
+        <a-typography-text type="secondary" class="flex-1 text-left" v-show="activeKey === 1"> {{getText('selected')}} {{checkedList.length}} / {{typeof multiple === 'number' ? multiple : 1}}</a-typography-text>
+        <a-typography-text type="secondary" class="flex-1 text-left" v-if="localUploadList.length === 0 && localUploadMustCrop.length === 0 && multiple !== true && activeKey === 0">{{getText('uploaderError1', {max: typeof multiple === 'number' ? multiple.toString() : 1})}}</a-typography-text>
         <a-typography-text type="danger" class="flex-1 text-left" v-if="localUploadMustCrop.length > 0">{{ getText('uploaderMustCropTips', {number: localUploadMustCrop.length}) }}</a-typography-text>
         <a-space>
           <!-- 关闭弹框按钮 -->
-          <EASIButton v-if="!isCropping" @click="handleCancel">{{ getText('cancel') }}</EASIButton>
+          <EASIButton v-if="!isCropping" :disabled="disabled" @click="handleCancel">{{ getText('cancel') }}</EASIButton>
           <!-- 开始上传按钮 -->
-          <EASIButton type="primary" v-if="activeKey === 0 && !isCropping && waitToUpload.length > 0" :loading="uploadGlobal.uploadLoading" success @click.stop="handleUpload">
+          <EASIButton type="primary" v-if="activeKey === 0 && !isCropping && waitToUpload.length > 0" :disabled="disabled" :loading="uploadGlobal.uploadLoading" success @click.stop="handleUpload">
             {{ getText('uploaderPrimary') }}
           </EASIButton>
           <!-- 确认选择按钮 -->
-          <EASIButton type="primary" v-if="activeKey === 1 || (activeKey === 0 && !isCropping && alreadyUpload.length > 0)" @click.stop="handleOK">{{ getText('confirm') }}</EASIButton>
+          <EASIButton type="primary" v-if="activeKey === 1 || (activeKey === 0 && !isCropping && alreadyUpload.length > 0)" :disabled="disabled" @click.stop="handleOK">{{ getText('confirm') }}</EASIButton>
           <!-- 裁剪过程中返回图片列表界面 -->
-          <EASIButton v-if="isCropping" @click.stop="handleCropBack">{{ getText('uploadBack') }}</EASIButton>
+          <EASIButton v-if="isCropping" :disabled="disabled" @click.stop="handleCropBack">{{ getText('uploadBack') }}</EASIButton>
           <!-- 裁剪过程中删除某张图片 -->
-          <EASIButton type="primary" v-if="activeKey === 0 && isCropping" danger @click.stop="handleDelete(null, cropIndex)">{{ getText('uploaderRemove') }}</EASIButton>
+          <EASIButton type="primary" v-if="activeKey === 0 && isCropping" danger :disabled="disabled" @click.stop="handleDelete(null, cropIndex)">{{ getText('uploaderRemove') }}</EASIButton>
           <!-- 上一张 -->
-          <EASIButton type="primary" v-if="activeKey === 0 && isCropping && localUploadMustCrop.length === 0 && localUploadList.length > 1" @click.stop="handleToPrev">{{ getText('uploaderPrev') }}</EASIButton>
+          <EASIButton type="primary" v-if="activeKey === 0 && isCropping && localUploadMustCrop.length === 0 && localUploadList.length > 1" :disabled="disabled" @click.stop="handleToPrev">{{ getText('uploaderPrev') }}</EASIButton>
           <!-- 下一张 -->
-          <EASIButton type="primary" v-if="activeKey === 0 && isCropping && (localUploadMustCrop.length > 1 || (localUploadMustCrop.length === 0 && localUploadList.length > 1))" @click.stop="handleToNext" :loading="uploadGlobal.cropLoading" :success="localUploadMustCrop.length > 1">{{ localUploadMustCrop.length > 0 ? getText('uploaderConfirmNext') : getText('uploaderNext') }}</EASIButton>
+          <EASIButton type="primary" v-if="activeKey === 0 && isCropping && (localUploadMustCrop.length > 1 || (localUploadMustCrop.length === 0 && localUploadList.length > 1))" :disabled="disabled" @click.stop="handleToNext" :loading="uploadGlobal.cropLoading" :success="localUploadMustCrop.length > 1">{{ localUploadMustCrop.length > 0 ? getText('uploaderConfirmNext') : getText('uploaderNext') }}</EASIButton>
           <!-- 确认裁剪按钮 -->
-          <EASIButton type="primary" v-if="activeKey === 0 && isCropping && localUploadMustCrop.length <= 1" success :loading="uploadGlobal.cropLoading" @click.stop="handleToCrop">{{getText('uploaderConfirmCrop')}}</EASIButton>
+          <EASIButton type="primary" v-if="activeKey === 0 && isCropping && localUploadMustCrop.length <= 1" success :loading="uploadGlobal.cropLoading" :disabled="disabled" @click.stop="handleToCrop">{{getText('uploaderConfirmCrop')}}</EASIButton>
         </a-space>
       </div>
     </template>
@@ -215,11 +217,15 @@ export default defineComponent({
       emit('update:visible', false);
       emit('cancel')
       if(destroyOnClose.value){
+        activeKey.value = 0;
         localUploadList.value = [];
         localUploadLoading.value = false;
         localUploadMustCrop.value = [];
         isCropping.value = false;
         uploadGlobal.cropLoading = false;
+        uploadGlobal.listLoading = false;
+        uploadGlobal.uploadLoading = false;
+        checkedList.value = [];
       }
     }
 
@@ -329,6 +335,7 @@ export default defineComponent({
           }, options);
           localUploadList.value.splice(i ,1, newItem);
         }catch (e) {
+          message.error(getText('uploadError'))
           localUploadList.value[i].uploadLoading = false;
           localUploadList.value[i].uploadFail = true;
           emit('error', e)
@@ -340,11 +347,13 @@ export default defineComponent({
     const handleOK = () => {
       if(activeKey.value === 0){
         const array = alreadyUpload.value.map((item: IPreviewItem) => {
-          const {url, name, size } = item;
+          const {url, name, size, width, height } = item;
           return {
             url,
             name,
-            size
+            size,
+            width,
+            height,
           }
         })
         if(waitToUpload.value.length > 0){
@@ -353,17 +362,40 @@ export default defineComponent({
             icon: createVNode(ExclamationCircleOutlined),
             content: getText('uploadWaitMsg', {number: waitToUpload.value.length}),
             async onOk(){
+              handleCancel()
               emit('ok', array);
               return true;
             }
           })
         }
-        return emit('ok', array)
+        handleCancel()
+        emit('ok', array)
+      }else{
+        const array = checkedList.value.map((item: IPreviewItem) => {
+          const {url, name, size, width, height } = item;
+          return {
+            url,
+            name,
+            size,
+            width,
+            height,
+          }
+        });
+        handleCancel();
+        emit('ok', array)
       }
     }
 
     const handleSearch = () => {
-      // imageStoreRef.value?.
+      imageStoreRef.value?.getImageList(search.value)
+    }
+
+    const handleCheckedChange = (checked: boolean, item: IPreviewItem, index: number) => {
+      if(checked){
+        checkedList.value.push({...toRaw(item)})
+      }else{
+        checkedList.value = checkedList.value.filter(_item => _item.url !== item.url);
+      }
     }
 
     return {
@@ -398,10 +430,13 @@ export default defineComponent({
       handleToPrev,
       handleUpload,
       handleOK,
-      async handleChange(e: DragEvent | Event, fromAction: 'drop' | '' = '') {
+      handleCheckedChange,
+      async handleChange(e: DragEvent, fromAction: 'drop' | '' = '') {
+        const fileList = Array.from(fromAction === 'drop' ? (((e as DragEvent).dataTransfer as DataTransfer).files as FileList) : ((e.target as HTMLInputElement).files) as FileList);
+        (e.target as HTMLInputElement).value = '';
+        (e.target as HTMLInputElement).files = null;
         if (disabled.value || isCropping.value) return;
         setActionType(fromAction);
-        const fileList = Array.from(fromAction === 'drop' ? (((e as DragEvent).dataTransfer as DataTransfer).files as FileList) : ((e.target as HTMLInputElement).files) as FileList);
         // 拖动上传的文件后缀名不合法
         if (fromAction === 'drop' && extType.value && fileList.some((file: File) => {
           const fileNameArray = file.name.split('.');

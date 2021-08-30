@@ -29,7 +29,10 @@ export interface IPreviewItem {
   file: File,
   name: string;
   url: string;
-  size: string;
+  originUrl: string;
+  width: number;
+  height: number;
+  size: number;
   uploadSuccess: boolean;
   uploadFail: boolean;
   uploadLoading: boolean;
@@ -156,8 +159,11 @@ export async function canvasToFile(file: File, options: IPrevHandleImageOptions,
           resolve({
             file: newFile,
             url: src,
+            originUrl: src,
             name: file.name,
-            size: computedMemorySize(newFile.size),
+            width,
+            height,
+            size: newFile.size,
             aspectRatio: parseFloat(((canvas as HTMLCanvasElement).width / (canvas as HTMLCanvasElement).height).toString()).toFixed(4),
             uploadSuccess: false,
             uploadFail: false,
@@ -171,8 +177,11 @@ export async function canvasToFile(file: File, options: IPrevHandleImageOptions,
   return {
     file,
     url: src,
+    originUrl: src,
     name: file.name,
-    size: computedMemorySize(file.size),
+    width,
+    height,
+    size: file.size,
     aspectRatio: parseFloat((width / height).toString()).toFixed(4),
     uploadSuccess: false,
     uploadFail: false,
@@ -193,7 +202,7 @@ export function request(requestConfig: IRequestConfig): Promise<any>{
           const result = JSON.parse(xhr.response);
           resolve(result)
         }else{
-          reject(xhr.responseText)
+          reject(JSON.parse(xhr.responseText))
         }
       }
     };
@@ -225,6 +234,8 @@ export async function uploadPic(previewItem: IPreviewItem, options: IUploadOptio
   const form = new FormData();
   form.append('file', previewItem.file);
   form.append('system', system as string);
+  form.append('width', previewItem.width.toString());
+  form.append('height', previewItem.height.toString())
   try{
     const { url, name, size } = await request({
       url: `${domain}/v1/widget/upload`,
@@ -239,7 +250,7 @@ export async function uploadPic(previewItem: IPreviewItem, options: IUploadOptio
       ...previewItem,
       url,
       name,
-      size: computedMemorySize(size),
+      size: size,
       uploadLoading: false,
       uploadSuccess: true,
     }

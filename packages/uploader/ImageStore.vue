@@ -5,6 +5,7 @@
                     :key="index"
                     :item="item"
                     :index="index"
+                    :disabled="disabled"
                     :activeKey="1"
                     @handleCheckChange="handleCheckChange"
       />
@@ -25,16 +26,15 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, inject, PropType, ref, toRefs} from 'vue'
-import {Empty} from 'ant-design-vue';
+import {defineComponent, inject, PropType, ref, toRefs, computed} from 'vue'
+import {Empty, message} from 'ant-design-vue';
 import UploaderContainer from './PreviewContainer.vue';
 import UploaderItem from './PreviewItem.vue';
 import {getPicsList, IPreviewItem} from './methods'
-import {getEASIText} from "@/locale";
 
 export default defineComponent({
   name: 'imageStore',
-  emits: ['error'],
+  emits: ['error', 'handleCheckedChange'],
   props: {
     checkedList: {
       type: Array as PropType<IPreviewItem[]>,
@@ -52,13 +52,17 @@ export default defineComponent({
       type: String,
       default: '',
     },
+    multiple: {
+      type: [Boolean, Number],
+      default: false
+    },
     getText: {
       type: Function,
       default: () => ''
     }
   },
   setup(props, {emit}) {
-    const {authorization, timeout, domain, getText} = toRefs(props);
+    const {authorization, timeout, domain, getText, multiple, checkedList} = toRefs(props);
 
     const uploadGlobal = inject('uploadGlobal', { listLoading: false })
 
@@ -72,7 +76,8 @@ export default defineComponent({
       uploadGlobal.listLoading = true;
       try{
         if(_filename != null){
-          filename = _filename
+          filename = _filename;
+          current.value = 1;
         }
         const data = await getPicsList({
           page: current.value,
@@ -83,10 +88,10 @@ export default defineComponent({
           timeout: timeout.value,
           domain: domain.value,
         });
-        console.log(data);
         total.value = data.total || 0;
         imageList.value = data.data || [];
       }catch (e) {
+        message.error('uploadListError')
         emit('error', e)
       }
       uploadGlobal.listLoading = false;
@@ -100,16 +105,28 @@ export default defineComponent({
       getImageList();
     }
 
+    const disabled = computed(() => {
+      if(typeof multiple.value === 'number' && checkedList.value.length >= multiple.value){
+        return true
+      }else if(multiple.value === false && checkedList.value.length >= 1){
+        return true
+      }
+      return false;
+    })
+
     return {
       imageList,
       current,
       uploadGlobal,
       total,
+      disabled,
       simpleImage: Empty.PRESENTED_IMAGE_SIMPLE as any,
       onChange,
       getImageList,
       handleCheckChange(e: any, item: IPreviewItem, index: number) {
-        console.log(e, item, index);
+        const { checked } = e.target;
+        imageList.value[index].checked = checked
+        emit('handleCheckedChange', checked, imageList.value[index], index)
       },
       showTotal(total: number) {
         return getText.value('pageTotal', { 'total': total || 0 })
