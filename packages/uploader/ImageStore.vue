@@ -91,7 +91,7 @@ export default defineComponent({
         total.value = data.total || 0;
         imageList.value = data.data || [];
       }catch (e) {
-        message.error('uploadListError')
+        message.error(getText.value('uploadListError'))
         emit('error', e)
       }
       uploadGlobal.listLoading = false;
