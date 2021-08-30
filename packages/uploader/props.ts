@@ -40,7 +40,10 @@ export const uploadProps = {
     default: undefined,
   },
   // IAM下发的token
-  authorization: undefined,
+  authorization: {
+    type: [String, Function],
+    default: undefined
+  },
   // 接口超时时间
   timeout: {
     type: Number,

@@ -41,7 +41,7 @@ export default defineComponent({
       default: []
     },
     authorization: {
-      type: String,
+      type: [String, Function],
       default: undefined
     },
     timeout: {

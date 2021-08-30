@@ -6919,12 +6919,17 @@ img.ant-image-preview-img {
   background: rgba(255, 255, 255, 0.04);
 }
 
-.page-breadcrumb-wrap .ant-page-header-footer {
-  margin: 0;
+.margin-bottom {
+  margin-bottom: 20px;
 }
 
-.error-full-page {
-  height: calc(100vh - 160px);
+.more-item {
+  padding-left: 24px;
+  padding-right: 24px;
+  margin-bottom: 10px;
+  margin-left: -24px;
+  margin-right: -24px;
+  height: 44px;
 }
 
 .has-footer {
@@ -7257,6 +7262,14 @@ img.ant-image-preview-img {
   border-color: #434343;
 }
 
+.page-breadcrumb-wrap .ant-page-header-footer {
+  margin: 0;
+}
+
+.error-full-page {
+  height: calc(100vh - 160px);
+}
+
 .page-header {
   border-bottom: 2px solid #f1f1f1;
 }
@@ -7275,19 +7288,6 @@ img.ant-image-preview-img {
 .side-placeholder {
   flex-shrink: 0;
   overflow: hidden;
-}
-
-.margin-bottom {
-  margin-bottom: 20px;
-}
-
-.more-item {
-  padding-left: 24px;
-  padding-right: 24px;
-  margin-bottom: 10px;
-  margin-left: -24px;
-  margin-right: -24px;
-  height: 44px;
 }
 
 /*!
@@ -7683,6 +7683,10 @@ img.ant-image-preview-img {
     opacity: 1;
   }
 }
+.easi-uploader-container {
+  margin-left: -2%;
+}
+
 .easi-uploader-preview-item .anticon svg {
   margin: auto;
 }
@@ -7748,10 +7752,6 @@ img.ant-image-preview-img {
     width: 48%;
   }
 }
-.easi-uploader-container {
-  margin-left: -2%;
-}
-
 .ant-upload.ant-upload-drag {
   width: 384px;
   height: 192px;

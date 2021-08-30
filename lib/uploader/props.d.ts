@@ -28,7 +28,10 @@ export declare const uploadProps: {
         type: StringConstructor;
         default: undefined;
     };
-    authorization: undefined;
+    authorization: {
+        type: (StringConstructor | FunctionConstructor)[];
+        default: undefined;
+    };
     timeout: {
         type: NumberConstructor;
         default: number;
@@ -91,7 +94,10 @@ export declare const rootProps: {
         type: StringConstructor;
         default: undefined;
     };
-    authorization: undefined;
+    authorization: {
+        type: (StringConstructor | FunctionConstructor)[];
+        default: undefined;
+    };
     timeout: {
         type: NumberConstructor;
         default: number;

@@ -6,7 +6,7 @@ declare const _default: import("vue").DefineComponent<{
         default: never[];
     };
     authorization: {
-        type: StringConstructor;
+        type: (StringConstructor | FunctionConstructor)[];
         default: undefined;
     };
     timeout: {
@@ -74,13 +74,13 @@ declare const _default: import("vue").DefineComponent<{
     multiple: number | boolean;
     getText: Function;
 } & {
-    authorization?: string | undefined;
+    authorization?: string | Function | undefined;
 }> & {
     onError?: ((...args: any[]) => any) | undefined;
     onHandleCheckedChange?: ((...args: any[]) => any) | undefined;
 }, {
     checkedList: IPreviewItem[];
-    authorization: string;
+    authorization: string | Function;
     timeout: number;
     domain: string;
     multiple: number | boolean;
