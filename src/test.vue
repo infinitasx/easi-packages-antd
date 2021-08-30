@@ -2,7 +2,7 @@
   <a-card size="small" :hoverable="false" :bordered="false">
     <EASIUploader :multiple="false"
                   aspectRatio="1*2"
-                  authorization="Bearer oqbK3zUv4AN3mpivH9F_UkcR0tmiaDrg0vplbh4tNXM.fHRf0lXLCPjySVxFe65x-T8ArkggSzKQEFWJl5GM_fw"
+                  authorization="Bearer Tv8rdNscqlP0OiALY6_rj0o0FaIYyaYMJg7JqQXtgpU.yOFu2ubL3Ub0ijgxVBIbO0YOXdN4b5rNcYU38rRs0fQ"
                   system="iam"
                   @ok="handleOK"
                   @error="handleError"
@@ -29,9 +29,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style lang="scss">
-img.ant-image-preview-img{
-  display: inline-block;
-}
-</style>

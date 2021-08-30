@@ -532,6 +532,12 @@ export default defineComponent({
 });
 </script>
 
+<style lang="scss">
+img.ant-image-preview-img{
+  display: inline-block !important;
+}
+</style>
+
 <style lang="scss" scoped>
 .pane-container {
   position: relative;
