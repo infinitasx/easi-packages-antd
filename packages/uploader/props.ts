@@ -41,7 +41,7 @@ export const uploadProps = {
   },
   // IAM下发的token
   authorization: {
-    type: String,
+    type: [String, Function],
     default: undefined,
   },
   // 接口超时时间

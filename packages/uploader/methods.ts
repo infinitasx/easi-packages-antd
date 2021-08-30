@@ -219,7 +219,11 @@ export function request(requestConfig: IRequestConfig): Promise<any>{
     })
     xhr.open(method, url, true);
     Object.keys(header).map(key => {
-      xhr.setRequestHeader(key, header[key]);
+      if(key === 'authorization'){
+        xhr.setRequestHeader(key, typeof header[key] === 'function' ? header[key]() : header[key]);
+      }else{
+        xhr.setRequestHeader(key, header[key]);
+      }
     });
     timeCount = setTimeout(() => {
       xhr.abort()

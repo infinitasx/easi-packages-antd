@@ -9,7 +9,7 @@ base
 |    props    |         type         |         default         | required | remark                           |
 | :---------: | :------------------: | :---------------------: | :------: | -------------------------------- |
 |    system   |        string        |                         |    是    | 系统在IAM内的标示，例如IAM系统标示为iam，可咨询后端系统具体标示     |
-|authorization|        string        |                         |    是    | IAM下发的token，格式为Bearer ******                         |
+|authorization| string or function   |                         |    是    | IAM下发的token，格式为Bearer ******                         |
 |     env     |development or production |                     |    是    | 默认取window.$EASI_BUILD_ENV的值 |
 |  multiple   |   boolean or number  |         false           |    否    | 可以上传/选择的图片数量，为true时，不限制数量，为false或1时只能上传/选择一张图片，为0时不可上传/选择图片 |
 | maxFilesSize|   number             |         5               |    否    | 单张图片上传内存大小限制，单位M，默认不超过5M |
