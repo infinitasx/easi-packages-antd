@@ -1,7 +1,7 @@
 {
   "name": "easi-packages-antd",
   "private": true,
-  "version": "0.0.23",
+  "version": "0.0.24",
   "description": "",
   "main": "dist/index.es.js",
   "module": "dist/index.cjs.js",
@@ -86,5 +86,5 @@
     "assetsFilePattern": "*.html",
     "asLibrary": true
   },
-  "homepage": "https://static.easiglobal.com/easi-packages-antd/0.0.23/website/index.html"
+  "homepage": "https://static.easiglobal.com/easi-packages-antd/0.0.24/website/index.html"
 }

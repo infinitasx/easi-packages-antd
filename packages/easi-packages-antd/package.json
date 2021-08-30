@@ -12,7 +12,8 @@
     "@easi-packages-antd/modal": "^0.0.0",
     "@easi-packages-antd/page": "^0.0.0",
     "@easi-packages-antd/table": "^0.0.0",
-    "@easi-packages-antd/setting": "^0.0.0"
+    "@easi-packages-antd/setting": "^0.0.0",
+    "@easi-packages-antd/uploader": "^0.0.0"
   },
   "devDependencies": {
     "jest": "^27.0.6"

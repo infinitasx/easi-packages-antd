@@ -31,6 +31,11 @@
         "name": "表格",
         "components": "Table",
         "path": "/table"
+      },
+      {
+        "name": "图片选择器",
+        "components": "Uploader",
+        "path": "/uploader"
       }
     ]
   },

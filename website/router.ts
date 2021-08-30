@@ -37,6 +37,10 @@ const routes = [
     path: "/table",
     component: () => import("../packages/table/docs/index.md"),
   },
+  {
+    path: "/uploader",
+    component: () => import("../packages/uploader/docs/index.md"),
+  },
 ];
 const router = createRouter({
   history: createWebHashHistory("/"),
