@@ -34,6 +34,6 @@ export default [
         outDir: "./lib",
       }),
     ],
-    external: ["vue", "ant-design-vue", "ant-design-vue/dist/antd.css", "moment", "easi-web-utils", "vue-router", "vue-i18n"],
+    external: ["vue", "ant-design-vue", "ant-design-vue/dist/antd.css", "moment", "easi-web-utils", "vue-router", "vue-i18n", "connect-google-maps"],
   },
 ];
