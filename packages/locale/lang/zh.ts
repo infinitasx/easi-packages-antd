@@ -18,4 +18,5 @@ export default {
   editPassword: '修改密码',
   deviceTitle: '登录设备管理',
   deviceLoginTime: '登录时间',
+  copySuccess: '已粘贴进剪切板'
 }

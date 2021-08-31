@@ -12,13 +12,14 @@
     <template v-if="userInfo?.devices?.length > 0">
       <a-typography-text strong class="block mb-32"> {{ globalEASILocale.message.deviceTitle }} </a-typography-text>
       <div class="mb-32" v-for="item in userInfo.devices" :key="item.id">
-        <p class="flex items-center">
+        <p class="flex items-center flex-nowrap overflow-hidden">
           <a-typography-text type="secondary">
             <DesktopOutlined v-if="item.device_type === 'Desktop'" />
             <MobileOutlined v-else-if="item.device_type === 'Mobile'" />
             <TabletOutlined v-else-if="item.device_type === 'Tablet'" />
           </a-typography-text>
-          <a-typography-text class="flex-1 px-8"> IP: {{ item.ip }} </a-typography-text>
+          <a-typography-text class="px-8"> IP: {{ item.ip }} </a-typography-text>
+          <a-typography-link class="flex-1 truncate" @click="handleCopy"> ({{item.session_id}}) </a-typography-link>
         </p>
         <p class="m-0">
           <a-typography-text type="secondary">
@@ -77,11 +78,12 @@
 <script lang="ts">
 import { createVNode, defineComponent, inject, PropType } from "vue";
 import { createNamespace } from "../utils/create";
-import { Modal } from "ant-design-vue";
+import { Modal, message } from "ant-design-vue";
 import { setProvider, IProvider, defaultProvider } from "../utils/globalProvider";
 import { ExclamationCircleOutlined, LogoutOutlined, CompassOutlined, UnlockOutlined, MobileOutlined, DesktopOutlined, TabletOutlined } from "@ant-design/icons-vue";
 import { UserInfo } from '../../typings/antd'
 import { IGlobalLocal } from '../locale'
+import { copy } from 'easi-web-utils'
 import moment from 'moment';
 
 export default defineComponent({
@@ -143,6 +145,11 @@ export default defineComponent({
       },
       transformTime(timestamp: number){
         return moment(timestamp).format('YYYY-MM-DD HH:mm:ss');
+      },
+      handleCopy(session_id: string){
+        if(copy(session_id)){
+          message.success(globalEASILocale.message.copySuccess)
+        }
       },
       globalEASILocale,
     };

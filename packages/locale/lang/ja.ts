@@ -18,4 +18,5 @@ export default {
   editPassword: 'パスワードを変更する',
   deviceTitle: 'デバイス管理にログインします',
   deviceLoginTime: 'ログイン時間',
+  copySuccess: 'がクリップボードに貼り付けられました'
 }

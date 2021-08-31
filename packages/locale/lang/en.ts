@@ -18,4 +18,5 @@ export default {
   editPassword: 'Change Password',
   deviceTitle: 'Login to device management',
   deviceLoginTime: 'Login time',
+  copySuccess: 'Has been pasted into the clipboard'
 }
