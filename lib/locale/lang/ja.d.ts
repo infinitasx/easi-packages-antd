@@ -18,5 +18,6 @@ declare const _default: {
     editPassword: string;
     deviceTitle: string;
     deviceLoginTime: string;
+    copySuccess: string;
 };
 export default _default;
