@@ -1,7 +1,7 @@
 {
   "name": "easi-packages-antd",
   "private": true,
-  "version": "0.0.22",
+  "version": "0.0.23",
   "description": "",
   "main": "dist/index.es.js",
   "module": "dist/index.cjs.js",
@@ -10,7 +10,7 @@
     "packages/*"
   ],
   "scripts": {
-    "serve": "vite",
+    "serve": "vite --config ./vite.config.ts",
     "gc": "bash ./scripts/gc.sh",
     "gen:version": "node build/gen-version.js",
     "build": "rimraf ./dist && yarn gen:version && vite build && yarn build:ws",
@@ -87,5 +87,5 @@
     "assetsFilePattern": "*.html",
     "asLibrary": true
   },
-  "homepage": "https://static.easiglobal.com/easi-packages-antd/0.0.22/website/index.html"
+  "homepage": "https://static.easiglobal.com/easi-packages-antd/0.0.23/website/index.html"
 }

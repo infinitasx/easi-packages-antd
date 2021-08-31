@@ -29,6 +29,7 @@ declare const _default: import("vue").DefineComponent<{
     handleLogout(): void;
     handleToDashBoard(): void;
     handleEditPassword(): void;
+    transformTime(timestamp: number): string;
     globalEASILocale: IGlobalLocal;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "update:visible"[], "update:visible", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
     userInfo?: unknown;
@@ -43,7 +44,9 @@ declare const _default: import("vue").DefineComponent<{
     onLogout?: Function | undefined;
     toDashboard?: Function | undefined;
     editPassword?: Function | undefined;
-}>, {
+}> & {
+    "onUpdate:visible"?: ((...args: any[]) => any) | undefined;
+}, {
     userInfo: UserInfo;
     showTabSetting: boolean;
     onLogout: Function;

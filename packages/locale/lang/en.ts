@@ -15,5 +15,7 @@ export default {
   closeOther: 'Close other tabs',
   refreshPage: 'Refresh current page',
   backToDashBoard: 'Back to Dashboard',
-  editPassword: 'Change Password'
+  editPassword: 'Change Password',
+  deviceTitle: 'Login to device management',
+  deviceLoginTime: 'Login time',
 }

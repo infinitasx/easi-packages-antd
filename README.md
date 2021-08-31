@@ -15,7 +15,7 @@
 </p>
 <br>
 
-[文档地址](https://static.easiglobal.com/easi-packages-antd/0.0.22/website/index.html)
+[文档地址](https://static.easiglobal.com/easi-packages-antd/0.0.23/website/index.html)
 
 ### 开发前置
 
@@ -61,3 +61,71 @@ yarn website
 - [Vue Router 4+](https://github.com/vuejs/vue-router-next)
 - [ant-design-vue 2+](https://github.com/vueComponent/ant-design-vue)
 - [easi-web-utils](https://github.com/infinitasx/easi-web-utils.git#main)
+
+### 按需加载
+
+> webpack 项目
+
+- 安装 babel-plugin-import 依赖
+
+```js
+yarn add babel-plugin-import -D
+```
+
+- 配置 babel
+
+```js
+//babel.config.js
+module.exports = {
+  plugins: [
+    [
+      "import",
+      {
+        libraryName: "easi-packages-antd",
+        style: (name) => {
+          return `${name}/index.css`;
+        },
+        customName: (name) => {
+          name = name.slice(8);
+          return `easi-packages-antd/es/${name}`;
+        },
+      },
+    ],
+  ],
+};
+```
+
+> vite 项目
+
+- 安装 vite-plugin-importer 依赖
+
+```js
+yarn add vite-plugin-importer -D
+```
+
+- 配置 vite
+
+```js
+// vite.config.js
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import usePluginImport from "vite-plugin-importer";
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [
+    vue(),
+    usePluginImport({
+      libraryName: "easi-packages-antd",
+      libraryDirectory: "es",
+      style: (name) => {
+        return `${name}/index.css`;
+      },
+      customName: (name) => {
+        name = name.slice(8);
+        return `easi-packages-antd/es/${name}`;
+      },
+    }),
+  ],
+});
+```
