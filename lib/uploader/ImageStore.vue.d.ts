@@ -58,6 +58,7 @@ declare const _default: import("vue").DefineComponent<{
         listLoading: boolean;
     };
     total: import("vue").Ref<number>;
+    pageSize: import("vue").Ref<number>;
     disabled: import("vue").ComputedRef<boolean>;
     simpleImage: any;
     onChange: (_page: number, _size: number) => void;

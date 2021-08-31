@@ -11,8 +11,8 @@ export declare const emptyProps: {
 };
 export declare const cropProps: {
     aspectRatio: {
-        type: StringConstructor;
-        default: undefined;
+        type: NumberConstructor;
+        default: number;
     };
     minCropBoxWidth: {
         type: NumberConstructor;
@@ -107,8 +107,8 @@ export declare const rootProps: {
         default: "development" | "production";
     };
     aspectRatio: {
-        type: StringConstructor;
-        default: undefined;
+        type: NumberConstructor;
+        default: number;
     };
     minCropBoxWidth: {
         type: NumberConstructor;

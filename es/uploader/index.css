@@ -368,6 +368,9 @@ img.ant-image-preview-img {
   margin: 0;
 }
 
+.easi-uploader-preview .easi-uploader-disabled-checked {
+  filter: grayscale(1);
+}
 .easi-uploader-preview .ant-image {
   position: absolute;
   top: 50%;

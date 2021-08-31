@@ -18,7 +18,7 @@ declare const _default: import("vue").DefineComponent<{
         default: boolean;
     };
     ratio: {
-        type: NumberConstructor;
+        type: (NumberConstructor | StringConstructor)[];
         default: number;
     };
     crop: {
@@ -30,6 +30,7 @@ declare const _default: import("vue").DefineComponent<{
         default: boolean;
     };
 }, {
+    invalidAspectRatio: import("vue").ComputedRef<boolean>;
     handleDelete(item: IPreviewItem, index: number): void;
     handleCrop(item: IPreviewItem, index: number): void;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
@@ -45,7 +46,7 @@ declare const _default: import("vue").DefineComponent<{
     index: number;
     activeKey: 0 | 1;
     disabled: boolean;
-    ratio: number;
+    ratio: string | number;
     crop: boolean;
     loading: boolean;
 } & {}> & {}, {
@@ -53,7 +54,7 @@ declare const _default: import("vue").DefineComponent<{
     index: number;
     activeKey: 0 | 1;
     disabled: boolean;
-    ratio: number;
+    ratio: string | number;
     crop: boolean;
     loading: boolean;
 }>;

@@ -5456,7 +5456,7 @@ var script$4 = defineComponent({
       default: false
     },
     ratio: {
-      type: Number,
+      type: [Number, String],
       default: 0
     },
     crop: {
@@ -5470,13 +5470,14 @@ var script$4 = defineComponent({
   },
   setup(props, { emit }) {
     const { ratio, item } = toRefs(props);
-    computed(() => {
+    const invalidAspectRatio = computed(() => {
       const width = item.value.width;
       const height = item.value.height;
       const imgRatio = width > 0 && height > 0 ? parseFloat((width / height).toString()).toFixed(4) : 0;
-      return ratio.value !== imgRatio;
+      return ratio.value !== 0 && ratio.value !== imgRatio;
     });
     return {
+      invalidAspectRatio,
       handleDelete(item2, index) {
         emit("handleDelete", item2, index);
       },
@@ -5529,8 +5530,9 @@ const render$4 = /* @__PURE__ */ _withId$4((_ctx, _cache, $props, $setup, $data,
         createVNode("div", _hoisted_2$3, [
           createVNode(_component_a_image, {
             width: "100%",
-            src: _ctx.item.url
-          }, null, 8, ["src"]),
+            src: _ctx.item.url,
+            class: { "easi-uploader-disabled-checked": (_ctx.disabled && !_ctx.item.checked || _ctx.invalidAspectRatio) && _ctx.activeKey === 1 }
+          }, null, 8, ["src", "class"]),
           createVNode("div", _hoisted_3$2, [
             _ctx.item.uploadSuccess && _ctx.activeKey === 0 ? (openBlock(), createBlock(_component_CheckCircleFilled, {
               key: 0,
@@ -5543,7 +5545,7 @@ const render$4 = /* @__PURE__ */ _withId$4((_ctx, _cache, $props, $setup, $data,
             _ctx.activeKey === 1 ? (openBlock(), createBlock(_component_a_checkbox, {
               key: 2,
               checked: _ctx.item.checked,
-              disabled: _ctx.disabled && !_ctx.item.checked,
+              disabled: _ctx.disabled && !_ctx.item.checked || _ctx.invalidAspectRatio,
               size: "large",
               onChange: _cache[1] || (_cache[1] = ($event) => _ctx.$emit("handleCheckChange", $event, _ctx.item, _ctx.index))
             }, null, 8, ["checked", "disabled"])) : createCommentVNode("v-if", true)
@@ -5611,8 +5613,8 @@ const emptyProps = {
 };
 const cropProps = {
   aspectRatio: {
-    type: String,
-    default: void 0
+    type: Number,
+    default: 0
   },
   minCropBoxWidth: {
     type: Number,
@@ -5874,7 +5876,7 @@ function request(requestConfig) {
           const result = JSON.parse(xhr.response);
           resolve(result);
         } else {
-          reject(JSON.parse(xhr.responseText));
+          reject(xhr.responseText);
         }
       }
     };
@@ -6060,14 +6062,15 @@ var script$2 = defineComponent({
           const fileNameArray = name.split(".");
           const newFileName = `${fileNameArray.slice(0, fileNameArray.length - 1).join(".")}.webp`;
           const newFile = new File([blob], newFileName, { type: "image/webp" });
-          const { naturalWidth, naturalHeight } = cropInstance.getImageData();
+          const url = await fileToBlob(newFile);
+          const { width, height } = await getImageSize(url);
           const newPreviewItem = {
-            url: await fileToBlob(newFile),
+            url,
             originUrl,
             file: newFile,
             name: newFileName,
-            width: naturalWidth,
-            height: naturalHeight,
+            width,
+            height,
             size: newFile.size,
             uploadSuccess: false,
             uploadFail: false,
@@ -6235,7 +6238,7 @@ var script$1 = defineComponent({
     const imageList = ref([]);
     const current = ref(1);
     const total = ref(0);
-    let pageSize = 20;
+    let pageSize = ref(20);
     let filename = "";
     const getImageList = async (_filename) => {
       uploadGlobal.listLoading = true;
@@ -6246,7 +6249,7 @@ var script$1 = defineComponent({
         }
         const data = await getPicsList({
           page: current.value,
-          size: pageSize,
+          size: pageSize.value,
           filename
         }, {
           authorization: authorization.value,
@@ -6264,7 +6267,7 @@ var script$1 = defineComponent({
     getImageList();
     const onChange = (_page, _size) => {
       current.value = _page ? _page : current.value;
-      pageSize = _size ? _size : pageSize;
+      pageSize.value = _size ? _size : pageSize.value;
       getImageList();
     };
     const disabled = computed(() => {
@@ -6280,6 +6283,7 @@ var script$1 = defineComponent({
       current,
       uploadGlobal,
       total,
+      pageSize,
       disabled,
       simpleImage: Empty.PRESENTED_IMAGE_SIMPLE,
       onChange,
@@ -6334,10 +6338,12 @@ const render$1 = /* @__PURE__ */ _withId$1((_ctx, _cache, $props, $setup, $data,
           showLessItems: "",
           current: _ctx.current,
           "onUpdate:current": _cache[1] || (_cache[1] = ($event) => _ctx.current = $event),
+          "page-size": _ctx.pageSize,
+          "onUpdate:page-size": _cache[2] || (_cache[2] = ($event) => _ctx.pageSize = $event),
           total: _ctx.total,
           onChange: _ctx.onChange,
           onShowSizeChange: _ctx.onChange
-        }, null, 8, ["show-total", "current", "total", "onChange", "onShowSizeChange"])
+        }, null, 8, ["show-total", "current", "page-size", "total", "onChange", "onShowSizeChange"])
       ], 512), [
         [vShow, _ctx.total > 0 && _ctx.imageList.length > 0]
       ]),
@@ -6390,8 +6396,7 @@ var script = defineComponent({
       }
     });
     const ratio = computed(() => {
-      let ratioArray = aspectRatio.value ? aspectRatio.value.split("*").map((str) => Number(str)) : [0, 0];
-      return ratioArray[0] === 0 || ratioArray[1] === 0 ? 0 : parseFloat((ratioArray[0] / ratioArray[1]).toString()).toFixed(4);
+      return !aspectRatio.value ? 0 : parseFloat(aspectRatio.value.toString()).toFixed(4);
     });
     const search = ref();
     const [actionType, setActionType] = useActionType("");
@@ -6420,7 +6425,6 @@ var script = defineComponent({
       symbolVisible.value = false;
       emit("update:visible", false);
       emit("cancel");
-      window.close();
       if (destroyOnClose.value) {
         activeKey.value = 0;
         localUploadList.value = [];

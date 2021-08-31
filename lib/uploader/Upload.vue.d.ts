@@ -82,8 +82,8 @@ declare const _default: import("vue").DefineComponent<{
         default: "development" | "production";
     };
     aspectRatio: {
-        type: StringConstructor;
-        default: undefined;
+        type: NumberConstructor;
+        default: number;
     };
     minCropBoxWidth: {
         type: NumberConstructor;
@@ -162,6 +162,7 @@ declare const _default: import("vue").DefineComponent<{
     maxHeight: number;
     timeout: number;
     env: "development" | "production";
+    aspectRatio: number;
     minCropBoxWidth: number;
     minCropBoxHeight: number;
 } & {
@@ -169,7 +170,6 @@ declare const _default: import("vue").DefineComponent<{
     title?: string | undefined;
     system?: string | undefined;
     authorization?: string | Function | undefined;
-    aspectRatio?: string | undefined;
     emptyTitle?: string | undefined;
     emptySubTitle?: string | undefined;
 }> & {
@@ -198,7 +198,7 @@ declare const _default: import("vue").DefineComponent<{
     authorization: string | Function;
     timeout: number;
     env: "development" | "production";
-    aspectRatio: string;
+    aspectRatio: number;
     minCropBoxWidth: number;
     minCropBoxHeight: number;
     emptyTitle: string;
