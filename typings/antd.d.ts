@@ -42,4 +42,5 @@ export interface UserInfo {
   name?: string; // 用户名称
   avatar?: string; // 用户头像
   devices?: {device_type: 'Desktop' | 'Mobile' | 'Tablet'; active_at: number; ip: string; id: string; [props: string]: any }[]; // 设备信息
+  session_id?: string;
 }

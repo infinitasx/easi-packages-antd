@@ -49,14 +49,14 @@ export default defineComponent({
 EOF
 
 cat <<EOF >"$DIRNAME/index.ts"
-import { App } from 'vue'
+import { App, Plugin } from 'vue'
 import ${NAME} from './index.vue'
 
 ${NAME}.install = (app: App): void => {
   app.component(${NAME}.name, ${NAME})
 }
 
-export default ${NAME}
+export default ${NAME} as typeof ${NAME} & Plugin;
 EOF
 
 cat > $DIRNAME/package.json <<EOF
