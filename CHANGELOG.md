@@ -9,6 +9,7 @@
 ### Added
 
 - 新增EASIUploader组件
+- 添加上传接口生产环境域名
 
 ### Changed
 

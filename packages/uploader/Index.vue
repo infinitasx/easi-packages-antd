@@ -146,7 +146,7 @@ export default defineComponent({
     const symbolVisible = ref<boolean>(false);
 
     const domain = computed(() => {
-      return env.value === 'production' ? '' : 'https://oss.melbdelivery.com'
+      return env.value === 'production' ? 'https://oss.easiglobal.com' : 'https://oss.melbdelivery.com'
     })
 
     const activeKey = ref<number>(0);

@@ -223,7 +223,7 @@ declare const _default: import("vue").DefineComponent<{
     }[]>;
     isCropping: import("vue").Ref<boolean>;
     cropIndex: import("vue").Ref<number>;
-    domain: import("vue").ComputedRef<"" | "https://oss.melbdelivery.com">;
+    domain: import("vue").ComputedRef<"https://oss.easiglobal.com" | "https://oss.melbdelivery.com">;
     ratio: import("vue").ComputedRef<string | 0>;
     handleCropBack: () => void;
     handleDelete: (item: IPreviewItem, index: number) => void;

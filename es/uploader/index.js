@@ -6372,7 +6372,7 @@ var script = defineComponent({
     const globalEASILocale = inject("globalEASILocale", { message: {} });
     const symbolVisible = ref(false);
     const domain = computed(() => {
-      return env.value === "production" ? "" : "https://oss.melbdelivery.com";
+      return env.value === "production" ? "https://oss.easiglobal.com" : "https://oss.melbdelivery.com";
     });
     const activeKey = ref(0);
     const app = getCurrentInstance();
