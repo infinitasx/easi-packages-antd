@@ -66,6 +66,7 @@
     "vue-tsc": "^0.2.1"
   },
   "peerDependencies": {
+    "cropperjs": "^1.5.12",
     "ant-design-vue": "^2",
     "easi-web-utils": "git+https://github.com/infinitasx/easi-web-utils.git#main",
     "vue": "^3.1.x",
@@ -73,6 +74,7 @@
   },
   "dependencies": {
     "ant-design-vue": "^2.2.6",
+    "cropperjs": "^1.5.12",
     "easi-web-utils": "git+https://github.com/infinitasx/easi-web-utils.git#main",
     "vue-router": "^4.0.10"
   },
