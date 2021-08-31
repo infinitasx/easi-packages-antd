@@ -18,7 +18,7 @@
             <MobileOutlined v-else-if="item.device_type === 'Mobile'" />
             <TabletOutlined v-else-if="item.device_type === 'Tablet'" />
           </a-typography-text>
-          <a-typography-text class="px-8"> IP: {{ item.ip }} </a-typography-text>
+          <a-typography-text class="px-8">{{ item.device_type }} {{ item.ip }} </a-typography-text>
           <a-typography-link class="flex-1 truncate" @click="handleCopy"> ({{item.session_id}}) </a-typography-link>
         </p>
         <p class="m-0">

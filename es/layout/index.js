@@ -2407,7 +2407,7 @@ const render$2 = /* @__PURE__ */ _withId$2((_ctx, _cache, $props, $setup, $data,
               }, 1024),
               createVNode(_component_a_typography_text, { class: "px-8" }, {
                 default: _withId$2(() => [
-                  createTextVNode(" IP: " + toDisplayString(item.ip), 1)
+                  createTextVNode(toDisplayString(item.device_type) + " " + toDisplayString(item.ip), 1)
                 ]),
                 _: 2
               }, 1024),
