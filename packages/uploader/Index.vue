@@ -178,8 +178,7 @@ export default defineComponent({
     })
 
     const ratio = computed(() => {
-      let ratioArray = aspectRatio.value ? aspectRatio.value.split('*').map(str => Number(str)) : [0,0];
-      return ratioArray[0] === 0 || ratioArray[1] === 0 ? 0 : parseFloat((ratioArray[0] / ratioArray[1]).toString()).toFixed(4);
+      return !aspectRatio.value ? 0 : parseFloat((aspectRatio.value).toString()).toFixed(4);
     })
 
     const search = ref<string>();
@@ -222,7 +221,6 @@ export default defineComponent({
       symbolVisible.value = false;
       emit('update:visible', false);
       emit('cancel');
-      window.close();
       if(destroyOnClose.value){
         activeKey.value = 0;
         localUploadList.value = [];

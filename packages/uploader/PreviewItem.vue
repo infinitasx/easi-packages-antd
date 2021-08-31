@@ -6,6 +6,7 @@
           <a-image
               width="100%"
               :src="item.url"
+              :class="{'easi-uploader-disabled-checked': ((disabled && !item.checked) || invalidAspectRatio) && activeKey === 1}"
           />
           <div class="absolute">
             <CheckCircleFilled style="color: #67c23a;font-size: 18px" v-if="item.uploadSuccess && activeKey === 0"/>
@@ -74,7 +75,7 @@ export default defineComponent({
       default: false
     },
     ratio: {
-      type: Number,
+      type: [Number, String],
       default: 0
     },
     crop: {
@@ -94,7 +95,7 @@ export default defineComponent({
       const width = item.value.width;
       const height = item.value.height;
       const imgRatio = width >0 && height > 0 ? parseFloat((width / height).toString()).toFixed(4) : 0;
-      return ratio.value !== imgRatio
+      return ratio.value !== 0 && ratio.value !== imgRatio
     })
 
     return {
@@ -131,6 +132,9 @@ export default defineComponent({
   }
 }
 .easi-uploader-preview {
+  .easi-uploader-disabled-checked{
+    filter: grayscale(1);
+  }
   .ant-image{
     position: absolute;
     top: 50%;

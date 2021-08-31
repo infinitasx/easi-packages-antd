@@ -17,6 +17,7 @@
                     :show-total="showTotal"
                     showLessItems
                     v-model:current="current"
+                    v-model:page-size="pageSize"
                     :total="total"
                     @change="onChange"
                     @showSizeChange="onChange"
@@ -74,7 +75,7 @@ export default defineComponent({
     const imageList = ref<IPreviewItem[]>([]);
     const current = ref<number>(1);
     const total = ref<number>(0);
-    let pageSize = 20;
+    let pageSize = ref<number>(20);
     let filename = '';
 
     const getImageList = async (_filename?: string) => {
@@ -86,7 +87,7 @@ export default defineComponent({
         }
         const data = await getPicsList({
           page: current.value,
-          size: pageSize,
+          size: pageSize.value,
           filename
         }, {
           authorization: authorization.value as string,
@@ -106,7 +107,7 @@ export default defineComponent({
 
     const onChange = (_page: number, _size: number) => {
       current.value = _page ? _page : current.value;
-      pageSize = _size ? _size : pageSize;
+      pageSize.value = _size ? _size : pageSize.value;
       getImageList();
     }
 
@@ -124,6 +125,7 @@ export default defineComponent({
       current,
       uploadGlobal,
       total,
+      pageSize,
       disabled,
       simpleImage: Empty.PRESENTED_IMAGE_SIMPLE as any,
       onChange,

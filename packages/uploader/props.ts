@@ -18,8 +18,8 @@ export const emptyProps = {
 export const cropProps = {
   // 裁剪的宽高比
   aspectRatio: {
-    type: String,
-    default: undefined,
+    type: Number,
+    default: 0,
   },
   // 可裁剪到的最小宽度
   minCropBoxWidth: {

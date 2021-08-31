@@ -202,7 +202,7 @@ export function request(requestConfig: IRequestConfig): Promise<any>{
           const result = JSON.parse(xhr.response);
           resolve(result)
         }else{
-          reject(JSON.parse(xhr.responseText))
+          reject(xhr.responseText)
         }
       }
     };

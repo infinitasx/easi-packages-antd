@@ -40,8 +40,9 @@ import UploaderContainer from './PreviewContainer.vue';
 import UploaderItem from './PreviewItem.vue';
 import Empty from './Empty.vue';
 import { PlusOutlined } from '@ant-design/icons-vue';
-import {fileToBlob, IPreviewItem} from './methods'
+import {fileToBlob, getImageSize, IPreviewItem} from './methods'
 import {rootProps} from './props'
+
 export default defineComponent({
   name: "localStore",
   emits: ['inputChange', 'handleDelete', 'handleCrop', 'handleConfirmCrop'],
@@ -94,7 +95,7 @@ export default defineComponent({
         cropInstance.replace(cropperItem.value?.originUrl as string)
       }else{
         cropImageRef.value.src = cropperItem.value?.originUrl;
-        cropImageRef.value.addEventListener('ready', handleImageReady, false)
+        cropImageRef.value.addEventListener('ready', handleImageReady, false);
         cropInstance = new Cropper(cropImageRef.value, {
           viewMode: 0,
           movable: true,
@@ -160,14 +161,15 @@ export default defineComponent({
           const fileNameArray = name.split('.');
           const newFileName = `${fileNameArray.slice(0, fileNameArray.length - 1).join('.')}.webp`;
           const newFile = new File([blob], newFileName, {type: 'image/webp'});
-          const { naturalWidth, naturalHeight } = cropInstance.getImageData();
+          const url = await fileToBlob(newFile);
+          const { width, height } = await getImageSize(url);
           const newPreviewItem: IPreviewItem = {
-            url: await fileToBlob(newFile),
+            url,
             originUrl,
             file: newFile,
             name: newFileName,
-            width: naturalWidth,
-            height: naturalHeight,
+            width,
+            height,
             size: newFile.size,
             uploadSuccess: false,
             uploadFail: false,

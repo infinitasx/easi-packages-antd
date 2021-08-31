@@ -1,8 +1,8 @@
 <template>
   <a-card size="small" :hoverable="false" :bordered="false">
     <EASIUploader :multiple="false"
-                  aspectRatio="1*2"
-                  authorization="Bearer Tv8rdNscqlP0OiALY6_rj0o0FaIYyaYMJg7JqQXtgpU.yOFu2ubL3Ub0ijgxVBIbO0YOXdN4b5rNcYU38rRs0fQ"
+                  :aspectRatio="1/2"
+                  authorization="Bearer 2SMK-Yuancu4uUiXpFESQ3_C30eE7JMhyj5xz_Zjers.GFED2mHS-D3TTcM8msHyat6EPVNUX79Y7OZebDLiffA"
                   system="iam"
                   @ok="handleOK"
                   @error="handleError"
