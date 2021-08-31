@@ -15,6 +15,7 @@
                   :item="item"
                   :index="index"
                   :crop="crop"
+                  :ratio="ratio"
                   :loading="uploadGlobal.uploadLoading"
                   :activeKey="0"
                   @handleDelete="handleDelete"
@@ -54,13 +55,17 @@ export default defineComponent({
       type: Array as PropType<IPreviewItem[]>,
       default: () => [],
     },
+    ratio: {
+      type: [Number, String],
+      default: 0,
+    },
     isCropping: {
       type: Boolean,
       default: false,
     },
   },
   setup(props, {emit}){
-    const { minCropBoxWidth, minCropBoxHeight, aspectRatio, localUploadMustCrop, localUploadList, multiple } = toRefs(props);
+    const { minCropBoxWidth, minCropBoxHeight, ratio, localUploadMustCrop, localUploadList, multiple } = toRefs(props);
 
     const uploadGlobal = inject('uploadGlobal', { cropLoading: false, uploadLoading: false });
 
@@ -88,14 +93,13 @@ export default defineComponent({
         cropInstance.reset();
         cropInstance.replace(cropperItem.value?.originUrl as string)
       }else{
-        const defaultAspectRatio: number[] = aspectRatio.value ? aspectRatio.value.split('*').map(str => Number(str)) : [0,0];
         cropImageRef.value.src = cropperItem.value?.originUrl;
         cropImageRef.value.addEventListener('ready', handleImageReady, false)
         cropInstance = new Cropper(cropImageRef.value, {
           viewMode: 0,
           movable: true,
           autoCropArea: 1,
-          aspectRatio: Number(defaultAspectRatio[0]) === 0 || Number(defaultAspectRatio[1]) === 0 ? 0 : (defaultAspectRatio[0] / defaultAspectRatio[1]),
+          aspectRatio: Number(ratio.value),
           minCropBoxHeight: minCropBoxHeight.value,
           minCropBoxWidth: minCropBoxWidth.value,
           zoomable: true,

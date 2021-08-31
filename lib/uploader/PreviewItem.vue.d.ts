@@ -17,6 +17,10 @@ declare const _default: import("vue").DefineComponent<{
         type: BooleanConstructor;
         default: boolean;
     };
+    ratio: {
+        type: NumberConstructor;
+        default: number;
+    };
     crop: {
         type: BooleanConstructor;
         default: boolean;
@@ -33,6 +37,7 @@ declare const _default: import("vue").DefineComponent<{
     index?: unknown;
     activeKey?: unknown;
     disabled?: unknown;
+    ratio?: unknown;
     crop?: unknown;
     loading?: unknown;
 } & {
@@ -40,6 +45,7 @@ declare const _default: import("vue").DefineComponent<{
     index: number;
     activeKey: 0 | 1;
     disabled: boolean;
+    ratio: number;
     crop: boolean;
     loading: boolean;
 } & {}> & {}, {
@@ -47,6 +53,7 @@ declare const _default: import("vue").DefineComponent<{
     index: number;
     activeKey: 0 | 1;
     disabled: boolean;
+    ratio: number;
     crop: boolean;
     loading: boolean;
 }>;

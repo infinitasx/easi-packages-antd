@@ -1,8 +1,8 @@
 import * as _vue from 'vue';
 import { defineComponent, toRefs, ref, onMounted, watch, toRaw, pushScopeId, popScopeId, resolveComponent, openBlock, createBlock, Fragment, createVNode, withDirectives, toDisplayString, createCommentVNode, vShow, renderList, withScopeId, withCtx, h, nextTick, inject, mergeProps, createTextVNode, renderSlot, withModifiers, onBeforeUnmount, computed, Transition, KeepAlive, resolveDynamicComponent } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { Modal } from 'ant-design-vue';
-import { setLocal, isMobile, debounced } from 'easi-web-utils';
+import { Modal, message } from 'ant-design-vue';
+import { setLocal, copy, isMobile, debounced } from 'easi-web-utils';
 import moment from 'moment';
 
 function createNamespace(name) {
@@ -2313,6 +2313,11 @@ var script$2 = defineComponent({
       transformTime(timestamp) {
         return moment(timestamp).format("YYYY-MM-DD HH:mm:ss");
       },
+      handleCopy(session_id) {
+        if (copy(session_id)) {
+          message.success(globalEASILocale.message.copySuccess);
+        }
+      },
       globalEASILocale
     };
   },
@@ -2330,7 +2335,7 @@ var script$2 = defineComponent({
 const _withId$2 = /* @__PURE__ */ withScopeId("data-v-ac52a5c2");
 pushScopeId("data-v-ac52a5c2");
 const _hoisted_1$2 = { class: "flex items-center" };
-const _hoisted_2$1 = { class: "flex items-center" };
+const _hoisted_2$1 = { class: "flex items-center flex-nowrap overflow-hidden" };
 const _hoisted_3 = { class: "m-0" };
 const _hoisted_4 = { class: "flex items-center mb-24" };
 const _hoisted_5 = { class: "flex-1" };
@@ -2351,6 +2356,7 @@ const render$2 = /* @__PURE__ */ _withId$2((_ctx, _cache, $props, $setup, $data,
   const _component_DesktopOutlined = resolveComponent("DesktopOutlined");
   const _component_MobileOutlined = resolveComponent("MobileOutlined");
   const _component_TabletOutlined = resolveComponent("TabletOutlined");
+  const _component_a_typography_link = resolveComponent("a-typography-link");
   const _component_a_divider = resolveComponent("a-divider");
   const _component_a_switch = resolveComponent("a-switch");
   const _component_CompassOutlined = resolveComponent("CompassOutlined");
@@ -2399,12 +2405,21 @@ const render$2 = /* @__PURE__ */ _withId$2((_ctx, _cache, $props, $setup, $data,
                 ]),
                 _: 2
               }, 1024),
-              createVNode(_component_a_typography_text, { class: "flex-1 px-8" }, {
+              createVNode(_component_a_typography_text, { class: "px-8" }, {
                 default: _withId$2(() => [
                   createTextVNode(toDisplayString(item.device_type) + " " + toDisplayString(item.ip), 1)
                 ]),
                 _: 2
-              }, 1024)
+              }, 1024),
+              createVNode(_component_a_typography_link, {
+                class: "flex-1 truncate",
+                onClick: _ctx.handleCopy
+              }, {
+                default: _withId$2(() => [
+                  createTextVNode(" (" + toDisplayString(item.session_id) + ") ", 1)
+                ]),
+                _: 2
+              }, 1032, ["onClick"])
             ]),
             createVNode("p", _hoisted_3, [
               createVNode(_component_a_typography_text, { type: "secondary" }, {

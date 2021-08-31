@@ -32,7 +32,7 @@
                 :disabled="disabled"
                 :minCropBoxHeight="minCropBoxHeight"
                 :minCropBoxWidth="minCropBoxWidth"
-                :aspectRatio="aspectRatio"
+                :ratio="ratio"
                 :crop="crop"
                 :isCropping="isCropping"
                 @inputChange="handleChange"
@@ -56,6 +56,7 @@
                     :timeout="timeout"
                     :checkedList="checkedList"
                     :multiple="multiple"
+                    :ratio="ratio"
                     :getText="getText"
                     @error="$emit('error', $event)"
                     @handleCheckedChange="handleCheckedChange"
@@ -176,6 +177,11 @@ export default defineComponent({
       }
     })
 
+    const ratio = computed(() => {
+      let ratioArray = aspectRatio.value ? aspectRatio.value.split('*').map(str => Number(str)) : [0,0];
+      return ratioArray[0] === 0 || ratioArray[1] === 0 ? 0 : parseFloat((ratioArray[0] / ratioArray[1]).toString()).toFixed(4);
+    })
+
     const search = ref<string>();
 
     const [actionType, setActionType] = useActionType('');
@@ -215,7 +221,8 @@ export default defineComponent({
     const handleCancel = () => {
       symbolVisible.value = false;
       emit('update:visible', false);
-      emit('cancel')
+      emit('cancel');
+      window.close();
       if(destroyOnClose.value){
         activeKey.value = 0;
         localUploadList.value = [];
@@ -421,6 +428,7 @@ export default defineComponent({
       isCropping,
       cropIndex,
       domain,
+      ratio,
       handleCropBack,
       handleDelete,
       handleCrop,
@@ -481,8 +489,6 @@ export default defineComponent({
         const fileArray: IPreviewItem[] = [];
         const mustCropArray: IPreviewItem[] = [];
         localUploadLoading.value = true;
-        const _aspectRatio = aspectRatio.value ? aspectRatio.value.split('*').map(str => Number(str)) : [0, 0];
-        const _ratio = _aspectRatio[0] === 0 || _aspectRatio[1] === 0 ? null : parseFloat((_aspectRatio[0] / _aspectRatio[1]).toString()).toFixed(4);
         for(const file of fileList){
           try{
             const fileItem = await canvasToFile(file, {
@@ -491,7 +497,7 @@ export default defineComponent({
               minCropBoxHeight: minCropBoxHeight.value,
               minCropBoxWidth: minCropBoxWidth.value,
             }, getText);
-            if(_ratio && fileItem.file.type !== 'image/gif' && _ratio !== fileItem.aspectRatio){
+            if(ratio.value && fileItem.file.type !== 'image/gif' && ratio.value !== fileItem.aspectRatio){
               mustCropArray.push(fileItem);
             }else{
               fileArray.push(fileItem);

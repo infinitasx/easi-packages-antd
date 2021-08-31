@@ -6,6 +6,7 @@
                     :item="item"
                     :index="index"
                     :disabled="disabled"
+                    :ratio="ratio"
                     :activeKey="1"
                     @handleCheckChange="handleCheckChange"
       />
@@ -55,6 +56,10 @@ export default defineComponent({
     multiple: {
       type: [Boolean, Number],
       default: false
+    },
+    ratio: {
+      type: [Number, String],
+      default: 0
     },
     getText: {
       type: Function,

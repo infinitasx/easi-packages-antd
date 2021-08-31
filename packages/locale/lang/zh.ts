@@ -43,5 +43,6 @@ export default {
   uploadWaitMsg: '还有{number}张图片未上传，确认只选择已上传的图片吗？',
   deviceTitle: '登录设备管理',
   deviceLoginTime: '登录时间',
-  selected: '已选：'
+  selected: '已选：',
+  copySuccess: '已粘贴进剪切板'
 }

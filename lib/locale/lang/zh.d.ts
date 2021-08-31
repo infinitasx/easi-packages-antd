@@ -44,5 +44,6 @@ declare const _default: {
     deviceTitle: string;
     deviceLoginTime: string;
     selected: string;
+    copySuccess: string;
 };
 export default _default;

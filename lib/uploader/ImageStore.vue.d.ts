@@ -21,6 +21,10 @@ declare const _default: import("vue").DefineComponent<{
         type: (NumberConstructor | BooleanConstructor)[];
         default: boolean;
     };
+    ratio: {
+        type: (StringConstructor | NumberConstructor)[];
+        default: number;
+    };
     getText: {
         type: FunctionConstructor;
         default: () => string;
@@ -66,12 +70,14 @@ declare const _default: import("vue").DefineComponent<{
     timeout?: unknown;
     domain?: unknown;
     multiple?: unknown;
+    ratio?: unknown;
     getText?: unknown;
 } & {
     checkedList: IPreviewItem[];
     timeout: number;
     domain: string;
     multiple: number | boolean;
+    ratio: string | number;
     getText: Function;
 } & {
     authorization?: string | Function | undefined;
@@ -84,6 +90,7 @@ declare const _default: import("vue").DefineComponent<{
     timeout: number;
     domain: string;
     multiple: number | boolean;
+    ratio: string | number;
     getText: Function;
 }>;
 export default _default;

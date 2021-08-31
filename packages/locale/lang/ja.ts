@@ -43,5 +43,6 @@ export default {
   uploadWaitMsg: 'まだアップロードされていない画像が{number}枚ありますが、アップロードされた画像のみを選択してもよろしいですか？',
   deviceTitle: 'デバイス管理にログインします',
   deviceLoginTime: 'ログイン時間',
-  selected: '選択済み：'
+  selected: '選択済み：',
+  copySuccess: 'がクリップボードに貼り付けられました'
 }

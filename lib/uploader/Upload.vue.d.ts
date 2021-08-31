@@ -9,6 +9,10 @@ declare const _default: import("vue").DefineComponent<{
         type: PropType<IPreviewItem[]>;
         default: () => never[];
     };
+    ratio: {
+        type: (StringConstructor | NumberConstructor)[];
+        default: number;
+    };
     isCropping: {
         type: BooleanConstructor;
         default: boolean;
@@ -66,7 +70,7 @@ declare const _default: import("vue").DefineComponent<{
         default: undefined;
     };
     authorization: {
-        type: StringConstructor;
+        type: (StringConstructor | FunctionConstructor)[];
         default: undefined;
     };
     timeout: {
@@ -118,6 +122,7 @@ declare const _default: import("vue").DefineComponent<{
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("inputChange" | "handleDelete" | "handleCrop" | "handleConfirmCrop")[], "inputChange" | "handleDelete" | "handleCrop" | "handleConfirmCrop", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
     localUploadList?: unknown;
     localUploadMustCrop?: unknown;
+    ratio?: unknown;
     isCropping?: unknown;
     visible?: unknown;
     maskClosable?: unknown;
@@ -143,6 +148,7 @@ declare const _default: import("vue").DefineComponent<{
 } & {
     localUploadList: IPreviewItem[];
     localUploadMustCrop: IPreviewItem[];
+    ratio: string | number;
     isCropping: boolean;
     maskClosable: boolean;
     destroyOnClose: boolean;
@@ -162,7 +168,7 @@ declare const _default: import("vue").DefineComponent<{
     visible?: boolean | undefined;
     title?: string | undefined;
     system?: string | undefined;
-    authorization?: string | undefined;
+    authorization?: string | Function | undefined;
     aspectRatio?: string | undefined;
     emptyTitle?: string | undefined;
     emptySubTitle?: string | undefined;
@@ -174,6 +180,7 @@ declare const _default: import("vue").DefineComponent<{
 }, {
     localUploadList: IPreviewItem[];
     localUploadMustCrop: IPreviewItem[];
+    ratio: string | number;
     isCropping: boolean;
     visible: boolean;
     maskClosable: boolean;
@@ -188,7 +195,7 @@ declare const _default: import("vue").DefineComponent<{
     maxWidth: number;
     maxHeight: number;
     system: string;
-    authorization: string;
+    authorization: string | Function;
     timeout: number;
     env: "development" | "production";
     aspectRatio: string;

@@ -54,7 +54,7 @@ declare const _default: import("vue").DefineComponent<{
         default: undefined;
     };
     authorization: {
-        type: StringConstructor;
+        type: (StringConstructor | FunctionConstructor)[];
         default: undefined;
     };
     timeout: {
@@ -224,6 +224,7 @@ declare const _default: import("vue").DefineComponent<{
     isCropping: import("vue").Ref<boolean>;
     cropIndex: import("vue").Ref<number>;
     domain: import("vue").ComputedRef<"" | "https://oss.melbdelivery.com">;
+    ratio: import("vue").ComputedRef<string | 0>;
     handleCropBack: () => void;
     handleDelete: (item: IPreviewItem, index: number) => void;
     handleCrop: (item: IPreviewItem, index: number) => void;
@@ -279,7 +280,7 @@ declare const _default: import("vue").DefineComponent<{
     visible?: boolean | undefined;
     title?: string | undefined;
     system?: string | undefined;
-    authorization?: string | undefined;
+    authorization?: string | Function | undefined;
     aspectRatio?: string | undefined;
     emptyTitle?: string | undefined;
     emptySubTitle?: string | undefined;
@@ -304,7 +305,7 @@ declare const _default: import("vue").DefineComponent<{
     maxWidth: number;
     maxHeight: number;
     system: string;
-    authorization: string;
+    authorization: string | Function;
     timeout: number;
     env: "development" | "production";
     aspectRatio: string;

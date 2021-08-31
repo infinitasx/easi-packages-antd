@@ -30,6 +30,7 @@ declare const _default: import("vue").DefineComponent<{
     handleToDashBoard(): void;
     handleEditPassword(): void;
     transformTime(timestamp: number): string;
+    handleCopy(session_id: string): void;
     globalEASILocale: IGlobalLocal;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "update:visible"[], "update:visible", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
     userInfo?: unknown;

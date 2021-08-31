@@ -1,7 +1,7 @@
 import * as _vue from 'vue';
 import { toRaw, h, nextTick, defineComponent, inject, createVNode, pushScopeId, popScopeId, resolveComponent, openBlock, createBlock, mergeProps, createCommentVNode, createTextVNode, toDisplayString, renderSlot, Fragment, renderList, withScopeId } from 'vue';
-import { Modal } from 'ant-design-vue';
-import { setLocal } from 'easi-web-utils';
+import { Modal, message } from 'ant-design-vue';
+import { setLocal, copy } from 'easi-web-utils';
 import moment from 'moment';
 
 function createNamespace(name) {
@@ -1848,6 +1848,11 @@ var script = defineComponent({
       transformTime(timestamp) {
         return moment(timestamp).format("YYYY-MM-DD HH:mm:ss");
       },
+      handleCopy(session_id) {
+        if (copy(session_id)) {
+          message.success(globalEASILocale.message.copySuccess);
+        }
+      },
       globalEASILocale
     };
   },
@@ -1865,7 +1870,7 @@ var script = defineComponent({
 const _withId = /* @__PURE__ */ withScopeId("data-v-ac52a5c2");
 pushScopeId("data-v-ac52a5c2");
 const _hoisted_1 = { class: "flex items-center" };
-const _hoisted_2 = { class: "flex items-center" };
+const _hoisted_2 = { class: "flex items-center flex-nowrap overflow-hidden" };
 const _hoisted_3 = { class: "m-0" };
 const _hoisted_4 = { class: "flex items-center mb-24" };
 const _hoisted_5 = { class: "flex-1" };
@@ -1886,6 +1891,7 @@ const render = /* @__PURE__ */ _withId((_ctx, _cache, $props, $setup, $data, $op
   const _component_DesktopOutlined = resolveComponent("DesktopOutlined");
   const _component_MobileOutlined = resolveComponent("MobileOutlined");
   const _component_TabletOutlined = resolveComponent("TabletOutlined");
+  const _component_a_typography_link = resolveComponent("a-typography-link");
   const _component_a_divider = resolveComponent("a-divider");
   const _component_a_switch = resolveComponent("a-switch");
   const _component_CompassOutlined = resolveComponent("CompassOutlined");
@@ -1934,12 +1940,21 @@ const render = /* @__PURE__ */ _withId((_ctx, _cache, $props, $setup, $data, $op
                 ]),
                 _: 2
               }, 1024),
-              createVNode(_component_a_typography_text, { class: "flex-1 px-8" }, {
+              createVNode(_component_a_typography_text, { class: "px-8" }, {
                 default: _withId(() => [
                   createTextVNode(toDisplayString(item.device_type) + " " + toDisplayString(item.ip), 1)
                 ]),
                 _: 2
-              }, 1024)
+              }, 1024),
+              createVNode(_component_a_typography_link, {
+                class: "flex-1 truncate",
+                onClick: _ctx.handleCopy
+              }, {
+                default: _withId(() => [
+                  createTextVNode(" (" + toDisplayString(item.session_id) + ") ", 1)
+                ]),
+                _: 2
+              }, 1032, ["onClick"])
             ]),
             createVNode("p", _hoisted_3, [
               createVNode(_component_a_typography_text, { type: "secondary" }, {

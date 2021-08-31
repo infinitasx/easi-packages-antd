@@ -1,5 +1,5 @@
 import * as _vue from 'vue';
-import { defineComponent, pushScopeId, popScopeId, resolveComponent, openBlock, createBlock, createVNode, renderSlot, withScopeId, h, nextTick, createCommentVNode, withDirectives, vShow, withModifiers, inject, toDisplayString, ref, toRefs, onBeforeUnmount, computed, toRaw, Fragment, renderList, resolveDirective, getCurrentInstance, reactive, provide, onMounted, createTextVNode } from 'vue';
+import { defineComponent, pushScopeId, popScopeId, resolveComponent, openBlock, createBlock, createVNode, renderSlot, withScopeId, h, nextTick, toRefs, computed, createCommentVNode, withDirectives, vShow, withModifiers, inject, toDisplayString, ref, onBeforeUnmount, toRaw, Fragment, renderList, resolveDirective, getCurrentInstance, reactive, provide, onMounted, createTextVNode } from 'vue';
 import { Empty, message, Modal } from 'ant-design-vue';
 
 function createNamespace(name) {
@@ -5455,6 +5455,10 @@ var script$4 = defineComponent({
       type: Boolean,
       default: false
     },
+    ratio: {
+      type: Number,
+      default: 0
+    },
     crop: {
       type: Boolean,
       default: false
@@ -5465,12 +5469,19 @@ var script$4 = defineComponent({
     }
   },
   setup(props, { emit }) {
+    const { ratio, item } = toRefs(props);
+    computed(() => {
+      const width = item.value.width;
+      const height = item.value.height;
+      const imgRatio = width > 0 && height > 0 ? parseFloat((width / height).toString()).toFixed(4) : 0;
+      return ratio.value !== imgRatio;
+    });
     return {
-      handleDelete(item, index) {
-        emit("handleDelete", item, index);
+      handleDelete(item2, index) {
+        emit("handleDelete", item2, index);
       },
-      handleCrop(item, index) {
-        emit("handleCrop", item, index);
+      handleCrop(item2, index) {
+        emit("handleCrop", item2, index);
       }
     };
   },
@@ -5959,13 +5970,17 @@ var script$2 = defineComponent({
       type: Array,
       default: () => []
     },
+    ratio: {
+      type: [Number, String],
+      default: 0
+    },
     isCropping: {
       type: Boolean,
       default: false
     }
   },
   setup(props, { emit }) {
-    const { minCropBoxWidth, minCropBoxHeight, aspectRatio, localUploadMustCrop, localUploadList, multiple } = toRefs(props);
+    const { minCropBoxWidth, minCropBoxHeight, ratio, localUploadMustCrop, localUploadList, multiple } = toRefs(props);
     const uploadGlobal = inject("uploadGlobal", { cropLoading: false, uploadLoading: false });
     const inputRef = ref();
     const cropImageRef = ref();
@@ -5988,14 +6003,13 @@ var script$2 = defineComponent({
         cropInstance.reset();
         cropInstance.replace(cropperItem.value?.originUrl);
       } else {
-        const defaultAspectRatio = aspectRatio.value ? aspectRatio.value.split("*").map((str) => Number(str)) : [0, 0];
         cropImageRef.value.src = cropperItem.value?.originUrl;
         cropImageRef.value.addEventListener("ready", handleImageReady, false);
         cropInstance = new Cropper(cropImageRef.value, {
           viewMode: 0,
           movable: true,
           autoCropArea: 1,
-          aspectRatio: Number(defaultAspectRatio[0]) === 0 || Number(defaultAspectRatio[1]) === 0 ? 0 : defaultAspectRatio[0] / defaultAspectRatio[1],
+          aspectRatio: Number(ratio.value),
           minCropBoxHeight: minCropBoxHeight.value,
           minCropBoxWidth: minCropBoxWidth.value,
           zoomable: true,
@@ -6145,11 +6159,12 @@ const render$2 = /* @__PURE__ */ _withId$2((_ctx, _cache, $props, $setup, $data,
             item,
             index,
             crop: _ctx.crop,
+            ratio: _ctx.ratio,
             loading: _ctx.uploadGlobal.uploadLoading,
             activeKey: 0,
             onHandleDelete: _ctx.handleDelete,
             onHandleCrop: _ctx.handleCrop
-          }, null, 8, ["item", "index", "crop", "loading", "onHandleDelete", "onHandleCrop"]);
+          }, null, 8, ["item", "index", "crop", "ratio", "loading", "onHandleDelete", "onHandleCrop"]);
         }), 128)),
         withDirectives(createVNode("div", {
           class: "easi-uploader-add-btn",
@@ -6204,6 +6219,10 @@ var script$1 = defineComponent({
     multiple: {
       type: [Boolean, Number],
       default: false
+    },
+    ratio: {
+      type: [Number, String],
+      default: 0
     },
     getText: {
       type: Function,
@@ -6301,9 +6320,10 @@ const render$1 = /* @__PURE__ */ _withId$1((_ctx, _cache, $props, $setup, $data,
             item,
             index,
             disabled: _ctx.disabled,
+            ratio: _ctx.ratio,
             activeKey: 1,
             onHandleCheckChange: _ctx.handleCheckChange
-          }, null, 8, ["item", "index", "disabled", "onHandleCheckChange"]);
+          }, null, 8, ["item", "index", "disabled", "ratio", "onHandleCheckChange"]);
         }), 128))
       ]),
       withDirectives(createVNode("div", _hoisted_2, [
@@ -6369,6 +6389,10 @@ var script = defineComponent({
         trigger.removeEventListener("click", showModal, false);
       }
     });
+    const ratio = computed(() => {
+      let ratioArray = aspectRatio.value ? aspectRatio.value.split("*").map((str) => Number(str)) : [0, 0];
+      return ratioArray[0] === 0 || ratioArray[1] === 0 ? 0 : parseFloat((ratioArray[0] / ratioArray[1]).toString()).toFixed(4);
+    });
     const search = ref();
     const [actionType, setActionType] = useActionType("");
     const getText = (key, value) => {
@@ -6396,6 +6420,7 @@ var script = defineComponent({
       symbolVisible.value = false;
       emit("update:visible", false);
       emit("cancel");
+      window.close();
       if (destroyOnClose.value) {
         activeKey.value = 0;
         localUploadList.value = [];
@@ -6588,6 +6613,7 @@ var script = defineComponent({
       isCropping,
       cropIndex,
       domain,
+      ratio,
       handleCropBack,
       handleDelete,
       handleCrop,
@@ -6645,8 +6671,6 @@ var script = defineComponent({
         const fileArray = [];
         const mustCropArray = [];
         localUploadLoading.value = true;
-        const _aspectRatio = aspectRatio.value ? aspectRatio.value.split("*").map((str) => Number(str)) : [0, 0];
-        const _ratio = _aspectRatio[0] === 0 || _aspectRatio[1] === 0 ? null : parseFloat((_aspectRatio[0] / _aspectRatio[1]).toString()).toFixed(4);
         for (const file of fileList) {
           try {
             const fileItem = await canvasToFile(file, {
@@ -6655,7 +6679,7 @@ var script = defineComponent({
               minCropBoxHeight: minCropBoxHeight.value,
               minCropBoxWidth: minCropBoxWidth.value
             }, getText);
-            if (_ratio && fileItem.file.type !== "image/gif" && _ratio !== fileItem.aspectRatio) {
+            if (ratio.value && fileItem.file.type !== "image/gif" && ratio.value !== fileItem.aspectRatio) {
               mustCropArray.push(fileItem);
             } else {
               fileArray.push(fileItem);
@@ -6924,14 +6948,14 @@ const render = /* @__PURE__ */ _withId((_ctx, _cache, $props, $setup, $data, $op
                   disabled: _ctx.disabled,
                   minCropBoxHeight: _ctx.minCropBoxHeight,
                   minCropBoxWidth: _ctx.minCropBoxWidth,
-                  aspectRatio: _ctx.aspectRatio,
+                  ratio: _ctx.ratio,
                   crop: _ctx.crop,
                   isCropping: _ctx.isCropping,
                   onInputChange: _ctx.handleChange,
                   onHandleDelete: _ctx.handleDelete,
                   onHandleCrop: _ctx.handleCrop,
                   onHandleConfirmCrop: _ctx.handleConfirmCrop
-                }, null, 8, ["localUploadList", "localUploadMustCrop", "empty-title", "empty-sub-title", "accept", "multiple", "disabled", "minCropBoxHeight", "minCropBoxWidth", "aspectRatio", "crop", "isCropping", "onInputChange", "onHandleDelete", "onHandleCrop", "onHandleConfirmCrop"])
+                }, null, 8, ["localUploadList", "localUploadMustCrop", "empty-title", "empty-sub-title", "accept", "multiple", "disabled", "minCropBoxHeight", "minCropBoxWidth", "ratio", "crop", "isCropping", "onInputChange", "onHandleDelete", "onHandleCrop", "onHandleConfirmCrop"])
               ]),
               _: 1
             }, 8, ["class", "tab"]), [
@@ -6955,10 +6979,11 @@ const render = /* @__PURE__ */ _withId((_ctx, _cache, $props, $setup, $data, $op
                   timeout: _ctx.timeout,
                   checkedList: _ctx.checkedList,
                   multiple: _ctx.multiple,
+                  ratio: _ctx.ratio,
                   getText: _ctx.getText,
                   onError: _cache[5] || (_cache[5] = ($event) => _ctx.$emit("error", $event)),
                   onHandleCheckedChange: _ctx.handleCheckedChange
-                }, null, 8, ["authorization", "domain", "timeout", "checkedList", "multiple", "getText", "onHandleCheckedChange"])
+                }, null, 8, ["authorization", "domain", "timeout", "checkedList", "multiple", "ratio", "getText", "onHandleCheckedChange"])
               ]),
               _: 1
             }, 8, ["class", "tab"])

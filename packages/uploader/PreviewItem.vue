@@ -10,7 +10,7 @@
           <div class="absolute">
             <CheckCircleFilled style="color: #67c23a;font-size: 18px" v-if="item.uploadSuccess && activeKey === 0"/>
             <CloseCircleFilled style="color: #ff4949;font-size: 18px" v-if="item.uploadFail && activeKey === 0"/>
-            <a-checkbox v-if="activeKey === 1" :checked="item.checked" :disabled="disabled && !item.checked" size="large" @change="$emit('handleCheckChange', $event, item, index)" />
+            <a-checkbox v-if="activeKey === 1" :checked="item.checked" :disabled="(disabled && !item.checked) || invalidAspectRatio" size="large" @change="$emit('handleCheckChange', $event, item, index)" />
           </div>
           <span class="easi-uploader-loading flex items-center justify-center" v-show="!item.uploadSuccess && loading">
             <LoadingOutlined />
@@ -49,7 +49,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType} from "vue"
+import {defineComponent, toRefs, computed, PropType} from "vue"
 import { IPreviewItem } from './methods'
 import { ScissorOutlined, DeleteOutlined, CheckCircleFilled, CloseCircleFilled, LoadingOutlined } from '@ant-design/icons-vue'
 
@@ -73,6 +73,10 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
+    ratio: {
+      type: Number,
+      default: 0
+    },
     crop: {
       type: Boolean,
       default: false
@@ -84,7 +88,17 @@ export default defineComponent({
   },
   setup(props, {emit}){
 
+    const { ratio, item } = toRefs(props);
+
+    const invalidAspectRatio = computed(() => {
+      const width = item.value.width;
+      const height = item.value.height;
+      const imgRatio = width >0 && height > 0 ? parseFloat((width / height).toString()).toFixed(4) : 0;
+      return ratio.value !== imgRatio
+    })
+
     return {
+      invalidAspectRatio,
       handleDelete(item: IPreviewItem, index: number){
         emit('handleDelete', item, index)
       },
