@@ -3,6 +3,7 @@ const postcss = require('gulp-postcss');
 const rename = require('gulp-rename');
 const purgecss = require('gulp-purgecss');
 const minifycss = require('gulp-minify-css');
+// const base64 = require('gulp-base64');
 const { getPackagesSync } = require('@lerna/project');
 const pkg = require('../package.json');
 
@@ -16,21 +17,24 @@ inputs.map(name => {
   const fileName = name.split(`@${pkg.name}/`)[1];
   task.push(fileName);
   gulp.task(`${fileName}`, () => {
-    return gulp
-      .src(`../es/${fileName}/index.css`)
-      .pipe(postcss())
-      .pipe(
-        purgecss({
-          content: [`../packages/${fileName}/*.vue`],
-        }),
-      )
-      .pipe(minifycss())
-      .pipe(
-        rename(function(file) {
-          file.dirname = `../es/${fileName}/`;
-        }),
-      )
-      .pipe(gulp.dest('.'));
+    return (
+      gulp
+        .src(`../es/${fileName}/index.css`)
+        .pipe(postcss())
+        .pipe(
+          purgecss({
+            content: [`../packages/${fileName}/*.vue`],
+          }),
+        )
+        // .pipe(base64())
+        .pipe(minifycss())
+        .pipe(
+          rename(function(file) {
+            file.dirname = `../es/${fileName}/`;
+          }),
+        )
+        .pipe(gulp.dest('.'))
+    );
   });
 });
 

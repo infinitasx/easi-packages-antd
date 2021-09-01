@@ -8,11 +8,12 @@
 
 ### Changed
 
-- EASISetting及EASILayout组件文案修改
+- EASISetting 及 EASILayout 组件文案修改
 
 ### Fixed
 
-- 修复EASISetting及EASILayout组件设备session_id复制无效的bug
+- 修复 EASISetting 及 EASILayout 组件设备 session_id 复制无效的 bug
+- 解决 rollup css 图片资源不打包的问题
 
 ## [0.0.24] - 2021-09-01
 
