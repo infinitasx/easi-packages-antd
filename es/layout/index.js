@@ -2314,8 +2314,7 @@ var script$2 = defineComponent({
         return moment(timestamp).format("YYYY-MM-DD HH:mm:ss");
       },
       handleCopy(session_id) {
-        const drawer = document.querySelector("#easi-setting-drawer");
-        if (copy(session_id, drawer)) {
+        if (copy(session_id)) {
           message.success(globalEASILocale.message.copySuccess);
         }
       },
@@ -2415,7 +2414,7 @@ const render$2 = /* @__PURE__ */ _withId$2((_ctx, _cache, $props, $setup, $data,
               }, 1024),
               createVNode(_component_a_typography_link, {
                 class: "flex-1 truncate",
-                onClick: _ctx.handleCopy
+                onClick: ($event) => _ctx.handleCopy(item.session_id)
               }, {
                 default: _withId$2(() => [
                   createTextVNode(" (" + toDisplayString(item.session_id) + ") ", 1)

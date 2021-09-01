@@ -19,7 +19,7 @@
             <TabletOutlined v-else-if="item.device_type === 'Tablet'" />
           </a-typography-text>
           <a-typography-text class="px-8">{{ item.device_type }} {{ item.ip }} </a-typography-text>
-          <a-typography-link class="flex-1 truncate" @click="handleCopy"> ({{item.session_id}}) </a-typography-link>
+          <a-typography-link class="flex-1 truncate" @click="handleCopy(item.session_id)"> ({{item.session_id}}) </a-typography-link>
         </p>
         <p class="m-0">
           <a-typography-text type="secondary">
@@ -147,8 +147,7 @@ export default defineComponent({
         return moment(timestamp).format('YYYY-MM-DD HH:mm:ss');
       },
       handleCopy(session_id: string){
-        const drawer = document.querySelector('#easi-setting-drawer') as HTMLElement;
-        if(copy(session_id, drawer)){
+        if(copy(session_id)){
           message.success(globalEASILocale.message.copySuccess)
         }
       },

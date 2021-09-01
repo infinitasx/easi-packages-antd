@@ -42,7 +42,7 @@ export default {
   uploadWaitTitle: 'Notice',
   uploadWaitMsg: 'There is still {number} picture that has not been uploaded. Are you sure to select only the uploaded picture?',
   deviceTitle: 'Login to device management',
-  deviceLoginTime: 'Login time',
+  deviceLoginTime: 'Active time',
   selected: 'Selected：',
   copySuccess: 'Has been pasted into the clipboard'
 }
