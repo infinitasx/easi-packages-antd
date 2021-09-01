@@ -4,7 +4,7 @@
 
 本文件格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/) ，并且遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 。
 
-## [0.0.24] - 2021-08-27
+## [0.0.24] - 2021-09-01
 
 ### Added
 
@@ -15,6 +15,7 @@
 ### Changed
 
 - EASILayout 组件历史设备文案修改
+- 文档修改，文档示例添加国际化语言
 
 ## [0.0.23] - 2021-08-27
 
