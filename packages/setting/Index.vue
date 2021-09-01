@@ -1,5 +1,5 @@
 <template>
-  <a-drawer placement="right" width="320px" v-bind="$attrs" @close="$emit('update:visible', false)">
+  <a-drawer id="easi-setting-drawer" placement="right" width="320px" v-bind="$attrs" @close="$emit('update:visible', false)">
     <template #title>
       <header class="flex items-center">
         <a-avatar shape="circle" size="default" v-if="userInfo?.avatar" :src="userInfo.avatar" :style="{ backgroundColor: '#ffbf00', verticalAlign: 'middle', marginRight: '8px' }"> </a-avatar>
@@ -147,7 +147,8 @@ export default defineComponent({
         return moment(timestamp).format('YYYY-MM-DD HH:mm:ss');
       },
       handleCopy(session_id: string){
-        if(copy(session_id)){
+        const drawer = document.querySelector('#easi-setting-drawer') as HTMLElement;
+        if(copy(session_id, drawer)){
           message.success(globalEASILocale.message.copySuccess)
         }
       },
