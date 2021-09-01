@@ -43,6 +43,11 @@
     "tag": "页面组件",
     "children": [
       {
+        "name": "Provider",
+        "components": "Provider",
+        "path": "/config-provider"
+      },
+      {
         "name": "错误页",
         "components": "Error",
         "path": "/error"

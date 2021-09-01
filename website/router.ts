@@ -41,6 +41,10 @@ const routes = [
     path: "/uploader",
     component: () => import("../packages/uploader/docs/index.md"),
   },
+  {
+    path: "/config-provider",
+    component: () => import("../packages/config-provider/docs/index.md"),
+  },
 ];
 const router = createRouter({
   history: createWebHashHistory("/"),
