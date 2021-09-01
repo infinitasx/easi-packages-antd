@@ -2,7 +2,7 @@
   <header>
     <a-row>
       <a-col :span="4">
-        <img class="ui-logo" src="./logo.webp" />
+        <img class="ui-logo" src="./logo.webp"/>
         EASI组件库
       </a-col>
       <a-col :span="20">
@@ -15,7 +15,9 @@
       <a-col :span="4">
         <a-menu class="menu">
           <a-menu-item-group :title="tag.tag" v-for="(tag, index) in menuList" :key="index">
-            <a-menu-item @click="goPage(item.path)" v-for="(item, i) in tag.children" :key="`${index}-${i}`"> {{ item.components }} {{ item.name }} </a-menu-item>
+            <a-menu-item @click="goPage(item.path)" v-for="(item, i) in tag.children" :key="`${index}-${i}`">
+              {{ item.components }} {{ item.name }}
+            </a-menu-item>
           </a-menu-item-group>
         </a-menu>
       </a-col>
@@ -29,8 +31,9 @@
 </template>
 
 <script>
-import { useRouter } from "vue-router";
+import {useRouter} from "vue-router";
 import menuList from "./menu.json";
+
 export default {
   setup() {
     const router = useRouter();

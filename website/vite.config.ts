@@ -24,7 +24,7 @@ externalJS.forEach((item, index) => {
   cdnJS[index] = `https://cdn.jsdelivr.net/npm/${item}@${getVersion(item)}`;
 });
 
-cdnJS.push('https://unpkg.com/moment@2.29.1/min/moment.min.js')
+// cdnJS.push('https://unpkg.com/moment@2.29.1/min/moment.min.js')
 cdnJS.push(`https://static.easiglobal.com/easi-packages-antd/${version}/index.umd.js`);
 
 // https://vitejs.dev/config/
@@ -60,14 +60,12 @@ export default ({ mode }) => {
     build: {
       outDir: resolve(__dirname, "../dist/website"),
       rollupOptions: {
-        external: [...externalJS, "ant-design-vue/dist/antd.css", "easi-packages-antd", "moment", "../moment"],
+        external: [...externalJS, "ant-design-vue/dist/antd.css", "easi-packages-antd"],
         output: {
           format: "iife",
           inlineDynamicImports: true,
           globals: {
             vue: "Vue",
-            moment: "moment",
-            "..moment": "moment",
             "vue-router": "VueRouter",
             "ant-design-vue": "antd",
             "ant-design-vue/dist/antd.css": "antd",

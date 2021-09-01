@@ -5,7 +5,6 @@
 <p>按钮有五种不同状态：info、danger、success、warning或都不传入</p>
 
 ```html
-<EASIProvider :locale="zhCN">
     <div style="margin-bottom: 10px">
       <a-space>
         <EASIButton type="link">link</EASIButton>
@@ -56,21 +55,4 @@
         <EASIButton type="default" warning>default</EASIButton>
       </a-space>
     </div>
-</EASIProvider>
-```
-
-```js
-import { defineComponent, ref } from "vue";
-import zhCN from 'ant-design-vue/es/locale/zh_CN';
-import moment from 'moment';
-import 'moment/dist/locale/zh-cn';
-
-moment.locale('zh-cn');
-export default defineComponent({
-  setup(){
-    return {
-      zhCN
-    }
-  }
-});
 ```
