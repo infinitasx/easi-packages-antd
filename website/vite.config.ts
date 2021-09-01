@@ -14,13 +14,16 @@ const getVersion = (dependencies => packageName => {
 })(Object.assign({}, dependencies, devDependencies));
 const prefetch = ['https://cdn.jsdelivr.net', 'https://static.easiglobal.com'];
 
-const externalJS = ['vue', 'ant-design-vue', 'vue-router'],
-  cdnJS = [`https://cdn.jsdelivr.net/npm/moment@2.29.1`],
+const externalJS = ['vue', 'moment', 'ant-design-vue', 'vue-router'],
+  cdnJS = [],
   cdnCSS = [
     'https://cdn.jsdelivr.net/npm/ant-design-vue@2.2.2/dist/antd.min.css',
     `https://static.easiglobal.com/easi-packages-antd/${version}/style.css`,
   ];
 externalJS.forEach((item, index) => {
+  if (item === 'moment') {
+    return (cdnJS[index] = `https://cdn.jsdelivr.net/npm/moment@2.29.1`);
+  }
   if (item === 'ant-design-vue') {
     return (cdnJS[index] = `https://cdn.jsdelivr.net/npm/${item}@${getVersion(item)}/dist/antd.js`);
   }
