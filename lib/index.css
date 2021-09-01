@@ -6931,6 +6931,36 @@
   height: calc(100vh - 160px);
 }
 
+img.ant-image-preview-img {
+  display: inline-block !important;
+}
+
+.pane-container {
+  position: relative;
+  height: calc(100vh - 400px);
+  overflow: auto;
+}
+.pane-container.dragover {
+  background: #fafafa;
+}
+
+[data-pro-theme=antdv-pro-theme-dark] .pane-container.dragover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.margin-bottom {
+  margin-bottom: 20px;
+}
+
+.more-item {
+  padding-left: 24px;
+  padding-right: 24px;
+  margin-bottom: 10px;
+  margin-left: -24px;
+  margin-right: -24px;
+  height: 44px;
+}
+
 .page-breadcrumb-wrap .ant-page-header-footer {
   margin: 0;
 }
@@ -7242,36 +7272,6 @@
   background-color: rgba(255, 255, 255, 0.08);
   color: rgba(255, 255, 255, 0.3);
   border-color: #434343;
-}
-
-.margin-bottom {
-  margin-bottom: 20px;
-}
-
-.more-item {
-  padding-left: 24px;
-  padding-right: 24px;
-  margin-bottom: 10px;
-  margin-left: -24px;
-  margin-right: -24px;
-  height: 44px;
-}
-
-img.ant-image-preview-img {
-  display: inline-block !important;
-}
-
-.pane-container {
-  position: relative;
-  height: calc(100vh - 400px);
-  overflow: auto;
-}
-.pane-container.dragover {
-  background: #fafafa;
-}
-
-[data-pro-theme=antdv-pro-theme-dark] .pane-container.dragover {
-  background: rgba(255, 255, 255, 0.04);
 }
 
 .page-header {
@@ -7653,12 +7653,6 @@ img.ant-image-preview-img {
   color: #177ddc;
 }
 
-.ant-upload.ant-upload-drag {
-  width: 384px;
-  height: 192px;
-  background: transparent;
-}
-
 .easi-uploader-container {
   margin-left: -2%;
 }
@@ -7731,6 +7725,12 @@ img.ant-image-preview-img {
     width: 48%;
   }
 }
+.ant-upload.ant-upload-drag {
+  width: 384px;
+  height: 192px;
+  background: transparent;
+}
+
 .logo {
   width: 34px;
   height: 34px;
