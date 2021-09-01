@@ -1,24 +1,24 @@
-import hljs from "highlight.js";
-import marked from "marked";
+import hljs from 'highlight.js';
+import marked from 'marked';
 
 function createRenderer(wrapCodeWithCard = true) {
   const renderer = new marked.Renderer();
   const overrides = {
     table(header, body) {
-      if (body) body = "<tbody>" + body + "</tbody>";
+      if (body) body = '<tbody>' + body + '</tbody>';
       return `<table><thead>${header}</thead>${body}</table>`;
     },
     tablerow(content) {
-      return "<tr>\n" + content + "</tr>\n";
+      return '<tr>\n' + content + '</tr>\n';
     },
     tablecell(content, flags) {
-      const type = flags.header ? "th" : "td";
-      const tag = flags.align ? "<" + type + ' align="' + flags.align + '">' : "<" + type + ">";
-      return tag + content + "</" + type + ">\n";
+      const type = flags.header ? 'th' : 'td';
+      const tag = flags.align ? '<' + type + ' align="' + flags.align + '">' : '<' + type + '>';
+      return tag + content + '</' + type + '>\n';
     },
     code: (code, language) => {
-      if (language.startsWith("__")) {
-        language = language.replace("__", "");
+      if (language.startsWith('__')) {
+        language = language.replace('__', '');
       }
       const isLanguageValid = !!(language && hljs.getLanguage(language));
       if (!isLanguageValid) {
@@ -26,17 +26,17 @@ function createRenderer(wrapCodeWithCard = true) {
       }
       const highlighted = hljs.highlight(code, { language }).value;
       const content = `<code><pre v-pre>${highlighted}</pre></code>`;
-      return wrapCodeWithCard ? `<a-card style="width: 300px">${content}</a-card>` : content;
+      return wrapCodeWithCard ? `<a-card>${content}</a-card>` : content;
     },
     heading: (text, level) => {
-      const id = text.replace(/ /g, "-");
+      const id = text.replace(/ /g, '-');
       return `<a-typography-title :level="${level}">${text}</a-typography-title>`;
     },
-    blockquote: (quote) => {
+    blockquote: quote => {
       return `<p>${quote}</p>`;
     },
-    hr: () => "<a-divider />",
-    paragraph: (text) => {
+    hr: () => '<a-divider />',
+    paragraph: text => {
       return `<a-typography-text>${text}</a-typography-text>`;
     },
     link(href, title, text) {
@@ -46,7 +46,7 @@ function createRenderer(wrapCodeWithCard = true) {
       return `<router-link to="${href}" #="{ navigate, href }" custom><a-typography-link :href="href" @click="navigate">${text}</a-typography-link></router-link>`;
     },
     list(body, ordered, start) {
-      const type = ordered ? "ol" : "ul";
+      const type = ordered ? 'ol' : 'ul';
       return `<${type}>\n` + body + `</${type}>\n`;
     },
     listitem(text) {
@@ -63,7 +63,7 @@ function createRenderer(wrapCodeWithCard = true) {
     },
   };
 
-  Object.keys(overrides).forEach((key) => {
+  Object.keys(overrides).forEach(key => {
     renderer[key] = overrides[key];
   });
   return renderer;
