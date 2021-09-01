@@ -1849,7 +1849,8 @@ var script = defineComponent({
         return moment(timestamp).format("YYYY-MM-DD HH:mm:ss");
       },
       handleCopy(session_id) {
-        if (copy(session_id)) {
+        const drawer = document.querySelector("#easi-setting-drawer");
+        if (copy(session_id, drawer)) {
           message.success(globalEASILocale.message.copySuccess);
         }
       },
@@ -1899,6 +1900,7 @@ const render = /* @__PURE__ */ _withId((_ctx, _cache, $props, $setup, $data, $op
   const _component_LogoutOutlined = resolveComponent("LogoutOutlined");
   const _component_a_drawer = resolveComponent("a-drawer");
   return openBlock(), createBlock(_component_a_drawer, mergeProps({
+    id: "easi-setting-drawer",
     placement: "right",
     width: "320px"
   }, _ctx.$attrs, {
