@@ -8,24 +8,25 @@
 
 ### Added
 
-- 新增EASIUploader组件
+- 新增 EASIUploader 组件
 - 添加上传接口生产环境域名
+- 新增组件独立样式，支持按需加载
 
 ### Changed
 
-- EASILayout组件历史设备文案修改
+- EASILayout 组件历史设备文案修改
 
 ## [0.0.23] - 2021-08-27
 
 ### Changed
 
-- EASILayout组件userInfo属性新增devices字段，如果存在即会显示用户历史设备信息。（EASISetting组件已同步更新相同功能）
+- EASILayout 组件 userInfo 属性新增 devices 字段，如果存在即会显示用户历史设备信息。（EASISetting 组件已同步更新相同功能）
 
 ## [0.0.22] - 2021-08-18
 
 ### Added
 
-- EASILayout组件新增startYear属性
+- EASILayout 组件新增 startYear 属性
 
 ## [0.0.21] - 2021-08-17
 

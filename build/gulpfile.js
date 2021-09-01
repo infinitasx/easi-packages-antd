@@ -10,22 +10,28 @@ const inputs = getPackagesSync()
   .map(pkg => pkg.name)
   .filter(name => name.includes(`@${pkg.name}`) && !name.includes('utils'));
 
+let task = [];
+
 inputs.map(name => {
-  gulp.task('default', () => {
+  const fileName = name.split(`@${pkg.name}/`)[1];
+  task.push(fileName);
+  gulp.task(`${fileName}`, () => {
     return gulp
-      .src(`../es/${name.split(`@${pkg.name}/`)[1]}/index.css`)
+      .src(`../es/${fileName}/index.css`)
       .pipe(postcss())
       .pipe(
         purgecss({
-          content: [`../packages/${name.split(`@${pkg.name}/`)[1]}/*.vue`],
+          content: [`../packages/${fileName}/*.vue`],
         }),
       )
       .pipe(minifycss())
       .pipe(
-        rename(function(p) {
-          p.dirname = `../es/${name.split(`@${pkg.name}/`)[1]}/`;
+        rename(function(file) {
+          file.dirname = `../es/${fileName}/`;
         }),
       )
       .pipe(gulp.dest('.'));
   });
 });
+
+gulp.task('default', gulp.series(task.map(name => name)));
