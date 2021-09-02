@@ -16,6 +16,10 @@
 - 修复 EASISetting 及 EASILayout 组件设备 session_id 复制无效的 bug
 - 解决 rollup css 图片资源不打包的问题
 
+### Removed
+
+- 去掉EASIUploader组件垂直居中效果
+
 ## [0.0.24] - 2021-09-01
 
 ### Added

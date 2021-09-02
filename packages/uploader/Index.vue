@@ -5,7 +5,6 @@
              :title="title || getText('uploaderTitle')"
              :maskClosable="maskClosable"
              :destroyOnClose="destroyOnClose"
-             centered
              @show="handleShow"
              @cancel="handleCancel"
   >
