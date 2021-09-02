@@ -8,7 +8,6 @@ import image from '@rollup/plugin-image';
 import pkg from '../package.json';
 import { resolve } from 'path';
 import copy from 'rollup-plugin-copy';
-import glob from 'fast-glob';
 
 const noPrefixFile = /(utils|directives|hooks|locale)/;
 const getOutFile = (name, dir = 'lib', isDirPath = false) => {
