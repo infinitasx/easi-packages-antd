@@ -43,7 +43,7 @@
     "tag": "页面组件",
     "children": [
       {
-        "name": "Provider",
+        "name": "根组件",
         "components": "Provider",
         "path": "/config-provider"
       },
@@ -61,6 +61,11 @@
         "name": "页面",
         "components": "Page",
         "path": "/page"
+      },
+      {
+        "name": "用户设置抽屉",
+        "components": "Setting",
+        "path": "/setting"
       }
     ]
   }

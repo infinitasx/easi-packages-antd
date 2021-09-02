@@ -2,7 +2,7 @@
 
 ```html
 <EASIUploader :multiple="false"
-              aspectRatio="1*2"
+              :aspectRatio="0.5"
               authorization="Bearer oqbK3zUv4AN3mpivH9F_UkcR0tmiaDrg0vplbh4tNXM.fHRf0lXLCPjySVxFe65x-T8ArkggSzKQEFWJl5GM_fw"
               system="iam"
               @ok="handleOK"

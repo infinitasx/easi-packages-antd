@@ -11,9 +11,11 @@
 |  subTitle   |        string        |                         |    否    | 系统二级名称，一般用来放城市名称 |
 |     nav     |      NavItem[]       |           []            |    是    | 需要渲染的侧边栏菜单数据         |
 |  userInfo   |       UserInfo       |                         |    是    | 用户信息                         |
+|showTabSetting|      boolean       |           true            |    否    | 是否显示tab相关的设置开关，默认显示         |
 |  startYear  |   string or number   |          2021           |    否    | 系统第一次发布的年份，用于在布局组件底部显示copyright |
 |  onLogout   | () => `Promise<any>` | () => Promise.resolve() |    是    | 退出登录的方法，返回 Promise     |
-| toDashboard |      () => void      |                         |    否    | 跳转到 dashboard 的方法          |
+| toDashboard |      () => void      |                         |    否    | 点击跳转到 dashboard 要执行的函数，不传则不显示跳转按钮          |
+| editPassword |      () => void      |                         |    否    | 点击修改密码要执行的函数，不传则不显示修改密码按钮          |
 
 <strong>NavItem</strong> <br/>
 

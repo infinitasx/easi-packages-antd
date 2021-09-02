@@ -45,6 +45,10 @@ const routes = [
     path: "/config-provider",
     component: () => import("../packages/config-provider/docs/index.md"),
   },
+  {
+    path: "/setting",
+    component: () => import("../packages/setting/docs/index.md"),
+  },
 ];
 const router = createRouter({
   history: createWebHashHistory("/"),
