@@ -16,7 +16,4 @@ export default defineComponent({
 });
 </script>
 <style lang="scss">
-.bg {
-  background: red;
-}
 </style>
