@@ -1,4 +1,4 @@
-import "./css/index.scss";
+import "./theme/index.scss";
 import type { App } from "vue";
 import EASIProvider from "./provider";
 import EASIText from "./text";

@@ -1,4 +1,4 @@
-import "../css/index.scss";
+import "../theme/index.scss";
 
 import type { App, Plugin } from "vue";
 

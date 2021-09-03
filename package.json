@@ -50,6 +50,7 @@
     "gulp-postcss": "^9.0.1",
     "gulp-purgecss": "^4.0.3",
     "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.0.0",
     "highlight.js": "^11.2.0",
     "lerna": "^4.0.0",
     "marked": "^2.1.3",
