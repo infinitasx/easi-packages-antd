@@ -7,17 +7,19 @@ function createNamespace(name) {
 }
 
 function getEASIText(globalEASILocale, key, value) {
-  let message = globalEASILocale?.message[key];
+  let message = globalEASILocale === null || globalEASILocale === void 0 ? void 0 : globalEASILocale.message[key];
+
   if (message) {
     if (value) {
       const reg = /(\{).*?(\})/g;
       const keyArray = message.match(reg);
-      keyArray.forEach((key2) => {
+      keyArray.forEach(key2 => {
         let realKey = key2.replace(/\{|\}|\s|\n|\t/g, "");
         const reg1 = new RegExp(`${key2}`, "g");
         message = message.replace(reg1, value[realKey]);
       });
     }
+
     return message;
   } else {
     console.warn("\u672A\u5339\u914D\u5230\u6587\u6848key");
@@ -3651,20 +3653,23 @@ var script$5 = defineComponent({
   name: "previewContainer"
 });
 
-const _withId$5 = /* @__PURE__ */ withScopeId("data-v-0a563ea6");
+const _withId$5 = /* @__PURE__ */withScopeId("data-v-0a563ea6");
+
 pushScopeId("data-v-0a563ea6");
-const _hoisted_1$5 = { class: "easi-uploader-container overflow-hidden" };
+
+const _hoisted_1$5 = {
+  class: "easi-uploader-container overflow-hidden"
+};
+
 popScopeId();
-const render$5 = /* @__PURE__ */ _withId$5((_ctx, _cache, $props, $setup, $data, $options) => {
+
+const render$5 = /* @__PURE__ */_withId$5((_ctx, _cache, $props, $setup, $data, $options) => {
   const _component_a_image_preview_group = resolveComponent("a-image-preview-group");
-  return openBlock(), createBlock("div", _hoisted_1$5, [
-    createVNode(_component_a_image_preview_group, null, {
-      default: _withId$5(() => [
-        renderSlot(_ctx.$slots, "default")
-      ]),
-      _: 3
-    })
-  ]);
+
+  return openBlock(), createBlock("div", _hoisted_1$5, [createVNode(_component_a_image_preview_group, null, {
+    default: _withId$5(() => [renderSlot(_ctx.$slots, "default")]),
+    _: 3
+  })]);
 });
 
 script$5.render = render$5;
@@ -5468,8 +5473,14 @@ var script$4 = defineComponent({
       default: false
     }
   },
-  setup(props, { emit }) {
-    const { ratio, item } = toRefs(props);
+
+  setup(props, {
+    emit
+  }) {
+    const {
+      ratio,
+      item
+    } = toRefs(props);
     const invalidAspectRatio = computed(() => {
       const width = item.value.width;
       const height = item.value.height;
@@ -5478,14 +5489,18 @@ var script$4 = defineComponent({
     });
     return {
       invalidAspectRatio,
+
       handleDelete(item2, index) {
         emit("handleDelete", item2, index);
       },
+
       handleCrop(item2, index) {
         emit("handleCrop", item2, index);
       }
+
     };
   },
+
   components: {
     ScissorOutlined: ScissorOutlined$1,
     DeleteOutlined: DeleteOutlined$1,
@@ -5495,106 +5510,112 @@ var script$4 = defineComponent({
   }
 });
 
-const _withId$4 = /* @__PURE__ */ withScopeId("data-v-37672004");
+const _withId$4 = /* @__PURE__ */withScopeId("data-v-37672004");
+
 pushScopeId("data-v-37672004");
-const _hoisted_1$4 = { class: "easi-uploader-preview-item relative" };
-const _hoisted_2$3 = { class: "easi-uploader-preview relative" };
-const _hoisted_3$2 = { class: "absolute" };
-const _hoisted_4$2 = { class: "easi-uploader-loading flex items-center justify-center" };
+
+const _hoisted_1$4 = {
+  class: "easi-uploader-preview-item relative"
+};
+const _hoisted_2$3 = {
+  class: "easi-uploader-preview relative"
+};
+const _hoisted_3$2 = {
+  class: "absolute"
+};
+const _hoisted_4$2 = {
+  class: "easi-uploader-loading flex items-center justify-center"
+};
 const _hoisted_5$1 = {
   key: 0,
   class: "ant-card-actions"
 };
 const _hoisted_6$1 = {
   key: 0,
-  style: { "width": "50%" }
+  style: {
+    "width": "50%"
+  }
 };
+
 popScopeId();
-const render$4 = /* @__PURE__ */ _withId$4((_ctx, _cache, $props, $setup, $data, $options) => {
+
+const render$4 = /* @__PURE__ */_withId$4((_ctx, _cache, $props, $setup, $data, $options) => {
   const _component_a_image = resolveComponent("a-image");
+
   const _component_CheckCircleFilled = resolveComponent("CheckCircleFilled");
+
   const _component_CloseCircleFilled = resolveComponent("CloseCircleFilled");
+
   const _component_a_checkbox = resolveComponent("a-checkbox");
+
   const _component_LoadingOutlined = resolveComponent("LoadingOutlined");
+
   const _component_ScissorOutlined = resolveComponent("ScissorOutlined");
+
   const _component_EASIButton = resolveComponent("EASIButton");
+
   const _component_DeleteOutlined = resolveComponent("DeleteOutlined");
+
   const _component_a_card = resolveComponent("a-card");
-  return openBlock(), createBlock("div", _hoisted_1$4, [
-    createVNode(_component_a_card, {
-      bordered: "",
-      hoverable: "",
-      "body-style": { padding: 0 }
+
+  return openBlock(), createBlock("div", _hoisted_1$4, [createVNode(_component_a_card, {
+    bordered: "",
+    hoverable: "",
+    "body-style": {
+      padding: 0
+    }
+  }, {
+    cover: _withId$4(() => [createVNode("div", _hoisted_2$3, [createVNode(_component_a_image, {
+      width: "100%",
+      src: _ctx.item.url,
+      class: {
+        "easi-uploader-disabled-checked": (_ctx.disabled && !_ctx.item.checked || _ctx.invalidAspectRatio) && _ctx.activeKey === 1
+      }
+    }, null, 8, ["src", "class"]), createVNode("div", _hoisted_3$2, [_ctx.item.uploadSuccess && _ctx.activeKey === 0 ? (openBlock(), createBlock(_component_CheckCircleFilled, {
+      key: 0,
+      style: {
+        "color": "#67c23a",
+        "font-size": "18px"
+      }
+    })) : createCommentVNode("v-if", true), _ctx.item.uploadFail && _ctx.activeKey === 0 ? (openBlock(), createBlock(_component_CloseCircleFilled, {
+      key: 1,
+      style: {
+        "color": "#ff4949",
+        "font-size": "18px"
+      }
+    })) : createCommentVNode("v-if", true), _ctx.activeKey === 1 ? (openBlock(), createBlock(_component_a_checkbox, {
+      key: 2,
+      checked: _ctx.item.checked,
+      disabled: _ctx.disabled && !_ctx.item.checked || _ctx.invalidAspectRatio,
+      size: "large",
+      onChange: _cache[1] || (_cache[1] = $event => _ctx.$emit("handleCheckChange", $event, _ctx.item, _ctx.index))
+    }, null, 8, ["checked", "disabled"])) : createCommentVNode("v-if", true)]), withDirectives(createVNode("span", _hoisted_4$2, [createVNode(_component_LoadingOutlined)], 512), [[vShow, !_ctx.item.uploadSuccess && _ctx.loading]])])]),
+    default: _withId$4(() => [_ctx.activeKey === 0 ? (openBlock(), createBlock("ul", _hoisted_5$1, [_ctx.crop && !_ctx.item.uploadSuccess ? (openBlock(), createBlock("li", _hoisted_6$1, [createVNode(_component_EASIButton, {
+      type: "link",
+      block: "",
+      disabled: _ctx.item.uploadSuccess || !_ctx.crop || _ctx.disabled || _ctx.item.file.type === "image/gif" || !_ctx.item.uploadSuccess && _ctx.loading,
+      key: "scissor",
+      onClick: _cache[2] || (_cache[2] = withModifiers($event => _ctx.handleCrop(_ctx.item, _ctx.index), ["stop"]))
     }, {
-      cover: _withId$4(() => [
-        createVNode("div", _hoisted_2$3, [
-          createVNode(_component_a_image, {
-            width: "100%",
-            src: _ctx.item.url,
-            class: { "easi-uploader-disabled-checked": (_ctx.disabled && !_ctx.item.checked || _ctx.invalidAspectRatio) && _ctx.activeKey === 1 }
-          }, null, 8, ["src", "class"]),
-          createVNode("div", _hoisted_3$2, [
-            _ctx.item.uploadSuccess && _ctx.activeKey === 0 ? (openBlock(), createBlock(_component_CheckCircleFilled, {
-              key: 0,
-              style: { "color": "#67c23a", "font-size": "18px" }
-            })) : createCommentVNode("v-if", true),
-            _ctx.item.uploadFail && _ctx.activeKey === 0 ? (openBlock(), createBlock(_component_CloseCircleFilled, {
-              key: 1,
-              style: { "color": "#ff4949", "font-size": "18px" }
-            })) : createCommentVNode("v-if", true),
-            _ctx.activeKey === 1 ? (openBlock(), createBlock(_component_a_checkbox, {
-              key: 2,
-              checked: _ctx.item.checked,
-              disabled: _ctx.disabled && !_ctx.item.checked || _ctx.invalidAspectRatio,
-              size: "large",
-              onChange: _cache[1] || (_cache[1] = ($event) => _ctx.$emit("handleCheckChange", $event, _ctx.item, _ctx.index))
-            }, null, 8, ["checked", "disabled"])) : createCommentVNode("v-if", true)
-          ]),
-          withDirectives(createVNode("span", _hoisted_4$2, [
-            createVNode(_component_LoadingOutlined)
-          ], 512), [
-            [vShow, !_ctx.item.uploadSuccess && _ctx.loading]
-          ])
-        ])
-      ]),
-      default: _withId$4(() => [
-        _ctx.activeKey === 0 ? (openBlock(), createBlock("ul", _hoisted_5$1, [
-          _ctx.crop && !_ctx.item.uploadSuccess ? (openBlock(), createBlock("li", _hoisted_6$1, [
-            createVNode(_component_EASIButton, {
-              type: "link",
-              block: "",
-              disabled: _ctx.item.uploadSuccess || !_ctx.crop || _ctx.disabled || _ctx.item.file.type === "image/gif" || !_ctx.item.uploadSuccess && _ctx.loading,
-              key: "scissor",
-              onClick: _cache[2] || (_cache[2] = withModifiers(($event) => _ctx.handleCrop(_ctx.item, _ctx.index), ["stop"]))
-            }, {
-              icon: _withId$4(() => [
-                createVNode(_component_ScissorOutlined)
-              ]),
-              _: 1
-            }, 8, ["disabled"])
-          ])) : createCommentVNode("v-if", true),
-          createVNode("li", {
-            style: { width: _ctx.crop && !_ctx.item.uploadSuccess ? "50%" : "100%" }
-          }, [
-            createVNode(_component_EASIButton, {
-              type: "link",
-              block: "",
-              disabled: _ctx.disabled || !_ctx.item.uploadSuccess && _ctx.loading,
-              key: "delete",
-              danger: "",
-              onClick: _cache[3] || (_cache[3] = withModifiers(($event) => _ctx.handleDelete(_ctx.item, _ctx.index), ["stop"]))
-            }, {
-              icon: _withId$4(() => [
-                createVNode(_component_DeleteOutlined)
-              ]),
-              _: 1
-            }, 8, ["disabled"])
-          ], 4)
-        ])) : createCommentVNode("v-if", true)
-      ]),
+      icon: _withId$4(() => [createVNode(_component_ScissorOutlined)]),
       _: 1
-    })
-  ]);
+    }, 8, ["disabled"])])) : createCommentVNode("v-if", true), createVNode("li", {
+      style: {
+        width: _ctx.crop && !_ctx.item.uploadSuccess ? "50%" : "100%"
+      }
+    }, [createVNode(_component_EASIButton, {
+      type: "link",
+      block: "",
+      disabled: _ctx.disabled || !_ctx.item.uploadSuccess && _ctx.loading,
+      key: "delete",
+      danger: "",
+      onClick: _cache[3] || (_cache[3] = withModifiers($event => _ctx.handleDelete(_ctx.item, _ctx.index), ["stop"]))
+    }, {
+      icon: _withId$4(() => [createVNode(_component_DeleteOutlined)]),
+      _: 1
+    }, 8, ["disabled"])], 4)])) : createCommentVNode("v-if", true)]),
+    _: 1
+  })]);
 });
 
 script$4.render = render$4;
@@ -5643,8 +5664,7 @@ const uploadProps = {
     default: window.$EASI_BUILD_ENV
   }
 };
-const rootProps = {
-  ...emptyProps,
+const rootProps = { ...emptyProps,
   ...cropProps,
   ...uploadProps,
   visible: {
@@ -5700,66 +5720,72 @@ const rootProps = {
 var script$3 = defineComponent({
   name: "empty",
   emits: ["clickEmpty"],
-  props: {
-    ...emptyProps
+  props: { ...emptyProps
   },
+
   setup() {
-    const globalEASILocale = inject("globalEASILocale", { message: {} });
+    const globalEASILocale = inject("globalEASILocale", {
+      message: {}
+    });
     return {
       getText(key, value) {
         return getEASIText(globalEASILocale, key, value);
       }
+
     };
   }
+
 });
 
-const _withId$3 = /* @__PURE__ */ withScopeId("data-v-b0da4ce0");
+const _withId$3 = /* @__PURE__ */withScopeId("data-v-b0da4ce0");
+
 pushScopeId("data-v-b0da4ce0");
-const _hoisted_1$3 = { class: "relative w-full h-full flex items-center justify-center" };
+
+const _hoisted_1$3 = {
+  class: "relative w-full h-full flex items-center justify-center"
+};
 const _hoisted_2$2 = {
   role: "button",
   tabindex: "0",
   class: "ant-upload ant-upload-btn"
 };
-const _hoisted_3$1 = { class: "ant-upload-drag-container" };
-const _hoisted_4$1 = /* @__PURE__ */ createVNode("p", { class: "ant-upload-drag-icon" }, [
-  /* @__PURE__ */ createVNode("span", {
-    role: "img",
-    "aria-label": "picture",
-    class: "anticon anticon-picture"
-  }, [
-    /* @__PURE__ */ createVNode("svg", {
-      focusable: "false",
-      class: "",
-      "data-icon": "picture",
-      width: "1em",
-      height: "1em",
-      fill: "currentColor",
-      "aria-hidden": "true",
-      viewBox: "64 64 896 896"
-    }, [
-      /* @__PURE__ */ createVNode("path", { d: "M928 160H96c-17.7 0-32 14.3-32 32v640c0 17.7 14.3 32 32 32h832c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32zm-40 632H136v-39.9l138.5-164.3 150.1 178L658.1 489 888 761.6V792zm0-129.8L664.2 396.8c-3.2-3.8-9-3.8-12.2 0L424.6 666.4l-144-170.7c-3.2-3.8-9-3.8-12.2 0L136 652.7V232h752v430.2zM304 456a88 88 0 100-176 88 88 0 000 176zm0-116c15.5 0 28 12.5 28 28s-12.5 28-28 28-28-12.5-28-28 12.5-28 28-28z" })
-    ])
-  ])
-], -1);
-const _hoisted_5 = { class: "ant-upload-text" };
-const _hoisted_6 = { class: "ant-upload-hint" };
+const _hoisted_3$1 = {
+  class: "ant-upload-drag-container"
+};
+
+const _hoisted_4$1 = /* @__PURE__ */createVNode("p", {
+  class: "ant-upload-drag-icon"
+}, [/* @__PURE__ */createVNode("span", {
+  role: "img",
+  "aria-label": "picture",
+  class: "anticon anticon-picture"
+}, [/* @__PURE__ */createVNode("svg", {
+  focusable: "false",
+  class: "",
+  "data-icon": "picture",
+  width: "1em",
+  height: "1em",
+  fill: "currentColor",
+  "aria-hidden": "true",
+  viewBox: "64 64 896 896"
+}, [/* @__PURE__ */createVNode("path", {
+  d: "M928 160H96c-17.7 0-32 14.3-32 32v640c0 17.7 14.3 32 32 32h832c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32zm-40 632H136v-39.9l138.5-164.3 150.1 178L658.1 489 888 761.6V792zm0-129.8L664.2 396.8c-3.2-3.8-9-3.8-12.2 0L424.6 666.4l-144-170.7c-3.2-3.8-9-3.8-12.2 0L136 652.7V232h752v430.2zM304 456a88 88 0 100-176 88 88 0 000 176zm0-116c15.5 0 28 12.5 28 28s-12.5 28-28 28-28-12.5-28-28 12.5-28 28-28z"
+})])])], -1);
+
+const _hoisted_5 = {
+  class: "ant-upload-text"
+};
+const _hoisted_6 = {
+  class: "ant-upload-hint"
+};
+
 popScopeId();
-const render$3 = /* @__PURE__ */ _withId$3((_ctx, _cache, $props, $setup, $data, $options) => {
-  return openBlock(), createBlock("div", _hoisted_1$3, [
-    createVNode("div", {
-      class: "ant-upload ant-upload-drag",
-      onClick: _cache[1] || (_cache[1] = withModifiers(($event) => _ctx.$emit("clickEmpty"), ["stop"]))
-    }, [
-      createVNode("div", _hoisted_2$2, [
-        createVNode("div", _hoisted_3$1, [
-          _hoisted_4$1,
-          createVNode("p", _hoisted_5, toDisplayString(_ctx.emptyTitle || _ctx.getText("uploaderEmptyTitle")), 1),
-          createVNode("p", _hoisted_6, toDisplayString(_ctx.emptySubTitle || _ctx.getText("uploaderEmptySubTitle")), 1)
-        ])
-      ])
-    ])
-  ]);
+
+const render$3 = /* @__PURE__ */_withId$3((_ctx, _cache, $props, $setup, $data, $options) => {
+  return openBlock(), createBlock("div", _hoisted_1$3, [createVNode("div", {
+    class: "ant-upload ant-upload-drag",
+    onClick: _cache[1] || (_cache[1] = withModifiers($event => _ctx.$emit("clickEmpty"), ["stop"]))
+  }, [createVNode("div", _hoisted_2$2, [createVNode("div", _hoisted_3$1, [_hoisted_4$1, createVNode("p", _hoisted_5, toDisplayString(_ctx.emptyTitle || _ctx.getText("uploaderEmptyTitle")), 1), createVNode("p", _hoisted_6, toDisplayString(_ctx.emptySubTitle || _ctx.getText("uploaderEmptySubTitle")), 1)])])])]);
 });
 
 script$3.render = render$3;
@@ -5768,51 +5794,74 @@ script$3.__file = "packages/uploader/Empty.vue";
 
 function useActionType(init = "") {
   const actionType = ref(init);
-  const setActionType = (_actionType) => {
+
+  const setActionType = _actionType => {
     actionType.value = _actionType;
   };
+
   return [actionType, setActionType];
 }
 async function getImageSize(src) {
   const image = new Image();
   image.src = src;
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     image.onload = () => {
-      resolve({ width: image.width, height: image.height, image });
+      resolve({
+        width: image.width,
+        height: image.height,
+        image
+      });
     };
   });
 }
 function fileToBlob(file) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     const reader = new FileReader();
     reader.readAsArrayBuffer(file);
-    reader.onload = function(e) {
+
+    reader.onload = function (e) {
       let blob;
       const result = e.target.result;
+
       if (typeof result === "object") {
         blob = new Blob([result]);
       } else {
         blob = e.target.result;
       }
+
       resolve(window.URL.createObjectURL(blob));
     };
   });
 }
 async function canvasToFile(file, options, getText) {
-  const { minCropBoxWidth, minCropBoxHeight, maxHeight, maxWidth } = options;
+  const {
+    minCropBoxWidth,
+    minCropBoxHeight,
+    maxHeight,
+    maxWidth
+  } = options;
   const src = await fileToBlob(file);
-  const { width, height, image } = await getImageSize(src);
+  const {
+    width,
+    height,
+    image
+  } = await getImageSize(src);
+
   if (file.type !== "image/gif") {
     if (minCropBoxWidth > 0 && width < minCropBoxWidth || minCropBoxHeight > 0 && height < minCropBoxHeight) {
       return Promise.reject({
         code: "FILE_MIN_WITH_HEIGHT",
-        message: getText("uploaderError3", { size: `${minCropBoxWidth}x${minCropBoxHeight}` }),
+        message: getText("uploaderError3", {
+          size: `${minCropBoxWidth}x${minCropBoxHeight}`
+        }),
         fileList: [file]
       });
     }
+
     if (width > maxWidth || height > maxHeight) {
       let canvas = document.createElement("canvas");
       const rate = width / height;
+
       if (rate >= 1) {
         canvas.width = maxWidth;
         canvas.height = Math.floor(maxWidth / rate);
@@ -5820,18 +5869,24 @@ async function canvasToFile(file, options, getText) {
         canvas.width = Math.floor(maxHeight / rate);
         canvas.height = maxHeight;
       }
+
       if (minCropBoxWidth > 0 && canvas.width < minCropBoxWidth || minCropBoxHeight > 0 && canvas.height < minCropBoxHeight) {
         return Promise.reject({
           code: "FILE_MIN_WITH_HEIGHT",
-          message: getText("uploaderError3", { size: `${minCropBoxWidth}x${minCropBoxHeight}` }),
+          message: getText("uploaderError3", {
+            size: `${minCropBoxWidth}x${minCropBoxHeight}`
+          }),
           fileList: [file]
         });
       }
+
       const ctx = canvas.getContext("2d");
       ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-      return new Promise((resolve) => {
-        canvas.toBlob((blob) => {
-          const newFile = new File([blob], file.name, { type: file.type });
+      return new Promise(resolve => {
+        canvas.toBlob(blob => {
+          const newFile = new File([blob], file.name, {
+            type: file.type
+          });
           resolve({
             file: newFile,
             url: src,
@@ -5850,6 +5905,7 @@ async function canvasToFile(file, options, getText) {
       });
     }
   }
+
   return {
     file,
     url: src,
@@ -5866,12 +5922,21 @@ async function canvasToFile(file, options, getText) {
 }
 function request(requestConfig) {
   return new Promise((resolve, reject) => {
-    let { url, body = null, header = {}, params = {}, method = "GET", timeout } = requestConfig;
+    let {
+      url,
+      body = null,
+      header = {},
+      params = {},
+      method = "GET",
+      timeout
+    } = requestConfig;
     const xhr = new XMLHttpRequest();
     let timeCount = null;
+
     xhr.onreadystatechange = () => {
       if (Number(xhr.readyState) === 4) {
         clearTimeout(timeCount);
+
         if (Number(xhr.status) === 200) {
           const result = JSON.parse(xhr.response);
           resolve(result);
@@ -5880,8 +5945,9 @@ function request(requestConfig) {
         }
       }
     };
+
     let hasParams = url.indexOf("?") > -1;
-    Object.keys(params).map((key) => {
+    Object.keys(params).map(key => {
       if (params[key] != null) {
         if (hasParams) {
           url += `&${key}=${params[key]}`;
@@ -5892,7 +5958,7 @@ function request(requestConfig) {
       }
     });
     xhr.open(method, url, true);
-    Object.keys(header).map((key) => {
+    Object.keys(header).map(key => {
       if (key === "authorization") {
         xhr.setRequestHeader(key, typeof header[key] === "function" ? header[key]() : header[key]);
       } else {
@@ -5906,14 +5972,24 @@ function request(requestConfig) {
   });
 }
 async function uploadPic(previewItem, options) {
-  const { domain, authorization, system, timeout } = options;
+  const {
+    domain,
+    authorization,
+    system,
+    timeout
+  } = options;
   const form = new FormData();
   form.append("file", previewItem.file);
   form.append("system", system);
   form.append("width", previewItem.width.toString());
   form.append("height", previewItem.height.toString());
+
   try {
-    const { url, name, size } = await request({
+    const {
+      url,
+      name,
+      size
+    } = await request({
       url: `${domain}/v1/widget/upload`,
       method: "POST",
       header: {
@@ -5922,8 +5998,7 @@ async function uploadPic(previewItem, options) {
       body: form,
       timeout
     });
-    return {
-      ...previewItem,
+    return { ...previewItem,
       url,
       name,
       size,
@@ -5939,7 +6014,12 @@ async function uploadPic(previewItem, options) {
   }
 }
 async function getPicsList(params, options) {
-  const { domain, authorization, timeout } = options;
+  const {
+    domain,
+    authorization,
+    timeout
+  } = options;
+
   try {
     return await request({
       url: `${domain}/v1/widget/list`,
@@ -5962,8 +6042,7 @@ async function getPicsList(params, options) {
 var script$2 = defineComponent({
   name: "localStore",
   emits: ["inputChange", "handleDelete", "handleCrop", "handleConfirmCrop"],
-  props: {
-    ...rootProps,
+  props: { ...rootProps,
     localUploadList: {
       type: Array,
       default: () => []
@@ -5981,31 +6060,57 @@ var script$2 = defineComponent({
       default: false
     }
   },
-  setup(props, { emit }) {
-    const { minCropBoxWidth, minCropBoxHeight, ratio, localUploadMustCrop, localUploadList, multiple } = toRefs(props);
-    const uploadGlobal = inject("uploadGlobal", { cropLoading: false, uploadLoading: false });
+
+  setup(props, {
+    emit
+  }) {
+    const {
+      minCropBoxWidth,
+      minCropBoxHeight,
+      ratio,
+      localUploadMustCrop,
+      localUploadList,
+      multiple
+    } = toRefs(props);
+    const uploadGlobal = inject("uploadGlobal", {
+      cropLoading: false,
+      uploadLoading: false
+    });
     const inputRef = ref();
     const cropImageRef = ref();
     const cropperIndex = ref(-1);
     const cropperItem = ref();
     let cropInstance;
+
     const handleImageReady = () => {
-      if (!cropInstance)
-        return;
-      const { naturalWidth, naturalHeight, width, height } = cropInstance.getCanvasData();
+      if (!cropInstance) return;
+      const {
+        naturalWidth,
+        naturalHeight,
+        width,
+        height
+      } = cropInstance.getCanvasData();
       const wRate = width / naturalWidth;
       const hRate = height / naturalHeight;
+
       const _minCropBoxHeight = minCropBoxHeight.value * hRate;
+
       const _minCropBoxWidth = minCropBoxWidth.value * wRate;
+
       cropInstance.options.minCropBoxHeight = cropInstance.cropBoxData.minHeight = cropInstance.initialCropBoxData.minHeight = _minCropBoxHeight;
       cropInstance.options.minCropBoxWidth = cropInstance.cropBoxData.minWidth = cropInstance.initialCropBoxData.minWidth = _minCropBoxWidth;
     };
+
     const initCrop = () => {
       if (cropInstance) {
+        var _cropperItem$value;
+
         cropInstance.reset();
-        cropInstance.replace(cropperItem.value?.originUrl);
+        cropInstance.replace((_cropperItem$value = cropperItem.value) === null || _cropperItem$value === void 0 ? void 0 : _cropperItem$value.originUrl);
       } else {
-        cropImageRef.value.src = cropperItem.value?.originUrl;
+        var _cropperItem$value2;
+
+        cropImageRef.value.src = (_cropperItem$value2 = cropperItem.value) === null || _cropperItem$value2 === void 0 ? void 0 : _cropperItem$value2.originUrl;
         cropImageRef.value.addEventListener("ready", handleImageReady, false);
         cropInstance = new Cropper(cropImageRef.value, {
           viewMode: 0,
@@ -6019,18 +6124,24 @@ var script$2 = defineComponent({
         });
       }
     };
+
     const setCurrent = (item, index) => {
       cropperIndex.value = index;
       cropperItem.value = item;
     };
+
     onBeforeUnmount(() => {
-      cropInstance?.destroy();
-      cropImageRef.value?.removeEventListener("ready", handleImageReady, false);
+      var _cropInstance, _cropImageRef$value;
+
+      (_cropInstance = cropInstance) === null || _cropInstance === void 0 ? void 0 : _cropInstance.destroy();
+      (_cropImageRef$value = cropImageRef.value) === null || _cropImageRef$value === void 0 ? void 0 : _cropImageRef$value.removeEventListener("ready", handleImageReady, false);
     });
+
     const toNext = async () => {
       const array = localUploadMustCrop.value.length > 0 ? localUploadMustCrop.value : localUploadList.value;
       let len = array.length - 1;
       let index = 0;
+
       if (localUploadMustCrop.value.length > 0) {
         await confirmCrop(true);
       } else {
@@ -6038,32 +6149,43 @@ var script$2 = defineComponent({
           index = cropperIndex.value + 1;
         }
       }
-      setCurrent({
-        ...toRaw(array[index])
+
+      setCurrent({ ...toRaw(array[index])
       }, index);
       initCrop();
     };
+
     const toPrev = () => {
       let len = localUploadList.value.length - 1;
       let index = 0;
+
       if (cropperIndex.value < len) {
         index = cropperIndex.value + 1;
       }
-      setCurrent({
-        ...toRaw(localUploadList.value[index])
+
+      setCurrent({ ...toRaw(localUploadList.value[index])
       }, index);
       initCrop();
     };
+
     const confirmCrop = (mustCrop = false) => {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         uploadGlobal.cropLoading = true;
-        cropInstance.getCroppedCanvas().toBlob(async (blob) => {
-          const { name, originUrl } = toRaw(cropperItem.value);
+        cropInstance.getCroppedCanvas().toBlob(async blob => {
+          const {
+            name,
+            originUrl
+          } = toRaw(cropperItem.value);
           const fileNameArray = name.split(".");
           const newFileName = `${fileNameArray.slice(0, fileNameArray.length - 1).join(".")}.webp`;
-          const newFile = new File([blob], newFileName, { type: "image/webp" });
+          const newFile = new File([blob], newFileName, {
+            type: "image/webp"
+          });
           const url = await fileToBlob(newFile);
-          const { width, height } = await getImageSize(url);
+          const {
+            width,
+            height
+          } = await getImageSize(url);
           const newPreviewItem = {
             url,
             originUrl,
@@ -6082,6 +6204,7 @@ var script$2 = defineComponent({
         }, "image/webp");
       });
     };
+
     return {
       inputRef,
       cropImageRef,
@@ -6101,22 +6224,30 @@ var script$2 = defineComponent({
             return true;
           }
         }
+
         return false;
       }),
+
       handleChange(e) {
         emit("inputChange", e);
       },
+
       handleDelete(item, index) {
-        emit("handleDelete", { ...toRaw(item) }, index);
+        emit("handleDelete", { ...toRaw(item)
+        }, index);
       },
+
       handleCrop(item, index) {
-        const pureItem = { ...toRaw(item) };
+        const pureItem = { ...toRaw(item)
+        };
         emit("handleCrop", pureItem, index);
         setCurrent(pureItem, index);
         initCrop();
       }
+
     };
   },
+
   components: {
     UploaderContainer: script$5,
     UploaderItem: script$4,
@@ -6125,74 +6256,69 @@ var script$2 = defineComponent({
   }
 });
 
-const _withId$2 = /* @__PURE__ */ withScopeId("data-v-7e0ccd4e");
+const _withId$2 = /* @__PURE__ */withScopeId("data-v-7e0ccd4e");
+
 pushScopeId("data-v-7e0ccd4e");
-const _hoisted_1$2 = { class: "icon-btn-plus text-center" };
-const _hoisted_2$1 = { style: { "font-size": "14px" } };
-const _hoisted_3 = { class: "easi-uploader-cropper" };
-const _hoisted_4 = { ref: "cropImageRef" };
+
+const _hoisted_1$2 = {
+  class: "icon-btn-plus text-center"
+};
+const _hoisted_2$1 = {
+  style: {
+    "font-size": "14px"
+  }
+};
+const _hoisted_3 = {
+  class: "easi-uploader-cropper"
+};
+const _hoisted_4 = {
+  ref: "cropImageRef"
+};
+
 popScopeId();
-const render$2 = /* @__PURE__ */ _withId$2((_ctx, _cache, $props, $setup, $data, $options) => {
+
+const render$2 = /* @__PURE__ */_withId$2((_ctx, _cache, $props, $setup, $data, $options) => {
   const _component_Empty = resolveComponent("Empty");
+
   const _component_UploaderItem = resolveComponent("UploaderItem");
+
   const _component_PlusOutlined = resolveComponent("PlusOutlined");
+
   const _component_UploaderContainer = resolveComponent("UploaderContainer");
-  return openBlock(), createBlock(Fragment, null, [
-    createVNode("input", {
-      ref: "inputRef",
-      type: "file",
-      accept: _ctx.accept,
-      multiple: _ctx.multiple === true || typeof _ctx.multiple === "number" && _ctx.multiple > 1,
-      disabled: _ctx.disabled,
-      onChange: _cache[1] || (_cache[1] = (...args) => _ctx.handleChange && _ctx.handleChange(...args)),
-      style: { "display": "none" }
-    }, null, 40, ["accept", "multiple", "disabled"]),
-    withDirectives(createVNode(_component_Empty, {
-      emptyTitle: _ctx.emptyTitle,
-      emptySubTitle: _ctx.emptySubTitle,
-      onClickEmpty: _cache[2] || (_cache[2] = ($event) => _ctx.inputRef.click())
-    }, null, 8, ["emptyTitle", "emptySubTitle"]), [
-      [vShow, _ctx.localUploadList.length === 0 && _ctx.localUploadMustCrop.length === 0]
-    ]),
-    withDirectives(createVNode(_component_UploaderContainer, null, {
-      default: _withId$2(() => [
-        (openBlock(true), createBlock(Fragment, null, renderList(_ctx.localUploadList, (item, index) => {
-          return openBlock(), createBlock(_component_UploaderItem, {
-            key: index,
-            item,
-            index,
-            crop: _ctx.crop,
-            ratio: _ctx.ratio,
-            loading: _ctx.uploadGlobal.uploadLoading,
-            activeKey: 0,
-            onHandleDelete: _ctx.handleDelete,
-            onHandleCrop: _ctx.handleCrop
-          }, null, 8, ["item", "index", "crop", "ratio", "loading", "onHandleDelete", "onHandleCrop"]);
-        }), 128)),
-        withDirectives(createVNode("div", {
-          class: "easi-uploader-add-btn",
-          onClick: _cache[3] || (_cache[3] = ($event) => _ctx.inputRef.click())
-        }, [
-          createVNode("div", _hoisted_1$2, [
-            createVNode("p", null, [
-              createVNode(_component_PlusOutlined)
-            ]),
-            createVNode("p", _hoisted_2$1, toDisplayString(_ctx.localUploadList.length) + " / " + toDisplayString(_ctx.multiple), 1)
-          ])
-        ], 512), [
-          [vShow, _ctx.showAddBtn]
-        ])
-      ]),
-      _: 1
-    }, 512), [
-      [vShow, !_ctx.isCropping]
-    ]),
-    withDirectives(createVNode("div", _hoisted_3, [
-      createVNode("img", _hoisted_4, null, 512)
-    ], 512), [
-      [vShow, _ctx.isCropping]
-    ])
-  ], 64);
+
+  return openBlock(), createBlock(Fragment, null, [createVNode("input", {
+    ref: "inputRef",
+    type: "file",
+    accept: _ctx.accept,
+    multiple: _ctx.multiple === true || typeof _ctx.multiple === "number" && _ctx.multiple > 1,
+    disabled: _ctx.disabled,
+    onChange: _cache[1] || (_cache[1] = (...args) => _ctx.handleChange && _ctx.handleChange(...args)),
+    style: {
+      "display": "none"
+    }
+  }, null, 40, ["accept", "multiple", "disabled"]), withDirectives(createVNode(_component_Empty, {
+    emptyTitle: _ctx.emptyTitle,
+    emptySubTitle: _ctx.emptySubTitle,
+    onClickEmpty: _cache[2] || (_cache[2] = $event => _ctx.inputRef.click())
+  }, null, 8, ["emptyTitle", "emptySubTitle"]), [[vShow, _ctx.localUploadList.length === 0 && _ctx.localUploadMustCrop.length === 0]]), withDirectives(createVNode(_component_UploaderContainer, null, {
+    default: _withId$2(() => [(openBlock(true), createBlock(Fragment, null, renderList(_ctx.localUploadList, (item, index) => {
+      return openBlock(), createBlock(_component_UploaderItem, {
+        key: index,
+        item,
+        index,
+        crop: _ctx.crop,
+        ratio: _ctx.ratio,
+        loading: _ctx.uploadGlobal.uploadLoading,
+        activeKey: 0,
+        onHandleDelete: _ctx.handleDelete,
+        onHandleCrop: _ctx.handleCrop
+      }, null, 8, ["item", "index", "crop", "ratio", "loading", "onHandleDelete", "onHandleCrop"]);
+    }), 128)), withDirectives(createVNode("div", {
+      class: "easi-uploader-add-btn",
+      onClick: _cache[3] || (_cache[3] = $event => _ctx.inputRef.click())
+    }, [createVNode("div", _hoisted_1$2, [createVNode("p", null, [createVNode(_component_PlusOutlined)]), createVNode("p", _hoisted_2$1, toDisplayString(_ctx.localUploadList.length) + " / " + toDisplayString(_ctx.multiple), 1)])], 512), [[vShow, _ctx.showAddBtn]])]),
+    _: 1
+  }, 512), [[vShow, !_ctx.isCropping]]), withDirectives(createVNode("div", _hoisted_3, [createVNode("img", _hoisted_4, null, 512)], 512), [[vShow, _ctx.isCropping]])], 64);
 });
 
 script$2.render = render$2;
@@ -6232,21 +6358,36 @@ var script$1 = defineComponent({
       default: () => ""
     }
   },
-  setup(props, { emit }) {
-    const { authorization, timeout, domain, getText, multiple, checkedList } = toRefs(props);
-    const uploadGlobal = inject("uploadGlobal", { listLoading: false });
+
+  setup(props, {
+    emit
+  }) {
+    const {
+      authorization,
+      timeout,
+      domain,
+      getText,
+      multiple,
+      checkedList
+    } = toRefs(props);
+    const uploadGlobal = inject("uploadGlobal", {
+      listLoading: false
+    });
     const imageList = ref([]);
     const current = ref(1);
     const total = ref(0);
     let pageSize = ref(20);
     let filename = "";
-    const getImageList = async (_filename) => {
+
+    const getImageList = async _filename => {
       uploadGlobal.listLoading = true;
+
       try {
         if (_filename != null) {
           filename = _filename;
           current.value = 1;
         }
+
         const data = await getPicsList({
           page: current.value,
           size: pageSize.value,
@@ -6262,20 +6403,25 @@ var script$1 = defineComponent({
         message.error(getText.value("uploadListError"));
         emit("error", e);
       }
+
       uploadGlobal.listLoading = false;
     };
+
     getImageList();
+
     const onChange = (_page, _size) => {
       current.value = _page ? _page : current.value;
       pageSize.value = _size ? _size : pageSize.value;
       getImageList();
     };
+
     const disabled = computed(() => {
       if (typeof multiple.value === "number" && checkedList.value.length >= multiple.value) {
         return true;
       } else if (multiple.value === false && checkedList.value.length >= 1) {
         return true;
       }
+
       return false;
     });
     return {
@@ -6288,73 +6434,82 @@ var script$1 = defineComponent({
       simpleImage: Empty.PRESENTED_IMAGE_SIMPLE,
       onChange,
       getImageList,
+
       handleCheckChange(e, item, index) {
-        const { checked } = e.target;
+        const {
+          checked
+        } = e.target;
         imageList.value[index].checked = checked;
         emit("handleCheckedChange", checked, imageList.value[index], index);
       },
+
       showTotal(total2) {
-        return getText.value("pageTotal", { "total": total2 || 0 });
+        return getText.value("pageTotal", {
+          "total": total2 || 0
+        });
       }
+
     };
   },
+
   components: {
     UploaderContainer: script$5,
     UploaderItem: script$4
   }
 });
 
-const _withId$1 = /* @__PURE__ */ withScopeId("data-v-704c7293");
+const _withId$1 = /* @__PURE__ */withScopeId("data-v-704c7293");
+
 pushScopeId("data-v-704c7293");
-const _hoisted_1$1 = { class: "overflow-hidden" };
-const _hoisted_2 = { class: "flex items-center justify-end mt-6" };
+
+const _hoisted_1$1 = {
+  class: "overflow-hidden"
+};
+const _hoisted_2 = {
+  class: "flex items-center justify-end mt-6"
+};
+
 popScopeId();
-const render$1 = /* @__PURE__ */ _withId$1((_ctx, _cache, $props, $setup, $data, $options) => {
+
+const render$1 = /* @__PURE__ */_withId$1((_ctx, _cache, $props, $setup, $data, $options) => {
   const _component_UploaderItem = resolveComponent("UploaderItem");
+
   const _component_a_pagination = resolveComponent("a-pagination");
+
   const _component_a_empty = resolveComponent("a-empty");
+
   const _component_UploaderContainer = resolveComponent("UploaderContainer");
+
   const _directive_loading = resolveDirective("loading");
+
   return withDirectives((openBlock(), createBlock(_component_UploaderContainer, null, {
-    default: _withId$1(() => [
-      createVNode("div", _hoisted_1$1, [
-        (openBlock(true), createBlock(Fragment, null, renderList(_ctx.imageList, (item, index) => {
-          return openBlock(), createBlock(_component_UploaderItem, {
-            key: index,
-            item,
-            index,
-            disabled: _ctx.disabled,
-            ratio: _ctx.ratio,
-            activeKey: 1,
-            onHandleCheckChange: _ctx.handleCheckChange
-          }, null, 8, ["item", "index", "disabled", "ratio", "onHandleCheckChange"]);
-        }), 128))
-      ]),
-      withDirectives(createVNode("div", _hoisted_2, [
-        createVNode(_component_a_pagination, {
-          "show-quick-jumper": "",
-          "show-size-changer": "",
-          "show-total": _ctx.showTotal,
-          showLessItems: "",
-          current: _ctx.current,
-          "onUpdate:current": _cache[1] || (_cache[1] = ($event) => _ctx.current = $event),
-          "page-size": _ctx.pageSize,
-          "onUpdate:page-size": _cache[2] || (_cache[2] = ($event) => _ctx.pageSize = $event),
-          total: _ctx.total,
-          onChange: _ctx.onChange,
-          onShowSizeChange: _ctx.onChange
-        }, null, 8, ["show-total", "current", "page-size", "total", "onChange", "onShowSizeChange"])
-      ], 512), [
-        [vShow, _ctx.total > 0 && _ctx.imageList.length > 0]
-      ]),
-      withDirectives(createVNode(_component_a_empty, { image: _ctx.simpleImage }, null, 8, ["image"]), [
-        [vShow, _ctx.imageList.length === 0]
-      ])
-    ]),
+    default: _withId$1(() => [createVNode("div", _hoisted_1$1, [(openBlock(true), createBlock(Fragment, null, renderList(_ctx.imageList, (item, index) => {
+      return openBlock(), createBlock(_component_UploaderItem, {
+        key: index,
+        item,
+        index,
+        disabled: _ctx.disabled,
+        ratio: _ctx.ratio,
+        activeKey: 1,
+        onHandleCheckChange: _ctx.handleCheckChange
+      }, null, 8, ["item", "index", "disabled", "ratio", "onHandleCheckChange"]);
+    }), 128))]), withDirectives(createVNode("div", _hoisted_2, [createVNode(_component_a_pagination, {
+      "show-quick-jumper": "",
+      "show-size-changer": "",
+      "show-total": _ctx.showTotal,
+      showLessItems: "",
+      current: _ctx.current,
+      "onUpdate:current": _cache[1] || (_cache[1] = $event => _ctx.current = $event),
+      "page-size": _ctx.pageSize,
+      "onUpdate:page-size": _cache[2] || (_cache[2] = $event => _ctx.pageSize = $event),
+      total: _ctx.total,
+      onChange: _ctx.onChange,
+      onShowSizeChange: _ctx.onChange
+    }, null, 8, ["show-total", "current", "page-size", "total", "onChange", "onShowSizeChange"])], 512), [[vShow, _ctx.total > 0 && _ctx.imageList.length > 0]]), withDirectives(createVNode(_component_a_empty, {
+      image: _ctx.simpleImage
+    }, null, 8, ["image"]), [[vShow, _ctx.imageList.length === 0]])]),
     _: 1
-  }, 512)), [
-    [_directive_loading, _ctx.uploadGlobal.listLoading]
-  ]);
+  }, 512)), [[_directive_loading, _ctx.uploadGlobal.listLoading]]);
 });
 
 script$1.render = render$1;
@@ -6364,12 +6519,32 @@ script$1.__file = "packages/uploader/ImageStore.vue";
 var script = defineComponent({
   name: createNamespace("Uploader"),
   emits: ["update:visible", "show", "cancel", "ok", "change", "error"],
-  props: {
-    ...rootProps
+  props: { ...rootProps
   },
-  setup(props, { emit, slots }) {
-    const { disabled, extType, multiple, maxFilesSize, maxWidth, maxHeight, minCropBoxHeight, minCropBoxWidth, destroyOnClose, aspectRatio, system, authorization, timeout, env } = toRefs(props);
-    const globalEASILocale = inject("globalEASILocale", { message: {} });
+
+  setup(props, {
+    emit,
+    slots
+  }) {
+    const {
+      disabled,
+      extType,
+      multiple,
+      maxFilesSize,
+      maxWidth,
+      maxHeight,
+      minCropBoxHeight,
+      minCropBoxWidth,
+      destroyOnClose,
+      aspectRatio,
+      system,
+      authorization,
+      timeout,
+      env
+    } = toRefs(props);
+    const globalEASILocale = inject("globalEASILocale", {
+      message: {}
+    });
     const symbolVisible = ref(false);
     const domain = computed(() => {
       return env.value === "production" ? "https://oss.easiglobal.com" : "https://oss.melbdelivery.com";
@@ -6385,8 +6560,12 @@ var script = defineComponent({
     provide("uploadGlobal", uploadGlobal);
     let trigger;
     onMounted(() => {
-      if (slots.default && app.subTree?.el?.nextElementSibling) {
-        trigger = app.subTree?.el?.nextElementSibling;
+      var _app$subTree, _app$subTree$el;
+
+      if (slots.default && (_app$subTree = app.subTree) !== null && _app$subTree !== void 0 && (_app$subTree$el = _app$subTree.el) !== null && _app$subTree$el !== void 0 && _app$subTree$el.nextElementSibling) {
+        var _app$subTree2, _app$subTree2$el;
+
+        trigger = (_app$subTree2 = app.subTree) === null || _app$subTree2 === void 0 ? void 0 : (_app$subTree2$el = _app$subTree2.el) === null || _app$subTree2$el === void 0 ? void 0 : _app$subTree2$el.nextElementSibling;
         trigger.addEventListener("click", showModal, false);
       }
     });
@@ -6400,31 +6579,36 @@ var script = defineComponent({
     });
     const search = ref();
     const [actionType, setActionType] = useActionType("");
+
     const getText = (key, value) => {
       return getEASIText(globalEASILocale, key, value);
     };
+
     const uploadRef = ref();
     const imageStoreRef = ref();
     const localUploadList = ref([]);
     const localUploadLoading = ref(false);
     const localUploadMustCrop = ref([]);
     const waitToUpload = computed(() => {
-      return localUploadList.value.filter((item) => !item.uploadSuccess);
+      return localUploadList.value.filter(item => !item.uploadSuccess);
     });
     const alreadyUpload = computed(() => {
-      return localUploadList.value.filter((item) => item.uploadSuccess);
+      return localUploadList.value.filter(item => item.uploadSuccess);
     });
     const checkedList = ref([]);
     const isCropping = ref(false);
+
     const showModal = () => {
       symbolVisible.value = true;
       emit("update:visible", true);
       emit("show");
     };
+
     const handleCancel = () => {
       symbolVisible.value = false;
       emit("update:visible", false);
       emit("cancel");
+
       if (destroyOnClose.value) {
         activeKey.value = 0;
         localUploadList.value = [];
@@ -6437,12 +6621,15 @@ var script = defineComponent({
         checkedList.value = [];
       }
     };
+
     const handleShow = () => {
       activeKey.value = 0;
     };
+
     const handleDelete = (item, index) => {
       if (localUploadMustCrop.value.length > 0) {
         localUploadMustCrop.value.splice(index, 1);
+
         if (isCropping.value) {
           if (localUploadMustCrop.value.length === 0) {
             isCropping.value = false;
@@ -6450,12 +6637,14 @@ var script = defineComponent({
             let len = localUploadMustCrop.value.length - 1;
             let realIndex = index > len ? len : index;
             cropIndex.value = realIndex;
-            uploadRef.value.setCurrent({ ...toRaw(localUploadMustCrop.value[realIndex]) }, realIndex);
+            uploadRef.value.setCurrent({ ...toRaw(localUploadMustCrop.value[realIndex])
+            }, realIndex);
             uploadRef.value.initCrop();
           }
         }
       } else {
         localUploadList.value.splice(index, 1);
+
         if (isCropping.value) {
           if (localUploadList.value.length === 0) {
             isCropping.value = false;
@@ -6463,20 +6652,24 @@ var script = defineComponent({
             let len = localUploadList.value.length - 1;
             let realIndex = index > len ? len : index;
             cropIndex.value = realIndex;
-            uploadRef.value.setCurrent({ ...toRaw(localUploadList.value[realIndex]) }, realIndex);
+            uploadRef.value.setCurrent({ ...toRaw(localUploadList.value[realIndex])
+            }, realIndex);
             uploadRef.value.initCrop();
           }
         }
       }
     };
+
     const handleCrop = (item, index) => {
       isCropping.value = true;
       cropIndex.value = index;
     };
+
     const handleConfirmCrop = (item, index, isMustCrop = false) => {
       if (isMustCrop) {
         localUploadMustCrop.value.splice(index, 1);
         localUploadList.value.push(item);
+
         if (localUploadMustCrop.value.length === 0) {
           isCropping.value = false;
           cropIndex.value = -1;
@@ -6487,12 +6680,14 @@ var script = defineComponent({
         cropIndex.value = -1;
       }
     };
+
     const handleCropBack = () => {
       if (localUploadMustCrop.value.length > 0) {
         Modal.confirm({
           title: getText("uploaderBackTitle"),
           icon: createVNode(ExclamationCircleOutlined$1),
           content: getText("uploaderBackMsg"),
+
           async onOk() {
             isCropping.value = false;
             cropIndex.value = 0;
@@ -6500,6 +6695,7 @@ var script = defineComponent({
             uploadGlobal.cropLoading = false;
             return true;
           }
+
         });
       } else {
         isCropping.value = false;
@@ -6507,15 +6703,19 @@ var script = defineComponent({
         cropIndex.value = 0;
       }
     };
+
     const handleToCrop = () => {
       uploadRef.value.confirmCrop(localUploadMustCrop.value.length > 0);
     };
+
     const handleToNext = () => {
       uploadRef.value.toNext();
     };
+
     const handleToPrev = () => {
       uploadRef.value.toPrev();
     };
+
     const handleUpload = async () => {
       uploadGlobal.uploadLoading = true;
       const options = {
@@ -6524,14 +6724,15 @@ var script = defineComponent({
         timeout: timeout.value,
         domain: domain.value
       };
+
       for (let i = 0; i < localUploadList.value.length; i++) {
         if (localUploadList.value[i].uploadSuccess) {
           continue;
         }
+
         try {
           localUploadList.value[i].uploadLoading = true;
-          const newItem = await uploadPic({
-            ...toRaw(localUploadList.value[i])
+          const newItem = await uploadPic({ ...toRaw(localUploadList.value[i])
           }, options);
           localUploadList.value.splice(i, 1, newItem);
         } catch (e) {
@@ -6541,12 +6742,20 @@ var script = defineComponent({
           emit("error", e);
         }
       }
+
       uploadGlobal.uploadLoading = false;
     };
+
     const handleOK = () => {
       if (activeKey.value === 0) {
-        const array = alreadyUpload.value.map((item) => {
-          const { url, name, size, width, height } = item;
+        const array = alreadyUpload.value.map(item => {
+          const {
+            url,
+            name,
+            size,
+            width,
+            height
+          } = item;
           return {
             url,
             name,
@@ -6555,23 +6764,35 @@ var script = defineComponent({
             height
           };
         });
+
         if (waitToUpload.value.length > 0) {
           return Modal.confirm({
             title: getText("uploadWaitTitle"),
             icon: createVNode(ExclamationCircleOutlined$1),
-            content: getText("uploadWaitMsg", { number: waitToUpload.value.length }),
+            content: getText("uploadWaitMsg", {
+              number: waitToUpload.value.length
+            }),
+
             async onOk() {
               handleCancel();
               emit("ok", array);
               return true;
             }
+
           });
         }
+
         handleCancel();
         emit("ok", array);
       } else {
-        const array = checkedList.value.map((item) => {
-          const { url, name, size, width, height } = item;
+        const array = checkedList.value.map(item => {
+          const {
+            url,
+            name,
+            size,
+            width,
+            height
+          } = item;
           return {
             url,
             name,
@@ -6584,16 +6805,22 @@ var script = defineComponent({
         emit("ok", array);
       }
     };
+
     const handleSearch = () => {
-      imageStoreRef.value?.getImageList(search.value);
+      var _imageStoreRef$value;
+
+      (_imageStoreRef$value = imageStoreRef.value) === null || _imageStoreRef$value === void 0 ? void 0 : _imageStoreRef$value.getImageList(search.value);
     };
+
     const handleCheckedChange = (checked, item, index) => {
       if (checked) {
-        checkedList.value.push({ ...toRaw(item) });
+        checkedList.value.push({ ...toRaw(item)
+        });
       } else {
-        checkedList.value = checkedList.value.filter((_item) => _item.url !== item.url);
+        checkedList.value = checkedList.value.filter(_item => _item.url !== item.url);
       }
     };
+
     return {
       symbolVisible,
       globalEASILocale,
@@ -6628,14 +6855,15 @@ var script = defineComponent({
       handleUpload,
       handleOK,
       handleCheckedChange,
+
       async handleChange(e, fromAction = "") {
         const fileList = Array.from(fromAction === "drop" ? e.dataTransfer.files : e.target.files);
         e.target.value = "";
         e.target.files = null;
-        if (disabled.value || isCropping.value)
-          return;
+        if (disabled.value || isCropping.value) return;
         setActionType(fromAction);
-        if (fromAction === "drop" && extType.value && fileList.some((file) => {
+
+        if (fromAction === "drop" && extType.value && fileList.some(file => {
           const fileNameArray = file.name.split(".");
           return !extType.value.includes(fileNameArray[fileNameArray.length - 1]);
         })) {
@@ -6647,15 +6875,21 @@ var script = defineComponent({
             fileList
           });
         }
+
         if (typeof multiple.value === "number" && fileList.length + localUploadList.value.length > multiple.value || multiple.value === false && (localUploadList.value.length > 0 || localUploadList.value.length === 0 && fileList.length > 1)) {
           let number = 0;
-          if (multiple.value === false && (localUploadList.value.length === 0 && fileList.length > 1)) {
+
+          if (multiple.value === false && localUploadList.value.length === 0 && fileList.length > 1) {
             number = 1;
           }
+
           if (typeof multiple.value === "number" && fileList.length + localUploadList.value.length > multiple.value) {
             number = multiple.value - localUploadList.value.length > 0 ? multiple.value - localUploadList.value.length : 0;
           }
-          const errorMsg = getText("uploaderError1", { max: number });
+
+          const errorMsg = getText("uploaderError1", {
+            max: number
+          });
           message.error(errorMsg);
           return emit("error", {
             code: "FILE_MAX_COUNT",
@@ -6663,8 +6897,11 @@ var script = defineComponent({
             fileList
           });
         }
-        if (fileList.some((file) => file.size / 1024 / 1024 > maxFilesSize.value)) {
-          const errorMsg = getText("uploaderError2", { max: maxFilesSize.value });
+
+        if (fileList.some(file => file.size / 1024 / 1024 > maxFilesSize.value)) {
+          const errorMsg = getText("uploaderError2", {
+            max: maxFilesSize.value
+          });
           message.error(errorMsg);
           return emit("error", {
             code: "FILE_MAX_SIZE",
@@ -6672,9 +6909,11 @@ var script = defineComponent({
             fileList
           });
         }
+
         const fileArray = [];
         const mustCropArray = [];
         localUploadLoading.value = true;
+
         for (const file of fileList) {
           try {
             const fileItem = await canvasToFile(file, {
@@ -6683,6 +6922,7 @@ var script = defineComponent({
               minCropBoxHeight: minCropBoxHeight.value,
               minCropBoxWidth: minCropBoxWidth.value
             }, getText);
+
             if (ratio.value && fileItem.file.type !== "image/gif" && ratio.value !== fileItem.aspectRatio) {
               mustCropArray.push(fileItem);
             } else {
@@ -6694,316 +6934,274 @@ var script = defineComponent({
             return emit("error", e2);
           }
         }
+
         localUploadLoading.value = false;
         localUploadList.value = [...toRaw(localUploadList.value), ...fileArray];
         localUploadMustCrop.value = [...toRaw(localUploadMustCrop.value), ...mustCropArray];
+
         if (localUploadMustCrop.value.length > 0) {
           isCropping.value = true;
           cropIndex.value = 0;
-          uploadRef.value.setCurrent({
-            ...toRaw(localUploadMustCrop.value[0])
+          uploadRef.value.setCurrent({ ...toRaw(localUploadMustCrop.value[0])
           }, 0);
           uploadRef.value.initCrop();
         }
+
         if (activeKey.value !== 0) {
           activeKey.value = 0;
         }
+
         emit("change", fileList);
       }
+
     };
   },
+
   components: {
     Upload: script$2,
     ImageStore: script$1
   }
 });
 
-const _withId = /* @__PURE__ */ withScopeId("data-v-67d79ad6");
+const _withId = /* @__PURE__ */withScopeId("data-v-67d79ad6");
+
 pushScopeId("data-v-67d79ad6");
-const _hoisted_1 = { class: "flex items-center justify-end" };
+
+const _hoisted_1 = {
+  class: "flex items-center justify-end"
+};
+
 popScopeId();
-const render = /* @__PURE__ */ _withId((_ctx, _cache, $props, $setup, $data, $options) => {
+
+const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $options) => {
   const _component_Upload = resolveComponent("Upload");
+
   const _component_a_tab_pane = resolveComponent("a-tab-pane");
+
   const _component_ImageStore = resolveComponent("ImageStore");
+
   const _component_a_input_search = resolveComponent("a-input-search");
+
   const _component_a_form_item = resolveComponent("a-form-item");
+
   const _component_EASIButton = resolveComponent("EASIButton");
+
   const _component_a_form = resolveComponent("a-form");
+
   const _component_a_tabs = resolveComponent("a-tabs");
+
   const _component_a_typography_text = resolveComponent("a-typography-text");
+
   const _component_a_space = resolveComponent("a-space");
+
   const _component_EASIModal = resolveComponent("EASIModal");
+
   const _directive_loading = resolveDirective("loading");
-  return openBlock(), createBlock(Fragment, null, [
-    renderSlot(_ctx.$slots, "default"),
-    createVNode(_component_EASIModal, {
-      visible: _ctx.visible === void 0 ? _ctx.symbolVisible : _ctx.visible,
-      "body-style": { height: "calc(100vh - 300px)", maxHeight: "auto", overflow: "hidden" },
-      title: _ctx.title || _ctx.getText("uploaderTitle"),
-      maskClosable: _ctx.maskClosable,
-      destroyOnClose: _ctx.destroyOnClose,
-      onShow: _ctx.handleShow,
-      onCancel: _ctx.handleCancel
+
+  return openBlock(), createBlock(Fragment, null, [renderSlot(_ctx.$slots, "default"), createVNode(_component_EASIModal, {
+    visible: _ctx.visible === void 0 ? _ctx.symbolVisible : _ctx.visible,
+    "body-style": {
+      height: "calc(100vh - 300px)",
+      maxHeight: "auto",
+      overflow: "hidden"
+    },
+    title: _ctx.title || _ctx.getText("uploaderTitle"),
+    maskClosable: _ctx.maskClosable,
+    destroyOnClose: _ctx.destroyOnClose,
+    onShow: _ctx.handleShow,
+    onCancel: _ctx.handleCancel
+  }, {
+    footer: _withId(() => [createVNode("div", _hoisted_1, [withDirectives(createVNode(_component_a_typography_text, {
+      type: "secondary",
+      class: "flex-1 text-left"
     }, {
-      footer: _withId(() => [
-        createVNode("div", _hoisted_1, [
-          withDirectives(createVNode(_component_a_typography_text, {
-            type: "secondary",
-            class: "flex-1 text-left"
-          }, {
-            default: _withId(() => [
-              createTextVNode(toDisplayString(_ctx.getText("selected")) + " " + toDisplayString(_ctx.checkedList.length) + " / " + toDisplayString(typeof _ctx.multiple === "number" ? _ctx.multiple : 1), 1)
-            ]),
-            _: 1
-          }, 512), [
-            [vShow, _ctx.activeKey === 1]
-          ]),
-          _ctx.localUploadList.length === 0 && _ctx.localUploadMustCrop.length === 0 && _ctx.multiple !== true && _ctx.activeKey === 0 ? (openBlock(), createBlock(_component_a_typography_text, {
-            key: 0,
-            type: "secondary",
-            class: "flex-1 text-left"
-          }, {
-            default: _withId(() => [
-              createTextVNode(toDisplayString(_ctx.getText("uploaderError1", { max: typeof _ctx.multiple === "number" ? _ctx.multiple.toString() : 1 })), 1)
-            ]),
-            _: 1
-          })) : createCommentVNode("v-if", true),
-          _ctx.localUploadMustCrop.length > 0 ? (openBlock(), createBlock(_component_a_typography_text, {
-            key: 1,
-            type: "danger",
-            class: "flex-1 text-left"
-          }, {
-            default: _withId(() => [
-              createTextVNode(toDisplayString(_ctx.getText("uploaderMustCropTips", { number: _ctx.localUploadMustCrop.length })), 1)
-            ]),
-            _: 1
-          })) : createCommentVNode("v-if", true),
-          createVNode(_component_a_space, null, {
-            default: _withId(() => [
-              createCommentVNode(" \u5173\u95ED\u5F39\u6846\u6309\u94AE "),
-              !_ctx.isCropping ? (openBlock(), createBlock(_component_EASIButton, {
-                key: 0,
-                disabled: _ctx.disabled,
-                onClick: _ctx.handleCancel
-              }, {
-                default: _withId(() => [
-                  createTextVNode(toDisplayString(_ctx.getText("cancel")), 1)
-                ]),
-                _: 1
-              }, 8, ["disabled", "onClick"])) : createCommentVNode("v-if", true),
-              createCommentVNode(" \u5F00\u59CB\u4E0A\u4F20\u6309\u94AE "),
-              _ctx.activeKey === 0 && !_ctx.isCropping && _ctx.waitToUpload.length > 0 ? (openBlock(), createBlock(_component_EASIButton, {
-                key: 1,
-                type: "primary",
-                disabled: _ctx.disabled,
-                loading: _ctx.uploadGlobal.uploadLoading,
-                success: "",
-                onClick: withModifiers(_ctx.handleUpload, ["stop"])
-              }, {
-                default: _withId(() => [
-                  createTextVNode(toDisplayString(_ctx.getText("uploaderPrimary")), 1)
-                ]),
-                _: 1
-              }, 8, ["disabled", "loading", "onClick"])) : createCommentVNode("v-if", true),
-              createCommentVNode(" \u786E\u8BA4\u9009\u62E9\u6309\u94AE "),
-              _ctx.activeKey === 1 || _ctx.activeKey === 0 && !_ctx.isCropping && _ctx.alreadyUpload.length > 0 ? (openBlock(), createBlock(_component_EASIButton, {
-                key: 2,
-                type: "primary",
-                disabled: _ctx.disabled,
-                onClick: withModifiers(_ctx.handleOK, ["stop"])
-              }, {
-                default: _withId(() => [
-                  createTextVNode(toDisplayString(_ctx.getText("confirm")), 1)
-                ]),
-                _: 1
-              }, 8, ["disabled", "onClick"])) : createCommentVNode("v-if", true),
-              createCommentVNode(" \u88C1\u526A\u8FC7\u7A0B\u4E2D\u8FD4\u56DE\u56FE\u7247\u5217\u8868\u754C\u9762 "),
-              _ctx.isCropping ? (openBlock(), createBlock(_component_EASIButton, {
-                key: 3,
-                disabled: _ctx.disabled,
-                onClick: withModifiers(_ctx.handleCropBack, ["stop"])
-              }, {
-                default: _withId(() => [
-                  createTextVNode(toDisplayString(_ctx.getText("uploadBack")), 1)
-                ]),
-                _: 1
-              }, 8, ["disabled", "onClick"])) : createCommentVNode("v-if", true),
-              createCommentVNode(" \u88C1\u526A\u8FC7\u7A0B\u4E2D\u5220\u9664\u67D0\u5F20\u56FE\u7247 "),
-              _ctx.activeKey === 0 && _ctx.isCropping ? (openBlock(), createBlock(_component_EASIButton, {
-                key: 4,
-                type: "primary",
-                danger: "",
-                disabled: _ctx.disabled,
-                onClick: _cache[12] || (_cache[12] = withModifiers(($event) => _ctx.handleDelete(null, _ctx.cropIndex), ["stop"]))
-              }, {
-                default: _withId(() => [
-                  createTextVNode(toDisplayString(_ctx.getText("uploaderRemove")), 1)
-                ]),
-                _: 1
-              }, 8, ["disabled"])) : createCommentVNode("v-if", true),
-              createCommentVNode(" \u4E0A\u4E00\u5F20 "),
-              _ctx.activeKey === 0 && _ctx.isCropping && _ctx.localUploadMustCrop.length === 0 && _ctx.localUploadList.length > 1 ? (openBlock(), createBlock(_component_EASIButton, {
-                key: 5,
-                type: "primary",
-                disabled: _ctx.disabled,
-                onClick: withModifiers(_ctx.handleToPrev, ["stop"])
-              }, {
-                default: _withId(() => [
-                  createTextVNode(toDisplayString(_ctx.getText("uploaderPrev")), 1)
-                ]),
-                _: 1
-              }, 8, ["disabled", "onClick"])) : createCommentVNode("v-if", true),
-              createCommentVNode(" \u4E0B\u4E00\u5F20 "),
-              _ctx.activeKey === 0 && _ctx.isCropping && (_ctx.localUploadMustCrop.length > 1 || _ctx.localUploadMustCrop.length === 0 && _ctx.localUploadList.length > 1) ? (openBlock(), createBlock(_component_EASIButton, {
-                key: 6,
-                type: "primary",
-                disabled: _ctx.disabled,
-                onClick: withModifiers(_ctx.handleToNext, ["stop"]),
-                loading: _ctx.uploadGlobal.cropLoading,
-                success: _ctx.localUploadMustCrop.length > 1
-              }, {
-                default: _withId(() => [
-                  createTextVNode(toDisplayString(_ctx.localUploadMustCrop.length > 0 ? _ctx.getText("uploaderConfirmNext") : _ctx.getText("uploaderNext")), 1)
-                ]),
-                _: 1
-              }, 8, ["disabled", "onClick", "loading", "success"])) : createCommentVNode("v-if", true),
-              createCommentVNode(" \u786E\u8BA4\u88C1\u526A\u6309\u94AE "),
-              _ctx.activeKey === 0 && _ctx.isCropping && _ctx.localUploadMustCrop.length <= 1 ? (openBlock(), createBlock(_component_EASIButton, {
-                key: 7,
-                type: "primary",
-                success: "",
-                loading: _ctx.uploadGlobal.cropLoading,
-                disabled: _ctx.disabled,
-                onClick: withModifiers(_ctx.handleToCrop, ["stop"])
-              }, {
-                default: _withId(() => [
-                  createTextVNode(toDisplayString(_ctx.getText("uploaderConfirmCrop")), 1)
-                ]),
-                _: 1
-              }, 8, ["loading", "disabled", "onClick"])) : createCommentVNode("v-if", true)
-            ]),
-            _: 1
-          })
-        ])
-      ]),
-      default: _withId(() => [
-        createVNode(_component_a_tabs, {
-          type: "card",
-          activeKey: _ctx.activeKey,
-          "onUpdate:activeKey": _cache[11] || (_cache[11] = ($event) => _ctx.activeKey = $event)
-        }, {
-          tabBarExtraContent: _withId(() => [
-            withDirectives(createVNode(_component_a_form, { layout: "inline" }, {
-              default: _withId(() => [
-                createVNode(_component_a_form_item, null, {
-                  default: _withId(() => [
-                    createVNode(_component_a_input_search, {
-                      value: _ctx.search,
-                      "onUpdate:value": _cache[10] || (_cache[10] = ($event) => _ctx.search = $event),
-                      placeholder: _ctx.getText("searchPlaceholder"),
-                      style: { "width": "184px" }
-                    }, null, 8, ["value", "placeholder"])
-                  ]),
-                  _: 1
-                }),
-                createVNode(_component_a_form_item, null, {
-                  default: _withId(() => [
-                    createVNode(_component_EASIButton, {
-                      type: "primary",
-                      loading: _ctx.uploadGlobal.listLoading,
-                      onClick: withModifiers(_ctx.handleSearch, ["stop"])
-                    }, {
-                      default: _withId(() => [
-                        createTextVNode(toDisplayString(_ctx.getText("search")), 1)
-                      ]),
-                      _: 1
-                    }, 8, ["loading", "onClick"])
-                  ]),
-                  _: 1
-                })
-              ]),
-              _: 1
-            }, 512), [
-              [vShow, _ctx.activeKey === 1]
-            ])
-          ]),
-          default: _withId(() => [
-            withDirectives(createVNode(_component_a_tab_pane, {
-              class: ["pane-container", _ctx.actionType],
-              key: 0,
-              tab: _ctx.getText("uploaderTab0"),
-              onDragover: _cache[1] || (_cache[1] = withModifiers(($event) => _ctx.setActionType("dragover"), ["prevent"])),
-              onDragleave: _cache[2] || (_cache[2] = withModifiers(($event) => _ctx.setActionType(""), ["prevent"])),
-              onDragend: _cache[3] || (_cache[3] = withModifiers(() => {
-              }, ["prevent"])),
-              onDrop: _cache[4] || (_cache[4] = withModifiers(($event) => _ctx.handleChange($event, "drop"), ["prevent"]))
-            }, {
-              default: _withId(() => [
-                createVNode(_component_Upload, {
-                  ref: "uploadRef",
-                  localUploadList: _ctx.localUploadList,
-                  localUploadMustCrop: _ctx.localUploadMustCrop,
-                  "empty-title": _ctx.emptyTitle,
-                  "empty-sub-title": _ctx.emptySubTitle,
-                  accept: _ctx.accept,
-                  multiple: _ctx.multiple,
-                  disabled: _ctx.disabled,
-                  minCropBoxHeight: _ctx.minCropBoxHeight,
-                  minCropBoxWidth: _ctx.minCropBoxWidth,
-                  ratio: _ctx.ratio,
-                  crop: _ctx.crop,
-                  isCropping: _ctx.isCropping,
-                  onInputChange: _ctx.handleChange,
-                  onHandleDelete: _ctx.handleDelete,
-                  onHandleCrop: _ctx.handleCrop,
-                  onHandleConfirmCrop: _ctx.handleConfirmCrop
-                }, null, 8, ["localUploadList", "localUploadMustCrop", "empty-title", "empty-sub-title", "accept", "multiple", "disabled", "minCropBoxHeight", "minCropBoxWidth", "ratio", "crop", "isCropping", "onInputChange", "onHandleDelete", "onHandleCrop", "onHandleConfirmCrop"])
-              ]),
-              _: 1
-            }, 8, ["class", "tab"]), [
-              [_directive_loading, _ctx.localUploadLoading]
-            ]),
-            createVNode(_component_a_tab_pane, {
-              class: ["pane-container", _ctx.actionType],
-              key: 1,
-              tab: _ctx.getText("uploaderTab1"),
-              onDragover: _cache[6] || (_cache[6] = withModifiers(($event) => _ctx.setActionType("dragover"), ["prevent"])),
-              onDragleave: _cache[7] || (_cache[7] = withModifiers(($event) => _ctx.setActionType(""), ["prevent"])),
-              onDragend: _cache[8] || (_cache[8] = withModifiers(() => {
-              }, ["prevent"])),
-              onDrop: _cache[9] || (_cache[9] = withModifiers(($event) => _ctx.handleChange($event, "drop"), ["prevent"]))
-            }, {
-              default: _withId(() => [
-                createVNode(_component_ImageStore, {
-                  ref: "imageStoreRef",
-                  authorization: _ctx.authorization,
-                  domain: _ctx.domain,
-                  timeout: _ctx.timeout,
-                  checkedList: _ctx.checkedList,
-                  multiple: _ctx.multiple,
-                  ratio: _ctx.ratio,
-                  getText: _ctx.getText,
-                  onError: _cache[5] || (_cache[5] = ($event) => _ctx.$emit("error", $event)),
-                  onHandleCheckedChange: _ctx.handleCheckedChange
-                }, null, 8, ["authorization", "domain", "timeout", "checkedList", "multiple", "ratio", "getText", "onHandleCheckedChange"])
-              ]),
-              _: 1
-            }, 8, ["class", "tab"])
-          ]),
-          _: 1
-        }, 8, ["activeKey"])
-      ]),
+      default: _withId(() => [createTextVNode(toDisplayString(_ctx.getText("selected")) + " " + toDisplayString(_ctx.checkedList.length) + " / " + toDisplayString(typeof _ctx.multiple === "number" ? _ctx.multiple : 1), 1)]),
       _: 1
-    }, 8, ["visible", "body-style", "title", "maskClosable", "destroyOnClose", "onShow", "onCancel"])
-  ], 64);
+    }, 512), [[vShow, _ctx.activeKey === 1]]), _ctx.localUploadList.length === 0 && _ctx.localUploadMustCrop.length === 0 && _ctx.multiple !== true && _ctx.activeKey === 0 ? (openBlock(), createBlock(_component_a_typography_text, {
+      key: 0,
+      type: "secondary",
+      class: "flex-1 text-left"
+    }, {
+      default: _withId(() => [createTextVNode(toDisplayString(_ctx.getText("uploaderError1", {
+        max: typeof _ctx.multiple === "number" ? _ctx.multiple.toString() : 1
+      })), 1)]),
+      _: 1
+    })) : createCommentVNode("v-if", true), _ctx.localUploadMustCrop.length > 0 ? (openBlock(), createBlock(_component_a_typography_text, {
+      key: 1,
+      type: "danger",
+      class: "flex-1 text-left"
+    }, {
+      default: _withId(() => [createTextVNode(toDisplayString(_ctx.getText("uploaderMustCropTips", {
+        number: _ctx.localUploadMustCrop.length
+      })), 1)]),
+      _: 1
+    })) : createCommentVNode("v-if", true), createVNode(_component_a_space, null, {
+      default: _withId(() => [createCommentVNode(" \u5173\u95ED\u5F39\u6846\u6309\u94AE "), !_ctx.isCropping ? (openBlock(), createBlock(_component_EASIButton, {
+        key: 0,
+        disabled: _ctx.disabled,
+        onClick: _ctx.handleCancel
+      }, {
+        default: _withId(() => [createTextVNode(toDisplayString(_ctx.getText("cancel")), 1)]),
+        _: 1
+      }, 8, ["disabled", "onClick"])) : createCommentVNode("v-if", true), createCommentVNode(" \u5F00\u59CB\u4E0A\u4F20\u6309\u94AE "), _ctx.activeKey === 0 && !_ctx.isCropping && _ctx.waitToUpload.length > 0 ? (openBlock(), createBlock(_component_EASIButton, {
+        key: 1,
+        type: "primary",
+        disabled: _ctx.disabled,
+        loading: _ctx.uploadGlobal.uploadLoading,
+        success: "",
+        onClick: withModifiers(_ctx.handleUpload, ["stop"])
+      }, {
+        default: _withId(() => [createTextVNode(toDisplayString(_ctx.getText("uploaderPrimary")), 1)]),
+        _: 1
+      }, 8, ["disabled", "loading", "onClick"])) : createCommentVNode("v-if", true), createCommentVNode(" \u786E\u8BA4\u9009\u62E9\u6309\u94AE "), _ctx.activeKey === 1 || _ctx.activeKey === 0 && !_ctx.isCropping && _ctx.alreadyUpload.length > 0 ? (openBlock(), createBlock(_component_EASIButton, {
+        key: 2,
+        type: "primary",
+        disabled: _ctx.disabled,
+        onClick: withModifiers(_ctx.handleOK, ["stop"])
+      }, {
+        default: _withId(() => [createTextVNode(toDisplayString(_ctx.getText("confirm")), 1)]),
+        _: 1
+      }, 8, ["disabled", "onClick"])) : createCommentVNode("v-if", true), createCommentVNode(" \u88C1\u526A\u8FC7\u7A0B\u4E2D\u8FD4\u56DE\u56FE\u7247\u5217\u8868\u754C\u9762 "), _ctx.isCropping ? (openBlock(), createBlock(_component_EASIButton, {
+        key: 3,
+        disabled: _ctx.disabled,
+        onClick: withModifiers(_ctx.handleCropBack, ["stop"])
+      }, {
+        default: _withId(() => [createTextVNode(toDisplayString(_ctx.getText("uploadBack")), 1)]),
+        _: 1
+      }, 8, ["disabled", "onClick"])) : createCommentVNode("v-if", true), createCommentVNode(" \u88C1\u526A\u8FC7\u7A0B\u4E2D\u5220\u9664\u67D0\u5F20\u56FE\u7247 "), _ctx.activeKey === 0 && _ctx.isCropping ? (openBlock(), createBlock(_component_EASIButton, {
+        key: 4,
+        type: "primary",
+        danger: "",
+        disabled: _ctx.disabled,
+        onClick: _cache[12] || (_cache[12] = withModifiers($event => _ctx.handleDelete(null, _ctx.cropIndex), ["stop"]))
+      }, {
+        default: _withId(() => [createTextVNode(toDisplayString(_ctx.getText("uploaderRemove")), 1)]),
+        _: 1
+      }, 8, ["disabled"])) : createCommentVNode("v-if", true), createCommentVNode(" \u4E0A\u4E00\u5F20 "), _ctx.activeKey === 0 && _ctx.isCropping && _ctx.localUploadMustCrop.length === 0 && _ctx.localUploadList.length > 1 ? (openBlock(), createBlock(_component_EASIButton, {
+        key: 5,
+        type: "primary",
+        disabled: _ctx.disabled,
+        onClick: withModifiers(_ctx.handleToPrev, ["stop"])
+      }, {
+        default: _withId(() => [createTextVNode(toDisplayString(_ctx.getText("uploaderPrev")), 1)]),
+        _: 1
+      }, 8, ["disabled", "onClick"])) : createCommentVNode("v-if", true), createCommentVNode(" \u4E0B\u4E00\u5F20 "), _ctx.activeKey === 0 && _ctx.isCropping && (_ctx.localUploadMustCrop.length > 1 || _ctx.localUploadMustCrop.length === 0 && _ctx.localUploadList.length > 1) ? (openBlock(), createBlock(_component_EASIButton, {
+        key: 6,
+        type: "primary",
+        disabled: _ctx.disabled,
+        onClick: withModifiers(_ctx.handleToNext, ["stop"]),
+        loading: _ctx.uploadGlobal.cropLoading,
+        success: _ctx.localUploadMustCrop.length > 1
+      }, {
+        default: _withId(() => [createTextVNode(toDisplayString(_ctx.localUploadMustCrop.length > 0 ? _ctx.getText("uploaderConfirmNext") : _ctx.getText("uploaderNext")), 1)]),
+        _: 1
+      }, 8, ["disabled", "onClick", "loading", "success"])) : createCommentVNode("v-if", true), createCommentVNode(" \u786E\u8BA4\u88C1\u526A\u6309\u94AE "), _ctx.activeKey === 0 && _ctx.isCropping && _ctx.localUploadMustCrop.length <= 1 ? (openBlock(), createBlock(_component_EASIButton, {
+        key: 7,
+        type: "primary",
+        success: "",
+        loading: _ctx.uploadGlobal.cropLoading,
+        disabled: _ctx.disabled,
+        onClick: withModifiers(_ctx.handleToCrop, ["stop"])
+      }, {
+        default: _withId(() => [createTextVNode(toDisplayString(_ctx.getText("uploaderConfirmCrop")), 1)]),
+        _: 1
+      }, 8, ["loading", "disabled", "onClick"])) : createCommentVNode("v-if", true)]),
+      _: 1
+    })])]),
+    default: _withId(() => [createVNode(_component_a_tabs, {
+      type: "card",
+      activeKey: _ctx.activeKey,
+      "onUpdate:activeKey": _cache[11] || (_cache[11] = $event => _ctx.activeKey = $event)
+    }, {
+      tabBarExtraContent: _withId(() => [withDirectives(createVNode(_component_a_form, {
+        layout: "inline"
+      }, {
+        default: _withId(() => [createVNode(_component_a_form_item, null, {
+          default: _withId(() => [createVNode(_component_a_input_search, {
+            value: _ctx.search,
+            "onUpdate:value": _cache[10] || (_cache[10] = $event => _ctx.search = $event),
+            placeholder: _ctx.getText("searchPlaceholder"),
+            style: {
+              "width": "184px"
+            }
+          }, null, 8, ["value", "placeholder"])]),
+          _: 1
+        }), createVNode(_component_a_form_item, null, {
+          default: _withId(() => [createVNode(_component_EASIButton, {
+            type: "primary",
+            loading: _ctx.uploadGlobal.listLoading,
+            onClick: withModifiers(_ctx.handleSearch, ["stop"])
+          }, {
+            default: _withId(() => [createTextVNode(toDisplayString(_ctx.getText("search")), 1)]),
+            _: 1
+          }, 8, ["loading", "onClick"])]),
+          _: 1
+        })]),
+        _: 1
+      }, 512), [[vShow, _ctx.activeKey === 1]])]),
+      default: _withId(() => [withDirectives(createVNode(_component_a_tab_pane, {
+        class: ["pane-container", _ctx.actionType],
+        key: 0,
+        tab: _ctx.getText("uploaderTab0"),
+        onDragover: _cache[1] || (_cache[1] = withModifiers($event => _ctx.setActionType("dragover"), ["prevent"])),
+        onDragleave: _cache[2] || (_cache[2] = withModifiers($event => _ctx.setActionType(""), ["prevent"])),
+        onDragend: _cache[3] || (_cache[3] = withModifiers(() => {}, ["prevent"])),
+        onDrop: _cache[4] || (_cache[4] = withModifiers($event => _ctx.handleChange($event, "drop"), ["prevent"]))
+      }, {
+        default: _withId(() => [createVNode(_component_Upload, {
+          ref: "uploadRef",
+          localUploadList: _ctx.localUploadList,
+          localUploadMustCrop: _ctx.localUploadMustCrop,
+          "empty-title": _ctx.emptyTitle,
+          "empty-sub-title": _ctx.emptySubTitle,
+          accept: _ctx.accept,
+          multiple: _ctx.multiple,
+          disabled: _ctx.disabled,
+          minCropBoxHeight: _ctx.minCropBoxHeight,
+          minCropBoxWidth: _ctx.minCropBoxWidth,
+          ratio: _ctx.ratio,
+          crop: _ctx.crop,
+          isCropping: _ctx.isCropping,
+          onInputChange: _ctx.handleChange,
+          onHandleDelete: _ctx.handleDelete,
+          onHandleCrop: _ctx.handleCrop,
+          onHandleConfirmCrop: _ctx.handleConfirmCrop
+        }, null, 8, ["localUploadList", "localUploadMustCrop", "empty-title", "empty-sub-title", "accept", "multiple", "disabled", "minCropBoxHeight", "minCropBoxWidth", "ratio", "crop", "isCropping", "onInputChange", "onHandleDelete", "onHandleCrop", "onHandleConfirmCrop"])]),
+        _: 1
+      }, 8, ["class", "tab"]), [[_directive_loading, _ctx.localUploadLoading]]), createVNode(_component_a_tab_pane, {
+        class: ["pane-container", _ctx.actionType],
+        key: 1,
+        tab: _ctx.getText("uploaderTab1"),
+        onDragover: _cache[6] || (_cache[6] = withModifiers($event => _ctx.setActionType("dragover"), ["prevent"])),
+        onDragleave: _cache[7] || (_cache[7] = withModifiers($event => _ctx.setActionType(""), ["prevent"])),
+        onDragend: _cache[8] || (_cache[8] = withModifiers(() => {}, ["prevent"])),
+        onDrop: _cache[9] || (_cache[9] = withModifiers($event => _ctx.handleChange($event, "drop"), ["prevent"]))
+      }, {
+        default: _withId(() => [createVNode(_component_ImageStore, {
+          ref: "imageStoreRef",
+          authorization: _ctx.authorization,
+          domain: _ctx.domain,
+          timeout: _ctx.timeout,
+          checkedList: _ctx.checkedList,
+          multiple: _ctx.multiple,
+          ratio: _ctx.ratio,
+          getText: _ctx.getText,
+          onError: _cache[5] || (_cache[5] = $event => _ctx.$emit("error", $event)),
+          onHandleCheckedChange: _ctx.handleCheckedChange
+        }, null, 8, ["authorization", "domain", "timeout", "checkedList", "multiple", "ratio", "getText", "onHandleCheckedChange"])]),
+        _: 1
+      }, 8, ["class", "tab"])]),
+      _: 1
+    }, 8, ["activeKey"])]),
+    _: 1
+  }, 8, ["visible", "body-style", "title", "maskClosable", "destroyOnClose", "onShow", "onCancel"])], 64);
 });
 
 script.render = render;
 script.__scopeId = "data-v-67d79ad6";
 script.__file = "packages/uploader/Index.vue";
 
-script.install = (app) => {
+script.install = app => {
   app.component(script.name, script);
 };
 

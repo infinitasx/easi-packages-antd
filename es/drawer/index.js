@@ -21,35 +21,52 @@ var script = defineComponent({
       type: Object
     }
   },
-  setup(props, { emit, slots }) {
-    const { bodyStyle, visible } = toRefs(props);
+
+  setup(props, {
+    emit,
+    slots
+  }) {
+    const {
+      bodyStyle,
+      visible
+    } = toRefs(props);
     const computedBodyStyle = computed(() => {
-      return slots.footer ? { ...bodyStyle.value, paddingBottom: "55px" } : toRaw(bodyStyle.value);
+      return slots.footer ? { ...bodyStyle.value,
+        paddingBottom: "55px"
+      } : toRaw(bodyStyle.value);
     });
-    watch(() => visible.value, (newVal) => {
+    watch(() => visible.value, newVal => {
       if (newVal) {
         emit("show");
       }
     });
     return {
       computedBodyStyle,
+
       handleClose() {
         emit("update:visible", false);
         emit("close");
       }
+
     };
   }
+
 });
 
-const _withId = /* @__PURE__ */ withScopeId("data-v-57a97f50");
+const _withId = /* @__PURE__ */withScopeId("data-v-57a97f50");
+
 pushScopeId("data-v-57a97f50");
+
 const _hoisted_1 = {
   key: 0,
   class: "drawer-footer"
 };
+
 popScopeId();
-const render = /* @__PURE__ */ _withId((_ctx, _cache, $props, $setup, $data, $options) => {
+
+const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $options) => {
   const _component_a_drawer = resolveComponent("a-drawer");
+
   return openBlock(), createBlock(_component_a_drawer, mergeProps(_ctx.$attrs, {
     visible: _ctx.visible,
     width: _ctx.width,
@@ -57,12 +74,7 @@ const render = /* @__PURE__ */ _withId((_ctx, _cache, $props, $setup, $data, $op
     "body-style": _ctx.computedBodyStyle,
     onClose: _ctx.handleClose
   }), {
-    default: _withId(() => [
-      renderSlot(_ctx.$slots, "default"),
-      _ctx.$slots.footer ? (openBlock(), createBlock("div", _hoisted_1, [
-        renderSlot(_ctx.$slots, "footer")
-      ])) : createCommentVNode("v-if", true)
-    ]),
+    default: _withId(() => [renderSlot(_ctx.$slots, "default"), _ctx.$slots.footer ? (openBlock(), createBlock("div", _hoisted_1, [renderSlot(_ctx.$slots, "footer")])) : createCommentVNode("v-if", true)]),
     _: 3
   }, 16, ["visible", "width", "body-style", "onClose"]);
 });
@@ -71,7 +83,7 @@ script.render = render;
 script.__scopeId = "data-v-57a97f50";
 script.__file = "packages/drawer/Index.vue";
 
-script.install = (app) => {
+script.install = app => {
   app.component(script.name, script);
 };
 

@@ -179,29 +179,45 @@ var script = defineComponent({
       type: String
     }
   },
-  setup(props, { emit }) {
-    const { show, size } = toRefs(props);
+
+  setup(props, {
+    emit
+  }) {
+    var _app$root, _app$root2, _app$root2$proxy, _app$root2$proxy$loca, _locale$message;
+
+    const {
+      show,
+      size
+    } = toRefs(props);
     const app = getCurrentInstance();
-    const defaultProxy = app?.root?.proxy || { localeMessage: { locale: "zh-cn" } };
+    const defaultProxy = (app === null || app === void 0 ? void 0 : (_app$root = app.root) === null || _app$root === void 0 ? void 0 : _app$root.proxy) || {
+      localeMessage: {
+        locale: "zh-cn"
+      }
+    };
     const root = ref(defaultProxy);
-    const locale = initI18n(app?.root?.proxy?.localeMessage?.locale || "zh-cn");
-    const defaultTitle = locale?.message?.loading;
+    const locale = initI18n((app === null || app === void 0 ? void 0 : (_app$root2 = app.root) === null || _app$root2 === void 0 ? void 0 : (_app$root2$proxy = _app$root2.proxy) === null || _app$root2$proxy === void 0 ? void 0 : (_app$root2$proxy$loca = _app$root2$proxy.localeMessage) === null || _app$root2$proxy$loca === void 0 ? void 0 : _app$root2$proxy$loca.locale) || "zh-cn");
+    const defaultTitle = locale === null || locale === void 0 ? void 0 : (_locale$message = locale.message) === null || _locale$message === void 0 ? void 0 : _locale$message.loading;
     const cShow = ref(props.show);
     const cTitle = ref(defaultTitle);
     const cSize = ref("normal");
-    watch(() => show.value, (newVal) => {
+    watch(() => show.value, newVal => {
       cShow.value = newVal;
     });
-    watch(() => size.value, (newVal) => {
+    watch(() => size.value, newVal => {
       cSize.value = newVal;
     });
-    watch(() => root.value?.localeMessage, (newVal) => {
+    watch(() => {
+      var _root$value;
+
+      return (_root$value = root.value) === null || _root$value === void 0 ? void 0 : _root$value.localeMessage;
+    }, newVal => {
       if (newVal) {
-        locale.message = langMap[newVal?.locale || "zh-cn"];
+        locale.message = langMap[(newVal === null || newVal === void 0 ? void 0 : newVal.locale) || "zh-cn"];
         cTitle.value = locale.message.loading;
       }
     });
-    watch(() => cShow.value, (newVal) => {
+    watch(() => cShow.value, newVal => {
       emit("update:show", newVal);
     });
     return {
@@ -211,44 +227,46 @@ var script = defineComponent({
       root
     };
   }
+
 });
 
-const _withId = /* @__PURE__ */ withScopeId("data-v-7bbec90b");
+const _withId = /* @__PURE__ */withScopeId("data-v-7bbec90b");
+
 pushScopeId("data-v-7bbec90b");
+
 const _hoisted_1 = {
   key: 0,
   class: "loading-container",
   id: "cus-loading"
 };
-const _hoisted_2 = /* @__PURE__ */ createVNode("div", { class: "loading-wrap" }, [
-  /* @__PURE__ */ createVNode("div", { class: "ball" }, [
-    /* @__PURE__ */ createVNode("i", { class: "bg spoon" }),
-    /* @__PURE__ */ createVNode("i", { class: "bg fork" })
-  ]),
-  /* @__PURE__ */ createVNode("div", { class: "loading-shadow" }, [
-    /* @__PURE__ */ createVNode("div")
-  ])
-], -1);
+
+const _hoisted_2 = /* @__PURE__ */createVNode("div", {
+  class: "loading-wrap"
+}, [/* @__PURE__ */createVNode("div", {
+  class: "ball"
+}, [/* @__PURE__ */createVNode("i", {
+  class: "bg spoon"
+}), /* @__PURE__ */createVNode("i", {
+  class: "bg fork"
+})]), /* @__PURE__ */createVNode("div", {
+  class: "loading-shadow"
+}, [/* @__PURE__ */createVNode("div")])], -1);
+
 const _hoisted_3 = {
   key: 0,
   class: "tips"
 };
+
 popScopeId();
-const render = /* @__PURE__ */ _withId((_ctx, _cache, $props, $setup, $data, $options) => {
+
+const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $options) => {
   return openBlock(), createBlock(Transition, {
     name: "fade",
     mode: "out-in"
   }, {
-    default: _withId(() => [
-      _ctx.cShow ? (openBlock(), createBlock("div", _hoisted_1, [
-        createVNode("div", {
-          class: ["loading", _ctx.cSize]
-        }, [
-          _hoisted_2,
-          _ctx.title || _ctx.cTitle ? (openBlock(), createBlock("p", _hoisted_3, toDisplayString(_ctx.title || _ctx.cTitle), 1)) : createCommentVNode("v-if", true)
-        ], 2)
-      ])) : createCommentVNode("v-if", true)
-    ]),
+    default: _withId(() => [_ctx.cShow ? (openBlock(), createBlock("div", _hoisted_1, [createVNode("div", {
+      class: ["loading", _ctx.cSize]
+    }, [_hoisted_2, _ctx.title || _ctx.cTitle ? (openBlock(), createBlock("p", _hoisted_3, toDisplayString(_ctx.title || _ctx.cTitle), 1)) : createCommentVNode("v-if", true)], 2)])) : createCommentVNode("v-if", true)]),
     _: 1
   });
 });
@@ -257,7 +275,7 @@ script.render = render;
 script.__scopeId = "data-v-7bbec90b";
 script.__file = "packages/loading/Index.vue";
 
-script.install = (app) => {
+script.install = app => {
   app.component(script.name, script);
 };
 

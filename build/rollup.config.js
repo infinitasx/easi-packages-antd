@@ -2,6 +2,7 @@ import vue from 'rollup-plugin-vue';
 import scss from 'rollup-plugin-scss';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import esbuild from 'rollup-plugin-esbuild';
+import { babel } from '@rollup/plugin-babel';
 import { getPackagesSync } from '@lerna/project';
 import json from '@rollup/plugin-json';
 import image from '@rollup/plugin-image';
@@ -46,6 +47,10 @@ export default inputs.map(name => {
       nodeResolve(),
       image(),
       esbuild(),
+      babel({
+        exclude: 'node_modules/**', // 只编译源代码
+        extensions: ['.ts', '.vue', '.js'],
+      }),
       copy({
         targets: [
           {

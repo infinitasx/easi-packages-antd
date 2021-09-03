@@ -1,4 +1,5 @@
 module.exports = {
   presets: [],
-  plugins: [],
+  plugins: ['@babel/plugin-proposal-optional-chaining'],
+  ignore: ['node_modules'],
 };

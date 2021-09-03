@@ -13,11 +13,12 @@ function initProvider() {
     fixedTab: true,
     showTab: true
   };
+
   if (defaultData.mode === true || defaultData.mode === "dark") {
     defaultData.mode && HTML.setAttribute("data-pro-theme", "antdv-pro-theme-dark");
   }
-  return reactive({
-    ...defaultData,
+
+  return reactive({ ...defaultData,
     cachedPage: [],
     reloadPage: true
   });
@@ -191,25 +192,31 @@ var script = defineComponent({
       })
     }
   },
+
   setup(props) {
-    const { locale } = toRefs(props);
+    const {
+      locale
+    } = toRefs(props);
     const globalProvider = initProvider();
     const globalEASILocale = initI18n(props.locale ? props.locale.locale : "zh-cn");
     provide("globalProvider", globalProvider);
     provide("globalEASILocale", globalEASILocale);
-    watch(() => locale.value, (newVal) => {
-      globalEASILocale.message = newVal?.locale ? langMap[newVal.locale] : langMap["zh-cn"];
+    watch(() => locale.value, newVal => {
+      globalEASILocale.message = newVal !== null && newVal !== void 0 && newVal.locale ? langMap[newVal.locale] : langMap["zh-cn"];
     });
   }
+
 });
 
-const _withId = /* @__PURE__ */ withScopeId("data-v-819b5b50");
-const render = /* @__PURE__ */ _withId((_ctx, _cache, $props, $setup, $data, $options) => {
+const _withId = /* @__PURE__ */withScopeId("data-v-819b5b50");
+
+const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $options) => {
   const _component_a_config_provider = resolveComponent("a-config-provider");
-  return openBlock(), createBlock(_component_a_config_provider, mergeProps({ locale: _ctx.locale }, _ctx.$attrs), {
-    default: _withId(() => [
-      renderSlot(_ctx.$slots, "default")
-    ]),
+
+  return openBlock(), createBlock(_component_a_config_provider, mergeProps({
+    locale: _ctx.locale
+  }, _ctx.$attrs), {
+    default: _withId(() => [renderSlot(_ctx.$slots, "default")]),
     _: 3
   }, 16, ["locale"]);
 });
@@ -218,7 +225,7 @@ script.render = render;
 script.__scopeId = "data-v-819b5b50";
 script.__file = "packages/provider/Index.vue";
 
-script.install = (app) => {
+script.install = app => {
   app.component(script.name, script);
 };
 

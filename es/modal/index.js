@@ -5,17 +5,19 @@ function createNamespace(name) {
 }
 
 function getEASIText(globalEASILocale, key, value) {
-  let message = globalEASILocale?.message[key];
+  let message = globalEASILocale === null || globalEASILocale === void 0 ? void 0 : globalEASILocale.message[key];
+
   if (message) {
     if (value) {
       const reg = /(\{).*?(\})/g;
       const keyArray = message.match(reg);
-      keyArray.forEach((key2) => {
+      keyArray.forEach(key2 => {
         let realKey = key2.replace(/\{|\}|\s|\n|\t/g, "");
         const reg1 = new RegExp(`${key2}`, "g");
         message = message.replace(reg1, value[realKey]);
       });
     }
+
     return message;
   } else {
     console.warn("\u672A\u5339\u914D\u5230\u6587\u6848key");
@@ -96,31 +98,43 @@ var script = defineComponent({
       default: true
     }
   },
-  setup(props, { emit }) {
-    const { handleOk, visible } = toRefs(props);
+
+  setup(props, {
+    emit
+  }) {
+    const {
+      handleOk,
+      visible
+    } = toRefs(props);
     const symbolVisible = ref(false);
-    const globalEASILocale = inject("globalEASILocale", { message: {} });
+    const globalEASILocale = inject("globalEASILocale", {
+      message: {}
+    });
     const bodyScrollStyle = {
       maxHeight: "calc(100vh - 160px)",
       overflow: "auto"
     };
+
     const showModal = () => {
       symbolVisible.value = true;
       emit("update:visible", true);
       emit("show");
     };
-    watch(() => visible.value, (newVal) => {
+
+    watch(() => visible.value, newVal => {
       if (newVal) {
         emit("update:visible", true);
         emit("show");
       }
     });
     const autoLoading = ref(false);
+
     const onCancel = () => {
       symbolVisible.value = false;
       emit("update:visible", false);
       emit("cancel");
     };
+
     const onConfirm = async () => {
       if (handleOk.value && typeof handleOk.value === "function") {
         try {
@@ -137,6 +151,7 @@ var script = defineComponent({
         onCancel();
       }
     };
+
     return {
       symbolVisible,
       autoLoading,
@@ -144,11 +159,14 @@ var script = defineComponent({
       onConfirm,
       onCancel,
       showModal,
+
       getText(key, value) {
         return getEASIText(globalEASILocale, key, value);
       }
+
     };
   }
+
 });
 
 const _hoisted_1 = {
@@ -157,60 +175,53 @@ const _hoisted_1 = {
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_a_button = resolveComponent("a-button");
+
   const _component_a_modal = resolveComponent("a-modal");
-  return openBlock(), createBlock(Fragment, null, [
-    createCommentVNode('  <slot name="trigger" />'),
-    createVNode(_component_a_modal, mergeProps({
-      visible: _ctx.visible === void 0 ? _ctx.symbolVisible : _ctx.visible,
-      title: _ctx.title,
-      bodyStyle: _ctx.autoHeight ? _ctx.bodyStyle : { ..._ctx.bodyScrollStyle, ..._ctx.bodyStyle },
-      closable: _ctx.closable,
-      confirmLoading: _ctx.autoLoading || _ctx.confirmLoading,
-      destroyOnClose: _ctx.destroyOnClose,
-      keyboard: _ctx.keyboard,
-      maskClosable: _ctx.maskClosable,
-      width: _ctx.width,
-      getContainer: _ctx.getContainer,
-      afterClose: _ctx.afterClose,
-      class: ["modal-top", { "no-footer": !_ctx.footer }]
-    }, _ctx.$attrs, { onCancel: _ctx.onCancel }), {
-      footer: withCtx(() => [
-        renderSlot(_ctx.$slots, "footer"),
-        !_ctx.$slots.footer && _ctx.footer ? (openBlock(), createBlock("div", _hoisted_1, [
-          _ctx.showCancel ? (openBlock(), createBlock(_component_a_button, {
-            key: 0,
-            onClick: _ctx.onCancel
-          }, {
-            default: withCtx(() => [
-              createTextVNode(toDisplayString(_ctx.cancelText || _ctx.getText("cancel")), 1)
-            ]),
-            _: 1
-          }, 8, ["onClick"])) : createCommentVNode("v-if", true),
-          _ctx.showOk ? (openBlock(), createBlock(_component_a_button, {
-            key: 1,
-            type: _ctx.okType,
-            loading: _ctx.autoLoading || _ctx.confirmLoading,
-            onClick: _ctx.onConfirm
-          }, {
-            default: withCtx(() => [
-              createTextVNode(toDisplayString(_ctx.okText || _ctx.getText("confirm")), 1)
-            ]),
-            _: 1
-          }, 8, ["type", "loading", "onClick"])) : createCommentVNode("v-if", true)
-        ])) : createCommentVNode("v-if", true)
-      ]),
-      default: withCtx(() => [
-        renderSlot(_ctx.$slots, "default")
-      ]),
-      _: 3
-    }, 16, ["visible", "title", "bodyStyle", "closable", "confirmLoading", "destroyOnClose", "keyboard", "maskClosable", "width", "getContainer", "afterClose", "class", "onCancel"])
-  ], 2112);
+
+  return openBlock(), createBlock(Fragment, null, [createCommentVNode('  <slot name="trigger" />'), createVNode(_component_a_modal, mergeProps({
+    visible: _ctx.visible === void 0 ? _ctx.symbolVisible : _ctx.visible,
+    title: _ctx.title,
+    bodyStyle: _ctx.autoHeight ? _ctx.bodyStyle : { ..._ctx.bodyScrollStyle,
+      ..._ctx.bodyStyle
+    },
+    closable: _ctx.closable,
+    confirmLoading: _ctx.autoLoading || _ctx.confirmLoading,
+    destroyOnClose: _ctx.destroyOnClose,
+    keyboard: _ctx.keyboard,
+    maskClosable: _ctx.maskClosable,
+    width: _ctx.width,
+    getContainer: _ctx.getContainer,
+    afterClose: _ctx.afterClose,
+    class: ["modal-top", {
+      "no-footer": !_ctx.footer
+    }]
+  }, _ctx.$attrs, {
+    onCancel: _ctx.onCancel
+  }), {
+    footer: withCtx(() => [renderSlot(_ctx.$slots, "footer"), !_ctx.$slots.footer && _ctx.footer ? (openBlock(), createBlock("div", _hoisted_1, [_ctx.showCancel ? (openBlock(), createBlock(_component_a_button, {
+      key: 0,
+      onClick: _ctx.onCancel
+    }, {
+      default: withCtx(() => [createTextVNode(toDisplayString(_ctx.cancelText || _ctx.getText("cancel")), 1)]),
+      _: 1
+    }, 8, ["onClick"])) : createCommentVNode("v-if", true), _ctx.showOk ? (openBlock(), createBlock(_component_a_button, {
+      key: 1,
+      type: _ctx.okType,
+      loading: _ctx.autoLoading || _ctx.confirmLoading,
+      onClick: _ctx.onConfirm
+    }, {
+      default: withCtx(() => [createTextVNode(toDisplayString(_ctx.okText || _ctx.getText("confirm")), 1)]),
+      _: 1
+    }, 8, ["type", "loading", "onClick"])) : createCommentVNode("v-if", true)])) : createCommentVNode("v-if", true)]),
+    default: withCtx(() => [renderSlot(_ctx.$slots, "default")]),
+    _: 3
+  }, 16, ["visible", "title", "bodyStyle", "closable", "confirmLoading", "destroyOnClose", "keyboard", "maskClosable", "width", "getContainer", "afterClose", "class", "onCancel"])], 2112);
 }
 
 script.render = render;
 script.__file = "packages/modal/Index.vue";
 
-script.install = (app) => {
+script.install = app => {
   app.component(script.name, script);
 };
 
