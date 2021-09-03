@@ -6,11 +6,15 @@
 
 ## [0.0.25] - 2021-09-02
 
+### Added
+
+- 支持按需加载主题
+
 ### Changed
 
 - EASISetting 及 EASILayout 组件文案修改
 - 文档补全及同步
-- 按需加载增加Bable
+- 按需加载增加 Bable
 
 ### Fixed
 
@@ -19,7 +23,7 @@
 
 ### Removed
 
-- 去掉EASIUploader组件垂直居中效果
+- 去掉 EASIUploader 组件垂直居中效果
 - 去掉测试样式
 
 ## [0.0.24] - 2021-09-01

@@ -20,15 +20,9 @@ gulp.task('gc:theme', () => {
     .pipe(sass())
     .pipe(
       rename(function(file) {
-        file.dirname = `../es/`;
+        file.dirname = `../dist/`;
         file.basename = `_theme`;
         console.log(file);
-      }),
-    )
-    .pipe(
-      rename(function(file) {
-        file.dirname = `../lib/`;
-        file.basename = `_theme`;
       }),
     )
     .pipe(gulp.dest('.'));
