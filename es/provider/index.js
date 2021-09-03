@@ -1,9 +1,5 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-var vue = require('vue');
-var easiWebUtils = require('easi-web-utils');
+import { reactive, defineComponent, toRefs, provide, watch, resolveComponent, openBlock, createBlock, mergeProps, renderSlot, withScopeId } from 'vue';
+import { getLocal } from 'easi-web-utils';
 
 function createNamespace(name) {
   return `EASI${name}`;
@@ -12,7 +8,7 @@ function createNamespace(name) {
 const SETTING_KEY = "setting";
 const HTML = document.querySelector("html");
 function initProvider() {
-  const defaultData = easiWebUtils.getLocal(SETTING_KEY) || {
+  const defaultData = getLocal(SETTING_KEY) || {
     mode: false,
     fixedTab: true,
     showTab: true
@@ -20,7 +16,7 @@ function initProvider() {
   if (defaultData.mode === true || defaultData.mode === "dark") {
     defaultData.mode && HTML.setAttribute("data-pro-theme", "antdv-pro-theme-dark");
   }
-  return vue.reactive({
+  return reactive({
     ...defaultData,
     cachedPage: [],
     reloadPage: true
@@ -180,12 +176,12 @@ const langMap = {
   ja: JA
 };
 function initI18n(lang) {
-  return vue.reactive({
+  return reactive({
     message: langMap[lang]
   });
 }
 
-var script = vue.defineComponent({
+var script = defineComponent({
   name: createNamespace("Provider"),
   props: {
     locale: {
@@ -196,34 +192,34 @@ var script = vue.defineComponent({
     }
   },
   setup(props) {
-    const { locale } = vue.toRefs(props);
+    const { locale } = toRefs(props);
     const globalProvider = initProvider();
     const globalEASILocale = initI18n(props.locale ? props.locale.locale : "zh-cn");
-    vue.provide("globalProvider", globalProvider);
-    vue.provide("globalEASILocale", globalEASILocale);
-    vue.watch(() => locale.value, (newVal) => {
+    provide("globalProvider", globalProvider);
+    provide("globalEASILocale", globalEASILocale);
+    watch(() => locale.value, (newVal) => {
       globalEASILocale.message = newVal?.locale ? langMap[newVal.locale] : langMap["zh-cn"];
     });
   }
 });
 
-const _withId = /* @__PURE__ */ vue.withScopeId("data-v-71e84beb");
+const _withId = /* @__PURE__ */ withScopeId("data-v-819b5b50");
 const render = /* @__PURE__ */ _withId((_ctx, _cache, $props, $setup, $data, $options) => {
-  const _component_a_config_provider = vue.resolveComponent("a-config-provider");
-  return vue.openBlock(), vue.createBlock(_component_a_config_provider, vue.mergeProps({ locale: _ctx.locale }, _ctx.$attrs), {
+  const _component_a_config_provider = resolveComponent("a-config-provider");
+  return openBlock(), createBlock(_component_a_config_provider, mergeProps({ locale: _ctx.locale }, _ctx.$attrs), {
     default: _withId(() => [
-      vue.renderSlot(_ctx.$slots, "default")
+      renderSlot(_ctx.$slots, "default")
     ]),
     _: 3
   }, 16, ["locale"]);
 });
 
 script.render = render;
-script.__scopeId = "data-v-71e84beb";
-script.__file = "packages/config-provider/Index.vue";
+script.__scopeId = "data-v-819b5b50";
+script.__file = "packages/provider/Index.vue";
 
 script.install = (app) => {
   app.component(script.name, script);
 };
 
-exports['default'] = script;
+export { script as default };

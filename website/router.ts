@@ -42,8 +42,8 @@ const routes = [
     component: () => import("../packages/uploader/docs/index.md"),
   },
   {
-    path: "/config-provider",
-    component: () => import("../packages/config-provider/docs/index.md"),
+    path: "/provider",
+    component: () => import("../packages/provider/docs/index.md"),
   },
   {
     path: "/setting",

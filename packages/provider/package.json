@@ -1,5 +1,5 @@
 {
-  "name": "@easi-packages-antd/config-provider",
+  "name": "@easi-packages-antd/provider",
   "version": "0.0.0",
   "main": "index.ts",
   "license": "MIT",

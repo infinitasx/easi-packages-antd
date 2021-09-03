@@ -2,7 +2,7 @@ import "../css/index.scss";
 
 import type { App, Plugin } from "vue";
 
-import EASIProvider from "../config-provider";
+import EASIProvider from "../provider";
 import EASIText from "../text";
 import EASIButton from "../button";
 import EASIDrawer from "../drawer";

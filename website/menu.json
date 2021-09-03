@@ -45,7 +45,7 @@
       {
         "name": "根组件",
         "components": "Provider",
-        "path": "/config-provider"
+        "path": "/provider"
       },
       {
         "name": "错误页",
