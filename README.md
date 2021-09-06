@@ -98,12 +98,14 @@ module.exports = {
 ```js
 import { createApp } from 'vue';
 import App from './App.vue';
-import { EASIButton } from 'easi-packages-antd';
+// EASIDirectives 指令 按需加载时使用
+import { EASIButton, EASIDirectives } from 'easi-packages-antd';
 // 工具函数
 import EASIUtils from 'easi-packages-antd/es/utils';
 
 createApp(App)
   .use(EASIButton)
+  .use(EASIDirectives)
   .mount('#app');
 ```
 
@@ -145,12 +147,14 @@ export default defineConfig({
 ```js
 import { createApp } from 'vue';
 import App from './App.vue';
-import { EASIButton } from 'easi-packages-antd';
+// EASIDirectives 指令 按需加载时使用
+import { EASIButton, EASIDirectives } from 'easi-packages-antd';
 // 工具函数
 import EASIUtils from 'easi-packages-antd/es/utils';
 
 createApp(App)
   .use(EASIButton)
+  .use(EASIDirectives)
   .mount('#app');
 ```
 
