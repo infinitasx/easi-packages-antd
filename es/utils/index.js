@@ -3248,4 +3248,10 @@ function usePagination(initValue) {
   });
 }
 
-export { createNamespace as create, useModalVisible, usePagination };
+var index = {
+  create: createNamespace,
+  useModalVisible,
+  usePagination
+};
+
+export { index as default };

@@ -79,13 +79,13 @@ yarn add babel-plugin-import -D
 module.exports = {
   plugins: [
     [
-      "import",
+      'import',
       {
-        libraryName: "easi-packages-antd",
-        style: (name) => {
+        libraryName: 'easi-packages-antd',
+        style: name => {
           return `${name}/index.css`;
         },
-        customName: (name) => {
+        customName: name => {
           name = name.slice(8);
           return `easi-packages-antd/es/${name}`;
         },
@@ -93,6 +93,18 @@ module.exports = {
     ],
   ],
 };
+```
+
+```js
+import { createApp } from 'vue';
+import App from './App.vue';
+import { EASIButton } from 'easi-packages-antd';
+// 工具函数
+import EASIUtils from 'easi-packages-antd/es/utils';
+
+createApp(App)
+  .use(EASIButton)
+  .mount('#app');
 ```
 
 > vite 项目
@@ -107,21 +119,21 @@ yarn add vite-plugin-importer -D
 
 ```js
 // vite.config.js
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
-import usePluginImport from "vite-plugin-importer";
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import usePluginImport from 'vite-plugin-importer';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
     usePluginImport({
-      libraryName: "easi-packages-antd",
-      libraryDirectory: "es",
-      style: (name) => {
+      libraryName: 'easi-packages-antd',
+      libraryDirectory: 'es',
+      style: name => {
         return `${name}/index.css`;
       },
-      customName: (name) => {
+      customName: name => {
         name = name.slice(8);
         return `easi-packages-antd/es/${name}`;
       },
@@ -130,9 +142,22 @@ export default defineConfig({
 });
 ```
 
+```js
+import { createApp } from 'vue';
+import App from './App.vue';
+import { EASIButton } from 'easi-packages-antd';
+// 工具函数
+import EASIUtils from 'easi-packages-antd/es/utils';
+
+createApp(App)
+  .use(EASIButton)
+  .mount('#app');
+```
+
 <hr/>
 
 ## 函数
+
 <p><strong id="useModalVisible" style="font-size: 18px">useModalVisible - 控制多个弹框显示/隐藏</strong></p>
 
 > 控制多个弹框显示隐藏，可以传入预处理函数
@@ -152,14 +177,13 @@ function useModalVisible(
 
 ```
 
-
 #### 如何使用
 
 ```vue
 <template>
   <easi-table
-      @handleShowCreateModal="setVisibleModal('showCreateModal', true, $event)"
-      @handleShowUpdateModal="setVisibleModal('showUpdateModal', true, $event)"
+    @handleShowCreateModal="setVisibleModal('showCreateModal', true, $event)"
+    @handleShowUpdateModal="setVisibleModal('showUpdateModal', true, $event)"
   />
 
   <create-modal v-model:visible="visibleModal.showCreateModal" :item="currentTableItem" />
@@ -168,37 +192,41 @@ function useModalVisible(
 </template>
 
 <script lang="ts">
-import { ref } from 'vue'
-import { useModalVisible } from './lib/index'
+import { ref } from 'vue';
+import { useModalVisible } from './lib/index';
 
 export default {
-  setup(){
+  setup() {
     // 模拟table内的某一个row-data，用于传递给弹框组件
     const currentTableItem = ref<any>({});
 
-    const [ visibleModal, setVisibleModal ] = useModalVisible({
-      showCreateModal: false, // 控制创建弹框的显示和隐藏
-      showUpdateModal: false, // 控制更新弹框的显示和隐藏
-    }, (item: any) => {
-      // 每次显示弹框之前，把子组件冒泡出来的数据传递给currentTableItem
-      currentTableItem.value = item || {}
-    })
+    const [visibleModal, setVisibleModal] = useModalVisible(
+      {
+        showCreateModal: false, // 控制创建弹框的显示和隐藏
+        showUpdateModal: false, // 控制更新弹框的显示和隐藏
+      },
+      (item: any) => {
+        // 每次显示弹框之前，把子组件冒泡出来的数据传递给currentTableItem
+        currentTableItem.value = item || {};
+      },
+    );
 
     return {
       visibleModal,
-      setVisibleModal
-    }
-  }
-}
+      setVisibleModal,
+    };
+  },
+};
 </script>
 ```
 
 <hr />
 <p><strong id="usePagination" style="font-size: 18px">usePagination - 通用页码初始化函数</strong></p>
 
-> 通用的页码初始化函数，返回ant Pagination类型的页码数据，主要是为了统一样式，给部分属性默认值
+> 通用的页码初始化函数，返回 ant Pagination 类型的页码数据，主要是为了统一样式，给部分属性默认值
 
 #### 函数类型
+
 ```ts
 interface Pagination {
   current: number;
@@ -226,35 +254,35 @@ function usePagination(
 
 ```vue
 <template>
-  <easi-table :pagination="pagination" @change="pageChange"/>
+  <easi-table :pagination="pagination" @change="pageChange" />
 </template>
 
 <script lang="ts">
-import { usePagination } from './lib/index'
+import { usePagination } from './lib/index';
 
 export default {
-  setup(){
+  setup() {
     const pagination = usePagination({
       current: 1, // 初始化页码
       pageSize: 20, // 初始化每页条数
       total: 0, // 初始化总条数
-    })
-    
+    });
+
     // 页码或每页条数发生变化时，需要赋值并且重新获取table数据
     const pageChange = (_pagination: typeof pagination) => {
       const { current, pageSize } = _pagination;
       pagination.current = current;
       pagination.pageSize = pageSize;
-      
+
       // ...重新请求数据
-    }
+    };
 
     return {
       pagination,
-      pageChange
-    }
-  }
-}
+      pageChange,
+    };
+  },
+};
 </script>
 ```
 
@@ -263,7 +291,7 @@ export default {
 <p><strong id="Directives" style="font-size: 22px">Directives指令</strong></p>
 <p><strong id="vLoading" style="font-size: 18px">v-loading - 显示/隐藏加载效果</strong></p>
 
-> 使用方法：在需要展示加载效果的组件上绑定v-loading指令
+> 使用方法：在需要展示加载效果的组件上绑定 v-loading 指令
 > true：显示； false：隐藏
 > 也可以接受对象，{show: boolean, title: string, size: 'small' | 'normal'}
 
@@ -273,27 +301,38 @@ export default {
 > 传参类型：string | string[]
 
 #### 使用案例
+
 ```vue
-// v-permission校验失败会直接移除元素，
-// 当你只想知道用户是否拥有某个权限时，可使用 $usePermissions(permission: string | string[], all?: 'all' | 'in') => boolean
+// v-permission校验失败会直接移除元素， // 当你只想知道用户是否拥有某个权限时，可使用
+$usePermissions(permission: string | string[], all?: 'all' | 'in') => boolean
 <template>
   <button v-permission="'singlePermission'">单权限点判断</button>
-  <button v-permission="['singlePermission1', 'singlePermission2']">拥有其中一个权限点就通过校验</button>
-  <button v-permission:all="['singlePermission1', 'singlePermission2']">拥有所有权限点才能通过校验</button>
-  <input type="text" placeholder="无权限不可编辑" :disabled="!$usePermissions('singlePermission')">
-  <input type="text" placeholder="无权限不可编辑" :disabled="!canEdit">
+  <button v-permission="['singlePermission1', 'singlePermission2']">
+    拥有其中一个权限点就通过校验
+  </button>
+  <button v-permission:all="['singlePermission1', 'singlePermission2']">
+    拥有所有权限点才能通过校验
+  </button>
+  <input
+    type="text"
+    placeholder="无权限不可编辑"
+    :disabled="!$usePermissions('singlePermission')"
+  />
+  <input type="text" placeholder="无权限不可编辑" :disabled="!canEdit" />
 </template>
 <script lang="ts">
-import {ref, getCurrentInstance, ComponentInternalInstance} from 'vue'
+import { ref, getCurrentInstance, ComponentInternalInstance } from 'vue';
 export default {
-  setup(){
-
+  setup() {
     const { appContext } = getCurrentInstance() as ComponentInternalInstance;
-    
+
     return {
-      canEdit: appContext.config.globalProperties.$usePermissions(['singlePermission1', 'singlePermission2'], 'all')
-    }
-  }
-}
+      canEdit: appContext.config.globalProperties.$usePermissions(
+        ['singlePermission1', 'singlePermission2'],
+        'all',
+      ),
+    };
+  },
+};
 </script>
 ```

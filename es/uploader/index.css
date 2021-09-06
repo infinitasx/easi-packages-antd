@@ -425,12 +425,12 @@ img.ant-image-preview-img {
     width: 48%;
   }
 }
+.easi-uploader-container {
+  margin-left: -2%;
+}
+
 .ant-upload.ant-upload-drag {
   width: 384px;
   height: 192px;
   background: transparent;
-}
-
-.easi-uploader-container {
-  margin-left: -2%;
 }

@@ -50,6 +50,7 @@ export default inputs.map(name => {
       babel({
         exclude: 'node_modules/**', // 只编译源代码
         extensions: ['.ts', '.vue', '.js'],
+        babelHelpers: 'bundled',
       }),
       copy({
         targets: [
@@ -61,6 +62,7 @@ export default inputs.map(name => {
             dest: [getOutFile(name, 'lib', true), getOutFile(name, 'es', true)],
           },
         ],
+        hook: 'writeBundle',
       }),
     ],
     external: [

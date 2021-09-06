@@ -11,12 +11,10 @@ export default {
     {
       format: 'es',
       file: '../../es/utils/index.js',
-      exports: 'named',
     },
     {
       format: 'cjs',
       file: '../../lib/utils/index.js',
-      exports: 'named',
     },
   ],
   plugins: [

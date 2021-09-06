@@ -9624,7 +9624,7 @@ script.render = render;
 script.__scopeId = "data-v-b2dea7fe";
 script.__file = "loading/Index.vue";
 
-var vLoading = {
+var loading = {
   install: app => {
     const insertDom = (el, title, size) => {
       if (getComputedStyle(el, null).display !== "none" && getComputedStyle(el, null).visibility !== "hidden") {
@@ -9715,7 +9715,7 @@ var vLoading = {
   }
 };
 
-var vPermissions = {
+var permissions = {
   install: app => {
     app.config.globalProperties.$usePermissions = (value, arg = "in") => {
       let flag = false;
@@ -9750,4 +9750,16 @@ var vPermissions = {
   }
 };
 
-export { vLoading as loading, vPermissions as permissions };
+const directives = [loading, permissions];
+
+const install = app => {
+  directives.forEach(plugin => {
+    app.use(plugin);
+  });
+};
+
+var index = {
+  install
+};
+
+export { index as default };

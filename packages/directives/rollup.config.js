@@ -4,6 +4,8 @@ import scss from 'rollup-plugin-scss';
 import esbuild from 'rollup-plugin-esbuild';
 import { babel } from '@rollup/plugin-babel';
 import json from '@rollup/plugin-json';
+import copy from 'rollup-plugin-copy';
+
 import { resolve } from 'path';
 export default {
   input: resolve('./', 'index.ts'),
@@ -11,12 +13,10 @@ export default {
     {
       format: 'es',
       file: '../../es/directives/index.js',
-      exports: 'named',
     },
     {
       format: 'cjs',
       file: '../../lib/directives/index.js',
-      exports: 'named',
     },
   ],
   plugins: [
@@ -31,6 +31,15 @@ export default {
     babel({
       exclude: 'node_modules/**', // 只编译源代码
       extensions: ['.ts', '.vue', '.js'],
+    }),
+    copy({
+      targets: [
+        {
+          src: './*.{png,jpg,jepg,gif,webp}',
+          dest: ['../../lib/directives/', '../../es/directives/'],
+        },
+      ],
+      hook: 'writeBundle',
     }),
   ],
 };
