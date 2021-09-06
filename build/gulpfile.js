@@ -22,7 +22,6 @@ gulp.task('gc:theme', () => {
       rename(function(file) {
         file.dirname = `../dist/`;
         file.basename = `_theme`;
-        console.log(file);
       }),
     )
     .pipe(gulp.dest('.'));
@@ -46,6 +45,11 @@ inputs.map(name => {
         .pipe(
           rename(function(file) {
             file.dirname = `../es/${fileName}/`;
+          }),
+        )
+        .pipe(
+          rename(function(file) {
+            file.dirname = `../lib/${fileName}/`;
           }),
         )
         .pipe(gulp.dest('.'))

@@ -1,6 +1,6 @@
-import { nextTick, reactive, toRaw } from "vue";
-import { RouteLocationNormalizedLoaded } from "vue-router";
-import { getLocal, setLocal } from "easi-web-utils";
+import { nextTick, reactive, toRaw } from 'vue';
+import { RouteLocationNormalizedLoaded } from 'vue-router';
+import { getLocal, setLocal } from 'easi-web-utils';
 
 export interface IProvider {
   reloadPage: boolean;
@@ -11,9 +11,9 @@ export interface IProvider {
   [props: string]: any;
 }
 
-const SETTING_KEY = "setting";
+const SETTING_KEY = 'setting';
 
-const HTML = document.querySelector("html") as HTMLHtmlElement;
+const HTML = document.querySelector('html') as HTMLHtmlElement;
 
 export const defaultProvider: IProvider = {
   reloadPage: true,
@@ -21,7 +21,7 @@ export const defaultProvider: IProvider = {
   showTab: true,
   fixedTab: true,
   cachedPage: [],
-}
+};
 
 export function initProvider() {
   const defaultData = getLocal(SETTING_KEY) || {
@@ -30,8 +30,8 @@ export function initProvider() {
     showTab: true,
   };
 
-  if(defaultData.mode === true || (defaultData.mode as any) === 'dark'){
-    defaultData.mode && HTML.setAttribute("data-pro-theme", "antdv-pro-theme-dark");
+  if (defaultData.mode === true || (defaultData.mode as any) === 'dark') {
+    defaultData.mode && HTML.setAttribute('data-pro-theme', 'antdv-pro-theme-dark');
   }
 
   return reactive<IProvider>({
@@ -44,9 +44,9 @@ export function initProvider() {
 export function setProvider(provide: IProvider) {
   const { cachedPage, reloadPage, ...other } = toRaw(provide);
   if (other.mode === true || (other.mode as any) === 'dark') {
-    HTML.setAttribute("data-pro-theme", "antdv-pro-theme-dark");
+    HTML.setAttribute('data-pro-theme', 'antdv-pro-theme-dark');
   } else {
-    HTML.removeAttribute("data-pro-theme");
+    HTML.removeAttribute('data-pro-theme');
   }
   setLocal(SETTING_KEY, other);
 }
@@ -55,7 +55,7 @@ export function setProvider(provide: IProvider) {
 export async function useReload(
   provide: IProvider,
   route: RouteLocationNormalizedLoaded,
-  refreshAll = false // 刷新所有页面组件的缓存
+  refreshAll = false, // 刷新所有页面组件的缓存
 ) {
   if (refreshAll) {
     provide.cachedPage = [];
@@ -73,3 +73,5 @@ export async function useReload(
   }
   provide.reloadPage = true;
 }
+
+export default useReload;
