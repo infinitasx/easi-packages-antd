@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.easi-water-marker {
+  padding-top: 20px;
+  padding-left: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  pointer-events: none;
+  user-select: none;
+  z-index: 19999;
+}
+.easi-water-marker .easi-water-marker-item {
+  width: 220px;
+  height: 220px;
+  padding: 0 20px;
+  text-align: center;
+  font-size: 15px;
+  transform: rotate(-45deg);
+  color: #acacac;
+  opacity: 0.2;
+}
+
+[data-pro-theme=antdv-pro-theme-dark] .easi-water-marker .easi-water-marker-item {
+  color: #313131;
+  opacity: 0.8;
+}

@@ -1,14 +1,19 @@
 <template>
   <a-config-provider :locale="locale" v-bind="$attrs">
+    <WaterMarker v-if="showWaterMaker" :waterMarker="waterMarker" :timestamp="timestamp" :domain="domain" :total-number="totalNumber" />
     <slot></slot>
+    <WaterMarker v-if="!showWaterMaker" :waterMarker="waterMarker" :timestamp="timestamp" :domain="domain" :total-number="totalNumber" />
   </a-config-provider>
 </template>
 
 <script lang="ts">
-import {defineComponent, provide, watch, toRefs, PropType} from "vue"
+import {defineComponent, provide, watch, toRefs, PropType, onMounted, onBeforeUnmount, ref} from "vue"
 import {createNamespace} from "../utils/create";
 import {initProvider} from "../utils/globalProvider";
 import {initI18n, ILocale, langMap} from "../locale";
+import { IWaterMarker } from '../../typings/antd'
+import WaterMarker from './WaterMaker.vue';
+import moment from "moment";
 
 export default defineComponent({
   name: createNamespace('Provider'),
@@ -18,7 +23,11 @@ export default defineComponent({
       default: () => ({
         locale: 'zh-cn'
       })
-    }
+    },
+    waterMarker: {
+      type: Object as PropType<IWaterMarker>,
+      default: () => ({})
+    },
   },
   setup(props) {
     const { locale } = toRefs(props);
@@ -30,7 +39,49 @@ export default defineComponent({
     watch(() => locale.value, (newVal) => {
       globalEASILocale.message = newVal?.locale ? langMap[newVal.locale] : langMap['zh-cn'];
     })
+
+    const timestamp = ref(moment().format('YYYY-MM-DD HH:mm:ss'));
+
+    const totalNumber = ref<number>(0);
+    const showWaterMaker = ref<boolean>(false);
+
+    const computedNumber = () => {
+      const _row = Math.ceil(screen.width / 220);
+      const _col = Math.ceil(screen.height / 220);
+      totalNumber.value = _row * _col;
+    }
+
+    let time: any;
+    let refreshTime: Function | null = () => {
+      clearTimeout(time);
+      computedNumber();
+      showWaterMaker.value = !showWaterMaker.value;
+      time = setTimeout(() => {
+        timestamp.value = moment().format('YYYY-MM-DD HH:mm:ss');
+        refreshTime && refreshTime();
+      }, 5000)
+    }
+
+    onMounted(() => {
+      refreshTime && refreshTime();
+    })
+
+    onBeforeUnmount(() => {
+      refreshTime = null;
+      clearTimeout(time);
+    })
+
+    return {
+      globalProvider,
+      timestamp,
+      totalNumber,
+      showWaterMaker,
+      domain: window.location.host
+    }
   },
+  components: {
+    WaterMarker
+  }
 })
 </script>
 

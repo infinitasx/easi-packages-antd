@@ -1,6 +1,7 @@
 import { nextTick, reactive, toRaw } from 'vue';
 import { RouteLocationNormalizedLoaded } from 'vue-router';
 import { getLocal, setLocal } from 'easi-web-utils';
+import { UserInfo } from '../../typings/antd';
 
 export interface IProvider {
   reloadPage: boolean;
@@ -8,6 +9,9 @@ export interface IProvider {
   showTab: boolean;
   fixedTab: boolean;
   cachedPage: string[];
+  userInfo: UserInfo;
+  cityName?: string;
+  ip?: string;
   [props: string]: any;
 }
 
@@ -21,6 +25,7 @@ export const defaultProvider: IProvider = {
   showTab: true,
   fixedTab: true,
   cachedPage: [],
+  userInfo: {},
 };
 
 export function initProvider() {
@@ -38,6 +43,7 @@ export function initProvider() {
     ...defaultData,
     cachedPage: [],
     reloadPage: true,
+    userInfo: {},
   });
 }
 

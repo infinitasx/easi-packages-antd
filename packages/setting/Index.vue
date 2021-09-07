@@ -76,7 +76,7 @@
 </template>
 
 <script lang="ts">
-import { createVNode, defineComponent, inject, PropType } from "vue";
+import { createVNode, defineComponent, inject, PropType, toRefs, watch } from "vue";
 import { createNamespace } from "../utils/create";
 import { Modal, message } from "ant-design-vue";
 import { setProvider, IProvider, defaultProvider } from "../utils/globalProvider";
@@ -113,6 +113,8 @@ export default defineComponent({
   },
   setup(props) {
 
+    const { userInfo } = toRefs(props);
+
     const globalProvider = inject<IProvider>("globalProvider", {...defaultProvider});
     const globalEASILocale = inject<IGlobalLocal>('globalEASILocale', {message: {}});
 
@@ -120,6 +122,12 @@ export default defineComponent({
       (globalProvider as IProvider)[key] = value;
       setProvider(globalProvider as IProvider);
     };
+
+    globalProvider.userInfo = userInfo.value;
+    watch(() => userInfo.value, (newVal) => {
+      globalProvider.userInfo = newVal
+    })
+
 
     return {
       globalProvider,

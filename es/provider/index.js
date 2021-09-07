@@ -1,5 +1,6 @@
-import { reactive, defineComponent, toRefs, provide, watch, resolveComponent, openBlock, createBlock, mergeProps, renderSlot, withScopeId } from 'vue';
+import { reactive, defineComponent, inject, pushScopeId, popScopeId, openBlock, createBlock, Fragment, renderList, createVNode, toDisplayString, createCommentVNode, withScopeId, toRefs, provide, watch, ref, onMounted, onBeforeUnmount, resolveComponent, mergeProps, renderSlot } from 'vue';
 import { getLocal } from 'easi-web-utils';
+import moment from 'moment';
 
 function createNamespace(name) {
   return `EASI${name}`;
@@ -7,6 +8,14 @@ function createNamespace(name) {
 
 const SETTING_KEY = "setting";
 const HTML = document.querySelector("html");
+const defaultProvider = {
+  reloadPage: true,
+  mode: false,
+  showTab: true,
+  fixedTab: true,
+  cachedPage: [],
+  userInfo: {}
+};
 function initProvider() {
   const defaultData = getLocal(SETTING_KEY) || {
     mode: false,
@@ -20,7 +29,8 @@ function initProvider() {
 
   return reactive({ ...defaultData,
     cachedPage: [],
-    reloadPage: true
+    reloadPage: true,
+    userInfo: {}
   });
 }
 
@@ -182,6 +192,68 @@ function initI18n(lang) {
   });
 }
 
+var script$1 = defineComponent({
+  name: createNamespace("WaterMaker"),
+  props: {
+    timestamp: {
+      type: String,
+      default: void 0
+    },
+    totalNumber: {
+      type: Number,
+      default: 0
+    },
+    domain: {
+      type: String,
+      default: void 0
+    },
+    waterMarker: {
+      type: Object,
+      default: () => ({})
+    }
+  },
+
+  setup() {
+    const globalProvider = inject("globalProvider", { ...defaultProvider
+    });
+    return {
+      globalProvider
+    };
+  }
+
+});
+
+const _withId$1 = /* @__PURE__ */withScopeId("data-v-52b33b52");
+
+pushScopeId("data-v-52b33b52");
+
+const _hoisted_1 = {
+  class: "easi-water-marker fixed top-0 right-0 w-full h-full overflow-hidden"
+};
+const _hoisted_2 = {
+  key: 0
+};
+const _hoisted_3 = {
+  key: 1
+};
+
+popScopeId();
+
+const render$1 = /* @__PURE__ */_withId$1((_ctx, _cache, $props, $setup, $data, $options) => {
+  return openBlock(), createBlock("div", _hoisted_1, [(openBlock(true), createBlock(Fragment, null, renderList(_ctx.totalNumber, item => {
+    var _ctx$waterMarker, _ctx$waterMarker$user, _ctx$globalProvider, _ctx$globalProvider$u, _ctx$waterMarker2, _ctx$waterMarker2$use, _ctx$globalProvider2, _ctx$globalProvider2$, _ctx$waterMarker3, _ctx$waterMarker4;
+
+    return openBlock(), createBlock("div", {
+      class: "easi-water-marker-item",
+      key: item
+    }, [createVNode("p", null, toDisplayString(((_ctx$waterMarker = _ctx.waterMarker) === null || _ctx$waterMarker === void 0 ? void 0 : (_ctx$waterMarker$user = _ctx$waterMarker.userInfo) === null || _ctx$waterMarker$user === void 0 ? void 0 : _ctx$waterMarker$user.name) || ((_ctx$globalProvider = _ctx.globalProvider) === null || _ctx$globalProvider === void 0 ? void 0 : (_ctx$globalProvider$u = _ctx$globalProvider.userInfo) === null || _ctx$globalProvider$u === void 0 ? void 0 : _ctx$globalProvider$u.name)), 1), createVNode("p", null, toDisplayString(((_ctx$waterMarker2 = _ctx.waterMarker) === null || _ctx$waterMarker2 === void 0 ? void 0 : (_ctx$waterMarker2$use = _ctx$waterMarker2.userInfo) === null || _ctx$waterMarker2$use === void 0 ? void 0 : _ctx$waterMarker2$use.mobile) || ((_ctx$globalProvider2 = _ctx.globalProvider) === null || _ctx$globalProvider2 === void 0 ? void 0 : (_ctx$globalProvider2$ = _ctx$globalProvider2.userInfo) === null || _ctx$globalProvider2$ === void 0 ? void 0 : _ctx$globalProvider2$.mobile)), 1), createVNode("p", null, toDisplayString(_ctx.domain), 1), (_ctx$waterMarker3 = _ctx.waterMarker) !== null && _ctx$waterMarker3 !== void 0 && _ctx$waterMarker3.cityName ? (openBlock(), createBlock("p", _hoisted_2, toDisplayString(_ctx.waterMarker.cityName), 1)) : createCommentVNode("v-if", true), (_ctx$waterMarker4 = _ctx.waterMarker) !== null && _ctx$waterMarker4 !== void 0 && _ctx$waterMarker4.ip ? (openBlock(), createBlock("p", _hoisted_3, toDisplayString(_ctx.waterMarker.ip), 1)) : createCommentVNode("v-if", true), createVNode("p", null, toDisplayString(_ctx.timestamp), 1)]);
+  }), 128))]);
+});
+
+script$1.render = render$1;
+script$1.__scopeId = "data-v-52b33b52";
+script$1.__file = "packages/provider/WaterMaker.vue";
+
 var script = defineComponent({
   name: createNamespace("Provider"),
   props: {
@@ -190,6 +262,10 @@ var script = defineComponent({
       default: () => ({
         locale: "zh-cn"
       })
+    },
+    waterMarker: {
+      type: Object,
+      default: () => ({})
     }
   },
 
@@ -204,19 +280,74 @@ var script = defineComponent({
     watch(() => locale.value, newVal => {
       globalEASILocale.message = newVal !== null && newVal !== void 0 && newVal.locale ? langMap[newVal.locale] : langMap["zh-cn"];
     });
-  }
+    const timestamp = ref(moment().format("YYYY-MM-DD HH:mm:ss"));
+    const totalNumber = ref(0);
+    const showWaterMaker = ref(false);
 
+    const computedNumber = () => {
+      const _row = Math.ceil(screen.width / 220);
+
+      const _col = Math.ceil(screen.height / 220);
+
+      totalNumber.value = _row * _col;
+    };
+
+    let time;
+
+    let refreshTime = () => {
+      clearTimeout(time);
+      computedNumber();
+      showWaterMaker.value = !showWaterMaker.value;
+      time = setTimeout(() => {
+        timestamp.value = moment().format("YYYY-MM-DD HH:mm:ss");
+        refreshTime && refreshTime();
+      }, 5e3);
+    };
+
+    onMounted(() => {
+      refreshTime && refreshTime();
+    });
+    onBeforeUnmount(() => {
+      refreshTime = null;
+      clearTimeout(time);
+    });
+    return {
+      globalProvider,
+      timestamp,
+      totalNumber,
+      showWaterMaker,
+      domain: window.location.host
+    };
+  },
+
+  components: {
+    WaterMarker: script$1
+  }
 });
 
 const _withId = /* @__PURE__ */withScopeId("data-v-819b5b50");
 
 const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $options) => {
+  const _component_WaterMarker = resolveComponent("WaterMarker");
+
   const _component_a_config_provider = resolveComponent("a-config-provider");
 
   return openBlock(), createBlock(_component_a_config_provider, mergeProps({
     locale: _ctx.locale
   }, _ctx.$attrs), {
-    default: _withId(() => [renderSlot(_ctx.$slots, "default")]),
+    default: _withId(() => [_ctx.showWaterMaker ? (openBlock(), createBlock(_component_WaterMarker, {
+      key: 0,
+      waterMarker: _ctx.waterMarker,
+      timestamp: _ctx.timestamp,
+      domain: _ctx.domain,
+      "total-number": _ctx.totalNumber
+    }, null, 8, ["waterMarker", "timestamp", "domain", "total-number"])) : createCommentVNode("v-if", true), renderSlot(_ctx.$slots, "default"), !_ctx.showWaterMaker ? (openBlock(), createBlock(_component_WaterMarker, {
+      key: 1,
+      waterMarker: _ctx.waterMarker,
+      timestamp: _ctx.timestamp,
+      domain: _ctx.domain,
+      "total-number": _ctx.totalNumber
+    }, null, 8, ["waterMarker", "timestamp", "domain", "total-number"])) : createCommentVNode("v-if", true)]),
     _: 3
   }, 16, ["locale"]);
 });

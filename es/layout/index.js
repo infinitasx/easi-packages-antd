@@ -2224,7 +2224,8 @@ const defaultProvider = {
   mode: false,
   showTab: true,
   fixedTab: true,
-  cachedPage: []
+  cachedPage: [],
+  userInfo: {}
 };
 function setProvider(provide) {
   const {
@@ -2287,6 +2288,9 @@ var script$2 = defineComponent({
   },
 
   setup(props) {
+    const {
+      userInfo
+    } = toRefs(props);
     const globalProvider = inject("globalProvider", { ...defaultProvider
     });
     const globalEASILocale = inject("globalEASILocale", {
@@ -2298,6 +2302,10 @@ var script$2 = defineComponent({
       setProvider(globalProvider);
     };
 
+    globalProvider.userInfo = userInfo.value;
+    watch(() => userInfo.value, newVal => {
+      globalProvider.userInfo = newVal;
+    });
     return {
       globalProvider,
       setSetting,

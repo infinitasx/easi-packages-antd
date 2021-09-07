@@ -1,5 +1,5 @@
 import * as _vue from 'vue';
-import { toRaw, h, nextTick, defineComponent, inject, createVNode, pushScopeId, popScopeId, resolveComponent, openBlock, createBlock, mergeProps, createCommentVNode, createTextVNode, toDisplayString, renderSlot, Fragment, renderList, withScopeId } from 'vue';
+import { toRaw, h, nextTick, defineComponent, toRefs, inject, watch, createVNode, pushScopeId, popScopeId, resolveComponent, openBlock, createBlock, mergeProps, createCommentVNode, createTextVNode, toDisplayString, renderSlot, Fragment, renderList, withScopeId } from 'vue';
 import { Modal, message } from 'ant-design-vue';
 import { setLocal, copy } from 'easi-web-utils';
 import moment from 'moment';
@@ -15,7 +15,8 @@ const defaultProvider = {
   mode: false,
   showTab: true,
   fixedTab: true,
-  cachedPage: []
+  cachedPage: [],
+  userInfo: {}
 };
 function setProvider(provide) {
   const {
@@ -1824,6 +1825,9 @@ var script = defineComponent({
   },
 
   setup(props) {
+    const {
+      userInfo
+    } = toRefs(props);
     const globalProvider = inject("globalProvider", { ...defaultProvider
     });
     const globalEASILocale = inject("globalEASILocale", {
@@ -1835,6 +1839,10 @@ var script = defineComponent({
       setProvider(globalProvider);
     };
 
+    globalProvider.userInfo = userInfo.value;
+    watch(() => userInfo.value, newVal => {
+      globalProvider.userInfo = newVal;
+    });
     return {
       globalProvider,
       setSetting,
