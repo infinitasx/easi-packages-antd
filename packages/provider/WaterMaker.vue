@@ -2,7 +2,7 @@
   <div class="easi-water-marker fixed top-0 right-0 w-full h-full overflow-hidden">
     <div class="easi-water-marker-item" v-for="item in totalNumber" :key="item">
       <p>{{ waterMarker?.userInfo?.name || globalProvider?.userInfo?.name }}</p>
-      <p>{{ waterMarker?.userInfo?.mobile || globalProvider?.userInfo?.mobile }}</p>
+      <p>{{ mobile }}</p>
       <p>{{ domain }}</p>
       <p v-if="waterMarker?.cityName">{{ waterMarker.cityName }}</p>
       <p v-if="waterMarker?.ip">{{ waterMarker.ip }}</p>
@@ -12,10 +12,10 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, inject, ref, onBeforeUnmount, onMounted, PropType} from 'vue';
+import {defineComponent, inject, computed, PropType, toRefs} from 'vue';
 import { createNamespace } from '../utils/create';
 import {defaultProvider, IProvider} from "../utils/globalProvider";
-import {IWaterMarker} from "../../typings/antd";
+import {IWaterMarker, UserInfo} from "../../typings/antd";
 
 export default defineComponent({
   name: createNamespace('WaterMaker'),
@@ -37,11 +37,19 @@ export default defineComponent({
       default: () => ({})
     }
   },
-  setup(){
+  setup(props){
+    const { waterMarker } = toRefs(props);
+
     const globalProvider = inject<IProvider>("globalProvider", {...defaultProvider});
+
+    const mobile = computed(() => {
+      let m = waterMarker.value?.userInfo?.mobile || globalProvider?.userInfo?.mobile;
+      return m ? (`${m.substr(0, m.length / 2 - 1)}****${m.substr(m.length / 2 + 3)}`) : undefined
+    })
 
     return {
       globalProvider,
+      mobile,
     }
   },
 });
@@ -65,17 +73,8 @@ export default defineComponent({
     text-align: center;
     font-size: 15px;
     transform: rotate(-45deg);
-    color: #acacac;
-    opacity: 0.2;
-  }
-}
-
-[data-pro-theme=antdv-pro-theme-dark] {
-  .easi-water-marker{
-    .easi-water-marker-item{
-      color: #313131;
-      opacity: 0.8;
-    }
+    color: #adadad;
+    opacity: 0.12;
   }
 }
 </style>

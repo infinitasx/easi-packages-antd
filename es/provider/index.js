@@ -1,4 +1,4 @@
-import { reactive, defineComponent, inject, pushScopeId, popScopeId, openBlock, createBlock, Fragment, renderList, createVNode, toDisplayString, createCommentVNode, withScopeId, toRefs, provide, watch, ref, onMounted, onBeforeUnmount, resolveComponent, mergeProps, renderSlot } from 'vue';
+import { reactive, defineComponent, toRefs, inject, computed, pushScopeId, popScopeId, openBlock, createBlock, Fragment, renderList, createVNode, toDisplayString, createCommentVNode, withScopeId, provide, watch, ref, onMounted, onBeforeUnmount, resolveComponent, mergeProps, renderSlot } from 'vue';
 import { getLocal } from 'easi-web-utils';
 import moment from 'moment';
 
@@ -213,11 +213,21 @@ var script$1 = defineComponent({
     }
   },
 
-  setup() {
+  setup(props) {
+    const {
+      waterMarker
+    } = toRefs(props);
     const globalProvider = inject("globalProvider", { ...defaultProvider
     });
+    const mobile = computed(() => {
+      var _waterMarker$value, _waterMarker$value$us, _globalProvider$userI;
+
+      let m = ((_waterMarker$value = waterMarker.value) === null || _waterMarker$value === void 0 ? void 0 : (_waterMarker$value$us = _waterMarker$value.userInfo) === null || _waterMarker$value$us === void 0 ? void 0 : _waterMarker$value$us.mobile) || (globalProvider === null || globalProvider === void 0 ? void 0 : (_globalProvider$userI = globalProvider.userInfo) === null || _globalProvider$userI === void 0 ? void 0 : _globalProvider$userI.mobile);
+      return m ? `${m.substr(0, m.length / 2 - 1)}****${m.substr(m.length / 2 + 3)}` : void 0;
+    });
     return {
-      globalProvider
+      globalProvider,
+      mobile
     };
   }
 
@@ -241,12 +251,12 @@ popScopeId();
 
 const render$1 = /* @__PURE__ */_withId$1((_ctx, _cache, $props, $setup, $data, $options) => {
   return openBlock(), createBlock("div", _hoisted_1, [(openBlock(true), createBlock(Fragment, null, renderList(_ctx.totalNumber, item => {
-    var _ctx$waterMarker, _ctx$waterMarker$user, _ctx$globalProvider, _ctx$globalProvider$u, _ctx$waterMarker2, _ctx$waterMarker2$use, _ctx$globalProvider2, _ctx$globalProvider2$, _ctx$waterMarker3, _ctx$waterMarker4;
+    var _ctx$waterMarker, _ctx$waterMarker$user, _ctx$globalProvider, _ctx$globalProvider$u, _ctx$waterMarker2, _ctx$waterMarker3;
 
     return openBlock(), createBlock("div", {
       class: "easi-water-marker-item",
       key: item
-    }, [createVNode("p", null, toDisplayString(((_ctx$waterMarker = _ctx.waterMarker) === null || _ctx$waterMarker === void 0 ? void 0 : (_ctx$waterMarker$user = _ctx$waterMarker.userInfo) === null || _ctx$waterMarker$user === void 0 ? void 0 : _ctx$waterMarker$user.name) || ((_ctx$globalProvider = _ctx.globalProvider) === null || _ctx$globalProvider === void 0 ? void 0 : (_ctx$globalProvider$u = _ctx$globalProvider.userInfo) === null || _ctx$globalProvider$u === void 0 ? void 0 : _ctx$globalProvider$u.name)), 1), createVNode("p", null, toDisplayString(((_ctx$waterMarker2 = _ctx.waterMarker) === null || _ctx$waterMarker2 === void 0 ? void 0 : (_ctx$waterMarker2$use = _ctx$waterMarker2.userInfo) === null || _ctx$waterMarker2$use === void 0 ? void 0 : _ctx$waterMarker2$use.mobile) || ((_ctx$globalProvider2 = _ctx.globalProvider) === null || _ctx$globalProvider2 === void 0 ? void 0 : (_ctx$globalProvider2$ = _ctx$globalProvider2.userInfo) === null || _ctx$globalProvider2$ === void 0 ? void 0 : _ctx$globalProvider2$.mobile)), 1), createVNode("p", null, toDisplayString(_ctx.domain), 1), (_ctx$waterMarker3 = _ctx.waterMarker) !== null && _ctx$waterMarker3 !== void 0 && _ctx$waterMarker3.cityName ? (openBlock(), createBlock("p", _hoisted_2, toDisplayString(_ctx.waterMarker.cityName), 1)) : createCommentVNode("v-if", true), (_ctx$waterMarker4 = _ctx.waterMarker) !== null && _ctx$waterMarker4 !== void 0 && _ctx$waterMarker4.ip ? (openBlock(), createBlock("p", _hoisted_3, toDisplayString(_ctx.waterMarker.ip), 1)) : createCommentVNode("v-if", true), createVNode("p", null, toDisplayString(_ctx.timestamp), 1)]);
+    }, [createVNode("p", null, toDisplayString(((_ctx$waterMarker = _ctx.waterMarker) === null || _ctx$waterMarker === void 0 ? void 0 : (_ctx$waterMarker$user = _ctx$waterMarker.userInfo) === null || _ctx$waterMarker$user === void 0 ? void 0 : _ctx$waterMarker$user.name) || ((_ctx$globalProvider = _ctx.globalProvider) === null || _ctx$globalProvider === void 0 ? void 0 : (_ctx$globalProvider$u = _ctx$globalProvider.userInfo) === null || _ctx$globalProvider$u === void 0 ? void 0 : _ctx$globalProvider$u.name)), 1), createVNode("p", null, toDisplayString(_ctx.mobile), 1), createVNode("p", null, toDisplayString(_ctx.domain), 1), (_ctx$waterMarker2 = _ctx.waterMarker) !== null && _ctx$waterMarker2 !== void 0 && _ctx$waterMarker2.cityName ? (openBlock(), createBlock("p", _hoisted_2, toDisplayString(_ctx.waterMarker.cityName), 1)) : createCommentVNode("v-if", true), (_ctx$waterMarker3 = _ctx.waterMarker) !== null && _ctx$waterMarker3 !== void 0 && _ctx$waterMarker3.ip ? (openBlock(), createBlock("p", _hoisted_3, toDisplayString(_ctx.waterMarker.ip), 1)) : createCommentVNode("v-if", true), createVNode("p", null, toDisplayString(_ctx.timestamp), 1)]);
   }), 128))]);
 });
 
@@ -292,11 +302,10 @@ var script = defineComponent({
       totalNumber.value = _row * _col;
     };
 
+    computedNumber();
     let time;
 
     let refreshTime = () => {
-      clearTimeout(time);
-      computedNumber();
       showWaterMaker.value = !showWaterMaker.value;
       time = setTimeout(() => {
         timestamp.value = moment().format("YYYY-MM-DD HH:mm:ss");

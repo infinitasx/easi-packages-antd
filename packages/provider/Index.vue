@@ -51,10 +51,9 @@ export default defineComponent({
       totalNumber.value = _row * _col;
     }
 
+    computedNumber();
     let time: any;
     let refreshTime: Function | null = () => {
-      clearTimeout(time);
-      computedNumber();
       showWaterMaker.value = !showWaterMaker.value;
       time = setTimeout(() => {
         timestamp.value = moment().format('YYYY-MM-DD HH:mm:ss');

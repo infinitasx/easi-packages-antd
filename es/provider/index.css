@@ -19,11 +19,6 @@
   text-align: center;
   font-size: 15px;
   transform: rotate(-45deg);
-  color: #acacac;
-  opacity: 0.2;
-}
-
-[data-pro-theme=antdv-pro-theme-dark] .easi-water-marker .easi-water-marker-item {
-  color: #313131;
-  opacity: 0.8;
+  color: #adadad;
+  opacity: 0.12;
 }
