@@ -361,6 +361,12 @@ img.ant-image-preview-img {
   margin-left: -2%;
 }
 
+.ant-upload.ant-upload-drag {
+  width: 384px;
+  height: 192px;
+  background: transparent;
+}
+
 .easi-uploader-preview-item .anticon svg {
   margin: auto;
 }
@@ -428,9 +434,4 @@ img.ant-image-preview-img {
   .easi-uploader-preview-item {
     width: 48%;
   }
-}
-.ant-upload.ant-upload-drag {
-  width: 384px;
-  height: 192px;
-  background: transparent;
 }
