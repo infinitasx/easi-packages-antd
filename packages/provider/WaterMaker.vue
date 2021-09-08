@@ -12,35 +12,20 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, inject, computed, PropType, toRefs} from 'vue';
+import {defineComponent, inject, computed, ref, toRefs, PropType, onBeforeUnmount} from 'vue';
 import { createNamespace } from '../utils/create';
 import {defaultProvider, IProvider} from "../utils/globalProvider";
-import {IWaterMarker, UserInfo} from "../../typings/antd";
+import {IWaterMarker} from "../../typings/antd";
 
 export default defineComponent({
   name: createNamespace('WaterMaker'),
-  props: {
-    timestamp: {
-      type: String,
-      default: undefined
-    },
-    totalNumber: {
-      type: Number,
-      default: 0
-    },
-    domain: {
-      type: String,
-      default: undefined
-    },
-    waterMarker: {
-      type: Object as PropType<IWaterMarker>,
-      default: () => ({})
-    }
-  },
-  setup(props){
-    const { waterMarker } = toRefs(props);
-
+  setup(){
     const globalProvider = inject<IProvider>("globalProvider", {...defaultProvider});
+
+    const timestamp = ref<number>(0);
+    const waterMarker = ref<IWaterMarker>({});
+    const domain = ref<string | undefined>();
+    const totalNumber = ref<number>(0);
 
     const mobile = computed(() => {
       let m = waterMarker.value?.userInfo?.mobile || globalProvider?.userInfo?.mobile;
@@ -50,6 +35,10 @@ export default defineComponent({
     return {
       globalProvider,
       mobile,
+      totalNumber,
+      timestamp,
+      domain,
+      waterMarker,
     }
   },
 });

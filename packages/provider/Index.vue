@@ -1,13 +1,11 @@
 <template>
   <a-config-provider :locale="locale" v-bind="$attrs">
-    <WaterMarker v-if="showWaterMaker" :waterMarker="waterMarker" :timestamp="timestamp" :domain="domain" :total-number="totalNumber" />
     <slot></slot>
-    <WaterMarker v-if="!showWaterMaker" :waterMarker="waterMarker" :timestamp="timestamp" :domain="domain" :total-number="totalNumber" />
   </a-config-provider>
 </template>
 
 <script lang="ts">
-import {defineComponent, provide, watch, toRefs, PropType, onMounted, onBeforeUnmount, ref} from "vue"
+import {defineComponent, provide, watch, toRefs, createApp, PropType, onMounted, onBeforeUnmount, ref, App} from "vue"
 import {createNamespace} from "../utils/create";
 import {initProvider} from "../utils/globalProvider";
 import {initI18n, ILocale, langMap} from "../locale";
@@ -30,7 +28,7 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const { locale } = toRefs(props);
+    const { locale, waterMarker } = toRefs(props);
     const globalProvider = initProvider();
     const globalEASILocale = initI18n(props.locale ? props.locale.locale : 'zh-cn');
     provide('globalProvider', globalProvider);
@@ -42,41 +40,76 @@ export default defineComponent({
 
     const timestamp = ref(moment().format('YYYY-MM-DD HH:mm:ss'));
 
-    const totalNumber = ref<number>(0);
-    const showWaterMaker = ref<boolean>(false);
-
-    const computedNumber = () => {
+    const createWaterMarker = () => {
+      let markerDom = document.querySelector('#easi-water-marker');
+      const body = document.body;
+      const domain = window.location.host;
       const _row = Math.ceil(screen.width / 220);
       const _col = Math.ceil(screen.height / 220);
-      totalNumber.value = _row * _col;
+      const totalNumber = _row * _col;
+      let marker: any;
+      let insertPosition = false;
+
+      const obverse = () => {
+
+        const config = { childList: true };
+
+        // 当观察到变动时执行的回调函数
+        const callback = function(mutationsList: MutationRecord[], observer: any) {
+          for(const record of mutationsList){
+            const removeList = record.removedNodes;
+            if(removeList?.length > 0){
+              for(const dom of Array.from(removeList)){
+                if((dom as Element).getAttribute('id') === 'easi-water-marker'){
+                  markerDom = null;
+                  _createWaterMarker({ timestamp: timestamp.value, waterMarker: waterMarker.value })
+                }
+              }
+            }
+          }
+        };
+
+        // 创建一个观察器实例并传入回调函数
+        const observer = new MutationObserver(callback);
+
+        // 以上述配置开始观察目标节点
+        observer.observe(document.body, config);
+      }
+
+      obverse();
+
+      let time: any;
+
+      const refreshTime = () => {
+        clearTimeout(time);
+        time = setTimeout(() => {
+          timestamp.value = moment().format('YYYY-MM-DD HH:mm:ss');
+          if(markerDom){
+            markerDom.remove();
+          }
+          refreshTime();
+        }, 5000)
+      }
+
+      return (options: any) => {
+        const { timestamp, waterMarker } = options;
+        markerDom = document.createElement('div');
+        markerDom.setAttribute('id', 'easi-water-marker');
+        const app = createApp(WaterMarker);
+        marker = app.mount(markerDom);
+        marker.timestamp = timestamp;
+        marker.waterMarker = waterMarker;
+        marker.totalNumber = totalNumber;
+        marker.domain = domain;
+        insertPosition ? body.append(markerDom) : body.prepend(markerDom);
+        insertPosition = !insertPosition;
+        refreshTime();
+      }
     }
 
-    computedNumber();
-    let time: any;
-    let refreshTime: Function | null = () => {
-      showWaterMaker.value = !showWaterMaker.value;
-      time = setTimeout(() => {
-        timestamp.value = moment().format('YYYY-MM-DD HH:mm:ss');
-        refreshTime && refreshTime();
-      }, 5000)
-    }
+    const _createWaterMarker = createWaterMarker();
 
-    onMounted(() => {
-      refreshTime && refreshTime();
-    })
-
-    onBeforeUnmount(() => {
-      refreshTime = null;
-      clearTimeout(time);
-    })
-
-    return {
-      globalProvider,
-      timestamp,
-      totalNumber,
-      showWaterMaker,
-      domain: window.location.host
-    }
+    _createWaterMarker({ timestamp: timestamp.value, waterMarker: waterMarker.value });
   },
   components: {
     WaterMarker

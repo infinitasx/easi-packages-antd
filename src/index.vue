@@ -1,5 +1,5 @@
 <template>
-  <EASILayout :onLogout="onLogout" :editPassword="editPassword" :toDashboard="toDashboard">
+  <EASILayout logo="https://melb-delivery.easi.com.au/static/img/avatar.png" title="EASI IAM" :onLogout="onLogout" :editPassword="editPassword" :toDashboard="toDashboard">
   </EASILayout>
 </template>
 
