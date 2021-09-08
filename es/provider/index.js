@@ -1,4 +1,4 @@
-import { reactive, defineComponent, toRefs, inject, computed, pushScopeId, popScopeId, openBlock, createBlock, Fragment, renderList, createVNode, toDisplayString, createCommentVNode, withScopeId, provide, watch, ref, onMounted, onBeforeUnmount, resolveComponent, mergeProps, renderSlot } from 'vue';
+import { reactive, defineComponent, inject, ref, computed, pushScopeId, popScopeId, openBlock, createBlock, Fragment, renderList, createVNode, toDisplayString, createCommentVNode, withScopeId, toRefs, provide, watch, createApp, resolveComponent, mergeProps, renderSlot } from 'vue';
 import { getLocal } from 'easi-web-utils';
 import moment from 'moment';
 
@@ -194,31 +194,14 @@ function initI18n(lang) {
 
 var script$1 = defineComponent({
   name: createNamespace("WaterMaker"),
-  props: {
-    timestamp: {
-      type: String,
-      default: void 0
-    },
-    totalNumber: {
-      type: Number,
-      default: 0
-    },
-    domain: {
-      type: String,
-      default: void 0
-    },
-    waterMarker: {
-      type: Object,
-      default: () => ({})
-    }
-  },
 
-  setup(props) {
-    const {
-      waterMarker
-    } = toRefs(props);
+  setup() {
     const globalProvider = inject("globalProvider", { ...defaultProvider
     });
+    const timestamp = ref(0);
+    const waterMarker = ref({});
+    const domain = ref();
+    const totalNumber = ref(0);
     const mobile = computed(() => {
       var _waterMarker$value, _waterMarker$value$us, _globalProvider$userI;
 
@@ -227,7 +210,11 @@ var script$1 = defineComponent({
     });
     return {
       globalProvider,
-      mobile
+      mobile,
+      totalNumber,
+      timestamp,
+      domain,
+      waterMarker
     };
   }
 
@@ -281,7 +268,8 @@ var script = defineComponent({
 
   setup(props) {
     const {
-      locale
+      locale,
+      waterMarker
     } = toRefs(props);
     const globalProvider = initProvider();
     const globalEASILocale = initI18n(props.locale ? props.locale.locale : "zh-cn");
@@ -291,42 +279,89 @@ var script = defineComponent({
       globalEASILocale.message = newVal !== null && newVal !== void 0 && newVal.locale ? langMap[newVal.locale] : langMap["zh-cn"];
     });
     const timestamp = ref(moment().format("YYYY-MM-DD HH:mm:ss"));
-    const totalNumber = ref(0);
-    const showWaterMaker = ref(false);
 
-    const computedNumber = () => {
+    const createWaterMarker = () => {
+      let markerDom = document.querySelector("#easi-water-marker");
+      const body = document.body;
+      const domain = window.location.host;
+
       const _row = Math.ceil(screen.width / 220);
 
       const _col = Math.ceil(screen.height / 220);
 
-      totalNumber.value = _row * _col;
+      const totalNumber = _row * _col;
+      let marker;
+      let insertPosition = false;
+
+      const obverse = () => {
+        const config = {
+          childList: true
+        };
+
+        const callback = function (mutationsList, observer2) {
+          for (const record of mutationsList) {
+            const removeList = record.removedNodes;
+
+            if ((removeList === null || removeList === void 0 ? void 0 : removeList.length) > 0) {
+              for (const dom of Array.from(removeList)) {
+                if (dom.getAttribute("id") === "easi-water-marker") {
+                  markerDom = null;
+
+                  _createWaterMarker({
+                    timestamp: timestamp.value,
+                    waterMarker: waterMarker.value
+                  });
+                }
+              }
+            }
+          }
+        };
+
+        const observer = new MutationObserver(callback);
+        observer.observe(document.body, config);
+      };
+
+      obverse();
+      let time;
+
+      const refreshTime = () => {
+        clearTimeout(time);
+        time = setTimeout(() => {
+          timestamp.value = moment().format("YYYY-MM-DD HH:mm:ss");
+
+          if (markerDom) {
+            markerDom.remove();
+          }
+
+          refreshTime();
+        }, 5e3);
+      };
+
+      return options => {
+        const {
+          timestamp: timestamp2,
+          waterMarker: waterMarker2
+        } = options;
+        markerDom = document.createElement("div");
+        markerDom.setAttribute("id", "easi-water-marker");
+        const app = createApp(script$1);
+        marker = app.mount(markerDom);
+        marker.timestamp = timestamp2;
+        marker.waterMarker = waterMarker2;
+        marker.totalNumber = totalNumber;
+        marker.domain = domain;
+        insertPosition ? body.append(markerDom) : body.prepend(markerDom);
+        insertPosition = !insertPosition;
+        refreshTime();
+      };
     };
 
-    computedNumber();
-    let time;
+    const _createWaterMarker = createWaterMarker();
 
-    let refreshTime = () => {
-      showWaterMaker.value = !showWaterMaker.value;
-      time = setTimeout(() => {
-        timestamp.value = moment().format("YYYY-MM-DD HH:mm:ss");
-        refreshTime && refreshTime();
-      }, 5e3);
-    };
-
-    onMounted(() => {
-      refreshTime && refreshTime();
+    _createWaterMarker({
+      timestamp: timestamp.value,
+      waterMarker: waterMarker.value
     });
-    onBeforeUnmount(() => {
-      refreshTime = null;
-      clearTimeout(time);
-    });
-    return {
-      globalProvider,
-      timestamp,
-      totalNumber,
-      showWaterMaker,
-      domain: window.location.host
-    };
   },
 
   components: {
@@ -337,26 +372,12 @@ var script = defineComponent({
 const _withId = /* @__PURE__ */withScopeId("data-v-819b5b50");
 
 const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $options) => {
-  const _component_WaterMarker = resolveComponent("WaterMarker");
-
   const _component_a_config_provider = resolveComponent("a-config-provider");
 
   return openBlock(), createBlock(_component_a_config_provider, mergeProps({
     locale: _ctx.locale
   }, _ctx.$attrs), {
-    default: _withId(() => [_ctx.showWaterMaker ? (openBlock(), createBlock(_component_WaterMarker, {
-      key: 0,
-      waterMarker: _ctx.waterMarker,
-      timestamp: _ctx.timestamp,
-      domain: _ctx.domain,
-      "total-number": _ctx.totalNumber
-    }, null, 8, ["waterMarker", "timestamp", "domain", "total-number"])) : createCommentVNode("v-if", true), renderSlot(_ctx.$slots, "default"), !_ctx.showWaterMaker ? (openBlock(), createBlock(_component_WaterMarker, {
-      key: 1,
-      waterMarker: _ctx.waterMarker,
-      timestamp: _ctx.timestamp,
-      domain: _ctx.domain,
-      "total-number": _ctx.totalNumber
-    }, null, 8, ["waterMarker", "timestamp", "domain", "total-number"])) : createCommentVNode("v-if", true)]),
+    default: _withId(() => [renderSlot(_ctx.$slots, "default")]),
     _: 3
   }, 16, ["locale"]);
 });

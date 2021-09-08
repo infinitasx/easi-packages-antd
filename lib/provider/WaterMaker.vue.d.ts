@@ -1,41 +1,26 @@
-import { PropType } from 'vue';
 import { IProvider } from "../utils/globalProvider";
-import { IWaterMarker } from "../../typings/antd";
-declare const _default: import("vue").DefineComponent<{
-    timestamp: {
-        type: StringConstructor;
-        default: undefined;
-    };
-    totalNumber: {
-        type: NumberConstructor;
-        default: number;
-    };
-    domain: {
-        type: StringConstructor;
-        default: undefined;
-    };
-    waterMarker: {
-        type: PropType<IWaterMarker>;
-        default: () => {};
-    };
-}, {
+declare const _default: import("vue").DefineComponent<{}, {
     globalProvider: IProvider;
     mobile: import("vue").ComputedRef<string | undefined>;
-}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
-    timestamp?: unknown;
-    totalNumber?: unknown;
-    domain?: unknown;
-    waterMarker?: unknown;
-} & {
-    totalNumber: number;
-    waterMarker: IWaterMarker;
-} & {
-    timestamp?: string | undefined;
-    domain?: string | undefined;
-}> & {}, {
-    timestamp: string;
-    totalNumber: number;
-    domain: string;
-    waterMarker: IWaterMarker;
-}>;
+    totalNumber: import("vue").Ref<number>;
+    timestamp: import("vue").Ref<number>;
+    domain: import("vue").Ref<string | undefined>;
+    waterMarker: import("vue").Ref<{
+        ip?: string | undefined;
+        cityName?: string | undefined;
+        userInfo?: {
+            name?: string | undefined;
+            avatar?: string | undefined;
+            devices?: {
+                [x: string]: any;
+                device_type: "Desktop" | "Mobile" | "Tablet";
+                active_at: number;
+                ip: string;
+                id: string;
+            }[] | undefined;
+            session_id?: string | undefined;
+            mobile?: string | undefined;
+        } | undefined;
+    }>;
+}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, import("vue").EmitsOptions, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{} & {} & {}> & ({} | {}), {}>;
 export default _default;
