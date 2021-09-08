@@ -10,8 +10,6 @@ export interface IProvider {
   fixedTab: boolean;
   cachedPage: string[];
   userInfo: UserInfo;
-  cityName?: string;
-  ip?: string;
   [props: string]: any;
 }
 

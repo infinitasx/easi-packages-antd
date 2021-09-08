@@ -1,5 +1,5 @@
 <template>
-  <EASIProvider :locale="ZH" :waterMarker="{userInfo: {mobile: '+610400000012'}}">
+  <EASIProvider :locale="ZH">
     <router-view></router-view>
   </EASIProvider>
 </template>

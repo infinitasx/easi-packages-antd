@@ -1,5 +1,5 @@
 <template>
-  <EASILayout logo="https://melb-delivery.easi.com.au/static/img/avatar.png" title="EASI IAM" :onLogout="onLogout" :editPassword="editPassword" :toDashboard="toDashboard">
+  <EASILayout logo="https://melb-delivery.easi.com.au/static/img/avatar.png" :userInfo="{mobile: '+610400000012', name: 'admin'}" title="EASI IAM" :onLogout="onLogout" :editPassword="editPassword" :toDashboard="toDashboard">
   </EASILayout>
 </template>
 

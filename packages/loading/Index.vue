@@ -121,7 +121,7 @@ export default defineComponent({
   bottom: 0;
   right: 0;
   background: rgba(255, 255, 255, 0.8);
-  z-index: 1001;
+  z-index: 100;
 }
 
 .loading {

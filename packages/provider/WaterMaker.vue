@@ -1,5 +1,5 @@
 <template>
-  <div class="easi-water-marker fixed top-0 right-0 w-full h-full overflow-hidden">
+  <template v-if="showMarker">
     <div class="easi-water-marker-item" v-for="item in totalNumber" :key="item">
       <p>{{ waterMarker?.userInfo?.name || globalProvider?.userInfo?.name }}</p>
       <p>{{ mobile }}</p>
@@ -8,46 +8,88 @@
       <p v-if="waterMarker?.ip">{{ waterMarker.ip }}</p>
       <p>{{ timestamp }}</p>
     </div>
-  </div>
+  </template>
 </template>
 
 <script lang="ts">
-import {defineComponent, inject, computed, ref, toRefs, PropType, onBeforeUnmount} from 'vue';
-import { createNamespace } from '../utils/create';
-import {defaultProvider, IProvider} from "../utils/globalProvider";
+import {computed, defineComponent, inject, nextTick, PropType, ref, toRefs, onBeforeUnmount} from 'vue';
+import {createNamespace} from '../utils/create';
+import {defaultProvider, IProvider} from '../utils/globalProvider';
 import {IWaterMarker} from "../../typings/antd";
+import moment from "moment";
 
 export default defineComponent({
   name: createNamespace('WaterMaker'),
-  setup(){
-    const globalProvider = inject<IProvider>("globalProvider", {...defaultProvider});
-
-    const timestamp = ref<number>(0);
-    const waterMarker = ref<IWaterMarker>({});
-    const domain = ref<string | undefined>();
-    const totalNumber = ref<number>(0);
+  props: {
+    waterMarker: {
+      type: Object as PropType<IWaterMarker>,
+      default: () => ({})
+    },
+    totalNumber: {
+      type: Number,
+      default: 0
+    },
+    domain: {
+      type: String,
+      default: undefined
+    },
+    globalProvider: {
+      type: Object as PropType<IProvider>,
+      default: undefined
+    }
+  },
+  setup(props) {
+    const {waterMarker, globalProvider} = toRefs(props);
 
     const mobile = computed(() => {
-      let m = waterMarker.value?.userInfo?.mobile || globalProvider?.userInfo?.mobile;
+      let m = waterMarker.value?.userInfo?.mobile || globalProvider.value?.userInfo?.mobile;
       return m ? (`${m.substr(0, m.length / 2 - 1)}****${m.substr(m.length / 2 + 3)}`) : undefined
     })
 
+    const showMarker = ref<boolean>(true);
+    const timestamp = ref<string>(moment().format('YYYY-MM-DD HH:mm:ss'))
+
+    let time: any;
+    let refreshTime: Function | null = () => {
+      time = setTimeout(async () => {
+        timestamp.value = moment().format('YYYY-MM-DD HH:mm:ss');
+        showMarker.value = false;
+        await nextTick();
+        showMarker.value = true;
+        refreshTime && refreshTime();
+      }, 5000)
+    }
+
+    refreshTime && refreshTime();
+
+    onBeforeUnmount(() => {
+      refreshTime = null;
+      clearTimeout(time);
+    })
+
     return {
-      globalProvider,
       mobile,
-      totalNumber,
+      globalProvider,
       timestamp,
-      domain,
-      waterMarker,
+      showMarker,
+      setShow() {
+        showMarker.value = true
+      }
     }
   },
 });
 </script>
 
-<style lang="scss" scoped>
-.easi-water-marker{
+<style lang="scss">
+#easi-watermarker-container{
   padding-top: 20px;
   padding-left: 25px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: space-around;
