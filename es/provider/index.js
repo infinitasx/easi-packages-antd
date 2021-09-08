@@ -1,4 +1,4 @@
-import { reactive, defineComponent, inject, ref, computed, pushScopeId, popScopeId, openBlock, createBlock, Fragment, renderList, createVNode, toDisplayString, createCommentVNode, withScopeId, toRefs, provide, watch, createApp, resolveComponent, mergeProps, renderSlot } from 'vue';
+import { reactive, defineComponent, toRefs, computed, ref, onBeforeUnmount, nextTick, openBlock, createBlock, Fragment, renderList, createVNode, toDisplayString, createCommentVNode, provide, watch, createApp, resolveComponent, mergeProps, renderSlot, withScopeId } from 'vue';
 import { getLocal } from 'easi-web-utils';
 import moment from 'moment';
 
@@ -8,14 +8,6 @@ function createNamespace(name) {
 
 const SETTING_KEY = "setting";
 const HTML = document.querySelector("html");
-const defaultProvider = {
-  reloadPage: true,
-  mode: false,
-  showTab: true,
-  fixedTab: true,
-  cachedPage: [],
-  userInfo: {}
-};
 function initProvider() {
   const defaultData = getLocal(SETTING_KEY) || {
     mode: false,
@@ -194,61 +186,90 @@ function initI18n(lang) {
 
 var script$1 = defineComponent({
   name: createNamespace("WaterMaker"),
+  props: {
+    waterMarker: {
+      type: Object,
+      default: () => ({})
+    },
+    totalNumber: {
+      type: Number,
+      default: 0
+    },
+    domain: {
+      type: String,
+      default: void 0
+    },
+    globalProvider: {
+      type: Object,
+      default: void 0
+    }
+  },
 
-  setup() {
-    const globalProvider = inject("globalProvider", { ...defaultProvider
-    });
-    const timestamp = ref(0);
-    const waterMarker = ref({});
-    const domain = ref();
-    const totalNumber = ref(0);
+  setup(props) {
+    const {
+      waterMarker,
+      globalProvider
+    } = toRefs(props);
     const mobile = computed(() => {
-      var _waterMarker$value, _waterMarker$value$us, _globalProvider$userI;
+      var _waterMarker$value, _waterMarker$value$us, _globalProvider$value, _globalProvider$value2;
 
-      let m = ((_waterMarker$value = waterMarker.value) === null || _waterMarker$value === void 0 ? void 0 : (_waterMarker$value$us = _waterMarker$value.userInfo) === null || _waterMarker$value$us === void 0 ? void 0 : _waterMarker$value$us.mobile) || (globalProvider === null || globalProvider === void 0 ? void 0 : (_globalProvider$userI = globalProvider.userInfo) === null || _globalProvider$userI === void 0 ? void 0 : _globalProvider$userI.mobile);
+      let m = ((_waterMarker$value = waterMarker.value) === null || _waterMarker$value === void 0 ? void 0 : (_waterMarker$value$us = _waterMarker$value.userInfo) === null || _waterMarker$value$us === void 0 ? void 0 : _waterMarker$value$us.mobile) || ((_globalProvider$value = globalProvider.value) === null || _globalProvider$value === void 0 ? void 0 : (_globalProvider$value2 = _globalProvider$value.userInfo) === null || _globalProvider$value2 === void 0 ? void 0 : _globalProvider$value2.mobile);
       return m ? `${m.substr(0, m.length / 2 - 1)}****${m.substr(m.length / 2 + 3)}` : void 0;
     });
+    const showMarker = ref(true);
+    const timestamp = ref(moment().format("YYYY-MM-DD HH:mm:ss"));
+    let time;
+
+    let refreshTime = () => {
+      time = setTimeout(async () => {
+        timestamp.value = moment().format("YYYY-MM-DD HH:mm:ss");
+        showMarker.value = false;
+        await nextTick();
+        showMarker.value = true;
+        refreshTime && refreshTime();
+      }, 5e3);
+    };
+
+    refreshTime && refreshTime();
+    onBeforeUnmount(() => {
+      refreshTime = null;
+      clearTimeout(time);
+    });
     return {
-      globalProvider,
       mobile,
-      totalNumber,
+      globalProvider,
       timestamp,
-      domain,
-      waterMarker
+      showMarker,
+
+      setShow() {
+        showMarker.value = true;
+      }
+
     };
   }
 
 });
 
-const _withId$1 = /* @__PURE__ */withScopeId("data-v-52b33b52");
-
-pushScopeId("data-v-52b33b52");
-
 const _hoisted_1 = {
-  class: "easi-water-marker fixed top-0 right-0 w-full h-full overflow-hidden"
-};
-const _hoisted_2 = {
   key: 0
 };
-const _hoisted_3 = {
+const _hoisted_2 = {
   key: 1
 };
-
-popScopeId();
-
-const render$1 = /* @__PURE__ */_withId$1((_ctx, _cache, $props, $setup, $data, $options) => {
-  return openBlock(), createBlock("div", _hoisted_1, [(openBlock(true), createBlock(Fragment, null, renderList(_ctx.totalNumber, item => {
+function render$1(_ctx, _cache, $props, $setup, $data, $options) {
+  return _ctx.showMarker ? (openBlock(true), createBlock(Fragment, {
+    key: 0
+  }, renderList(_ctx.totalNumber, item => {
     var _ctx$waterMarker, _ctx$waterMarker$user, _ctx$globalProvider, _ctx$globalProvider$u, _ctx$waterMarker2, _ctx$waterMarker3;
 
     return openBlock(), createBlock("div", {
       class: "easi-water-marker-item",
       key: item
-    }, [createVNode("p", null, toDisplayString(((_ctx$waterMarker = _ctx.waterMarker) === null || _ctx$waterMarker === void 0 ? void 0 : (_ctx$waterMarker$user = _ctx$waterMarker.userInfo) === null || _ctx$waterMarker$user === void 0 ? void 0 : _ctx$waterMarker$user.name) || ((_ctx$globalProvider = _ctx.globalProvider) === null || _ctx$globalProvider === void 0 ? void 0 : (_ctx$globalProvider$u = _ctx$globalProvider.userInfo) === null || _ctx$globalProvider$u === void 0 ? void 0 : _ctx$globalProvider$u.name)), 1), createVNode("p", null, toDisplayString(_ctx.mobile), 1), createVNode("p", null, toDisplayString(_ctx.domain), 1), (_ctx$waterMarker2 = _ctx.waterMarker) !== null && _ctx$waterMarker2 !== void 0 && _ctx$waterMarker2.cityName ? (openBlock(), createBlock("p", _hoisted_2, toDisplayString(_ctx.waterMarker.cityName), 1)) : createCommentVNode("v-if", true), (_ctx$waterMarker3 = _ctx.waterMarker) !== null && _ctx$waterMarker3 !== void 0 && _ctx$waterMarker3.ip ? (openBlock(), createBlock("p", _hoisted_3, toDisplayString(_ctx.waterMarker.ip), 1)) : createCommentVNode("v-if", true), createVNode("p", null, toDisplayString(_ctx.timestamp), 1)]);
-  }), 128))]);
-});
+    }, [createVNode("p", null, toDisplayString(((_ctx$waterMarker = _ctx.waterMarker) === null || _ctx$waterMarker === void 0 ? void 0 : (_ctx$waterMarker$user = _ctx$waterMarker.userInfo) === null || _ctx$waterMarker$user === void 0 ? void 0 : _ctx$waterMarker$user.name) || ((_ctx$globalProvider = _ctx.globalProvider) === null || _ctx$globalProvider === void 0 ? void 0 : (_ctx$globalProvider$u = _ctx$globalProvider.userInfo) === null || _ctx$globalProvider$u === void 0 ? void 0 : _ctx$globalProvider$u.name)), 1), createVNode("p", null, toDisplayString(_ctx.mobile), 1), createVNode("p", null, toDisplayString(_ctx.domain), 1), (_ctx$waterMarker2 = _ctx.waterMarker) !== null && _ctx$waterMarker2 !== void 0 && _ctx$waterMarker2.cityName ? (openBlock(), createBlock("p", _hoisted_1, toDisplayString(_ctx.waterMarker.cityName), 1)) : createCommentVNode("v-if", true), (_ctx$waterMarker3 = _ctx.waterMarker) !== null && _ctx$waterMarker3 !== void 0 && _ctx$waterMarker3.ip ? (openBlock(), createBlock("p", _hoisted_2, toDisplayString(_ctx.waterMarker.ip), 1)) : createCommentVNode("v-if", true), createVNode("p", null, toDisplayString(_ctx.timestamp), 1)]);
+  }), 128)) : createCommentVNode("v-if", true);
+}
 
 script$1.render = render$1;
-script$1.__scopeId = "data-v-52b33b52";
 script$1.__file = "packages/provider/WaterMaker.vue";
 
 var script = defineComponent({
@@ -278,90 +299,65 @@ var script = defineComponent({
     watch(() => locale.value, newVal => {
       globalEASILocale.message = newVal !== null && newVal !== void 0 && newVal.locale ? langMap[newVal.locale] : langMap["zh-cn"];
     });
-    const timestamp = ref(moment().format("YYYY-MM-DD HH:mm:ss"));
+    let observer;
+    const domain = window.location.host;
 
-    const createWaterMarker = () => {
-      let markerDom = document.querySelector("#easi-water-marker");
-      const body = document.body;
-      const domain = window.location.host;
+    const _row = Math.ceil(screen.width / 220);
 
-      const _row = Math.ceil(screen.width / 220);
+    const _col = Math.ceil(screen.height / 220);
 
-      const _col = Math.ceil(screen.height / 220);
+    const totalNumber = _row * _col;
+    let app;
 
-      const totalNumber = _row * _col;
-      let marker;
-      let insertPosition = false;
+    const createMarker = () => {
+      const dom = document.createElement("div");
+      dom.id = "easi-watermarker-container";
+      app = createApp(script$1, {
+        domain,
+        totalNumber,
+        waterMarker: waterMarker.value,
+        globalProvider
+      });
+      app.mount(dom);
+      document.body.appendChild(dom);
+    };
 
-      const obverse = () => {
-        const config = {
-          childList: true
-        };
+    const obverseFunc = () => {
+      const config = {
+        childList: true
+      };
 
-        const callback = function (mutationsList, observer2) {
-          for (const record of mutationsList) {
-            const removeList = record.removedNodes;
+      const callback = async function (mutationsList, observer2) {
+        for (const record of mutationsList) {
+          const removeList = record.removedNodes;
 
-            if ((removeList === null || removeList === void 0 ? void 0 : removeList.length) > 0) {
-              for (const dom of Array.from(removeList)) {
-                if (dom.getAttribute("id") === "easi-water-marker") {
-                  markerDom = null;
+          if ((removeList === null || removeList === void 0 ? void 0 : removeList.length) > 0) {
+            for (const dom of Array.from(removeList)) {
+              if (dom.getAttribute("id") === "easi-watermarker-container") {
+                var _app;
 
-                  _createWaterMarker({
-                    timestamp: timestamp.value,
-                    waterMarker: waterMarker.value
-                  });
-                }
+                (_app = app) === null || _app === void 0 ? void 0 : _app.unmount();
+                createMarker();
               }
             }
           }
-        };
-
-        const observer = new MutationObserver(callback);
-        observer.observe(document.body, config);
+        }
       };
 
-      obverse();
-      let time;
-
-      const refreshTime = () => {
-        clearTimeout(time);
-        time = setTimeout(() => {
-          timestamp.value = moment().format("YYYY-MM-DD HH:mm:ss");
-
-          if (markerDom) {
-            markerDom.remove();
-          }
-
-          refreshTime();
-        }, 5e3);
-      };
-
-      return options => {
-        const {
-          timestamp: timestamp2,
-          waterMarker: waterMarker2
-        } = options;
-        markerDom = document.createElement("div");
-        markerDom.setAttribute("id", "easi-water-marker");
-        const app = createApp(script$1);
-        marker = app.mount(markerDom);
-        marker.timestamp = timestamp2;
-        marker.waterMarker = waterMarker2;
-        marker.totalNumber = totalNumber;
-        marker.domain = domain;
-        insertPosition ? body.append(markerDom) : body.prepend(markerDom);
-        insertPosition = !insertPosition;
-        refreshTime();
-      };
+      observer = new MutationObserver(callback);
+      observer.observe(document.body, config);
     };
 
-    const _createWaterMarker = createWaterMarker();
+    obverseFunc();
 
-    _createWaterMarker({
-      timestamp: timestamp.value,
-      waterMarker: waterMarker.value
-    });
+    if (!document.querySelector("#easi-watermarker-container")) {
+      createMarker();
+    }
+
+    return {
+      domain,
+      totalNumber
+    };
   },
 
   components: {

@@ -12,7 +12,10 @@ declare const _default: import("vue").DefineComponent<{
         type: PropType<IWaterMarker>;
         default: () => {};
     };
-}, void, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
+}, {
+    domain: string;
+    totalNumber: number;
+}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
     locale?: unknown;
     waterMarker?: unknown;
 } & {
