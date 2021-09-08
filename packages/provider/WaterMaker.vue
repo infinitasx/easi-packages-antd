@@ -14,17 +14,13 @@
 <script lang="ts">
 import {computed, defineComponent, inject, nextTick, PropType, ref, toRefs, onBeforeUnmount} from 'vue';
 import {createNamespace} from '../utils/create';
-import {defaultProvider, IProvider} from '../utils/globalProvider';
+import { IProvider} from '../utils/globalProvider';
 import {IWaterMarker} from "../../typings/antd";
 import moment from "moment";
 
 export default defineComponent({
   name: createNamespace('WaterMaker'),
   props: {
-    waterMarker: {
-      type: Object as PropType<IWaterMarker>,
-      default: () => ({})
-    },
     totalNumber: {
       type: Number,
       default: 0
@@ -39,7 +35,9 @@ export default defineComponent({
     }
   },
   setup(props) {
-    const {waterMarker, globalProvider} = toRefs(props);
+    const {globalProvider} = toRefs(props);
+
+    const waterMarker = ref<IWaterMarker>({});
 
     const mobile = computed(() => {
       let m = waterMarker.value?.userInfo?.mobile || globalProvider.value?.userInfo?.mobile;
@@ -47,7 +45,7 @@ export default defineComponent({
     })
 
     const showMarker = ref<boolean>(true);
-    const timestamp = ref<string>(moment().format('YYYY-MM-DD HH:mm:ss'))
+    const timestamp = ref<string>(moment().format('YYYY-MM-DD HH:mm:ss'));
 
     let time: any;
     let refreshTime: Function | null = () => {
@@ -72,9 +70,7 @@ export default defineComponent({
       globalProvider,
       timestamp,
       showMarker,
-      setShow() {
-        showMarker.value = true
-      }
+      waterMarker,
     }
   },
 });

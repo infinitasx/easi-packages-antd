@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, provide, watch, toRefs, PropType, createApp, App} from "vue"
+import {defineComponent, provide, watch, toRefs, PropType, createApp, App, ComponentPublicInstance} from "vue"
 import {createNamespace} from "../utils/create";
 import { initProvider } from "../utils/globalProvider";
 import {initI18n, ILocale, langMap} from "../locale";
@@ -44,7 +44,7 @@ export default defineComponent({
     const totalNumber = _row * _col;
 
     let app: App;
-
+    let comp: typeof WaterMarker | null;
 
     const createMarker = () => {
       const dom = document.createElement('div');
@@ -52,10 +52,12 @@ export default defineComponent({
       app = createApp(WaterMarker, {
         domain,
         totalNumber,
-        waterMarker: waterMarker.value,
         globalProvider: globalProvider
       });
-      app.mount(dom);
+
+      comp = app.mount(dom) as any;
+
+      (comp as typeof WaterMarker).waterMarker = waterMarker.value;
       document.body.appendChild(dom);
     }
 
@@ -71,6 +73,7 @@ export default defineComponent({
             for(const dom of Array.from(removeList)){
               if((dom as Element).getAttribute('id') === 'easi-watermarker-container'){
                 app?.unmount();
+                comp = null;
                 createMarker();
               }
             }
@@ -89,6 +92,12 @@ export default defineComponent({
     if(!document.querySelector('#easi-watermarker-container')){
       createMarker();
     }
+
+    watch(() => waterMarker.value, () => {
+      if(comp) {
+        comp.waterMarker = waterMarker.value;
+      }
+    })
 
     return {
       domain,

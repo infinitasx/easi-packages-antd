@@ -1,11 +1,6 @@
 import { PropType } from 'vue';
 import { IProvider } from '../utils/globalProvider';
-import { IWaterMarker } from "../../typings/antd";
 declare const _default: import("vue").DefineComponent<{
-    waterMarker: {
-        type: PropType<IWaterMarker>;
-        default: () => {};
-    };
     totalNumber: {
         type: NumberConstructor;
         default: number;
@@ -43,20 +38,33 @@ declare const _default: import("vue").DefineComponent<{
     } | undefined>;
     timestamp: import("vue").Ref<string>;
     showMarker: import("vue").Ref<boolean>;
-    setShow(): void;
+    waterMarker: import("vue").Ref<{
+        ip?: string | undefined;
+        cityName?: string | undefined;
+        userInfo?: {
+            name?: string | undefined;
+            avatar?: string | undefined;
+            devices?: {
+                [x: string]: any;
+                device_type: "Desktop" | "Mobile" | "Tablet";
+                active_at: number;
+                ip: string;
+                id: string;
+            }[] | undefined;
+            session_id?: string | undefined;
+            mobile?: string | undefined;
+        } | undefined;
+    }>;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
-    waterMarker?: unknown;
     totalNumber?: unknown;
     domain?: unknown;
     globalProvider?: unknown;
 } & {
-    waterMarker: IWaterMarker;
     totalNumber: number;
 } & {
     domain?: string | undefined;
     globalProvider?: IProvider | undefined;
 }> & {}, {
-    waterMarker: IWaterMarker;
     totalNumber: number;
     domain: string;
     globalProvider: IProvider;

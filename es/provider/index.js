@@ -1,4 +1,4 @@
-import { reactive, defineComponent, toRefs, computed, ref, onBeforeUnmount, nextTick, openBlock, createBlock, Fragment, renderList, createVNode, toDisplayString, createCommentVNode, provide, watch, createApp, resolveComponent, mergeProps, renderSlot, withScopeId } from 'vue';
+import { reactive, defineComponent, toRefs, ref, computed, onBeforeUnmount, nextTick, openBlock, createBlock, Fragment, renderList, createVNode, toDisplayString, createCommentVNode, provide, watch, createApp, resolveComponent, mergeProps, renderSlot, withScopeId } from 'vue';
 import { getLocal } from 'easi-web-utils';
 import moment from 'moment';
 
@@ -187,10 +187,6 @@ function initI18n(lang) {
 var script$1 = defineComponent({
   name: createNamespace("WaterMaker"),
   props: {
-    waterMarker: {
-      type: Object,
-      default: () => ({})
-    },
     totalNumber: {
       type: Number,
       default: 0
@@ -207,9 +203,9 @@ var script$1 = defineComponent({
 
   setup(props) {
     const {
-      waterMarker,
       globalProvider
     } = toRefs(props);
+    const waterMarker = ref({});
     const mobile = computed(() => {
       var _waterMarker$value, _waterMarker$value$us, _globalProvider$value, _globalProvider$value2;
 
@@ -240,11 +236,7 @@ var script$1 = defineComponent({
       globalProvider,
       timestamp,
       showMarker,
-
-      setShow() {
-        showMarker.value = true;
-      }
-
+      waterMarker
     };
   }
 
@@ -308,6 +300,7 @@ var script = defineComponent({
 
     const totalNumber = _row * _col;
     let app;
+    let comp;
 
     const createMarker = () => {
       const dom = document.createElement("div");
@@ -315,10 +308,10 @@ var script = defineComponent({
       app = createApp(script$1, {
         domain,
         totalNumber,
-        waterMarker: waterMarker.value,
         globalProvider
       });
-      app.mount(dom);
+      comp = app.mount(dom);
+      comp.waterMarker = waterMarker.value;
       document.body.appendChild(dom);
     };
 
@@ -337,6 +330,7 @@ var script = defineComponent({
                 var _app;
 
                 (_app = app) === null || _app === void 0 ? void 0 : _app.unmount();
+                comp = null;
                 createMarker();
               }
             }
@@ -354,6 +348,11 @@ var script = defineComponent({
       createMarker();
     }
 
+    watch(() => waterMarker.value, () => {
+      if (comp) {
+        comp.waterMarker = waterMarker.value;
+      }
+    });
     return {
       domain,
       totalNumber

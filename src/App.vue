@@ -1,5 +1,5 @@
 <template>
-  <EASIProvider :locale="ZH">
+  <EASIProvider :locale="ZH" :waterMarker="{cityName}">
     <router-view></router-view>
   </EASIProvider>
 </template>
@@ -10,8 +10,20 @@ import ZH from 'ant-design-vue/lib/locale/zh_CN';
 export default defineComponent({
   setup() {
 
+    const cityName = ref<string | undefined>();
+
+    setTimeout(() => {
+      waterMarker.cityName = cityName.value = 'ddddd';
+    }, 2000)
+
+    const waterMarker = reactive({
+      cityName: ''
+    })
+
     return {
       ZH,
+      cityName,
+      waterMarker
     };
   },
 });

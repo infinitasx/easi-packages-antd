@@ -7,6 +7,7 @@
 ## [0.0.28] - 2021-09-08
 
 - EASIProvider组件监听水印删除事件，自动生成新的dom
+- EASIProvider组件修复waterMarker属性未触发水印更新的bug
 
 ## [0.0.27] - 2021-09-08
 
