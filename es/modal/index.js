@@ -1,4 +1,4 @@
-import { defineComponent, toRefs, ref, inject, watch, resolveComponent, openBlock, createBlock, Fragment, createCommentVNode, createVNode, mergeProps, withCtx, renderSlot, createTextVNode, toDisplayString } from 'vue';
+import { defineComponent, toRefs, ref, inject, watch, resolveComponent, openBlock, createElementBlock, Fragment, createCommentVNode, createVNode, mergeProps, withCtx, renderSlot, createBlock, createTextVNode, toDisplayString } from 'vue';
 
 function createNamespace(name) {
   return `EASI${name}`;
@@ -178,7 +178,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   const _component_a_modal = resolveComponent("a-modal");
 
-  return openBlock(), createBlock(Fragment, null, [createCommentVNode('  <slot name="trigger" />'), createVNode(_component_a_modal, mergeProps({
+  return openBlock(), createElementBlock(Fragment, null, [createCommentVNode('  <slot name="trigger" />'), createVNode(_component_a_modal, mergeProps({
     visible: _ctx.visible === void 0 ? _ctx.symbolVisible : _ctx.visible,
     title: _ctx.title,
     bodyStyle: _ctx.autoHeight ? _ctx.bodyStyle : { ..._ctx.bodyScrollStyle,
@@ -198,7 +198,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, _ctx.$attrs, {
     onCancel: _ctx.onCancel
   }), {
-    footer: withCtx(() => [renderSlot(_ctx.$slots, "footer"), !_ctx.$slots.footer && _ctx.footer ? (openBlock(), createBlock("div", _hoisted_1, [_ctx.showCancel ? (openBlock(), createBlock(_component_a_button, {
+    footer: withCtx(() => [renderSlot(_ctx.$slots, "footer"), !_ctx.$slots.footer && _ctx.footer ? (openBlock(), createElementBlock("div", _hoisted_1, [_ctx.showCancel ? (openBlock(), createBlock(_component_a_button, {
       key: 0,
       onClick: _ctx.onCancel
     }, {

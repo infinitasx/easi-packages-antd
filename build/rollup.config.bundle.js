@@ -11,6 +11,8 @@ import copy from 'rollup-plugin-copy';
 import del from 'rollup-plugin-delete';
 import { resolve } from 'path';
 
+console.log(path.resolve(__dirname, '../tsconfig.json'));
+
 export default [
   {
     input: path.resolve(__dirname, '../packages/easi-packages-antd/index.ts'),
@@ -28,19 +30,27 @@ export default [
       image(),
       json(),
       scss(),
+      typescript({
+        check: true,
+        tsconfig: path.resolve(__dirname, '../tsconfig.json'), // your tsconfig.json path
+        tsconfigOverride: {
+          compilerOptions: {
+            sourceMap: false,
+            declaration: true,
+            declarationMap: false,
+          },
+          include: ['packages/**/*'],
+          exclude: ['node_modules'],
+        },
+        abortOnError: true,
+        enforce: 'pre',
+      }),
       terser(),
       nodeResolve(),
       vue({
         css: false,
       }),
       commonjs(),
-      typescript({
-        tsconfigOverride: {
-          include: ['packages/**/*', 'typings/vue-shim.d.ts'],
-          exclude: ['node_modules'],
-        },
-        abortOnError: true,
-      }),
       copy({
         targets: [
           {

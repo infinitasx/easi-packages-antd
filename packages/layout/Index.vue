@@ -54,6 +54,7 @@ import { UserInfo } from '../../typings/antd'
 
 export default defineComponent({
   name: createNamespace("Layout"),
+  emits: ['update:setting'],
   props: {
     // Logo图片路径
     logo: {
@@ -104,10 +105,14 @@ export default defineComponent({
     startYear: {
       type: [String, Number],
       default: 2021,
+    },
+    setting: {
+      type: Boolean,
+      default: false
     }
   },
-  setup(props) {
-    const { nav } = toRefs(props);
+  setup(props, {emit}) {
+    const { nav, setting } = toRefs(props);
 
     const route = useRoute();
     const router = useRouter();
@@ -164,6 +169,18 @@ export default defineComponent({
 
     handleResize();
     window.addEventListener("resize", handleResize, false);
+
+    watch(() => showSetting.value, (newVal) => {
+      if(setting.value !== newVal){
+        emit('update:setting', newVal);
+      }
+    })
+
+    watch(() => setting.value, (newVal) => {
+      if(showSetting.value !== newVal){
+        showSetting.value = newVal
+      }
+    })
 
     onMounted(() => {
       if (route.name === "Index" && nav.value.length > 0) {

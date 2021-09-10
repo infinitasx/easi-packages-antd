@@ -1,4 +1,4 @@
-import { defineComponent, resolveComponent, resolveDirective, withDirectives, openBlock, createBlock, mergeProps, createSlots, withCtx, createVNode, renderSlot, createCommentVNode, renderList } from 'vue';
+import { defineComponent, resolveComponent, resolveDirective, withDirectives, openBlock, createBlock, mergeProps, createSlots, withCtx, createVNode, normalizeClass, renderSlot, createCommentVNode, renderList, normalizeProps } from 'vue';
 
 function createNamespace(name) {
   return `EASI${name}`;
@@ -42,7 +42,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     name: "title",
     fn: withCtx(() => [createVNode(_component_a_row, {
       align: "middle",
-      class: ["flex-wrap", _ctx.styleClass]
+      class: normalizeClass(["flex-wrap", _ctx.styleClass])
     }, {
       default: withCtx(() => [createVNode(_component_a_col, {
         flex: 1,
@@ -55,7 +55,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           default: withCtx(() => [renderSlot(_ctx.$slots, "headerLeft")]),
           _: 3
         })) : createCommentVNode("v-if", true)]),
-        _: 1
+        _: 3
       }), createVNode(_component_a_col, null, {
         default: withCtx(() => [_ctx.$slots.headerRight ? (openBlock(), createBlock(_component_a_space, {
           key: 0
@@ -63,16 +63,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           default: withCtx(() => [renderSlot(_ctx.$slots, "headerRight")]),
           _: 3
         })) : createCommentVNode("v-if", true)]),
-        _: 1
+        _: 3
       })]),
-      _: 1
+      _: 3
     }, 8, ["class"])])
   } : void 0, renderList(_ctx.$slots, (index, name) => {
     return {
       name,
-      fn: withCtx(slotProps => [_ctx.$slots.name !== "title" && _ctx.$slots.name !== "headerLeft" && _ctx.$slots.name !== "headerRight" ? renderSlot(_ctx.$slots, name, mergeProps({
+      fn: withCtx(slotProps => [_ctx.$slots.name !== "title" && _ctx.$slots.name !== "headerLeft" && _ctx.$slots.name !== "headerRight" ? renderSlot(_ctx.$slots, name, normalizeProps(mergeProps({
         key: 0
-      }, slotProps)) : createCommentVNode("v-if", true)])
+      }, slotProps))) : createCommentVNode("v-if", true)])
     };
   })]), 1040, ["scroll"])), [[_directive_loading, _ctx.loading]]);
 }

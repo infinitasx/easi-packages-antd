@@ -1,5 +1,5 @@
 import * as _vue from 'vue';
-import { defineComponent, pushScopeId, popScopeId, resolveComponent, openBlock, createBlock, createVNode, renderSlot, withScopeId, h, nextTick, toRefs, computed, createCommentVNode, withDirectives, vShow, withModifiers, inject, toDisplayString, ref, onBeforeUnmount, toRaw, Fragment, renderList, resolveDirective, getCurrentInstance, reactive, provide, onMounted, createTextVNode } from 'vue';
+import { defineComponent, pushScopeId, popScopeId, resolveComponent, openBlock, createElementBlock, createVNode, withCtx, renderSlot, h, nextTick, toRefs, computed, createElementVNode, normalizeClass, createBlock, createCommentVNode, withDirectives, vShow, withModifiers, normalizeStyle, inject, toDisplayString, ref, onBeforeUnmount, toRaw, Fragment, renderList, resolveDirective, getCurrentInstance, reactive, provide, onMounted, createTextVNode } from 'vue';
 import { Empty, message, Modal } from 'ant-design-vue';
 
 function createNamespace(name) {
@@ -3653,8 +3653,6 @@ var script$5 = defineComponent({
   name: "previewContainer"
 });
 
-const _withId$5 = /* @__PURE__ */withScopeId("data-v-0a563ea6");
-
 pushScopeId("data-v-0a563ea6");
 
 const _hoisted_1$5 = {
@@ -3663,14 +3661,14 @@ const _hoisted_1$5 = {
 
 popScopeId();
 
-const render$5 = /* @__PURE__ */_withId$5((_ctx, _cache, $props, $setup, $data, $options) => {
+function render$5(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_a_image_preview_group = resolveComponent("a-image-preview-group");
 
-  return openBlock(), createBlock("div", _hoisted_1$5, [createVNode(_component_a_image_preview_group, null, {
-    default: _withId$5(() => [renderSlot(_ctx.$slots, "default")]),
+  return openBlock(), createElementBlock("div", _hoisted_1$5, [createVNode(_component_a_image_preview_group, null, {
+    default: withCtx(() => [renderSlot(_ctx.$slots, "default")]),
     _: 3
   })]);
-});
+}
 
 script$5.render = render$5;
 script$5.__scopeId = "data-v-0a563ea6";
@@ -5510,8 +5508,6 @@ var script$4 = defineComponent({
   }
 });
 
-const _withId$4 = /* @__PURE__ */withScopeId("data-v-37672004");
-
 pushScopeId("data-v-37672004");
 
 const _hoisted_1$4 = {
@@ -5526,7 +5522,7 @@ const _hoisted_3$2 = {
 const _hoisted_4$2 = {
   class: "easi-uploader-loading flex items-center justify-center"
 };
-const _hoisted_5$1 = {
+const _hoisted_5$2 = {
   key: 0,
   class: "ant-card-actions"
 };
@@ -5539,7 +5535,7 @@ const _hoisted_6$1 = {
 
 popScopeId();
 
-const render$4 = /* @__PURE__ */_withId$4((_ctx, _cache, $props, $setup, $data, $options) => {
+function render$4(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_a_image = resolveComponent("a-image");
 
   const _component_CheckCircleFilled = resolveComponent("CheckCircleFilled");
@@ -5558,20 +5554,20 @@ const render$4 = /* @__PURE__ */_withId$4((_ctx, _cache, $props, $setup, $data, 
 
   const _component_a_card = resolveComponent("a-card");
 
-  return openBlock(), createBlock("div", _hoisted_1$4, [createVNode(_component_a_card, {
+  return openBlock(), createElementBlock("div", _hoisted_1$4, [createVNode(_component_a_card, {
     bordered: "",
     hoverable: "",
     "body-style": {
       padding: 0
     }
   }, {
-    cover: _withId$4(() => [createVNode("div", _hoisted_2$3, [createVNode(_component_a_image, {
+    cover: withCtx(() => [createElementVNode("div", _hoisted_2$3, [createVNode(_component_a_image, {
       width: "100%",
       src: _ctx.item.url,
-      class: {
+      class: normalizeClass({
         "easi-uploader-disabled-checked": (_ctx.disabled && !_ctx.item.checked || _ctx.invalidAspectRatio) && _ctx.activeKey === 1
-      }
-    }, null, 8, ["src", "class"]), createVNode("div", _hoisted_3$2, [_ctx.item.uploadSuccess && _ctx.activeKey === 0 ? (openBlock(), createBlock(_component_CheckCircleFilled, {
+      })
+    }, null, 8, ["src", "class"]), createElementVNode("div", _hoisted_3$2, [_ctx.item.uploadSuccess && _ctx.activeKey === 0 ? (openBlock(), createBlock(_component_CheckCircleFilled, {
       key: 0,
       style: {
         "color": "#67c23a",
@@ -5588,35 +5584,35 @@ const render$4 = /* @__PURE__ */_withId$4((_ctx, _cache, $props, $setup, $data, 
       checked: _ctx.item.checked,
       disabled: _ctx.disabled && !_ctx.item.checked || _ctx.invalidAspectRatio,
       size: "large",
-      onChange: _cache[1] || (_cache[1] = $event => _ctx.$emit("handleCheckChange", $event, _ctx.item, _ctx.index))
-    }, null, 8, ["checked", "disabled"])) : createCommentVNode("v-if", true)]), withDirectives(createVNode("span", _hoisted_4$2, [createVNode(_component_LoadingOutlined)], 512), [[vShow, !_ctx.item.uploadSuccess && _ctx.loading]])])]),
-    default: _withId$4(() => [_ctx.activeKey === 0 ? (openBlock(), createBlock("ul", _hoisted_5$1, [_ctx.crop && !_ctx.item.uploadSuccess ? (openBlock(), createBlock("li", _hoisted_6$1, [createVNode(_component_EASIButton, {
+      onChange: _cache[0] || (_cache[0] = $event => _ctx.$emit("handleCheckChange", $event, _ctx.item, _ctx.index))
+    }, null, 8, ["checked", "disabled"])) : createCommentVNode("v-if", true)]), withDirectives(createElementVNode("span", _hoisted_4$2, [createVNode(_component_LoadingOutlined)], 512), [[vShow, !_ctx.item.uploadSuccess && _ctx.loading]])])]),
+    default: withCtx(() => [_ctx.activeKey === 0 ? (openBlock(), createElementBlock("ul", _hoisted_5$2, [_ctx.crop && !_ctx.item.uploadSuccess ? (openBlock(), createElementBlock("li", _hoisted_6$1, [createVNode(_component_EASIButton, {
       type: "link",
       block: "",
       disabled: _ctx.item.uploadSuccess || !_ctx.crop || _ctx.disabled || _ctx.item.file.type === "image/gif" || !_ctx.item.uploadSuccess && _ctx.loading,
       key: "scissor",
-      onClick: _cache[2] || (_cache[2] = withModifiers($event => _ctx.handleCrop(_ctx.item, _ctx.index), ["stop"]))
+      onClick: _cache[1] || (_cache[1] = withModifiers($event => _ctx.handleCrop(_ctx.item, _ctx.index), ["stop"]))
     }, {
-      icon: _withId$4(() => [createVNode(_component_ScissorOutlined)]),
+      icon: withCtx(() => [createVNode(_component_ScissorOutlined)]),
       _: 1
-    }, 8, ["disabled"])])) : createCommentVNode("v-if", true), createVNode("li", {
-      style: {
+    }, 8, ["disabled"])])) : createCommentVNode("v-if", true), createElementVNode("li", {
+      style: normalizeStyle({
         width: _ctx.crop && !_ctx.item.uploadSuccess ? "50%" : "100%"
-      }
+      })
     }, [createVNode(_component_EASIButton, {
       type: "link",
       block: "",
       disabled: _ctx.disabled || !_ctx.item.uploadSuccess && _ctx.loading,
       key: "delete",
       danger: "",
-      onClick: _cache[3] || (_cache[3] = withModifiers($event => _ctx.handleDelete(_ctx.item, _ctx.index), ["stop"]))
+      onClick: _cache[2] || (_cache[2] = withModifiers($event => _ctx.handleDelete(_ctx.item, _ctx.index), ["stop"]))
     }, {
-      icon: _withId$4(() => [createVNode(_component_DeleteOutlined)]),
+      icon: withCtx(() => [createVNode(_component_DeleteOutlined)]),
       _: 1
     }, 8, ["disabled"])], 4)])) : createCommentVNode("v-if", true)]),
     _: 1
   })]);
-});
+}
 
 script$4.render = render$4;
 script$4.__scopeId = "data-v-37672004";
@@ -5737,8 +5733,6 @@ var script$3 = defineComponent({
 
 });
 
-const _withId$3 = /* @__PURE__ */withScopeId("data-v-b0da4ce0");
-
 pushScopeId("data-v-b0da4ce0");
 
 const _hoisted_1$3 = {
@@ -5753,13 +5747,13 @@ const _hoisted_3$1 = {
   class: "ant-upload-drag-container"
 };
 
-const _hoisted_4$1 = /* @__PURE__ */createVNode("p", {
+const _hoisted_4$1 = /* @__PURE__ */createElementVNode("p", {
   class: "ant-upload-drag-icon"
-}, [/* @__PURE__ */createVNode("span", {
+}, [/* @__PURE__ */createElementVNode("span", {
   role: "img",
   "aria-label": "picture",
   class: "anticon anticon-picture"
-}, [/* @__PURE__ */createVNode("svg", {
+}, [/* @__PURE__ */createElementVNode("svg", {
   focusable: "false",
   class: "",
   "data-icon": "picture",
@@ -5768,11 +5762,11 @@ const _hoisted_4$1 = /* @__PURE__ */createVNode("p", {
   fill: "currentColor",
   "aria-hidden": "true",
   viewBox: "64 64 896 896"
-}, [/* @__PURE__ */createVNode("path", {
+}, [/* @__PURE__ */createElementVNode("path", {
   d: "M928 160H96c-17.7 0-32 14.3-32 32v640c0 17.7 14.3 32 32 32h832c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32zm-40 632H136v-39.9l138.5-164.3 150.1 178L658.1 489 888 761.6V792zm0-129.8L664.2 396.8c-3.2-3.8-9-3.8-12.2 0L424.6 666.4l-144-170.7c-3.2-3.8-9-3.8-12.2 0L136 652.7V232h752v430.2zM304 456a88 88 0 100-176 88 88 0 000 176zm0-116c15.5 0 28 12.5 28 28s-12.5 28-28 28-28-12.5-28-28 12.5-28 28-28z"
 })])])], -1);
 
-const _hoisted_5 = {
+const _hoisted_5$1 = {
   class: "ant-upload-text"
 };
 const _hoisted_6 = {
@@ -5781,12 +5775,12 @@ const _hoisted_6 = {
 
 popScopeId();
 
-const render$3 = /* @__PURE__ */_withId$3((_ctx, _cache, $props, $setup, $data, $options) => {
-  return openBlock(), createBlock("div", _hoisted_1$3, [createVNode("div", {
+function render$3(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("div", _hoisted_1$3, [createElementVNode("div", {
     class: "ant-upload ant-upload-drag",
-    onClick: _cache[1] || (_cache[1] = withModifiers($event => _ctx.$emit("clickEmpty"), ["stop"]))
-  }, [createVNode("div", _hoisted_2$2, [createVNode("div", _hoisted_3$1, [_hoisted_4$1, createVNode("p", _hoisted_5, toDisplayString(_ctx.emptyTitle || _ctx.getText("uploaderEmptyTitle")), 1), createVNode("p", _hoisted_6, toDisplayString(_ctx.emptySubTitle || _ctx.getText("uploaderEmptySubTitle")), 1)])])])]);
-});
+    onClick: _cache[0] || (_cache[0] = withModifiers($event => _ctx.$emit("clickEmpty"), ["stop"]))
+  }, [createElementVNode("div", _hoisted_2$2, [createElementVNode("div", _hoisted_3$1, [_hoisted_4$1, createElementVNode("p", _hoisted_5$1, toDisplayString(_ctx.emptyTitle || _ctx.getText("uploaderEmptyTitle")), 1), createElementVNode("p", _hoisted_6, toDisplayString(_ctx.emptySubTitle || _ctx.getText("uploaderEmptySubTitle")), 1)])])])]);
+}
 
 script$3.render = render$3;
 script$3.__scopeId = "data-v-b0da4ce0";
@@ -6256,28 +6250,27 @@ var script$2 = defineComponent({
   }
 });
 
-const _withId$2 = /* @__PURE__ */withScopeId("data-v-7e0ccd4e");
-
 pushScopeId("data-v-7e0ccd4e");
 
-const _hoisted_1$2 = {
+const _hoisted_1$2 = ["accept", "multiple", "disabled"];
+const _hoisted_2$1 = {
   class: "icon-btn-plus text-center"
 };
-const _hoisted_2$1 = {
+const _hoisted_3 = {
   style: {
     "font-size": "14px"
   }
 };
-const _hoisted_3 = {
+const _hoisted_4 = {
   class: "easi-uploader-cropper"
 };
-const _hoisted_4 = {
+const _hoisted_5 = {
   ref: "cropImageRef"
 };
 
 popScopeId();
 
-const render$2 = /* @__PURE__ */_withId$2((_ctx, _cache, $props, $setup, $data, $options) => {
+function render$2(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Empty = resolveComponent("Empty");
 
   const _component_UploaderItem = resolveComponent("UploaderItem");
@@ -6286,22 +6279,22 @@ const render$2 = /* @__PURE__ */_withId$2((_ctx, _cache, $props, $setup, $data, 
 
   const _component_UploaderContainer = resolveComponent("UploaderContainer");
 
-  return openBlock(), createBlock(Fragment, null, [createVNode("input", {
+  return openBlock(), createElementBlock(Fragment, null, [createElementVNode("input", {
     ref: "inputRef",
     type: "file",
     accept: _ctx.accept,
     multiple: _ctx.multiple === true || typeof _ctx.multiple === "number" && _ctx.multiple > 1,
     disabled: _ctx.disabled,
-    onChange: _cache[1] || (_cache[1] = (...args) => _ctx.handleChange && _ctx.handleChange(...args)),
+    onChange: _cache[0] || (_cache[0] = (...args) => _ctx.handleChange && _ctx.handleChange(...args)),
     style: {
       "display": "none"
     }
-  }, null, 40, ["accept", "multiple", "disabled"]), withDirectives(createVNode(_component_Empty, {
+  }, null, 40, _hoisted_1$2), withDirectives(createVNode(_component_Empty, {
     emptyTitle: _ctx.emptyTitle,
     emptySubTitle: _ctx.emptySubTitle,
-    onClickEmpty: _cache[2] || (_cache[2] = $event => _ctx.inputRef.click())
+    onClickEmpty: _cache[1] || (_cache[1] = $event => _ctx.inputRef.click())
   }, null, 8, ["emptyTitle", "emptySubTitle"]), [[vShow, _ctx.localUploadList.length === 0 && _ctx.localUploadMustCrop.length === 0]]), withDirectives(createVNode(_component_UploaderContainer, null, {
-    default: _withId$2(() => [(openBlock(true), createBlock(Fragment, null, renderList(_ctx.localUploadList, (item, index) => {
+    default: withCtx(() => [(openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.localUploadList, (item, index) => {
       return openBlock(), createBlock(_component_UploaderItem, {
         key: index,
         item,
@@ -6313,13 +6306,13 @@ const render$2 = /* @__PURE__ */_withId$2((_ctx, _cache, $props, $setup, $data, 
         onHandleDelete: _ctx.handleDelete,
         onHandleCrop: _ctx.handleCrop
       }, null, 8, ["item", "index", "crop", "ratio", "loading", "onHandleDelete", "onHandleCrop"]);
-    }), 128)), withDirectives(createVNode("div", {
+    }), 128)), withDirectives(createElementVNode("div", {
       class: "easi-uploader-add-btn",
-      onClick: _cache[3] || (_cache[3] = $event => _ctx.inputRef.click())
-    }, [createVNode("div", _hoisted_1$2, [createVNode("p", null, [createVNode(_component_PlusOutlined)]), createVNode("p", _hoisted_2$1, toDisplayString(_ctx.localUploadList.length) + " / " + toDisplayString(_ctx.multiple), 1)])], 512), [[vShow, _ctx.showAddBtn]])]),
+      onClick: _cache[2] || (_cache[2] = $event => _ctx.inputRef.click())
+    }, [createElementVNode("div", _hoisted_2$1, [createElementVNode("p", null, [createVNode(_component_PlusOutlined)]), createElementVNode("p", _hoisted_3, toDisplayString(_ctx.localUploadList.length) + " / " + toDisplayString(_ctx.multiple), 1)])], 512), [[vShow, _ctx.showAddBtn]])]),
     _: 1
-  }, 512), [[vShow, !_ctx.isCropping]]), withDirectives(createVNode("div", _hoisted_3, [createVNode("img", _hoisted_4, null, 512)], 512), [[vShow, _ctx.isCropping]])], 64);
-});
+  }, 512), [[vShow, !_ctx.isCropping]]), withDirectives(createElementVNode("div", _hoisted_4, [createElementVNode("img", _hoisted_5, null, 512)], 512), [[vShow, _ctx.isCropping]])], 64);
+}
 
 script$2.render = render$2;
 script$2.__scopeId = "data-v-7e0ccd4e";
@@ -6458,20 +6451,13 @@ var script$1 = defineComponent({
   }
 });
 
-const _withId$1 = /* @__PURE__ */withScopeId("data-v-704c7293");
-
-pushScopeId("data-v-704c7293");
-
 const _hoisted_1$1 = {
   class: "overflow-hidden"
 };
 const _hoisted_2 = {
   class: "flex items-center justify-end mt-6"
 };
-
-popScopeId();
-
-const render$1 = /* @__PURE__ */_withId$1((_ctx, _cache, $props, $setup, $data, $options) => {
+function render$1(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_UploaderItem = resolveComponent("UploaderItem");
 
   const _component_a_pagination = resolveComponent("a-pagination");
@@ -6483,7 +6469,7 @@ const render$1 = /* @__PURE__ */_withId$1((_ctx, _cache, $props, $setup, $data, 
   const _directive_loading = resolveDirective("loading");
 
   return withDirectives((openBlock(), createBlock(_component_UploaderContainer, null, {
-    default: _withId$1(() => [createVNode("div", _hoisted_1$1, [(openBlock(true), createBlock(Fragment, null, renderList(_ctx.imageList, (item, index) => {
+    default: withCtx(() => [createElementVNode("div", _hoisted_1$1, [(openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.imageList, (item, index) => {
       return openBlock(), createBlock(_component_UploaderItem, {
         key: index,
         item,
@@ -6493,15 +6479,15 @@ const render$1 = /* @__PURE__ */_withId$1((_ctx, _cache, $props, $setup, $data, 
         activeKey: 1,
         onHandleCheckChange: _ctx.handleCheckChange
       }, null, 8, ["item", "index", "disabled", "ratio", "onHandleCheckChange"]);
-    }), 128))]), withDirectives(createVNode("div", _hoisted_2, [createVNode(_component_a_pagination, {
+    }), 128))]), withDirectives(createElementVNode("div", _hoisted_2, [createVNode(_component_a_pagination, {
       "show-quick-jumper": "",
       "show-size-changer": "",
       "show-total": _ctx.showTotal,
       showLessItems: "",
       current: _ctx.current,
-      "onUpdate:current": _cache[1] || (_cache[1] = $event => _ctx.current = $event),
+      "onUpdate:current": _cache[0] || (_cache[0] = $event => _ctx.current = $event),
       "page-size": _ctx.pageSize,
-      "onUpdate:page-size": _cache[2] || (_cache[2] = $event => _ctx.pageSize = $event),
+      "onUpdate:page-size": _cache[1] || (_cache[1] = $event => _ctx.pageSize = $event),
       total: _ctx.total,
       onChange: _ctx.onChange,
       onShowSizeChange: _ctx.onChange
@@ -6510,10 +6496,9 @@ const render$1 = /* @__PURE__ */_withId$1((_ctx, _cache, $props, $setup, $data, 
     }, null, 8, ["image"]), [[vShow, _ctx.imageList.length === 0]])]),
     _: 1
   }, 512)), [[_directive_loading, _ctx.uploadGlobal.listLoading]]);
-});
+}
 
 script$1.render = render$1;
-script$1.__scopeId = "data-v-704c7293";
 script$1.__file = "packages/uploader/ImageStore.vue";
 
 var script = defineComponent({
@@ -6963,8 +6948,6 @@ var script = defineComponent({
   }
 });
 
-const _withId = /* @__PURE__ */withScopeId("data-v-67d79ad6");
-
 pushScopeId("data-v-67d79ad6");
 
 const _hoisted_1 = {
@@ -6973,7 +6956,7 @@ const _hoisted_1 = {
 
 popScopeId();
 
-const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $options) => {
+function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Upload = resolveComponent("Upload");
 
   const _component_a_tab_pane = resolveComponent("a-tab-pane");
@@ -6998,7 +6981,7 @@ const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $opt
 
   const _directive_loading = resolveDirective("loading");
 
-  return openBlock(), createBlock(Fragment, null, [renderSlot(_ctx.$slots, "default"), createVNode(_component_EASIModal, {
+  return openBlock(), createElementBlock(Fragment, null, [renderSlot(_ctx.$slots, "default"), createVNode(_component_EASIModal, {
     visible: _ctx.visible === void 0 ? _ctx.symbolVisible : _ctx.visible,
     "body-style": {
       height: "calc(100vh - 300px)",
@@ -7011,18 +6994,18 @@ const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $opt
     onShow: _ctx.handleShow,
     onCancel: _ctx.handleCancel
   }, {
-    footer: _withId(() => [createVNode("div", _hoisted_1, [withDirectives(createVNode(_component_a_typography_text, {
+    footer: withCtx(() => [createElementVNode("div", _hoisted_1, [withDirectives(createVNode(_component_a_typography_text, {
       type: "secondary",
       class: "flex-1 text-left"
     }, {
-      default: _withId(() => [createTextVNode(toDisplayString(_ctx.getText("selected")) + " " + toDisplayString(_ctx.checkedList.length) + " / " + toDisplayString(typeof _ctx.multiple === "number" ? _ctx.multiple : 1), 1)]),
+      default: withCtx(() => [createTextVNode(toDisplayString(_ctx.getText("selected")) + " " + toDisplayString(_ctx.checkedList.length) + " / " + toDisplayString(typeof _ctx.multiple === "number" ? _ctx.multiple : 1), 1)]),
       _: 1
     }, 512), [[vShow, _ctx.activeKey === 1]]), _ctx.localUploadList.length === 0 && _ctx.localUploadMustCrop.length === 0 && _ctx.multiple !== true && _ctx.activeKey === 0 ? (openBlock(), createBlock(_component_a_typography_text, {
       key: 0,
       type: "secondary",
       class: "flex-1 text-left"
     }, {
-      default: _withId(() => [createTextVNode(toDisplayString(_ctx.getText("uploaderError1", {
+      default: withCtx(() => [createTextVNode(toDisplayString(_ctx.getText("uploaderError1", {
         max: typeof _ctx.multiple === "number" ? _ctx.multiple.toString() : 1
       })), 1)]),
       _: 1
@@ -7031,17 +7014,17 @@ const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $opt
       type: "danger",
       class: "flex-1 text-left"
     }, {
-      default: _withId(() => [createTextVNode(toDisplayString(_ctx.getText("uploaderMustCropTips", {
+      default: withCtx(() => [createTextVNode(toDisplayString(_ctx.getText("uploaderMustCropTips", {
         number: _ctx.localUploadMustCrop.length
       })), 1)]),
       _: 1
     })) : createCommentVNode("v-if", true), createVNode(_component_a_space, null, {
-      default: _withId(() => [createCommentVNode(" \u5173\u95ED\u5F39\u6846\u6309\u94AE "), !_ctx.isCropping ? (openBlock(), createBlock(_component_EASIButton, {
+      default: withCtx(() => [createCommentVNode(" \u5173\u95ED\u5F39\u6846\u6309\u94AE "), !_ctx.isCropping ? (openBlock(), createBlock(_component_EASIButton, {
         key: 0,
         disabled: _ctx.disabled,
         onClick: _ctx.handleCancel
       }, {
-        default: _withId(() => [createTextVNode(toDisplayString(_ctx.getText("cancel")), 1)]),
+        default: withCtx(() => [createTextVNode(toDisplayString(_ctx.getText("cancel")), 1)]),
         _: 1
       }, 8, ["disabled", "onClick"])) : createCommentVNode("v-if", true), createCommentVNode(" \u5F00\u59CB\u4E0A\u4F20\u6309\u94AE "), _ctx.activeKey === 0 && !_ctx.isCropping && _ctx.waitToUpload.length > 0 ? (openBlock(), createBlock(_component_EASIButton, {
         key: 1,
@@ -7051,7 +7034,7 @@ const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $opt
         success: "",
         onClick: withModifiers(_ctx.handleUpload, ["stop"])
       }, {
-        default: _withId(() => [createTextVNode(toDisplayString(_ctx.getText("uploaderPrimary")), 1)]),
+        default: withCtx(() => [createTextVNode(toDisplayString(_ctx.getText("uploaderPrimary")), 1)]),
         _: 1
       }, 8, ["disabled", "loading", "onClick"])) : createCommentVNode("v-if", true), createCommentVNode(" \u786E\u8BA4\u9009\u62E9\u6309\u94AE "), _ctx.activeKey === 1 || _ctx.activeKey === 0 && !_ctx.isCropping && _ctx.alreadyUpload.length > 0 ? (openBlock(), createBlock(_component_EASIButton, {
         key: 2,
@@ -7059,23 +7042,23 @@ const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $opt
         disabled: _ctx.disabled,
         onClick: withModifiers(_ctx.handleOK, ["stop"])
       }, {
-        default: _withId(() => [createTextVNode(toDisplayString(_ctx.getText("confirm")), 1)]),
+        default: withCtx(() => [createTextVNode(toDisplayString(_ctx.getText("confirm")), 1)]),
         _: 1
       }, 8, ["disabled", "onClick"])) : createCommentVNode("v-if", true), createCommentVNode(" \u88C1\u526A\u8FC7\u7A0B\u4E2D\u8FD4\u56DE\u56FE\u7247\u5217\u8868\u754C\u9762 "), _ctx.isCropping ? (openBlock(), createBlock(_component_EASIButton, {
         key: 3,
         disabled: _ctx.disabled,
         onClick: withModifiers(_ctx.handleCropBack, ["stop"])
       }, {
-        default: _withId(() => [createTextVNode(toDisplayString(_ctx.getText("uploadBack")), 1)]),
+        default: withCtx(() => [createTextVNode(toDisplayString(_ctx.getText("uploadBack")), 1)]),
         _: 1
       }, 8, ["disabled", "onClick"])) : createCommentVNode("v-if", true), createCommentVNode(" \u88C1\u526A\u8FC7\u7A0B\u4E2D\u5220\u9664\u67D0\u5F20\u56FE\u7247 "), _ctx.activeKey === 0 && _ctx.isCropping ? (openBlock(), createBlock(_component_EASIButton, {
         key: 4,
         type: "primary",
         danger: "",
         disabled: _ctx.disabled,
-        onClick: _cache[12] || (_cache[12] = withModifiers($event => _ctx.handleDelete(null, _ctx.cropIndex), ["stop"]))
+        onClick: _cache[11] || (_cache[11] = withModifiers($event => _ctx.handleDelete(null, _ctx.cropIndex), ["stop"]))
       }, {
-        default: _withId(() => [createTextVNode(toDisplayString(_ctx.getText("uploaderRemove")), 1)]),
+        default: withCtx(() => [createTextVNode(toDisplayString(_ctx.getText("uploaderRemove")), 1)]),
         _: 1
       }, 8, ["disabled"])) : createCommentVNode("v-if", true), createCommentVNode(" \u4E0A\u4E00\u5F20 "), _ctx.activeKey === 0 && _ctx.isCropping && _ctx.localUploadMustCrop.length === 0 && _ctx.localUploadList.length > 1 ? (openBlock(), createBlock(_component_EASIButton, {
         key: 5,
@@ -7083,7 +7066,7 @@ const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $opt
         disabled: _ctx.disabled,
         onClick: withModifiers(_ctx.handleToPrev, ["stop"])
       }, {
-        default: _withId(() => [createTextVNode(toDisplayString(_ctx.getText("uploaderPrev")), 1)]),
+        default: withCtx(() => [createTextVNode(toDisplayString(_ctx.getText("uploaderPrev")), 1)]),
         _: 1
       }, 8, ["disabled", "onClick"])) : createCommentVNode("v-if", true), createCommentVNode(" \u4E0B\u4E00\u5F20 "), _ctx.activeKey === 0 && _ctx.isCropping && (_ctx.localUploadMustCrop.length > 1 || _ctx.localUploadMustCrop.length === 0 && _ctx.localUploadList.length > 1) ? (openBlock(), createBlock(_component_EASIButton, {
         key: 6,
@@ -7093,7 +7076,7 @@ const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $opt
         loading: _ctx.uploadGlobal.cropLoading,
         success: _ctx.localUploadMustCrop.length > 1
       }, {
-        default: _withId(() => [createTextVNode(toDisplayString(_ctx.localUploadMustCrop.length > 0 ? _ctx.getText("uploaderConfirmNext") : _ctx.getText("uploaderNext")), 1)]),
+        default: withCtx(() => [createTextVNode(toDisplayString(_ctx.localUploadMustCrop.length > 0 ? _ctx.getText("uploaderConfirmNext") : _ctx.getText("uploaderNext")), 1)]),
         _: 1
       }, 8, ["disabled", "onClick", "loading", "success"])) : createCommentVNode("v-if", true), createCommentVNode(" \u786E\u8BA4\u88C1\u526A\u6309\u94AE "), _ctx.activeKey === 0 && _ctx.isCropping && _ctx.localUploadMustCrop.length <= 1 ? (openBlock(), createBlock(_component_EASIButton, {
         key: 7,
@@ -7103,23 +7086,23 @@ const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $opt
         disabled: _ctx.disabled,
         onClick: withModifiers(_ctx.handleToCrop, ["stop"])
       }, {
-        default: _withId(() => [createTextVNode(toDisplayString(_ctx.getText("uploaderConfirmCrop")), 1)]),
+        default: withCtx(() => [createTextVNode(toDisplayString(_ctx.getText("uploaderConfirmCrop")), 1)]),
         _: 1
       }, 8, ["loading", "disabled", "onClick"])) : createCommentVNode("v-if", true)]),
       _: 1
     })])]),
-    default: _withId(() => [createVNode(_component_a_tabs, {
+    default: withCtx(() => [createVNode(_component_a_tabs, {
       type: "card",
       activeKey: _ctx.activeKey,
-      "onUpdate:activeKey": _cache[11] || (_cache[11] = $event => _ctx.activeKey = $event)
+      "onUpdate:activeKey": _cache[10] || (_cache[10] = $event => _ctx.activeKey = $event)
     }, {
-      tabBarExtraContent: _withId(() => [withDirectives(createVNode(_component_a_form, {
+      tabBarExtraContent: withCtx(() => [withDirectives(createVNode(_component_a_form, {
         layout: "inline"
       }, {
-        default: _withId(() => [createVNode(_component_a_form_item, null, {
-          default: _withId(() => [createVNode(_component_a_input_search, {
+        default: withCtx(() => [createVNode(_component_a_form_item, null, {
+          default: withCtx(() => [createVNode(_component_a_input_search, {
             value: _ctx.search,
-            "onUpdate:value": _cache[10] || (_cache[10] = $event => _ctx.search = $event),
+            "onUpdate:value": _cache[9] || (_cache[9] = $event => _ctx.search = $event),
             placeholder: _ctx.getText("searchPlaceholder"),
             style: {
               "width": "184px"
@@ -7127,28 +7110,28 @@ const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $opt
           }, null, 8, ["value", "placeholder"])]),
           _: 1
         }), createVNode(_component_a_form_item, null, {
-          default: _withId(() => [createVNode(_component_EASIButton, {
+          default: withCtx(() => [createVNode(_component_EASIButton, {
             type: "primary",
             loading: _ctx.uploadGlobal.listLoading,
             onClick: withModifiers(_ctx.handleSearch, ["stop"])
           }, {
-            default: _withId(() => [createTextVNode(toDisplayString(_ctx.getText("search")), 1)]),
+            default: withCtx(() => [createTextVNode(toDisplayString(_ctx.getText("search")), 1)]),
             _: 1
           }, 8, ["loading", "onClick"])]),
           _: 1
         })]),
         _: 1
       }, 512), [[vShow, _ctx.activeKey === 1]])]),
-      default: _withId(() => [withDirectives(createVNode(_component_a_tab_pane, {
-        class: ["pane-container", _ctx.actionType],
+      default: withCtx(() => [withDirectives(createVNode(_component_a_tab_pane, {
+        class: normalizeClass(["pane-container", _ctx.actionType]),
         key: 0,
         tab: _ctx.getText("uploaderTab0"),
-        onDragover: _cache[1] || (_cache[1] = withModifiers($event => _ctx.setActionType("dragover"), ["prevent"])),
-        onDragleave: _cache[2] || (_cache[2] = withModifiers($event => _ctx.setActionType(""), ["prevent"])),
-        onDragend: _cache[3] || (_cache[3] = withModifiers(() => {}, ["prevent"])),
-        onDrop: _cache[4] || (_cache[4] = withModifiers($event => _ctx.handleChange($event, "drop"), ["prevent"]))
+        onDragover: _cache[0] || (_cache[0] = withModifiers($event => _ctx.setActionType("dragover"), ["prevent"])),
+        onDragleave: _cache[1] || (_cache[1] = withModifiers($event => _ctx.setActionType(""), ["prevent"])),
+        onDragend: _cache[2] || (_cache[2] = withModifiers(() => {}, ["prevent"])),
+        onDrop: _cache[3] || (_cache[3] = withModifiers($event => _ctx.handleChange($event, "drop"), ["prevent"]))
       }, {
-        default: _withId(() => [createVNode(_component_Upload, {
+        default: withCtx(() => [createVNode(_component_Upload, {
           ref: "uploadRef",
           localUploadList: _ctx.localUploadList,
           localUploadMustCrop: _ctx.localUploadMustCrop,
@@ -7169,15 +7152,15 @@ const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $opt
         }, null, 8, ["localUploadList", "localUploadMustCrop", "empty-title", "empty-sub-title", "accept", "multiple", "disabled", "minCropBoxHeight", "minCropBoxWidth", "ratio", "crop", "isCropping", "onInputChange", "onHandleDelete", "onHandleCrop", "onHandleConfirmCrop"])]),
         _: 1
       }, 8, ["class", "tab"]), [[_directive_loading, _ctx.localUploadLoading]]), createVNode(_component_a_tab_pane, {
-        class: ["pane-container", _ctx.actionType],
+        class: normalizeClass(["pane-container", _ctx.actionType]),
         key: 1,
         tab: _ctx.getText("uploaderTab1"),
-        onDragover: _cache[6] || (_cache[6] = withModifiers($event => _ctx.setActionType("dragover"), ["prevent"])),
-        onDragleave: _cache[7] || (_cache[7] = withModifiers($event => _ctx.setActionType(""), ["prevent"])),
-        onDragend: _cache[8] || (_cache[8] = withModifiers(() => {}, ["prevent"])),
-        onDrop: _cache[9] || (_cache[9] = withModifiers($event => _ctx.handleChange($event, "drop"), ["prevent"]))
+        onDragover: _cache[5] || (_cache[5] = withModifiers($event => _ctx.setActionType("dragover"), ["prevent"])),
+        onDragleave: _cache[6] || (_cache[6] = withModifiers($event => _ctx.setActionType(""), ["prevent"])),
+        onDragend: _cache[7] || (_cache[7] = withModifiers(() => {}, ["prevent"])),
+        onDrop: _cache[8] || (_cache[8] = withModifiers($event => _ctx.handleChange($event, "drop"), ["prevent"]))
       }, {
-        default: _withId(() => [createVNode(_component_ImageStore, {
+        default: withCtx(() => [createVNode(_component_ImageStore, {
           ref: "imageStoreRef",
           authorization: _ctx.authorization,
           domain: _ctx.domain,
@@ -7186,7 +7169,7 @@ const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $opt
           multiple: _ctx.multiple,
           ratio: _ctx.ratio,
           getText: _ctx.getText,
-          onError: _cache[5] || (_cache[5] = $event => _ctx.$emit("error", $event)),
+          onError: _cache[4] || (_cache[4] = $event => _ctx.$emit("error", $event)),
           onHandleCheckedChange: _ctx.handleCheckedChange
         }, null, 8, ["authorization", "domain", "timeout", "checkedList", "multiple", "ratio", "getText", "onHandleCheckedChange"])]),
         _: 1
@@ -7195,7 +7178,7 @@ const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $opt
     }, 8, ["activeKey"])]),
     _: 1
   }, 8, ["visible", "body-style", "title", "maskClosable", "destroyOnClose", "onShow", "onCancel"])], 64);
-});
+}
 
 script.render = render;
 script.__scopeId = "data-v-67d79ad6";

@@ -1,4 +1,4 @@
-import { defineComponent, openBlock, createBlock, renderSlot, createTextVNode } from 'vue';
+import { defineComponent, openBlock, createElementBlock, renderSlot, createTextVNode } from 'vue';
 
 function createNamespace(name) {
   return `EASI${name}`;
@@ -19,7 +19,7 @@ const _hoisted_1 = {
 const _hoisted_2 = /* @__PURE__ */createTextVNode("\u8FD9\u662F\u4E00\u4E2Atext\u7EC4\u4EF6");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createBlock("div", _hoisted_1, [renderSlot(_ctx.$slots, "default", {}, () => [_hoisted_2])]);
+  return openBlock(), createElementBlock("div", _hoisted_1, [renderSlot(_ctx.$slots, "default", {}, () => [_hoisted_2])]);
 }
 
 script.render = render;
