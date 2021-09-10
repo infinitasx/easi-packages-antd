@@ -194,7 +194,7 @@ var timerWorker = (() => {
     const refreshTime = () => {
       timer = setTimeout(() => {
         self.postMessage(type);
-      }, 3e3);
+      }, 5e3);
     };
 
     if (type !== "clear") {
