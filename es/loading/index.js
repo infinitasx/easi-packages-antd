@@ -1,4 +1,4 @@
-import { reactive, defineComponent, toRefs, getCurrentInstance, ref, watch, pushScopeId, popScopeId, openBlock, createBlock, Transition, withCtx, createElementBlock, createElementVNode, normalizeClass, toDisplayString, createCommentVNode } from 'vue';
+import { reactive, defineComponent, toRefs, getCurrentInstance, ref, watch, pushScopeId, popScopeId, openBlock, createBlock, Transition, createVNode, toDisplayString, createCommentVNode, withScopeId } from 'vue';
 
 function createNamespace(name) {
   return `EASI${name}`;
@@ -230,6 +230,8 @@ var script = defineComponent({
 
 });
 
+const _withId = /* @__PURE__ */withScopeId("data-v-7bbec90b");
+
 pushScopeId("data-v-7bbec90b");
 
 const _hoisted_1 = {
@@ -238,17 +240,17 @@ const _hoisted_1 = {
   id: "cus-loading"
 };
 
-const _hoisted_2 = /* @__PURE__ */createElementVNode("div", {
+const _hoisted_2 = /* @__PURE__ */createVNode("div", {
   class: "loading-wrap"
-}, [/* @__PURE__ */createElementVNode("div", {
+}, [/* @__PURE__ */createVNode("div", {
   class: "ball"
-}, [/* @__PURE__ */createElementVNode("i", {
+}, [/* @__PURE__ */createVNode("i", {
   class: "bg spoon"
-}), /* @__PURE__ */createElementVNode("i", {
+}), /* @__PURE__ */createVNode("i", {
   class: "bg fork"
-})]), /* @__PURE__ */createElementVNode("div", {
+})]), /* @__PURE__ */createVNode("div", {
   class: "loading-shadow"
-}, [/* @__PURE__ */createElementVNode("div")])], -1);
+}, [/* @__PURE__ */createVNode("div")])], -1);
 
 const _hoisted_3 = {
   key: 0,
@@ -257,17 +259,17 @@ const _hoisted_3 = {
 
 popScopeId();
 
-function render(_ctx, _cache, $props, $setup, $data, $options) {
+const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $options) => {
   return openBlock(), createBlock(Transition, {
     name: "fade",
     mode: "out-in"
   }, {
-    default: withCtx(() => [_ctx.cShow ? (openBlock(), createElementBlock("div", _hoisted_1, [createElementVNode("div", {
-      class: normalizeClass(["loading", _ctx.cSize])
-    }, [_hoisted_2, _ctx.title || _ctx.cTitle ? (openBlock(), createElementBlock("p", _hoisted_3, toDisplayString(_ctx.title || _ctx.cTitle), 1)) : createCommentVNode("v-if", true)], 2)])) : createCommentVNode("v-if", true)]),
+    default: _withId(() => [_ctx.cShow ? (openBlock(), createBlock("div", _hoisted_1, [createVNode("div", {
+      class: ["loading", _ctx.cSize]
+    }, [_hoisted_2, _ctx.title || _ctx.cTitle ? (openBlock(), createBlock("p", _hoisted_3, toDisplayString(_ctx.title || _ctx.cTitle), 1)) : createCommentVNode("v-if", true)], 2)])) : createCommentVNode("v-if", true)]),
     _: 1
   });
-}
+});
 
 script.render = render;
 script.__scopeId = "data-v-7bbec90b";

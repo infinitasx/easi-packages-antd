@@ -1,4 +1,4 @@
-import { reactive, defineComponent, toRefs, ref, computed, onBeforeUnmount, nextTick, openBlock, createElementBlock, Fragment, renderList, createElementVNode, toDisplayString, createCommentVNode, provide, watch, createApp, resolveComponent, createBlock, mergeProps, withCtx, renderSlot } from 'vue';
+import { reactive, defineComponent, toRefs, ref, computed, onBeforeUnmount, nextTick, openBlock, createBlock, Fragment, renderList, createVNode, toDisplayString, createCommentVNode, provide, watch, createApp, resolveComponent, mergeProps, renderSlot, withScopeId } from 'vue';
 import { getLocal } from 'easi-web-utils';
 import moment from 'moment';
 
@@ -249,15 +249,15 @@ const _hoisted_2 = {
   key: 1
 };
 function render$1(_ctx, _cache, $props, $setup, $data, $options) {
-  return _ctx.showMarker ? (openBlock(true), createElementBlock(Fragment, {
+  return _ctx.showMarker ? (openBlock(true), createBlock(Fragment, {
     key: 0
   }, renderList(_ctx.totalNumber, item => {
     var _ctx$waterMarker, _ctx$waterMarker$user, _ctx$globalProvider, _ctx$globalProvider$u, _ctx$waterMarker2, _ctx$waterMarker3;
 
-    return openBlock(), createElementBlock("div", {
+    return openBlock(), createBlock("div", {
       class: "easi-water-marker-item",
       key: item
-    }, [createElementVNode("p", null, toDisplayString(((_ctx$waterMarker = _ctx.waterMarker) === null || _ctx$waterMarker === void 0 ? void 0 : (_ctx$waterMarker$user = _ctx$waterMarker.userInfo) === null || _ctx$waterMarker$user === void 0 ? void 0 : _ctx$waterMarker$user.name) || ((_ctx$globalProvider = _ctx.globalProvider) === null || _ctx$globalProvider === void 0 ? void 0 : (_ctx$globalProvider$u = _ctx$globalProvider.userInfo) === null || _ctx$globalProvider$u === void 0 ? void 0 : _ctx$globalProvider$u.name)), 1), createElementVNode("p", null, toDisplayString(_ctx.mobile), 1), createElementVNode("p", null, toDisplayString(_ctx.domain), 1), (_ctx$waterMarker2 = _ctx.waterMarker) !== null && _ctx$waterMarker2 !== void 0 && _ctx$waterMarker2.cityName ? (openBlock(), createElementBlock("p", _hoisted_1, toDisplayString(_ctx.waterMarker.cityName), 1)) : createCommentVNode("v-if", true), (_ctx$waterMarker3 = _ctx.waterMarker) !== null && _ctx$waterMarker3 !== void 0 && _ctx$waterMarker3.ip ? (openBlock(), createElementBlock("p", _hoisted_2, toDisplayString(_ctx.waterMarker.ip), 1)) : createCommentVNode("v-if", true), createElementVNode("p", null, toDisplayString(_ctx.timestamp), 1)]);
+    }, [createVNode("p", null, toDisplayString(((_ctx$waterMarker = _ctx.waterMarker) === null || _ctx$waterMarker === void 0 ? void 0 : (_ctx$waterMarker$user = _ctx$waterMarker.userInfo) === null || _ctx$waterMarker$user === void 0 ? void 0 : _ctx$waterMarker$user.name) || ((_ctx$globalProvider = _ctx.globalProvider) === null || _ctx$globalProvider === void 0 ? void 0 : (_ctx$globalProvider$u = _ctx$globalProvider.userInfo) === null || _ctx$globalProvider$u === void 0 ? void 0 : _ctx$globalProvider$u.name)), 1), createVNode("p", null, toDisplayString(_ctx.mobile), 1), createVNode("p", null, toDisplayString(_ctx.domain), 1), (_ctx$waterMarker2 = _ctx.waterMarker) !== null && _ctx$waterMarker2 !== void 0 && _ctx$waterMarker2.cityName ? (openBlock(), createBlock("p", _hoisted_1, toDisplayString(_ctx.waterMarker.cityName), 1)) : createCommentVNode("v-if", true), (_ctx$waterMarker3 = _ctx.waterMarker) !== null && _ctx$waterMarker3 !== void 0 && _ctx$waterMarker3.ip ? (openBlock(), createBlock("p", _hoisted_2, toDisplayString(_ctx.waterMarker.ip), 1)) : createCommentVNode("v-if", true), createVNode("p", null, toDisplayString(_ctx.timestamp), 1)]);
   }), 128)) : createCommentVNode("v-if", true);
 }
 
@@ -364,18 +364,21 @@ var script = defineComponent({
   }
 });
 
-function render(_ctx, _cache, $props, $setup, $data, $options) {
+const _withId = /* @__PURE__ */withScopeId("data-v-819b5b50");
+
+const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $options) => {
   const _component_a_config_provider = resolveComponent("a-config-provider");
 
   return openBlock(), createBlock(_component_a_config_provider, mergeProps({
     locale: _ctx.locale
   }, _ctx.$attrs), {
-    default: withCtx(() => [renderSlot(_ctx.$slots, "default")]),
+    default: _withId(() => [renderSlot(_ctx.$slots, "default")]),
     _: 3
   }, 16, ["locale"]);
-}
+});
 
 script.render = render;
+script.__scopeId = "data-v-819b5b50";
 script.__file = "packages/provider/Index.vue";
 
 script.install = app => {

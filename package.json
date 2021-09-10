@@ -1,7 +1,7 @@
 {
   "name": "easi-packages-antd",
   "private": true,
-  "version": "0.0.29",
+  "version": "0.0.28",
   "description": "",
   "main": "dist/index.es.js",
   "module": "dist/index.cjs.js",
@@ -75,7 +75,7 @@
     "vite": "^2.4.2",
     "vite-plugin-dts": "^0.5.2",
     "vite-plugin-html": "^2.0.7",
-    "vue": "3.1.5",
+    "vue": "^3.1.5",
     "vue-loader": "^15.9.8",
     "vue-tsc": "^0.2.1"
   },
@@ -102,5 +102,5 @@
     "assetsFilePattern": "*.html",
     "asLibrary": true
   },
-  "homepage": "https://static.easiglobal.com/easi-packages-antd/0.0.29/website/index.html"
+  "homepage": "https://static.easiglobal.com/easi-packages-antd/0.0.28/website/index.html"
 }

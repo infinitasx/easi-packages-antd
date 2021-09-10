@@ -1,4 +1,4 @@
-import { defineComponent, resolveComponent, openBlock, createBlock, withCtx, createVNode, createSlots, renderList, renderSlot, normalizeProps, guardReactiveProps, toRefs, inject, getCurrentInstance, computed, createElementBlock, Fragment, createTextVNode, toDisplayString, createCommentVNode, createElementVNode } from 'vue';
+import { defineComponent, resolveComponent, openBlock, createBlock, createVNode, createSlots, renderList, renderSlot, withScopeId, toRefs, inject, getCurrentInstance, computed, Fragment, withCtx, createTextVNode, toDisplayString, createCommentVNode } from 'vue';
 import { useRoute } from 'vue-router';
 
 function createNamespace(name) {
@@ -15,7 +15,9 @@ var script$1 = defineComponent({
   }
 });
 
-function render$1(_ctx, _cache, $props, $setup, $data, $options) {
+const _withId = /* @__PURE__ */withScopeId("data-v-4bca0fd7");
+
+const render$1 = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $options) => {
   const _component_a_result = resolveComponent("a-result");
 
   const _component_a_card = resolveComponent("a-card");
@@ -24,19 +26,19 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
     bordered: false,
     class: "error-full-page"
   }, {
-    default: withCtx(() => [createVNode(_component_a_result, {
+    default: _withId(() => [createVNode(_component_a_result, {
       status: _ctx.status
     }, createSlots({
       _: 2
     }, [renderList(_ctx.$slots, (index, name) => {
       return {
         name,
-        fn: withCtx(slotProps => [renderSlot(_ctx.$slots, name, normalizeProps(guardReactiveProps(slotProps)))])
+        fn: _withId(slotProps => [renderSlot(_ctx.$slots, name, slotProps)])
       };
     })]), 1032, ["status"])]),
-    _: 3
+    _: 1
   });
-}
+});
 
 script$1.render = render$1;
 script$1.__scopeId = "data-v-4bca0fd7";
@@ -173,9 +175,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   const _component_NoPermission = resolveComponent("NoPermission");
 
-  return openBlock(), createElementBlock("div", null, [_ctx.$usePermissions(_ctx.$route.meta.permission) || _ctx.hasPermission ? (openBlock(), createElementBlock(Fragment, {
+  return openBlock(), createBlock("div", null, [_ctx.$usePermissions(_ctx.$route.meta.permission) || _ctx.hasPermission ? (openBlock(), createBlock(Fragment, {
     key: 0
-  }, [_ctx.showPageHeader ? (openBlock(), createElementBlock("div", _hoisted_1, [createVNode(_component_a_page_header, {
+  }, [_ctx.showPageHeader ? (openBlock(), createBlock("div", _hoisted_1, [createVNode(_component_a_page_header, {
     title: _ctx.pageTitle
   }, {
     breadcrumb: withCtx(() => [_ctx.breadcrumbRoutes.length > 1 ? (openBlock(), createBlock(_component_a_breadcrumb, {
@@ -192,9 +194,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, 1032, ["to"])]),
       _: 1
     }, 8, ["routes"])) : createCommentVNode("v-if", true)]),
-    default: withCtx(() => [_ctx.pageDesc ? (openBlock(), createElementBlock("p", _hoisted_2, toDisplayString(_ctx.pageDesc), 1)) : createCommentVNode("v-if", true), renderSlot(_ctx.$slots, "header")]),
+    default: withCtx(() => [_ctx.pageDesc ? (openBlock(), createBlock("p", _hoisted_2, toDisplayString(_ctx.pageDesc), 1)) : createCommentVNode("v-if", true), renderSlot(_ctx.$slots, "header")]),
     _: 3
-  }, 8, ["title"])])) : createCommentVNode("v-if", true), createElementVNode("div", _hoisted_3, [_ctx.layoutType === "card" ? (openBlock(), createBlock(_component_a_card, {
+  }, 8, ["title"])])) : createCommentVNode("v-if", true), createVNode("div", _hoisted_3, [_ctx.layoutType === "card" ? (openBlock(), createBlock(_component_a_card, {
     key: 0
   }, {
     default: withCtx(() => [renderSlot(_ctx.$slots, "default")]),
