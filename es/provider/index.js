@@ -184,6 +184,28 @@ function initI18n(lang) {
   });
 }
 
+var timerWorker = (() => {
+  self.addEventListener("message", function (e) {
+    const {
+      type
+    } = e.data;
+    let timer;
+
+    const refreshTime = () => {
+      timer = setTimeout(() => {
+        self.postMessage(type);
+      }, 3e3);
+    };
+
+    if (type !== "clear") {
+      refreshTime();
+    } else {
+      clearTimeout(timer);
+      self.close();
+    }
+  }, false);
+});
+
 var script$1 = defineComponent({
   name: createNamespace("WaterMaker"),
   props: {
@@ -206,6 +228,33 @@ var script$1 = defineComponent({
       globalProvider
     } = toRefs(props);
     const waterMarker = ref({});
+    let worker;
+
+    const initWorker = () => {
+      const blob = new Blob(["(" + timerWorker.toString() + ")()"]);
+      const url = window.URL.createObjectURL(blob);
+      worker = new Worker(url);
+      worker.postMessage({});
+
+      worker.onmessage = async ({
+        data
+      }) => {
+        if (data !== "clear") {
+          var _worker;
+
+          timestamp.value = moment().format("YYYY-MM-DD HH:mm:ss");
+          showMarker.value = false;
+          await nextTick();
+          showMarker.value = true;
+          (_worker = worker) === null || _worker === void 0 ? void 0 : _worker.postMessage({});
+        } else {
+          var _worker2;
+
+          (_worker2 = worker) === null || _worker2 === void 0 ? void 0 : _worker2.terminate();
+        }
+      };
+    };
+
     const mobile = computed(() => {
       var _waterMarker$value, _waterMarker$value$us, _globalProvider$value, _globalProvider$value2;
 
@@ -214,22 +263,14 @@ var script$1 = defineComponent({
     });
     const showMarker = ref(true);
     const timestamp = ref(moment().format("YYYY-MM-DD HH:mm:ss"));
-    let time;
-
-    let refreshTime = () => {
-      time = setTimeout(async () => {
-        timestamp.value = moment().format("YYYY-MM-DD HH:mm:ss");
-        showMarker.value = false;
-        await nextTick();
-        showMarker.value = true;
-        refreshTime && refreshTime();
-      }, 5e3);
-    };
-
-    refreshTime && refreshTime();
+    initWorker();
     onBeforeUnmount(() => {
-      refreshTime = null;
-      clearTimeout(time);
+      var _worker3;
+
+      (_worker3 = worker) === null || _worker3 === void 0 ? void 0 : _worker3.postMessage({
+        type: "clear"
+      });
+      worker = null;
     });
     return {
       mobile,

@@ -111,10 +111,22 @@ declare const _default: import("vue").DefineComponent<{
             readonly name: string;
             readonly size: number;
             readonly type: string;
-            arrayBuffer: () => Promise<ArrayBuffer>;
-            slice: (start?: number | undefined, end?: number | undefined, contentType?: string | undefined) => Blob;
-            stream: () => ReadableStream<any>;
-            text: () => Promise<string>;
+            arrayBuffer: {
+                (): Promise<ArrayBuffer>;
+                (): Promise<ArrayBuffer>;
+            };
+            slice: {
+                (start?: number | undefined, end?: number | undefined, contentType?: string | undefined): Blob;
+                (start?: number | undefined, end?: number | undefined, contentType?: string | undefined): Blob;
+            };
+            stream: {
+                (): ReadableStream<any>;
+                (): ReadableStream<any>;
+            };
+            text: {
+                (): Promise<string>;
+                (): Promise<string>;
+            };
         };
         name: string;
         url: string;
@@ -135,10 +147,22 @@ declare const _default: import("vue").DefineComponent<{
             readonly name: string;
             readonly size: number;
             readonly type: string;
-            arrayBuffer: () => Promise<ArrayBuffer>;
-            slice: (start?: number | undefined, end?: number | undefined, contentType?: string | undefined) => Blob;
-            stream: () => ReadableStream<any>;
-            text: () => Promise<string>;
+            arrayBuffer: {
+                (): Promise<ArrayBuffer>;
+                (): Promise<ArrayBuffer>;
+            };
+            slice: {
+                (start?: number | undefined, end?: number | undefined, contentType?: string | undefined): Blob;
+                (start?: number | undefined, end?: number | undefined, contentType?: string | undefined): Blob;
+            };
+            stream: {
+                (): ReadableStream<any>;
+                (): ReadableStream<any>;
+            };
+            text: {
+                (): Promise<string>;
+                (): Promise<string>;
+            };
         };
         name: string;
         url: string;
@@ -158,10 +182,22 @@ declare const _default: import("vue").DefineComponent<{
             readonly name: string;
             readonly size: number;
             readonly type: string;
-            arrayBuffer: () => Promise<ArrayBuffer>;
-            slice: (start?: number | undefined, end?: number | undefined, contentType?: string | undefined) => Blob;
-            stream: () => ReadableStream<any>;
-            text: () => Promise<string>;
+            arrayBuffer: {
+                (): Promise<ArrayBuffer>;
+                (): Promise<ArrayBuffer>;
+            };
+            slice: {
+                (start?: number | undefined, end?: number | undefined, contentType?: string | undefined): Blob;
+                (start?: number | undefined, end?: number | undefined, contentType?: string | undefined): Blob;
+            };
+            stream: {
+                (): ReadableStream<any>;
+                (): ReadableStream<any>;
+            };
+            text: {
+                (): Promise<string>;
+                (): Promise<string>;
+            };
         };
         name: string;
         url: string;
@@ -181,10 +217,22 @@ declare const _default: import("vue").DefineComponent<{
             readonly name: string;
             readonly size: number;
             readonly type: string;
-            arrayBuffer: () => Promise<ArrayBuffer>;
-            slice: (start?: number | undefined, end?: number | undefined, contentType?: string | undefined) => Blob;
-            stream: () => ReadableStream<any>;
-            text: () => Promise<string>;
+            arrayBuffer: {
+                (): Promise<ArrayBuffer>;
+                (): Promise<ArrayBuffer>;
+            };
+            slice: {
+                (start?: number | undefined, end?: number | undefined, contentType?: string | undefined): Blob;
+                (start?: number | undefined, end?: number | undefined, contentType?: string | undefined): Blob;
+            };
+            stream: {
+                (): ReadableStream<any>;
+                (): ReadableStream<any>;
+            };
+            text: {
+                (): Promise<string>;
+                (): Promise<string>;
+            };
         };
         name: string;
         url: string;
@@ -204,10 +252,22 @@ declare const _default: import("vue").DefineComponent<{
             readonly name: string;
             readonly size: number;
             readonly type: string;
-            arrayBuffer: () => Promise<ArrayBuffer>;
-            slice: (start?: number | undefined, end?: number | undefined, contentType?: string | undefined) => Blob;
-            stream: () => ReadableStream<any>;
-            text: () => Promise<string>;
+            arrayBuffer: {
+                (): Promise<ArrayBuffer>;
+                (): Promise<ArrayBuffer>;
+            };
+            slice: {
+                (start?: number | undefined, end?: number | undefined, contentType?: string | undefined): Blob;
+                (start?: number | undefined, end?: number | undefined, contentType?: string | undefined): Blob;
+            };
+            stream: {
+                (): ReadableStream<any>;
+                (): ReadableStream<any>;
+            };
+            text: {
+                (): Promise<string>;
+                (): Promise<string>;
+            };
         };
         name: string;
         url: string;

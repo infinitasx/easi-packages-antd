@@ -12,12 +12,8 @@ export default defineComponent({
 
     const cityName = ref<string | undefined>();
 
-    setTimeout(() => {
-      waterMarker.cityName = cityName.value = 'ddddd';
-    }, 2000)
-
     const waterMarker = reactive({
-      cityName: ''
+      cityName: '131231'
     })
 
     return {

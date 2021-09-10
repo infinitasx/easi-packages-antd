@@ -17,6 +17,7 @@ import {createNamespace} from '../utils/create';
 import { IProvider} from '../utils/globalProvider';
 import {IWaterMarker} from "../../typings/antd";
 import moment from "moment";
+import timerWorker from "./timmerWorker";
 
 export default defineComponent({
   name: createNamespace('WaterMaker'),
@@ -39,6 +40,26 @@ export default defineComponent({
 
     const waterMarker = ref<IWaterMarker>({});
 
+    let worker: Worker | null;
+
+    const initWorker = () => {
+      const blob = new Blob(['(' + timerWorker.toString() + ')()']);
+      const url = window.URL.createObjectURL(blob);
+      worker = new Worker(url) as Worker;
+      worker.postMessage({});
+      worker.onmessage = async ({data}) => {
+        if(data !== 'clear'){
+          timestamp.value = moment().format('YYYY-MM-DD HH:mm:ss');
+          showMarker.value = false;
+          await nextTick();
+          showMarker.value = true;
+          worker?.postMessage({});
+        }else{
+          worker?.terminate()
+        }
+      }
+    }
+
     const mobile = computed(() => {
       let m = waterMarker.value?.userInfo?.mobile || globalProvider.value?.userInfo?.mobile;
       return m ? (`${m.substr(0, m.length / 2 - 1)}****${m.substr(m.length / 2 + 3)}`) : undefined
@@ -47,22 +68,11 @@ export default defineComponent({
     const showMarker = ref<boolean>(true);
     const timestamp = ref<string>(moment().format('YYYY-MM-DD HH:mm:ss'));
 
-    let time: any;
-    let refreshTime: Function | null = () => {
-      time = setTimeout(async () => {
-        timestamp.value = moment().format('YYYY-MM-DD HH:mm:ss');
-        showMarker.value = false;
-        await nextTick();
-        showMarker.value = true;
-        refreshTime && refreshTime();
-      }, 5000)
-    }
-
-    refreshTime && refreshTime();
+    initWorker();
 
     onBeforeUnmount(() => {
-      refreshTime = null;
-      clearTimeout(time);
+      worker?.postMessage({type: 'clear'})
+      worker = null;
     })
 
     return {

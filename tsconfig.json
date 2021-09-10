@@ -16,7 +16,7 @@
     "paths": {
       "@/*": ["packages/*", "src/*", "website/*"]
     },
-    "lib": ["esnext", "dom", "dom.iterable"]
+    "lib": ["esnext", "dom", "dom.iterable", "WebWorker"]
   },
   "include": ["packages/**/*.ts", "packages/**/*.tsx", "packages/**/*.vue", "typings/*"],
   "exclude": ["node_modules"]
