@@ -1,4 +1,4 @@
-import { VNodeChild, VNode, Slots } from 'vue';
+import { Slots, VNode, VNodeChild } from 'vue';
 
 export interface MenuInfo {
   key: string;
@@ -38,7 +38,17 @@ export interface Pagination {
   buildOptionText?: (props: { value: number }) => string;
 }
 
+export interface ISystem {
+  application_id: string;
+  name: string;
+  icons: string;
+  link: string;
+  scopes: { id: string; name: string }[];
+}
+
 export interface UserInfo {
+  application_id?: string; // 当前系统的标示
+  apps?: ISystem[]; // 用户拥有权限的系统
   name?: string; // 用户名称
   avatar?: string; // 用户头像
   devices?: {

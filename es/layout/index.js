@@ -1,5 +1,5 @@
 import * as _vue from 'vue';
-import { defineComponent, toRefs, ref, onMounted, watch, toRaw, pushScopeId, popScopeId, resolveComponent, openBlock, createBlock, Fragment, createVNode, withDirectives, toDisplayString, createCommentVNode, vShow, renderList, withScopeId, withCtx, h, nextTick, inject, mergeProps, createTextVNode, renderSlot, withModifiers, onBeforeUnmount, computed, Transition, KeepAlive, resolveDynamicComponent } from 'vue';
+import { defineComponent, toRefs, ref, onMounted, watch, toRaw, pushScopeId, popScopeId, resolveComponent, openBlock, createBlock, Fragment, createVNode, withDirectives, toDisplayString, createCommentVNode, vShow, renderList, withScopeId, withCtx, h, nextTick, computed, withModifiers, createTextVNode, inject, mergeProps, renderSlot, onBeforeUnmount, Transition, KeepAlive, resolveDynamicComponent } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { Modal, message } from 'ant-design-vue';
 import { setLocal, copy, isMobile, debounced } from 'easi-web-utils';
@@ -81,7 +81,7 @@ var script$5 = defineComponent({
 
 });
 
-const _withId$4 = /* @__PURE__ */withScopeId("data-v-a3884aa0");
+const _withId$3 = /* @__PURE__ */withScopeId("data-v-a3884aa0");
 
 pushScopeId("data-v-a3884aa0");
 
@@ -89,11 +89,11 @@ const _hoisted_1$4 = {
   key: 0,
   class: "admin-title text-white ml-16 truncate"
 };
-const _hoisted_2$2 = {
+const _hoisted_2$3 = {
   key: 1,
   class: "text-12 truncate text-gray-400"
 };
-const _hoisted_3$1 = {
+const _hoisted_3$2 = {
   class: "flex-1 overflow-y-auto overflow-x-hidden"
 };
 const _hoisted_4$1 = {
@@ -102,7 +102,7 @@ const _hoisted_4$1 = {
 
 popScopeId();
 
-const render$5 = /* @__PURE__ */_withId$4((_ctx, _cache, $props, $setup, $data, $options) => {
+const render$5 = /* @__PURE__ */_withId$3((_ctx, _cache, $props, $setup, $data, $options) => {
   const _component_a_menu_item = resolveComponent("a-menu-item");
 
   const _component_a_sub_menu = resolveComponent("a-sub-menu");
@@ -118,7 +118,7 @@ const render$5 = /* @__PURE__ */_withId$4((_ctx, _cache, $props, $setup, $data, 
   }, null, 8, ["src"]), _ctx.title || _ctx.subTitle ? withDirectives((openBlock(), createBlock("div", _hoisted_1$4, [_ctx.title ? (openBlock(), createBlock("p", {
     key: 0,
     class: ["truncate", [_ctx.subTitle ? "text-14" : "text-16"]]
-  }, toDisplayString(_ctx.title), 3)) : createCommentVNode("v-if", true), _ctx.subTitle ? (openBlock(), createBlock("p", _hoisted_2$2, toDisplayString(_ctx.subTitle), 1)) : createCommentVNode("v-if", true)], 512)), [[vShow, !_ctx.collapsed]]) : createCommentVNode("v-if", true)], 2), createVNode("div", _hoisted_3$1, [createVNode(_component_a_menu, {
+  }, toDisplayString(_ctx.title), 3)) : createCommentVNode("v-if", true), _ctx.subTitle ? (openBlock(), createBlock("p", _hoisted_2$3, toDisplayString(_ctx.subTitle), 1)) : createCommentVNode("v-if", true)], 512)), [[vShow, !_ctx.collapsed]]) : createCommentVNode("v-if", true)], 2), createVNode("div", _hoisted_3$2, [createVNode(_component_a_menu, {
     class: "layout-menu",
     mode: "inline",
     inlineCollapsed: false,
@@ -128,17 +128,17 @@ const render$5 = /* @__PURE__ */_withId$4((_ctx, _cache, $props, $setup, $data, 
     "onUpdate:selectedKeys": _cache[2] || (_cache[2] = $event => _ctx.selectedKeys = $event),
     theme: "dark"
   }, {
-    default: _withId$4(() => [(openBlock(true), createBlock(Fragment, null, renderList(_ctx.nav, item => {
+    default: _withId$3(() => [(openBlock(true), createBlock(Fragment, null, renderList(_ctx.nav, item => {
       return openBlock(), createBlock(Fragment, {
         key: item.name
       }, [item.children && item.children.length > 0 && !item.meta.hideMenu ? (openBlock(), createBlock(_component_a_sub_menu, {
         key: item.name
       }, {
-        title: _withId$4(() => [createVNode("span", _hoisted_4$1, [!!item.meta.icon ? (openBlock(), createBlock("i", {
+        title: _withId$3(() => [createVNode("span", _hoisted_4$1, [!!item.meta.icon ? (openBlock(), createBlock("i", {
           key: 0,
           class: [item.meta.icon, "anticon"]
         }, null, 2)) : createCommentVNode("v-if", true), createVNode("span", null, toDisplayString(item.meta.title), 1)])]),
-        default: _withId$4(() => [(openBlock(true), createBlock(Fragment, null, renderList(item.children, child => {
+        default: _withId$3(() => [(openBlock(true), createBlock(Fragment, null, renderList(item.children, child => {
           return openBlock(), createBlock(Fragment, {
             key: child.name
           }, [!child.meta.hideMenu ? (openBlock(), createBlock(_component_a_menu_item, {
@@ -146,7 +146,7 @@ const render$5 = /* @__PURE__ */_withId$4((_ctx, _cache, $props, $setup, $data, 
             class: "flex items-center",
             onClick: $event => _ctx.toPage(child.name)
           }, {
-            default: _withId$4(() => [!!child.meta.icon ? (openBlock(), createBlock("i", {
+            default: _withId$3(() => [!!child.meta.icon ? (openBlock(), createBlock("i", {
               key: 0,
               class: [child.meta.icon, "anticon"]
             }, null, 2)) : createCommentVNode("v-if", true), createVNode("span", null, toDisplayString(child.meta.title), 1)]),
@@ -159,7 +159,7 @@ const render$5 = /* @__PURE__ */_withId$4((_ctx, _cache, $props, $setup, $data, 
         class: "flex items-center",
         onClick: $event => _ctx.toPage(item.name)
       }, {
-        default: _withId$4(() => [!!item.meta.icon ? (openBlock(), createBlock("i", {
+        default: _withId$3(() => [!!item.meta.icon ? (openBlock(), createBlock("i", {
           key: 0,
           class: [item.meta.icon, "anticon"]
         }, null, 2)) : createCommentVNode("v-if", true), createVNode("span", null, toDisplayString(item.meta.title), 1)]),
@@ -1647,9 +1647,9 @@ function insertCss(css, options) {
   return styleElement;
 }
 
-function _objectSpread$e(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? Object(arguments[i]) : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty$e(target, key, source[key]); }); } return target; }
+function _objectSpread$f(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? Object(arguments[i]) : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty$f(target, key, source[key]); }); } return target; }
 
-function _defineProperty$e(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _defineProperty$f(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 function warn(valid, message) {
   // Support uglify
   if (process.env.NODE_ENV !== 'production' && !valid && console !== undefined) {
@@ -1665,14 +1665,14 @@ function isIconDefinition(target) {
 }
 function generate(node, key, rootProps) {
   if (!rootProps) {
-    return h(node.tag, _objectSpread$e({
+    return h(node.tag, _objectSpread$f({
       key: key
     }, node.attrs), (node.children || []).map(function (child, index) {
       return generate(child, "".concat(key, "-").concat(node.tag, "-").concat(index));
     }));
   }
 
-  return h(node.tag, _objectSpread$e({
+  return h(node.tag, _objectSpread$f({
     key: key
   }, rootProps, node.attrs), (node.children || []).map(function (child, index) {
     return generate(child, "".concat(key, "-").concat(node.tag, "-").concat(index));
@@ -1710,9 +1710,9 @@ function _objectWithoutProperties$1(source, excluded) { if (source == null) retu
 
 function _objectWithoutPropertiesLoose$1(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-function _objectSpread$d(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? Object(arguments[i]) : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty$d(target, key, source[key]); }); } return target; }
+function _objectSpread$e(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? Object(arguments[i]) : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty$e(target, key, source[key]); }); } return target; }
 
-function _defineProperty$d(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _defineProperty$e(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 var twoToneColorPalette = {
   primaryColor: '#333',
   secondaryColor: '#E6E6E6',
@@ -1728,11 +1728,11 @@ function setTwoToneColors(_ref) {
 }
 
 function getTwoToneColors() {
-  return _objectSpread$d({}, twoToneColorPalette);
+  return _objectSpread$e({}, twoToneColorPalette);
 }
 
 var IconBase = function IconBase(props, context) {
-  var _props$context$attrs = _objectSpread$d({}, props, context.attrs),
+  var _props$context$attrs = _objectSpread$e({}, props, context.attrs),
       icon = _props$context$attrs.icon,
       primaryColor = _props$context$attrs.primaryColor,
       secondaryColor = _props$context$attrs.secondaryColor,
@@ -1757,12 +1757,12 @@ var IconBase = function IconBase(props, context) {
   var target = icon;
 
   if (target && typeof target.icon === 'function') {
-    target = _objectSpread$d({}, target, {
+    target = _objectSpread$e({}, target, {
       icon: target.icon(colors.primaryColor, colors.secondaryColor)
     });
   }
 
-  return generate(target.icon, "svg-".concat(target.name), _objectSpread$d({}, restProps, {
+  return generate(target.icon, "svg-".concat(target.name), _objectSpread$e({}, restProps, {
     'data-icon': target.name,
     width: '1em',
     height: '1em',
@@ -1827,9 +1827,9 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function _objectSpread$c(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? Object(arguments[i]) : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty$c(target, key, source[key]); }); } return target; }
+function _objectSpread$d(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? Object(arguments[i]) : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty$d(target, key, source[key]); }); } return target; }
 
-function _defineProperty$c(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _defineProperty$d(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
@@ -1840,7 +1840,7 @@ setTwoToneColor('#1890ff');
 var Icon = function Icon(props, context) {
   var _classObj;
 
-  var _props$context$attrs = _objectSpread$c({}, props, context.attrs),
+  var _props$context$attrs = _objectSpread$d({}, props, context.attrs),
       cls = _props$context$attrs["class"],
       icon = _props$context$attrs.icon,
       spin = _props$context$attrs.spin,
@@ -1852,7 +1852,7 @@ var Icon = function Icon(props, context) {
 
   var classObj = (_classObj = {
     anticon: true
-  }, _defineProperty$c(_classObj, "anticon-".concat(icon.name), Boolean(icon.name)), _defineProperty$c(_classObj, cls, cls), _classObj);
+  }, _defineProperty$d(_classObj, "anticon-".concat(icon.name), Boolean(icon.name)), _defineProperty$d(_classObj, cls, cls), _classObj);
   var svgClassString = spin === '' || !!spin || icon.name === 'loading' ? 'anticon-spin' : '';
   var iconTabIndex = tabindex;
 
@@ -1896,6 +1896,26 @@ Icon.inheritAttrs = false;
 Icon.getTwoToneColor = getTwoToneColor;
 Icon.setTwoToneColor = setTwoToneColor;
 var AntdIcon = Icon;
+
+// This icon file is generated automatically.
+var AppstoreFilled$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M864 144H560c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16zm0 400H560c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V560c0-8.8-7.2-16-16-16zM464 144H160c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16zm0 400H160c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V560c0-8.8-7.2-16-16-16z" } }] }, "name": "appstore", "theme": "filled" };
+var AppstoreFilledSvg = AppstoreFilled$2;
+
+function _objectSpread$c(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? Object(arguments[i]) : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty$c(target, key, source[key]); }); } return target; }
+
+function _defineProperty$c(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var AppstoreFilled = function AppstoreFilled(props, context) {
+  var p = _objectSpread$c({}, props, context.attrs);
+
+  return _vue.createVNode(AntdIcon, _vue.mergeProps(p, {
+    "icon": AppstoreFilledSvg
+  }), null);
+};
+
+AppstoreFilled.displayName = 'AppstoreFilled';
+AppstoreFilled.inheritAttrs = false;
+var AppstoreFilled$1 = AppstoreFilled;
 
 // This icon file is generated automatically.
 var CloseOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 00203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z" } }] }, "name": "close", "theme": "outlined" };
@@ -2154,13 +2174,27 @@ var script$3 = defineComponent({
   setup(props, {
     emit
   }) {
+    const {
+      userInfo
+    } = toRefs(props);
+    const otherSystem = computed(() => {
+      return (userInfo.value.apps || []).filter(system => {
+        return system.application_id !== userInfo.value.application_id;
+      });
+    });
     return {
+      otherSystem,
+
       colToggle() {
         emit("colToggle");
       },
 
       handleShowSetting() {
         emit("handleShowSetting");
+      },
+
+      toSystem(item) {
+        window.open(item.link, "_blank");
       }
 
     };
@@ -2168,26 +2202,37 @@ var script$3 = defineComponent({
 
   components: {
     MenuFoldOutlined: MenuFoldOutlined$1,
-    MenuUnfoldOutlined: MenuUnfoldOutlined$1
+    MenuUnfoldOutlined: MenuUnfoldOutlined$1,
+    AppstoreFilled: AppstoreFilled$1
   }
 });
-
-const _withId$3 = /* @__PURE__ */withScopeId("data-v-45ec92c4");
-
-pushScopeId("data-v-45ec92c4");
 
 const _hoisted_1$3 = /* @__PURE__ */createVNode("div", {
   class: "flex-1"
 }, null, -1);
 
-popScopeId();
+const _hoisted_2$2 = {
+  class: "overflow-hidden"
+};
 
-const render$3 = /* @__PURE__ */_withId$3((_ctx, _cache, $props, $setup, $data, $options) => {
-  var _ctx$userInfo, _ctx$userInfo2;
+const _hoisted_3$1 = /* @__PURE__ */createVNode("span", {
+  class: "relative dropdown-trigger px-12 cursor-pointer easi-hover-block"
+}, [/* @__PURE__ */createVNode("i", {
+  class: "iconfont icon-application_authority"
+})], -1);
+
+function render$3(_ctx, _cache, $props, $setup, $data, $options) {
+  var _ctx$otherSystem, _ctx$userInfo, _ctx$userInfo2;
 
   const _component_MenuFoldOutlined = resolveComponent("MenuFoldOutlined");
 
   const _component_MenuUnfoldOutlined = resolveComponent("MenuUnfoldOutlined");
+
+  const _component_a_image = resolveComponent("a-image");
+
+  const _component_a_typography_text = resolveComponent("a-typography-text");
+
+  const _component_a_popover = resolveComponent("a-popover");
 
   const _component_a_avatar = resolveComponent("a-avatar");
 
@@ -2197,7 +2242,30 @@ const render$3 = /* @__PURE__ */_withId$3((_ctx, _cache, $props, $setup, $data, 
   }, null, 8, ["onClick"]), [[vShow, !_ctx.collapsed]]), withDirectives(createVNode(_component_MenuUnfoldOutlined, {
     class: "text-18",
     onClick: _ctx.colToggle
-  }, null, 8, ["onClick"]), [[vShow, _ctx.collapsed]]), _hoisted_1$3, createVNode("span", {
+  }, null, 8, ["onClick"]), [[vShow, _ctx.collapsed]]), _hoisted_1$3, ((_ctx$otherSystem = _ctx.otherSystem) === null || _ctx$otherSystem === void 0 ? void 0 : _ctx$otherSystem.length) > 0 ? (openBlock(), createBlock(_component_a_popover, {
+    key: 0,
+    placement: "bottomRight",
+    overlayClassName: "easi-system-option"
+  }, {
+    content: withCtx(() => [createVNode("div", _hoisted_2$2, [(openBlock(true), createBlock(Fragment, null, renderList(_ctx.otherSystem, item => {
+      return openBlock(), createBlock("div", {
+        class: "flex items-center justify-center flex-col py-12 float-left cursor-pointer",
+        key: item.application_id,
+        onClick: withModifiers($event => _ctx.toSystem(item), ["stop"])
+      }, [createVNode(_component_a_image, {
+        class: "system-logo",
+        src: item.icons,
+        preview: false
+      }, null, 8, ["src"]), createVNode(_component_a_typography_text, {
+        class: "truncate"
+      }, {
+        default: withCtx(() => [createTextVNode(toDisplayString(item.name), 1)]),
+        _: 2
+      }, 1024)], 8, ["onClick"]);
+    }), 128))])]),
+    default: withCtx(() => [_hoisted_3$1]),
+    _: 1
+  })) : createCommentVNode("v-if", true), createVNode("span", {
     class: "dropdown-trigger px-8 cursor-pointer easi-hover-block",
     onClick: _cache[1] || (_cache[1] = (...args) => _ctx.handleShowSetting && _ctx.handleShowSetting(...args))
   }, [(_ctx$userInfo = _ctx.userInfo) !== null && _ctx$userInfo !== void 0 && _ctx$userInfo.avatar ? (openBlock(), createBlock(_component_a_avatar, {
@@ -2211,10 +2279,9 @@ const render$3 = /* @__PURE__ */_withId$3((_ctx, _cache, $props, $setup, $data, 
       verticalAlign: "middle"
     }
   }, null, 8, ["src"])) : createCommentVNode("v-if", true), createVNode("span", null, toDisplayString(((_ctx$userInfo2 = _ctx.userInfo) === null || _ctx$userInfo2 === void 0 ? void 0 : _ctx$userInfo2.name) || "\u7528\u6237\u540D"), 1)])], 64);
-});
+}
 
 script$3.render = render$3;
-script$3.__scopeId = "data-v-45ec92c4";
 script$3.__file = "packages/layout/Header.vue";
 
 const SETTING_KEY = "setting";

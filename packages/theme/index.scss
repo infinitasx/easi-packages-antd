@@ -1,14 +1,15 @@
 @import "antd";
 @import "darktheme";
+@import "iconfont";
 
 .easi-hover-block{
   &:hover{
-    background: rgba(0,0,0,0.05);
+    background: #E6F7FF;
   }
 }
 
 [data-pro-theme=antdv-pro-theme-dark] .easi-hover-block{
   &:hover{
-    background: rgba(255,255,255,0.05);
+    background: #190800;
   }
 }

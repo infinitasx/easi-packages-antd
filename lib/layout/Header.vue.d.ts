@@ -1,5 +1,5 @@
 import { PropType } from "vue";
-import { UserInfo } from '../../typings/antd';
+import { UserInfo, ISystem } from '../../typings/antd';
 declare const _default: import("vue").DefineComponent<{
     collapsed: {
         type: BooleanConstructor;
@@ -10,8 +10,19 @@ declare const _default: import("vue").DefineComponent<{
         default: () => {};
     };
 }, {
+    otherSystem: import("vue").ComputedRef<{
+        application_id: string;
+        name: string;
+        icons: string;
+        link: string;
+        scopes: {
+            id: string;
+            name: string;
+        }[];
+    }[]>;
     colToggle(): void;
     handleShowSetting(): void;
+    toSystem(item: ISystem): void;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("colToggle" | "handleShowSetting")[], "colToggle" | "handleShowSetting", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
     collapsed?: unknown;
     userInfo?: unknown;

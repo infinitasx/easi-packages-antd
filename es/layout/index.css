@@ -1,13 +1,6 @@
 .page-header {
   border-bottom: 2px solid #f1f1f1;
 }
-.page-header .dropdown-trigger:hover {
-  background-color: rgba(190, 190, 190, 0.2);
-}
-
-[data-pro-theme=antdv-pro-theme-dark] .dropdown-trigger:hover {
-  background-color: rgba(190, 190, 190, 0) !important;
-}
 
 .transition-width {
   transition: width 0.2s;
@@ -21,6 +14,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.easi-system-option .ant-popover-inner-content {
+  padding: 0;
+}
+.easi-system-option .overflow-hidden {
+  max-width: 240px;
+}
+.easi-system-option .system-logo {
+  width: 32px;
+  height: 32px;
+}
+.easi-system-option .cursor-pointer {
+  width: 80px;
+}
+.easi-system-option .cursor-pointer .truncate {
+  margin-top: 2px;
+}
+.easi-system-option .cursor-pointer:hover .truncate {
+  color: #3c9be8;
+}
+
 .page-tab {
   height: 64px;
 }

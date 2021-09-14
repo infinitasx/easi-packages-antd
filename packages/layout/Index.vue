@@ -234,19 +234,19 @@ export default defineComponent({
 <style lang="scss" scoped>
 .page-header {
   border-bottom: 2px solid #f1f1f1;
-
-  .dropdown-trigger {
-    &:hover {
-      background-color: rgba(190, 190, 190, 0.2);
-    }
-  }
+  //
+  //.dropdown-trigger {
+  //  &:hover {
+  //    background-color: rgba(190, 190, 190, 0.2);
+  //  }
+  //}
 }
 
-[data-pro-theme="antdv-pro-theme-dark"] .dropdown-trigger {
-  &:hover {
-    background-color: rgba(190, 190, 190, 0) !important;
-  }
-}
+//[data-pro-theme="antdv-pro-theme-dark"] .dropdown-trigger {
+//  &:hover {
+//    background-color: rgba(190, 190, 190, 0) !important;
+//  }
+//}
 
 .transition-width {
   transition: width 0.2s;
