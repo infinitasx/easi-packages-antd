@@ -6,6 +6,7 @@
 
 ## [0.0.30] - 2021-09-14
 
+### Added
 - EASILayout组件新增选择跳转到其他系统的UI展示
 - 引入iconfont.css
 
