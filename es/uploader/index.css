@@ -357,6 +357,20 @@ img.ant-image-preview-img {
     padding-bottom: 48%;
   }
 }
+.easi-uploader-image-list {
+  height: calc(100% - 38px);
+}
+
+.easi-uploader-container {
+  margin-left: -2%;
+}
+
+.ant-upload.ant-upload-drag {
+  width: 384px;
+  height: 192px;
+  background: transparent;
+}
+
 .easi-uploader-preview-item .anticon svg {
   margin: auto;
 }
@@ -424,13 +438,4 @@ img.ant-image-preview-img {
   .easi-uploader-preview-item {
     width: 48%;
   }
-}
-.easi-uploader-container {
-  margin-left: -2%;
-}
-
-.ant-upload.ant-upload-drag {
-  width: 384px;
-  height: 192px;
-  background: transparent;
 }

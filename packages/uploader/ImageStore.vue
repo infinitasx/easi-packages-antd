@@ -1,6 +1,6 @@
 <template>
   <UploaderContainer v-loading="uploadGlobal.listLoading">
-    <div class="overflow-hidden">
+    <div class="overflow-auto easi-uploader-image-list">
       <UploaderItem v-for="(item, index) in imageList"
                     :key="index"
                     :item="item"
@@ -11,7 +11,7 @@
                     @handleCheckChange="handleCheckChange"
       />
     </div>
-    <div class="flex items-center justify-end mt-6" v-show="total > 0 && imageList.length > 0">
+    <div class="flex items-center justify-end absolute left-0 bottom-0 w-full" v-show="total > 0 && imageList.length > 0">
       <a-pagination show-quick-jumper
                     show-size-changer
                     :show-total="showTotal"
@@ -148,5 +148,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-
+.easi-uploader-image-list{
+  height: calc(100% - 38px);
+}
 </style>

@@ -40,7 +40,7 @@
                 @handleConfirmCrop="handleConfirmCrop"
         />
       </a-tab-pane>
-      <a-tab-pane class="pane-container"
+      <a-tab-pane class="pane-container relative overflow-hidden"
                   :class="actionType"
                   :key="1"
                   :tab="getText('uploaderTab1')"

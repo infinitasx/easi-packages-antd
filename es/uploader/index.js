@@ -3658,7 +3658,7 @@ const _withId$5 = /* @__PURE__ */withScopeId("data-v-0a563ea6");
 pushScopeId("data-v-0a563ea6");
 
 const _hoisted_1$5 = {
-  class: "easi-uploader-container overflow-hidden"
+  class: "easi-uploader-container overflow-auto h-full"
 };
 
 popScopeId();
@@ -6463,10 +6463,10 @@ const _withId$1 = /* @__PURE__ */withScopeId("data-v-704c7293");
 pushScopeId("data-v-704c7293");
 
 const _hoisted_1$1 = {
-  class: "overflow-hidden"
+  class: "overflow-auto easi-uploader-image-list"
 };
 const _hoisted_2 = {
-  class: "flex items-center justify-end mt-6"
+  class: "flex items-center justify-end absolute left-0 bottom-0 w-full"
 };
 
 popScopeId();
@@ -7169,7 +7169,7 @@ const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $opt
         }, null, 8, ["localUploadList", "localUploadMustCrop", "empty-title", "empty-sub-title", "accept", "multiple", "disabled", "minCropBoxHeight", "minCropBoxWidth", "ratio", "crop", "isCropping", "onInputChange", "onHandleDelete", "onHandleCrop", "onHandleConfirmCrop"])]),
         _: 1
       }, 8, ["class", "tab"]), [[_directive_loading, _ctx.localUploadLoading]]), createVNode(_component_a_tab_pane, {
-        class: ["pane-container", _ctx.actionType],
+        class: ["pane-container relative overflow-hidden", _ctx.actionType],
         key: 1,
         tab: _ctx.getText("uploaderTab1"),
         onDragover: _cache[6] || (_cache[6] = withModifiers($event => _ctx.setActionType("dragover"), ["prevent"])),

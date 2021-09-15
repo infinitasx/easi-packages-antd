@@ -1,5 +1,5 @@
 <template>
-  <div class="easi-uploader-container overflow-hidden">
+  <div class="easi-uploader-container overflow-auto h-full">
     <a-image-preview-group>
       <slot></slot>
     </a-image-preview-group>

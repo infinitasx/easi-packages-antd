@@ -14,26 +14,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.easi-system-option .ant-popover-inner-content {
-  padding: 0;
-}
-.easi-system-option .overflow-hidden {
-  max-width: 240px;
-}
-.easi-system-option .system-logo {
-  width: 32px;
-  height: 32px;
-}
-.easi-system-option .cursor-pointer {
-  width: 80px;
-}
-.easi-system-option .cursor-pointer .truncate {
-  margin-top: 2px;
-}
-.easi-system-option .cursor-pointer:hover .truncate {
-  color: #3c9be8;
-}
-
 .page-tab {
   height: 64px;
 }
@@ -52,6 +32,26 @@
 }
 [data-pro-theme=antdv-pro-theme-dark] .icon-action:hover {
   color: #177ddc;
+}
+
+.easi-system-option .ant-popover-inner-content {
+  padding: 0;
+}
+.easi-system-option .overflow-hidden {
+  max-width: 240px;
+}
+.easi-system-option .system-logo {
+  width: 32px;
+  height: 32px;
+}
+.easi-system-option .cursor-pointer {
+  width: 80px;
+}
+.easi-system-option .cursor-pointer .truncate {
+  margin-top: 2px;
+}
+.easi-system-option .cursor-pointer:hover .truncate {
+  color: #3c9be8;
 }
 
 .margin-bottom {
