@@ -6474,9 +6474,9 @@ popScopeId();
 const render$1 = /* @__PURE__ */_withId$1((_ctx, _cache, $props, $setup, $data, $options) => {
   const _component_UploaderItem = resolveComponent("UploaderItem");
 
-  const _component_a_pagination = resolveComponent("a-pagination");
-
   const _component_a_empty = resolveComponent("a-empty");
+
+  const _component_a_pagination = resolveComponent("a-pagination");
 
   const _component_UploaderContainer = resolveComponent("UploaderContainer");
 
@@ -6493,7 +6493,9 @@ const render$1 = /* @__PURE__ */_withId$1((_ctx, _cache, $props, $setup, $data, 
         activeKey: 1,
         onHandleCheckChange: _ctx.handleCheckChange
       }, null, 8, ["item", "index", "disabled", "ratio", "onHandleCheckChange"]);
-    }), 128))]), withDirectives(createVNode("div", _hoisted_2, [createVNode(_component_a_pagination, {
+    }), 128)), withDirectives(createVNode(_component_a_empty, {
+      image: _ctx.simpleImage
+    }, null, 8, ["image"]), [[vShow, _ctx.imageList.length === 0]])]), withDirectives(createVNode("div", _hoisted_2, [createVNode(_component_a_pagination, {
       "show-quick-jumper": "",
       "show-size-changer": "",
       "show-total": _ctx.showTotal,
@@ -6505,9 +6507,7 @@ const render$1 = /* @__PURE__ */_withId$1((_ctx, _cache, $props, $setup, $data, 
       total: _ctx.total,
       onChange: _ctx.onChange,
       onShowSizeChange: _ctx.onChange
-    }, null, 8, ["show-total", "current", "page-size", "total", "onChange", "onShowSizeChange"])], 512), [[vShow, _ctx.total > 0 && _ctx.imageList.length > 0]]), withDirectives(createVNode(_component_a_empty, {
-      image: _ctx.simpleImage
-    }, null, 8, ["image"]), [[vShow, _ctx.imageList.length === 0]])]),
+    }, null, 8, ["show-total", "current", "page-size", "total", "onChange", "onShowSizeChange"])], 512), [[vShow, _ctx.total > 0 && _ctx.imageList.length > 0]])]),
     _: 1
   }, 512)), [[_directive_loading, _ctx.uploadGlobal.listLoading]]);
 });

@@ -10,6 +10,7 @@
                     :activeKey="1"
                     @handleCheckChange="handleCheckChange"
       />
+      <a-empty v-show="imageList.length === 0" :image="simpleImage" />
     </div>
     <div class="flex items-center justify-end absolute left-0 bottom-0 w-full" v-show="total > 0 && imageList.length > 0">
       <a-pagination show-quick-jumper
@@ -23,7 +24,6 @@
                     @showSizeChange="onChange"
       />
     </div>
-    <a-empty v-show="imageList.length === 0" :image="simpleImage" />
   </UploaderContainer>
 </template>
 
