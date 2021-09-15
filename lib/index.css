@@ -10276,21 +10276,25 @@
   border-color: #434343;
 }
 
-.page-header {
-  border-bottom: 2px solid #f1f1f1;
-}
-
-.transition-width {
-  transition: width 0.2s;
-}
-
-.side-placeholder {
-  flex-shrink: 0;
-  overflow: hidden;
-}
-
 .page-breadcrumb-wrap .ant-page-header-footer {
   margin: 0;
+}
+
+.error-full-page {
+  height: calc(100vh - 160px);
+}
+
+.margin-bottom {
+  margin-bottom: 20px;
+}
+
+.more-item {
+  padding-left: 24px;
+  padding-right: 24px;
+  margin-bottom: 10px;
+  margin-left: -24px;
+  margin-right: -24px;
+  height: 44px;
 }
 
 [data-pro-theme=antdv-pro-theme-dark] .loading-container {
@@ -10454,6 +10458,19 @@
     transform: translateX(6px) rotate(90deg);
   }
 }
+.page-header {
+  border-bottom: 2px solid #f1f1f1;
+}
+
+.transition-width {
+  transition: width 0.2s;
+}
+
+.side-placeholder {
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
 .pane-container {
   position: relative;
   height: calc(100vh - 400px);
@@ -10469,23 +10486,6 @@
 
 img.ant-image-preview-img {
   display: inline-block !important;
-}
-
-.margin-bottom {
-  margin-bottom: 20px;
-}
-
-.more-item {
-  padding-left: 24px;
-  padding-right: 24px;
-  margin-bottom: 10px;
-  margin-left: -24px;
-  margin-right: -24px;
-  height: 44px;
-}
-
-.error-full-page {
-  height: calc(100vh - 160px);
 }
 
 /*!
@@ -10826,26 +10826,6 @@ img.ant-image-preview-img {
   color: #3c9be8;
 }
 
-.page-tab {
-  height: 64px;
-}
-
-.icon-action {
-  margin-right: 0 !important;
-  color: rgba(0, 0, 0, 0.85);
-}
-.icon-action:hover {
-  color: #177ddc;
-}
-
-[data-pro-theme=antdv-pro-theme-dark] .icon-action {
-  margin-right: 0 !important;
-  color: rgba(255, 255, 255, 0.45);
-}
-[data-pro-theme=antdv-pro-theme-dark] .icon-action:hover {
-  color: #177ddc;
-}
-
 .easi-uploader-cropper {
   position: absolute;
   top: 2px;
@@ -10897,6 +10877,26 @@ img.ant-image-preview-img {
 }
 .easi-uploader-image-list {
   height: calc(100% - 38px);
+}
+
+.page-tab {
+  height: 64px;
+}
+
+.icon-action {
+  margin-right: 0 !important;
+  color: rgba(0, 0, 0, 0.85);
+}
+.icon-action:hover {
+  color: #177ddc;
+}
+
+[data-pro-theme=antdv-pro-theme-dark] .icon-action {
+  margin-right: 0 !important;
+  color: rgba(255, 255, 255, 0.45);
+}
+[data-pro-theme=antdv-pro-theme-dark] .icon-action:hover {
+  color: #177ddc;
 }
 
 .logo {
