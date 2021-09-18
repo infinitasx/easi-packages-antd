@@ -122,8 +122,8 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .logo {
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
 }
 
 .iconfont {
