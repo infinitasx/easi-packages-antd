@@ -16,21 +16,30 @@
 @tailwind utilities;
 .easi-system-option .ant-popover-inner-content {
   padding: 0;
+  min-width: 500px;
+  max-height: 460px;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
-.easi-system-option .overflow-hidden {
-  max-width: 240px;
+.easi-system-option .system-item {
+  max-width: 400px;
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-top: 36px;
 }
 .easi-system-option .system-logo {
   width: 32px;
   height: 32px;
 }
+.easi-system-option .scope-id-list {
+  margin-left: -32px;
+}
 .easi-system-option .cursor-pointer {
-  width: 80px;
+  margin-top: 16px;
+  margin-left: 32px;
+  display: block;
 }
-.easi-system-option .cursor-pointer .truncate {
-  margin-top: 2px;
-}
-.easi-system-option .cursor-pointer:hover .truncate {
+.easi-system-option .cursor-pointer:hover {
   color: #3c9be8;
 }
 
@@ -68,8 +77,8 @@
 }
 
 .logo {
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
 }
 
 .iconfont {

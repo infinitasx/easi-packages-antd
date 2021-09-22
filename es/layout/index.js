@@ -1,5 +1,5 @@
 import * as _vue from 'vue';
-import { defineComponent, toRefs, ref, onMounted, watch, toRaw, pushScopeId, popScopeId, resolveComponent, openBlock, createBlock, Fragment, createVNode, withDirectives, toDisplayString, createCommentVNode, vShow, renderList, withScopeId, withCtx, h, nextTick, computed, withModifiers, createTextVNode, inject, mergeProps, renderSlot, onBeforeUnmount, Transition, KeepAlive, resolveDynamicComponent } from 'vue';
+import { defineComponent, toRefs, ref, onMounted, watch, toRaw, pushScopeId, popScopeId, resolveComponent, openBlock, createBlock, Fragment, createVNode, withDirectives, toDisplayString, createCommentVNode, vShow, renderList, withScopeId, withCtx, h, nextTick, computed, createTextVNode, withModifiers, inject, mergeProps, renderSlot, onBeforeUnmount, Transition, KeepAlive, resolveDynamicComponent } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { Modal, message } from 'ant-design-vue';
 import { setLocal, copy, isMobile, debounced } from 'easi-web-utils';
@@ -96,7 +96,7 @@ const _hoisted_2$3 = {
 const _hoisted_3$2 = {
   class: "flex-1 overflow-y-auto overflow-x-hidden"
 };
-const _hoisted_4$1 = {
+const _hoisted_4$2 = {
   class: "flex items-center"
 };
 
@@ -134,7 +134,7 @@ const render$5 = /* @__PURE__ */_withId$3((_ctx, _cache, $props, $setup, $data, 
       }, [item.children && item.children.length > 0 && !item.meta.hideMenu ? (openBlock(), createBlock(_component_a_sub_menu, {
         key: item.name
       }, {
-        title: _withId$3(() => [createVNode("span", _hoisted_4$1, [!!item.meta.icon ? (openBlock(), createBlock("i", {
+        title: _withId$3(() => [createVNode("span", _hoisted_4$2, [!!item.meta.icon ? (openBlock(), createBlock("i", {
           key: 0,
           class: [item.meta.icon, "anticon"]
         }, null, 2)) : createCommentVNode("v-if", true), createVNode("span", null, toDisplayString(item.meta.title), 1)])]),
@@ -2193,8 +2193,14 @@ var script$3 = defineComponent({
         emit("handleShowSetting");
       },
 
-      toSystem(item) {
-        window.open(item.link, "_blank");
+      toSystem(link, scopeId) {
+        if (link.indexOf("?") > -1) {
+          link += `&scope_id=${scopeId}`;
+        } else {
+          link += `?scope_id=${scopeId}`;
+        }
+
+        window.open(link, "_blank");
       }
 
     };
@@ -2212,10 +2218,13 @@ const _hoisted_1$3 = /* @__PURE__ */createVNode("div", {
 }, null, -1);
 
 const _hoisted_2$2 = {
-  class: "overflow-hidden"
+  class: "flex items-center overflow-hidden pb-16"
+};
+const _hoisted_3$1 = {
+  class: "scope-id-list flex items-center flex-wrap"
 };
 
-const _hoisted_3$1 = /* @__PURE__ */createVNode("span", {
+const _hoisted_4$1 = /* @__PURE__ */createVNode("span", {
   class: "relative dropdown-trigger px-12 cursor-pointer easi-hover-block"
 }, [/* @__PURE__ */createVNode("i", {
   class: "iconfont icon-application_authority"
@@ -2232,6 +2241,10 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
 
   const _component_a_typography_text = resolveComponent("a-typography-text");
 
+  const _component_a_col = resolveComponent("a-col");
+
+  const _component_a_row = resolveComponent("a-row");
+
   const _component_a_popover = resolveComponent("a-popover");
 
   const _component_a_avatar = resolveComponent("a-avatar");
@@ -2247,23 +2260,42 @@ function render$3(_ctx, _cache, $props, $setup, $data, $options) {
     placement: "bottomRight",
     overlayClassName: "easi-system-option"
   }, {
-    content: withCtx(() => [createVNode("div", _hoisted_2$2, [(openBlock(true), createBlock(Fragment, null, renderList(_ctx.otherSystem, item => {
-      return openBlock(), createBlock("div", {
-        class: "flex items-center justify-center flex-col py-12 float-left cursor-pointer",
-        key: item.application_id,
-        onClick: withModifiers($event => _ctx.toSystem(item), ["stop"])
-      }, [createVNode(_component_a_image, {
-        class: "system-logo",
-        src: item.icons,
-        preview: false
-      }, null, 8, ["src"]), createVNode(_component_a_typography_text, {
-        class: "truncate"
-      }, {
-        default: withCtx(() => [createTextVNode(toDisplayString(item.name), 1)]),
-        _: 2
-      }, 1024)], 8, ["onClick"]);
-    }), 128))])]),
-    default: withCtx(() => [_hoisted_3$1]),
+    content: withCtx(() => [createVNode(_component_a_row, null, {
+      default: withCtx(() => [(openBlock(true), createBlock(Fragment, null, renderList(_ctx.otherSystem, item => {
+        return openBlock(), createBlock(_component_a_col, {
+          xs: 24,
+          sm: 24,
+          md: 12,
+          class: "system-item pb-32",
+          key: item.application_id
+        }, {
+          default: withCtx(() => [createVNode("div", _hoisted_2$2, [createVNode(_component_a_image, {
+            class: "system-logo mr-8",
+            src: item.icons,
+            preview: false
+          }, null, 8, ["src"]), createVNode(_component_a_typography_text, {
+            class: "flex-1 truncate text-16",
+            strong: ""
+          }, {
+            default: withCtx(() => [createTextVNode(toDisplayString(item.name), 1)]),
+            _: 2
+          }, 1024)]), createVNode("div", _hoisted_3$1, [(openBlock(true), createBlock(Fragment, null, renderList(item.scopes, scopeItem => {
+            return openBlock(), createBlock(_component_a_typography_text, {
+              type: "secondary",
+              class: "cursor-pointer",
+              onClick: withModifiers($event => _ctx.toSystem(item.link, scopeItem.id), ["stop"]),
+              key: scopeItem.id
+            }, {
+              default: withCtx(() => [createTextVNode(toDisplayString(scopeItem.name), 1)]),
+              _: 2
+            }, 1032, ["onClick"]);
+          }), 128))])]),
+          _: 2
+        }, 1024);
+      }), 128))]),
+      _: 1
+    })]),
+    default: withCtx(() => [_hoisted_4$1]),
     _: 1
   })) : createCommentVNode("v-if", true), createVNode("span", {
     class: "dropdown-trigger px-8 cursor-pointer easi-hover-block",
