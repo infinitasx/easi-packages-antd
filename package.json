@@ -1,7 +1,7 @@
 {
   "name": "easi-packages-antd",
   "private": true,
-  "version": "0.0.31",
+  "version": "0.0.32",
   "description": "",
   "main": "dist/index.es.js",
   "module": "dist/index.cjs.js",
@@ -21,10 +21,10 @@
     "build:utils": "cd packages/utils && rollup -c",
     "build:ws": "vite build --config ./website/vite.config.ts",
     "build:style": "gulp --cwd ./build",
-    "easi-assets-deploy": "easi-assets-deploy",
     "easi-auto-tag": "easi-auto-tag",
     "website": "vite --config ./website/vite.config.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "easi-assets-deploy": "easi-assets-deploy"
   },
   "author": "",
   "license": "ISC",
@@ -43,7 +43,6 @@
     "autoprefixer": "^10.3.1",
     "babel-loader": "^8.2.2",
     "babel-preset-env": "^1.7.0",
-    "easi-assets-deploy": "https://github.com/infinitasx/easi-assets-deploy.git#main",
     "easi-auto-tag": "https://github.com/infinitasx/easi-auto-tag.git#main",
     "fs-extra": "^10.0.0",
     "gulp": "^4.0.2",
@@ -89,9 +88,11 @@
   "dependencies": {
     "ant-design-vue": "^2.2.6",
     "cropperjs": "^1.5.12",
+    "easi-assets-deploy": "https://github.com/infinitasx/easi-assets-deploy.git#main",
     "easi-web-utils": "git+https://github.com/infinitasx/easi-web-utils.git#main",
     "vue-router": "^4.0.10"
   },
+  "homepage": "https://static.easiglobal.com/easi-packages-antd/0.0.32/website/index.html",
   "easiAssetsDeployConfig": {
     "backend": {
       "projectName": "",
@@ -100,7 +101,6 @@
       "branchName": ""
     },
     "assetsFilePattern": "*.html",
-    "asLibrary": true
-  },
-  "homepage": "https://static.easiglobal.com/easi-packages-antd/0.0.31/website/index.html"
+    "asLibrary": false
+  }
 }

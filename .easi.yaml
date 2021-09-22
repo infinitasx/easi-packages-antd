@@ -4,3 +4,7 @@ build: yarn install --pure-lockfile && yarn easi-assets-deploy --env ${profile} 
 artifacts:
   - destination: append-to-notification
     artifact: ./devops-notification
+notifications:
+  feishu:
+    webhook:
+      - https://open.feishu.cn/open-apis/bot/v2/hook/1fe451dd-3aff-4319-924c-5186329a33f3
