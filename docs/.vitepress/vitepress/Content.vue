@@ -6,7 +6,7 @@
         class="flex-1 w-full pt-30 pb-50 flex flex-row pl-0"
         :class="{ 'md:pl-280': pagePath !== '/zh/' }"
       >
-        <div class="flex-1 w-full flex flex-col">
+        <div class="flex-1 w-1/2 flex flex-col">
           <Content class="flex-1 w-full" />
           <Pages />
         </div>
