@@ -1,9 +1,10 @@
 // title、themeConfig、head参考官网配置
 // https://vitepress.vuejs.org/config/basics.html
 const { version, name } = require('../../../package.json');
+const isProd = process.env.NODE_ENV === 'production';
 module.exports = {
   title: name,
-  base: `/${name}/${version}/website/`, // 部署路径
+  base: isProd ? `/${name}/${version}/website/` : '/', // 部署路径
   themeConfig: {
     theme: false,
     repo: 'infinitasx/easi-packages-antd',
