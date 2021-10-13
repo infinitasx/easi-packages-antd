@@ -6,7 +6,7 @@ module.exports = {
   base: `/${name}/${version}/website/`, // 部署路径
   themeConfig: {
     theme: false,
-    repo: 'huyanhai/vite-docs',
+    repo: 'infinitasx/easi-packages-antd',
     logo: '/images/logo.png',
     agolia: {
       apiKey: '',
