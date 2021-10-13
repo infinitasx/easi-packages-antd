@@ -75,6 +75,9 @@ module.exports = {
       gridTemplateColumns: {
         20: 'repeat(20, minmax(0, 1fr))',
       },
+      zIndex: {
+        100: '100',
+      },
       backgroundImage: () => ({
         arrow: "url('/images/arrow.svg')",
       }),
