@@ -11,6 +11,7 @@ module.exports = {
       host: true,
     },
   },
+  ssr: true,
   vue: {},
   markdown: {
     config: md => {

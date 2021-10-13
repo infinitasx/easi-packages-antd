@@ -11,6 +11,7 @@
   "scripts": {
     "dev": "vitepress dev . --open",
     "build": "NODE_ENV=production && vitepress build && yarn mv",
+    "build:dir": "NODE_ENV=production && vitepress build",
     "serve": "vitepress serve .",
     "mv": "bash ./movefile.sh",
     "test": "echo \"Error: no test specified\" && exit 1",
