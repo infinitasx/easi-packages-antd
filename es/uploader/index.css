@@ -308,6 +308,10 @@ img.ant-image-preview-img {
   cursor: not-allowed;
 }
 
+.easi-uploader-image-list {
+  height: calc(100% - 38px);
+}
+
 .easi-uploader-cropper {
   position: absolute;
   top: 2px;
@@ -357,8 +361,8 @@ img.ant-image-preview-img {
     padding-bottom: 48%;
   }
 }
-.easi-uploader-image-list {
-  height: calc(100% - 38px);
+.easi-uploader-container {
+  margin-left: -2%;
 }
 
 .easi-uploader-preview-item .anticon svg {
@@ -429,10 +433,6 @@ img.ant-image-preview-img {
     width: 48%;
   }
 }
-.easi-uploader-container {
-  margin-left: -2%;
-}
-
 .ant-upload.ant-upload-drag {
   width: 384px;
   height: 192px;

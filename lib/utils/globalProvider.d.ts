@@ -18,6 +18,17 @@ export declare function initProvider(): {
     fixedTab: boolean;
     cachedPage: string[];
     userInfo: {
+        application_id?: string | undefined;
+        apps?: {
+            application_id: string;
+            name: string;
+            icons: string;
+            link: string;
+            scopes: {
+                id: string;
+                name: string;
+            }[];
+        }[] | undefined;
         name?: string | undefined;
         avatar?: string | undefined;
         devices?: {

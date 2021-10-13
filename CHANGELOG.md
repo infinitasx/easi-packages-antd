@@ -4,43 +4,52 @@
 
 本文件格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/) ，并且遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 。
 
+## [0.0.33] - 2021-10-13
+
+### Added
+
+- 更新和完善使用文档 website
+
 ## [0.0.32] - 2021-09-22
 
 ### Changed
-- EASILayout组件优化跳转到其他系统浮层UI
+
+- EASILayout 组件优化跳转到其他系统浮层 UI
 
 ## [0.0.31] - 2021-09-15
 
 ### Changed
-- EASIUploader优化UI
+
+- EASIUploader 优化 UI
 
 ## [0.0.30] - 2021-09-14
 
 ### Added
-- EASILayout组件新增选择跳转到其他系统的UI展示
-- 引入iconfont.css
+
+- EASILayout 组件新增选择跳转到其他系统的 UI 展示
+- 引入 iconfont.css
 
 ### Changed
-- EASIUploader 优化UI
 
+- EASIUploader 优化 UI
 
 ## [0.0.29] - 2021-09-08
 
-- EASILayout组件新增v-model:setting属性，从外部控制设置抽屉的显示隐藏
-- EASILayout组件修复通过外部代码强制关闭定时刷新功能，刷新间隔时间设定为5秒
+- EASILayout 组件新增 v-model:setting 属性，从外部控制设置抽屉的显示隐藏
+- EASILayout 组件修复通过外部代码强制关闭定时刷新功能，刷新间隔时间设定为 5 秒
 
 ## [0.0.28] - 2021-09-08
 
-- EASIProvider组件监听水印删除事件，自动生成新的dom
-- EASIProvider组件修复waterMarker属性未触发水印更新的bug
+- EASIProvider 组件监听水印删除事件，自动生成新的 dom
+- EASIProvider 组件修复 waterMarker 属性未触发水印更新的 bug
 
 ## [0.0.27] - 2021-09-08
 
-- EASIProvider组件优化水印功能，被删除后自动新建水印，间隔5秒自动刷新水印
+- EASIProvider 组件优化水印功能，被删除后自动新建水印，间隔 5 秒自动刷新水印
 
 ## [0.0.26] - 2021-09-07
 
-- EASIProvider组件添加自动生成水印功能
+- EASIProvider 组件添加自动生成水印功能
 
 ## [0.0.25] - 2021-09-02
 

@@ -1,10 +1,10 @@
 {
   "name": "easi-packages-antd",
   "private": true,
-  "version": "0.0.32",
+  "version": "0.0.33",
   "description": "",
-  "main": "dist/index.es.js",
-  "module": "dist/index.cjs.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
   "typings": "lib/index.d.ts",
   "workspaces": [
     "packages/*"
@@ -14,15 +14,15 @@
     "gc": "bash ./scripts/gc.sh",
     "gen:version": "node build/gen-version.js",
     "build": "rimraf ./dist && yarn gen:version && vite build && yarn build:ws",
-    "build:lib": "rimraf ./dist && rimraf ./es && rimraf ./lib && yarn gen:version && vite build && yarn build:ws && yarn build:components && yarn build:bundle && yarn build:directives && yarn build:utils && yarn build:style",
+    "build:lib": "rimraf ./dist && rimraf ./es && rimraf ./lib && yarn gen:version && vite build &&  yarn build:components && yarn build:bundle && yarn build:directives && yarn build:utils && yarn build:style && yarn build:docs",
     "build:bundle": "rollup -c ./build/rollup.config.bundle.js",
     "build:components": "rollup -c ./build/rollup.config.js",
     "build:directives": "cd packages/directives && rollup -c",
     "build:utils": "cd packages/utils && rollup -c",
-    "build:ws": "vite build --config ./website/vite.config.ts",
+    "build:docs": "cd docs && yarn build",
     "build:style": "gulp --cwd ./build",
     "easi-auto-tag": "easi-auto-tag",
-    "website": "vite --config ./website/vite.config.ts",
+    "dev:docs": "cd docs && yarn dev",
     "test": "echo \"Error: no test specified\" && exit 1",
     "easi-assets-deploy": "easi-assets-deploy"
   },
@@ -92,7 +92,7 @@
     "easi-web-utils": "git+https://github.com/infinitasx/easi-web-utils.git#main",
     "vue-router": "^4.0.10"
   },
-  "homepage": "https://static.easiglobal.com/easi-packages-antd/0.0.32/website/index.html",
+  "homepage": "https://static.easiglobal.com/easi-packages-antd/0.0.33/website/index.html",
   "easiAssetsDeployConfig": {
     "backend": {
       "projectName": "",

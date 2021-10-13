@@ -12,10 +12,10 @@
 ```
 
 ```js
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref } from 'vue';
 export default defineComponent({
   setup() {
-    const tableData = ref([{ name: "EASI", id: 1 }]);
+    const tableData = ref([{ name: 'EASI', id: 1 }]);
     return { tableData };
   },
 });

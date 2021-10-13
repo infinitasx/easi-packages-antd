@@ -23,6 +23,17 @@ declare const _default: import("vue").DefineComponent<{
         fixedTab: boolean;
         cachedPage: string[];
         userInfo: {
+            application_id?: string | undefined;
+            apps?: {
+                application_id: string;
+                name: string;
+                icons: string;
+                link: string;
+                scopes: {
+                    id: string;
+                    name: string;
+                }[];
+            }[] | undefined;
             name?: string | undefined;
             avatar?: string | undefined;
             devices?: {
@@ -42,6 +53,17 @@ declare const _default: import("vue").DefineComponent<{
         ip?: string | undefined;
         cityName?: string | undefined;
         userInfo?: {
+            application_id?: string | undefined;
+            apps?: {
+                application_id: string;
+                name: string;
+                icons: string;
+                link: string;
+                scopes: {
+                    id: string;
+                    name: string;
+                }[];
+            }[] | undefined;
             name?: string | undefined;
             avatar?: string | undefined;
             devices?: {
