@@ -1,0 +1,60 @@
+{
+  "name": "vite-docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huyanhai/vite-docs.git"
+  },
+  "keywords": [
+    "easi-jssdk"
+  ],
+  "author": "810839700@qq.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/huyanhai/vite-docs/issues"
+  },
+  "homepage": "https://github.com/huyanhai/vite-docs#readme",
+  "scripts": {
+    "dev": "vitepress dev . --open",
+    "build": "NODE_ENV=production && vitepress build --build && yarn mv",
+    "serve": "vitepress serve .",
+    "mv": "bash ./movefile.sh",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "easi-assets-deploy": "easi-assets-deploy"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.2.13",
+    "autoprefixer": "^10.3.5",
+    "docsearch.js": "^2.6.3",
+    "highlight.js": "^11.2.0",
+    "markdown-it": "^12.2.0",
+    "markdown-it-container": "^3.0.0",
+    "normalize.css": "^8.0.1",
+    "postcss": "^8.3.7",
+    "postcss-import": "^14.0.2",
+    "sass": "^1.42.1",
+    "tailwindcss": "^2.2.15",
+    "vitepress": "^0.19.1"
+  },
+  "dependencies": {
+    "@docsearch/js": "^3.0.0-alpha.40",
+    "@vueuse/core": "^6.5.3",
+    "ant-design-vue": "^2.2.8",
+    "element-plus": "^1.1.0-beta.12",
+    "markdown": "^0.5.0",
+    "marked": "^3.0.4",
+    "typed.js": "^2.0.12"
+  },
+  "easiAssetsDeployConfig": {
+    "backend": {
+      "projectName": "",
+      "repositoryUrl": "",
+      "templateDir": "",
+      "branchName": ""
+    },
+    "assetsFilePattern": "*.html",
+    "asLibrary": false
+  }
+}
