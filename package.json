@@ -10,10 +10,11 @@
     "packages/*"
   ],
   "scripts": {
+    "dev:docs": "cd docs && yarn dev",
     "serve": "vite --config ./vite.config.ts",
     "gc": "bash ./scripts/gc.sh",
     "gen:version": "node build/gen-version.js",
-    "build": "rimraf ./dist && yarn gen:version && vite build",
+    "build": "rimraf ./dist/*.js && rimraf ./dist/*.css && yarn gen:version && vite build",
     "build:lib": "rimraf ./dist && rimraf ./es && rimraf ./lib && yarn gen:version && vite build &&  yarn build:components && yarn build:bundle && yarn build:directives && yarn build:utils && yarn build:style && yarn build:docs",
     "build:bundle": "rollup -c ./build/rollup.config.bundle.js",
     "build:components": "rollup -c ./build/rollup.config.js",
@@ -22,7 +23,6 @@
     "build:docs": "cd docs && yarn build",
     "build:style": "gulp --cwd ./build",
     "easi-auto-tag": "easi-auto-tag",
-    "dev:docs": "cd docs && yarn dev",
     "test": "echo \"Error: no test specified\" && exit 1",
     "easi-assets-deploy": "easi-assets-deploy"
   },

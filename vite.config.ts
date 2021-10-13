@@ -1,39 +1,48 @@
-import { defineConfig } from "vite";
-import json from "@rollup/plugin-json";
-import vue from "@vitejs/plugin-vue";
-import html from "vite-plugin-html";
-import { resolve } from "path";
+import { defineConfig } from 'vite';
+import json from '@rollup/plugin-json';
+import vue from '@vitejs/plugin-vue';
+import html from 'vite-plugin-html';
+import { resolve } from 'path';
 
 // https://vitejs.dev/config/
 export default () => {
   return defineConfig({
     resolve: {
       alias: {
-        "@": resolve("./"),
+        '@': resolve('./'),
       },
     },
     build: {
       sourcemap: false,
       cssCodeSplit: false,
       lib: {
-        entry: resolve(__dirname, "packages/easi-packages-antd/index.ts"),
-        name: "EASI",
-        formats: ["cjs", "es", "umd"],
-        fileName: "index",
+        entry: resolve(__dirname, 'packages/easi-packages-antd/index.ts'),
+        name: 'EASI',
+        formats: ['cjs', 'es', 'umd'],
+        fileName: 'index',
       },
-      outDir: "dist",
+      outDir: 'dist',
+      emptyOutDir: false,
       rollupOptions: {
-        external: ["vue", "ant-design-vue", "ant-design-vue/dist/antd.css", "moment", "../moment", "vue-router", "vue-i18n"],
+        external: [
+          'vue',
+          'ant-design-vue',
+          'ant-design-vue/dist/antd.css',
+          'moment',
+          '../moment',
+          'vue-router',
+          'vue-i18n',
+        ],
         output: {
-          exports: "named",
+          exports: 'named',
           globals: {
-            vue: "Vue",
-            "vue-router": "VueRouter",
-            "ant-design-vue": "antd",
-            moment: "moment",
-            "..moment": "moment",
-            "ant-design-vue/dist/antd.css": "antd",
-            "vue-i18n": "VueI18n",
+            vue: 'Vue',
+            'vue-router': 'VueRouter',
+            'ant-design-vue': 'antd',
+            moment: 'moment',
+            '..moment': 'moment',
+            'ant-design-vue/dist/antd.css': 'antd',
+            'vue-i18n': 'VueI18n',
           },
         },
         plugins: [json()],
@@ -72,7 +81,7 @@ export default () => {
       html({
         inject: {
           injectData: {
-            title: "EASI packages by antd",
+            title: 'EASI packages by antd',
           },
         },
       }),
