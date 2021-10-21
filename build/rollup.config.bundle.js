@@ -10,8 +10,7 @@ import path from 'path';
 import copy from 'rollup-plugin-copy';
 import del from 'rollup-plugin-delete';
 import { resolve } from 'path';
-
-console.log(path.resolve(__dirname, '../tsconfig.json'));
+import { getBabelOutputPlugin } from '@rollup/plugin-babel';
 
 export default [
   {
@@ -44,6 +43,12 @@ export default [
         },
         abortOnError: true,
         enforce: 'pre',
+      }),
+      getBabelOutputPlugin({
+        allowAllFormats: true,
+        exclude: 'node_modules/**', // 只编译源代码
+        extensions: ['.ts', '.vue', '.js'],
+        plugins: ['@babel/plugin-proposal-optional-chaining'],
       }),
       terser(),
       nodeResolve(),
