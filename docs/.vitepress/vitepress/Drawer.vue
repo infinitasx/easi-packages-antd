@@ -1,13 +1,24 @@
 <template>
-  <div class="drawer-wraper fixed h-full left-0 top-0 z-20 transform flex" :class="[$attrs.modelValue ? 'drawer-container-open' : 'drawer-container-close']">
+  <div
+    class="drawer-wraper fixed h-full left-0 top-0 transform flex z-100"
+    :class="[$attrs.modelValue ? 'drawer-container-open' : 'drawer-container-close']"
+  >
     <div class="drawer-container h-full bg-white overflow-y-scroll">
       <slot></slot>
     </div>
-    <div class="drawer-handle flex" @click="$emit('changeDrawer', $attrs.modelValue)" :class="[$attrs.modelValue ? 'drawer-open' : 'drawer-close']">
+    <div
+      class="drawer-handle flex"
+      @click="$emit('changeDrawer', $attrs.modelValue)"
+      :class="[$attrs.modelValue ? 'drawer-open' : 'drawer-close']"
+    >
       <i class="drawer-handle-icon"></i>
     </div>
   </div>
-  <div class="fixed w-full h-full z-10 bg-black opacity-50 top-0 left-0" v-if="$attrs.modelValue" @touchmove.prevent></div>
+  <div
+    class="fixed w-full h-full z-90 bg-black opacity-50 top-0 left-0"
+    v-if="$attrs.modelValue"
+    @touchmove.prevent
+  ></div>
 </template>
 
 <script setup></script>
@@ -72,7 +83,7 @@ div.drawer-open {
     position: relative;
     &::before {
       top: 5px;
-      content: "";
+      content: '';
       display: block;
       position: absolute;
       background: #333;
@@ -81,7 +92,7 @@ div.drawer-open {
     }
     &::after {
       top: -5px;
-      content: "";
+      content: '';
       display: block;
       position: absolute;
       background: #333;

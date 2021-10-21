@@ -45,6 +45,7 @@ module.exports = {
         10: '10px',
         20: '20px',
         30: '30px',
+        50: '50px',
         80: '80px',
       },
       maxWidth: {
@@ -76,6 +77,7 @@ module.exports = {
         20: 'repeat(20, minmax(0, 1fr))',
       },
       zIndex: {
+        90: '90',
         100: '100',
       },
       backgroundImage: () => ({

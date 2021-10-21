@@ -25,6 +25,11 @@ const sideItem = e => {
 };
 const changeDrawer = e => {
   showDrawer.value = !e;
+  if (!e) {
+    document.querySelector('body').style.overflow = 'hidden';
+  } else {
+    document.querySelector('body').style.overflow = 'inherit';
+  }
 };
 </script>
 

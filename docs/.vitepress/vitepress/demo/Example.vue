@@ -1,5 +1,5 @@
 <template>
-  <div class="p-20 border border-gray-100 border-t-0">
+  <div class="p-20 border border-gray-100 border-t-0 overflow-x-scroll">
     <component v-if="demo" :is="demo" v-bind="$attrs" />
   </div>
 </template>
