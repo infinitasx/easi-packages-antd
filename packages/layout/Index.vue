@@ -23,7 +23,7 @@
       <a-layout-content>
         <router-view v-slot="{ Component }">
           <transition name="slid-up" mode="out-in">
-            <keep-alive :include="globalProvider.cachedPage">
+            <keep-alive :include="cachedPage">
               <component :is="Component" :key="(Component || {}).name" v-if="globalProvider.reloadPage" />
             </keep-alive>
           </transition>
