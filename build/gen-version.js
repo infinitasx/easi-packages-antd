@@ -1,14 +1,14 @@
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
 const tagVer = process.env.TAG_VERSION;
 if (tagVer) {
-  version = tagVer.startsWith("v") ? tagVer.slice(1) : tagVer;
+  version = tagVer.startsWith('v') ? tagVer.slice(1) : tagVer;
 } else {
-  version = require("../package.json").version;
+  version = require('../package.json').version;
 }
 
 function readCtx(filePath) {
-  return fs.readFileSync(path.resolve(__dirname, filePath), "utf-8");
+  return fs.readFileSync(path.resolve(__dirname, filePath), 'utf-8');
 }
 
 function writeCtx(filePath, ctx) {
@@ -20,7 +20,10 @@ function editReadme(filePath) {
   const fileCtx = readCtx(filePath);
   writeCtx(
     filePath,
-    fileCtx.replace(/(https:\/\/static\.easiglobal\.com\/easi-packages-antd).*(website\/index\.html)/g, `https://static.easiglobal.com/easi-packages-antd/${version}/website/index.html`)
+    fileCtx.replace(
+      /(https:\/\/static\.melbdelivery\.com\/easi-packages-antd).*(website\/index\.html)/g,
+      `https://static.melbdelivery.com/easi-packages-antd/${version}/website/index.html`,
+    ),
   );
 }
 
@@ -33,6 +36,6 @@ function editPackage(filePath) {
   }
 }
 
-writeCtx("../packages/easi-packages-antd/version.ts", `export const version = '${version}'`);
-editReadme("../README.md");
-editPackage("../package.json");
+writeCtx('../packages/easi-packages-antd/version.ts', `export const version = '${version}'`);
+editReadme('../README.md');
+editPackage('../package.json');
