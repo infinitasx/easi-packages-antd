@@ -15,8 +15,9 @@
 </p>
 <br>
 
+<p align="center">
 [文档地址](https://static.melbdelivery.com/easi-packages-antd/0.0.34/website/index.html)
-
+</p>
 ### 开发前置
 
 - 自动生成组件
