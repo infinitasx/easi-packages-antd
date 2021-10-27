@@ -185,15 +185,30 @@ div[class~='language-vue']:before {
   content: 'vue';
 }
 
-table {
-  width: 100%;
+.m-container > div > table {
   thead {
-    display: table-header-group;
+    display: block;
+    width: 100%;
+    border-bottom: none;
+    tr {
+      width: 100%;
+      display: flex;
+      th {
+        width: 20%;
+        white-space: break-spaces;
+      }
+    }
   }
   tbody {
-    display: table-row-group;
-  }
-  tr {
-    display: table-row;
+    display: block;
+    width: 100%;
+    tr {
+      width: 100%;
+      display: flex;
+      td {
+        width: 20%;
+        white-space: break-spaces;
+      }
+    }
   }
 }

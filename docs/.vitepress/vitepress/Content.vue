@@ -7,7 +7,7 @@
         :class="{ 'md:pl-280': pagePath !== '/zh/' }"
       >
         <div class="flex-1 w-1/2 flex flex-col">
-          <Content class="flex-1 w-full" />
+          <Content class="flex-1 w-full m-container" />
           <Pages />
         </div>
         <HyperLink class="hidden md:flex" v-if="!componentsName || componentsName !== 'guide'" />
