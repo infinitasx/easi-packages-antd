@@ -11,7 +11,6 @@ var script = defineComponent({
   setup(props) {}
 
 });
-
 const _hoisted_1 = {
   class: "w-0 bg-red-400"
 };

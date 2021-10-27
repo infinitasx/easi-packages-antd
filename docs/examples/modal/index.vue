@@ -1,18 +1,16 @@
 <template>
-  <EASIProvider :locale="zhCN">
-    <EASIButton @click="visible = true">打开弹窗</EASIButton>
-    <br />
-    <EASIModal :visible="visible" title="弹窗标题" @cancel="visible = false">内容</EASIModal>
-  </EASIProvider>
+  <EASIButton @click="visible = true">打开弹窗</EASIButton>
+  <br />
+  <EASIModal :visible="visible" title="弹窗标题" @cancel="visible = false">内容</EASIModal>
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue';
-import zhCN from 'ant-design-vue/es/locale/zh_CN';
+import {defineComponent, ref} from 'vue';
+
 export default defineComponent({
   setup() {
     const visible = ref(false);
-    return { visible ,zhCN };
+    return {visible};
   },
 });
 </script>

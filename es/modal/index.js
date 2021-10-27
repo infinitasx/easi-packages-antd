@@ -168,11 +168,11 @@ var script = defineComponent({
   }
 
 });
-
 const _hoisted_1 = {
   key: 0,
   class: "footer"
 };
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_a_button = resolveComponent("a-button");
 

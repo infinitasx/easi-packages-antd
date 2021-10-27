@@ -52,7 +52,6 @@ var ZH = {
   selected: "\u5DF2\u9009\uFF1A",
   copySuccess: "\u5DF2\u7C98\u8D34\u8FDB\u526A\u5207\u677F"
 };
-
 var EN = {
   confirm: "Confirm",
   cancel: "Cancel",
@@ -101,7 +100,6 @@ var EN = {
   selected: "Selected\uFF1A",
   copySuccess: "Has been pasted into the clipboard"
 };
-
 var JA = {
   confirm: "\u78BA \u8A8D",
   cancel: "\u53D6 \u6D88",
@@ -150,12 +148,12 @@ var JA = {
   selected: "\u9078\u629E\u6E08\u307F\uFF1A",
   copySuccess: "\u304C\u30AF\u30EA\u30C3\u30D7\u30DC\u30FC\u30C9\u306B\u8CBC\u308A\u4ED8\u3051\u3089\u308C\u307E\u3057\u305F"
 };
-
 const langMap = {
   "zh-cn": ZH,
   en: EN,
   ja: JA
 };
+
 function initI18n(lang) {
   return reactive({
     message: langMap[lang]
@@ -233,7 +231,6 @@ var script = defineComponent({
 const _withId = /* @__PURE__ */withScopeId("data-v-7bbec90b");
 
 pushScopeId("data-v-7bbec90b");
-
 const _hoisted_1 = {
   key: 0,
   class: "loading-container",
@@ -256,7 +253,6 @@ const _hoisted_3 = {
   key: 0,
   class: "tips"
 };
-
 popScopeId();
 
 const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $options) => {

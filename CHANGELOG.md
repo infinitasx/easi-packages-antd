@@ -4,12 +4,13 @@
 
 本文件格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/) ，并且遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 。
 
-## [0.0.34] - 2021-10-21
+## [0.0.34] - 2021-10-27
 
 ### Changed
 
 - 修复隐藏标签栏时，仍然会缓存组件的 bug
 - 完善使用文档中 table 使用示例
+- 完善使用文档中 EASISetting、EASIProvider、EASIUploader 的使用示例
 
 ## [0.0.33] - 2021-10-13
 

@@ -56,12 +56,10 @@ var script = defineComponent({
 const _withId = /* @__PURE__ */withScopeId("data-v-57a97f50");
 
 pushScopeId("data-v-57a97f50");
-
 const _hoisted_1 = {
   key: 0,
   class: "drawer-footer"
 };
-
 popScopeId();
 
 const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $options) => {

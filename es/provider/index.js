@@ -8,6 +8,7 @@ function createNamespace(name) {
 
 const SETTING_KEY = "setting";
 const HTML = document.querySelector("html");
+
 function initProvider() {
   const defaultData = getLocal(SETTING_KEY) || {
     mode: false,
@@ -74,7 +75,6 @@ var ZH = {
   selected: "\u5DF2\u9009\uFF1A",
   copySuccess: "\u5DF2\u7C98\u8D34\u8FDB\u526A\u5207\u677F"
 };
-
 var EN = {
   confirm: "Confirm",
   cancel: "Cancel",
@@ -123,7 +123,6 @@ var EN = {
   selected: "Selected\uFF1A",
   copySuccess: "Has been pasted into the clipboard"
 };
-
 var JA = {
   confirm: "\u78BA \u8A8D",
   cancel: "\u53D6 \u6D88",
@@ -172,19 +171,19 @@ var JA = {
   selected: "\u9078\u629E\u6E08\u307F\uFF1A",
   copySuccess: "\u304C\u30AF\u30EA\u30C3\u30D7\u30DC\u30FC\u30C9\u306B\u8CBC\u308A\u4ED8\u3051\u3089\u308C\u307E\u3057\u305F"
 };
-
 const langMap = {
   "zh-cn": ZH,
   en: EN,
   ja: JA
 };
+
 function initI18n(lang) {
   return reactive({
     message: langMap[lang]
   });
 }
 
-var timerWorker = (() => {
+var timerWorker = () => {
   self.addEventListener("message", function (e) {
     const {
       type
@@ -204,7 +203,7 @@ var timerWorker = (() => {
       self.close();
     }
   }, false);
-});
+};
 
 var script$1 = defineComponent({
   name: createNamespace("WaterMaker"),
@@ -231,8 +230,10 @@ var script$1 = defineComponent({
     let worker;
 
     const initWorker = () => {
+      var _window;
+
       const blob = new Blob(["(" + timerWorker.toString() + ")()"]);
-      const url = window.URL.createObjectURL(blob);
+      const url = (_window = window) === null || _window === void 0 ? void 0 : _window.URL.createObjectURL(blob);
       worker = new Worker(url);
       worker.postMessage({});
 
@@ -282,13 +283,13 @@ var script$1 = defineComponent({
   }
 
 });
-
 const _hoisted_1 = {
   key: 0
 };
 const _hoisted_2 = {
   key: 1
 };
+
 function render$1(_ctx, _cache, $props, $setup, $data, $options) {
   return _ctx.showMarker ? (openBlock(true), createBlock(Fragment, {
     key: 0
@@ -304,7 +305,6 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
 
 script$1.render = render$1;
 script$1.__file = "packages/provider/WaterMaker.vue";
-
 var script = defineComponent({
   name: createNamespace("Provider"),
   props: {
@@ -321,6 +321,8 @@ var script = defineComponent({
   },
 
   setup(props) {
+    var _window2;
+
     const {
       locale,
       waterMarker
@@ -333,7 +335,7 @@ var script = defineComponent({
       globalEASILocale.message = newVal !== null && newVal !== void 0 && newVal.locale ? langMap[newVal.locale] : langMap["zh-cn"];
     });
     let observer;
-    const domain = window.location.host;
+    const domain = (_window2 = window) === null || _window2 === void 0 ? void 0 : _window2.location.host;
 
     const _row = Math.ceil(screen.width / 220);
 
