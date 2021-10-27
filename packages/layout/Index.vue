@@ -154,21 +154,21 @@ export default defineComponent({
     // 监听页面resize事件
     const handleResize = () => {
       debounced(() => {
-        if (collapsed.value && window.innerWidth > 1200) {
+        if (collapsed.value && window?.innerWidth > 1200) {
           collapsed.value = false;
-        } else if (!collapsed.value && window.innerWidth <= 1200) {
+        } else if (!collapsed.value && window?.innerWidth <= 1200) {
           collapsed.value = true;
         }
-        if (isH5.value && window.innerWidth > 750) {
+        if (isH5.value && window?.innerWidth > 750) {
           isH5.value = false;
-        } else if (!isH5.value && window.innerWidth <= 750) {
+        } else if (!isH5.value && window?.innerWidth <= 750) {
           isH5.value = true;
         }
       }, 250)();
     };
 
     handleResize();
-    window.addEventListener("resize", handleResize, false);
+    window?.addEventListener("resize", handleResize, false);
 
     watch(() => showSetting.value, (newVal) => {
       if(setting.value !== newVal){
@@ -189,7 +189,7 @@ export default defineComponent({
     });
 
     onBeforeUnmount(() => {
-      window.removeEventListener("resize", handleResize, false);
+      window?.removeEventListener("resize", handleResize, false);
     });
 
     return {
