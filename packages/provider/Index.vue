@@ -38,7 +38,7 @@ export default defineComponent({
     })
     let observer: any;
 
-    const domain = window.location.host;
+    const domain = window?.location.host;
     const _row = Math.ceil(screen.width / 220);
     const _col = Math.ceil(screen.height / 220);
     const totalNumber = _row * _col;

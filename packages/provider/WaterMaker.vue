@@ -44,7 +44,7 @@ export default defineComponent({
 
     const initWorker = () => {
       const blob = new Blob(['(' + timerWorker.toString() + ')()']);
-      const url = window.URL.createObjectURL(blob);
+      const url = window?.URL.createObjectURL(blob);
       worker = new Worker(url) as Worker;
       worker.postMessage({});
       worker.onmessage = async ({data}) => {

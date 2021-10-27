@@ -76,7 +76,7 @@ export default defineComponent({
         }else{
           link += `?scope_id=${scopeId}`
         }
-        window.open(link, '_blank');
+        window?.open(link, '_blank');
       }
     };
   },

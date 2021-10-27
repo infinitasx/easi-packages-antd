@@ -1,4 +1,4 @@
-import {ref, Ref} from 'vue';
+import { ref, Ref } from 'vue';
 
 export type IActionType = 'dragover' | 'dragleave' | 'drop' | '';
 // code:
@@ -7,15 +7,21 @@ export type IActionType = 'dragover' | 'dragleave' | 'drop' | '';
 // FILE_MAX_SIZE: 文件内存超过上传内存限制
 // FILE_MIN_WITH_HEIGHT: 文件的宽高小于可裁剪到的最低宽高
 export interface IValidateError {
-  code: 'FILE_TYPE_ERROR' | 'FILE_MAX_COUNT' | 'FILE_MAX_SIZE' | 'FILE_MIN_WITH_HEIGHT' | 'FILE_UPLOAD_ERROR' | 'FILE_LIST_ERROR';
+  code:
+    | 'FILE_TYPE_ERROR'
+    | 'FILE_MAX_COUNT'
+    | 'FILE_MAX_SIZE'
+    | 'FILE_MIN_WITH_HEIGHT'
+    | 'FILE_UPLOAD_ERROR'
+    | 'FILE_LIST_ERROR';
   message: string;
   fileList: File[];
 }
 
 export interface ImageProps {
-  width: number,
-  height: number,
-  image: HTMLImageElement
+  width: number;
+  height: number;
+  image: HTMLImageElement;
 }
 
 export interface IPrevHandleImageOptions {
@@ -26,7 +32,7 @@ export interface IPrevHandleImageOptions {
 }
 
 export interface IPreviewItem {
-  file: File,
+  file: File;
   name: string;
   url: string;
   originUrl: string;
@@ -51,11 +57,11 @@ export interface IRequestConfig {
   url: string;
   method: string;
   header: {
-    [prop: string]: any
+    [prop: string]: any;
   };
   body?: any;
   params?: {
-    [prop: string]: any
+    [prop: string]: any;
   };
   timeout?: number;
 }
@@ -67,25 +73,27 @@ export interface IQueryOptions {
 }
 
 // 初始化及设置拖动状态
-export function useActionType(init: IActionType = ''): [Ref<IActionType>, (actionType: IActionType) => void] {
+export function useActionType(
+  init: IActionType = '',
+): [Ref<IActionType>, (actionType: IActionType) => void] {
   const actionType = ref<IActionType>(init);
 
   const setActionType = (_actionType: IActionType) => {
-    actionType.value = _actionType
-  }
+    actionType.value = _actionType;
+  };
 
-  return [actionType, setActionType]
+  return [actionType, setActionType];
 }
 
 // 获取图片的真实宽高
 export async function getImageSize(src: string): Promise<ImageProps> {
-  const image = new Image()
-  image.src = src
-  return new Promise((resolve) => {
+  const image = new Image();
+  image.src = src;
+  return new Promise(resolve => {
     image.onload = () => {
-      resolve({width: image.width, height: image.height, image})
-    }
-  })
+      resolve({ width: image.width, height: image.height, image });
+    };
+  });
 }
 
 // file转blob
@@ -93,7 +101,7 @@ export function fileToBlob(file: File): Promise<string> {
   return new Promise(resolve => {
     const reader = new FileReader();
     reader.readAsArrayBuffer(file);
-    reader.onload = function (e: ProgressEvent<FileReader>) {
+    reader.onload = function(e: ProgressEvent<FileReader>) {
       let blob;
       const result = (e.target as FileReader).result;
       if (typeof result === 'object') {
@@ -101,7 +109,7 @@ export function fileToBlob(file: File): Promise<string> {
       } else {
         blob = (e.target as FileReader).result;
       }
-      resolve(window.URL.createObjectURL(blob));
+      resolve(window?.URL.createObjectURL(blob));
     };
   });
 }
@@ -109,29 +117,36 @@ export function fileToBlob(file: File): Promise<string> {
 // 计算文件大小
 export function computedMemorySize(size: number = 0) {
   const kbSize = Math.floor(size / 1024);
-  if(kbSize < 0){
-    return `${size}byte`
+  if (kbSize < 0) {
+    return `${size}byte`;
   }
   if (kbSize >= 1024) {
-    return `${parseFloat((kbSize / 1024).toString()).toFixed(2)}M`
+    return `${parseFloat((kbSize / 1024).toString()).toFixed(2)}M`;
   } else {
-    return `${kbSize}kb`
+    return `${kbSize}kb`;
   }
 }
 
 // 通过选择文件校验后，使用canvas预处理图片，压缩宽高及大小
-export async function canvasToFile(file: File, options: IPrevHandleImageOptions, getText: (key: string, value: any) => string): Promise<IPreviewItem> {
-  const {minCropBoxWidth, minCropBoxHeight, maxHeight, maxWidth} = options;
+export async function canvasToFile(
+  file: File,
+  options: IPrevHandleImageOptions,
+  getText: (key: string, value: any) => string,
+): Promise<IPreviewItem> {
+  const { minCropBoxWidth, minCropBoxHeight, maxHeight, maxWidth } = options;
   const src = await fileToBlob(file);
-  const {width, height, image} = await getImageSize(src);
+  const { width, height, image } = await getImageSize(src);
   // gif跳过前端预处理压缩
   if (file.type !== 'image/gif') {
-    if ((minCropBoxWidth > 0 && width < minCropBoxWidth) || (minCropBoxHeight > 0 && height < minCropBoxHeight)) {
+    if (
+      (minCropBoxWidth > 0 && width < minCropBoxWidth) ||
+      (minCropBoxHeight > 0 && height < minCropBoxHeight)
+    ) {
       return Promise.reject({
         code: 'FILE_MIN_WITH_HEIGHT',
-        message: getText('uploaderError3', {size: `${minCropBoxWidth}x${minCropBoxHeight}`}),
+        message: getText('uploaderError3', { size: `${minCropBoxWidth}x${minCropBoxHeight}` }),
         fileList: [file],
-      } as IValidateError)
+      } as IValidateError);
     }
     if (width > maxWidth || height > maxHeight) {
       let canvas: HTMLCanvasElement | null = document.createElement('canvas');
@@ -143,19 +158,22 @@ export async function canvasToFile(file: File, options: IPrevHandleImageOptions,
         canvas.width = Math.floor(maxHeight / rate);
         canvas.height = maxHeight;
       }
-      if ((minCropBoxWidth > 0 && canvas.width < minCropBoxWidth) || (minCropBoxHeight > 0 && canvas.height < minCropBoxHeight)) {
+      if (
+        (minCropBoxWidth > 0 && canvas.width < minCropBoxWidth) ||
+        (minCropBoxHeight > 0 && canvas.height < minCropBoxHeight)
+      ) {
         return Promise.reject({
           code: 'FILE_MIN_WITH_HEIGHT',
-          message: getText('uploaderError3', {size: `${minCropBoxWidth}x${minCropBoxHeight}`}),
+          message: getText('uploaderError3', { size: `${minCropBoxWidth}x${minCropBoxHeight}` }),
           fileList: [file],
-        } as IValidateError)
+        } as IValidateError);
       }
       const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
       //通过canvas drawImage方法绘制图片
-      ctx.drawImage(image, 0, 0, canvas.width, canvas.height)
-      return new Promise((resolve) => {
-        (canvas as HTMLCanvasElement).toBlob((blob) => {
-          const newFile = new File([blob as Blob], file.name, {type: file.type});
+      ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+      return new Promise(resolve => {
+        (canvas as HTMLCanvasElement).toBlob(blob => {
+          const newFile = new File([blob as Blob], file.name, { type: file.type });
           resolve({
             file: newFile,
             url: src,
@@ -164,14 +182,18 @@ export async function canvasToFile(file: File, options: IPrevHandleImageOptions,
             width,
             height,
             size: newFile.size,
-            aspectRatio: parseFloat(((canvas as HTMLCanvasElement).width / (canvas as HTMLCanvasElement).height).toString()).toFixed(4),
+            aspectRatio: parseFloat(
+              (
+                (canvas as HTMLCanvasElement).width / (canvas as HTMLCanvasElement).height
+              ).toString(),
+            ).toFixed(4),
             uploadSuccess: false,
             uploadFail: false,
             uploadLoading: false,
           });
           canvas = null;
-        }, file.type)
-      })
+        }, file.type);
+      });
     }
   }
   return {
@@ -190,7 +212,7 @@ export async function canvasToFile(file: File, options: IPrevHandleImageOptions,
 }
 
 // 封装请求方法
-export function request(requestConfig: IRequestConfig): Promise<any>{
+export function request(requestConfig: IRequestConfig): Promise<any> {
   return new Promise((resolve, reject) => {
     let { url, body = null, header = {}, params = {}, method = 'GET', timeout } = requestConfig;
     const xhr = new XMLHttpRequest();
@@ -198,49 +220,52 @@ export function request(requestConfig: IRequestConfig): Promise<any>{
     xhr.onreadystatechange = () => {
       if (Number(xhr.readyState) === 4) {
         clearTimeout(timeCount);
-        if(Number(xhr.status) === 200) {
+        if (Number(xhr.status) === 200) {
           const result = JSON.parse(xhr.response);
-          resolve(result)
-        }else{
-          reject(xhr.responseText)
+          resolve(result);
+        } else {
+          reject(xhr.responseText);
         }
       }
     };
     let hasParams = url.indexOf('?') > -1;
     Object.keys(params).map(key => {
-      if(params[key] != null){
-        if(hasParams){
+      if (params[key] != null) {
+        if (hasParams) {
           url += `&${key}=${params[key]}`;
-        }else{
+        } else {
           url += `?${key}=${params[key]}`;
           hasParams = true;
         }
       }
-    })
+    });
     xhr.open(method, url, true);
     Object.keys(header).map(key => {
-      if(key === 'authorization'){
+      if (key === 'authorization') {
         xhr.setRequestHeader(key, typeof header[key] === 'function' ? header[key]() : header[key]);
-      }else{
+      } else {
         xhr.setRequestHeader(key, header[key]);
       }
     });
     timeCount = setTimeout(() => {
-      xhr.abort()
+      xhr.abort();
     }, timeout);
     xhr.send(body);
-  })
+  });
 }
 
 // 上传文件的方法
-export async function uploadPic(previewItem: IPreviewItem, options: IUploadOptions): Promise<IPreviewItem>{
+export async function uploadPic(
+  previewItem: IPreviewItem,
+  options: IUploadOptions,
+): Promise<IPreviewItem> {
   const { domain, authorization, system, timeout } = options;
   const form = new FormData();
   form.append('file', previewItem.file);
   form.append('system', system as string);
   form.append('width', previewItem.width.toString());
-  form.append('height', previewItem.height.toString())
-  try{
+  form.append('height', previewItem.height.toString());
+  try {
     const { url, name, size } = await request({
       url: `${domain}/v1/widget/upload`,
       method: 'POST',
@@ -257,20 +282,20 @@ export async function uploadPic(previewItem: IPreviewItem, options: IUploadOptio
       size: size,
       uploadLoading: false,
       uploadSuccess: true,
-    }
-  }catch (e) {
+    };
+  } catch (e) {
     return Promise.reject({
       code: 'FILE_UPLOAD_ERROR',
       message: e,
-      fileList: [previewItem.file]
-    })
+      fileList: [previewItem.file],
+    });
   }
 }
 
 // 获取图片库列表
-export async function getPicsList (params: IQueryOptions, options: IUploadOptions) {
+export async function getPicsList(params: IQueryOptions, options: IUploadOptions) {
   const { domain, authorization, timeout } = options;
-  try{
+  try {
     return await request({
       url: `${domain}/v1/widget/list`,
       method: 'GET',
@@ -280,11 +305,11 @@ export async function getPicsList (params: IQueryOptions, options: IUploadOption
       params,
       timeout: timeout,
     });
-  }catch (e) {
+  } catch (e) {
     return Promise.reject({
       code: 'FILE_LIST_ERROR',
       message: e,
-      fileList: []
-    })
+      fileList: [],
+    });
   }
 }
