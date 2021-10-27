@@ -54,7 +54,6 @@ table {
     border-top: 1px solid #dedede;
     td:nth-child(2) {
       white-space: pre-wrap;
-      min-width: 11.62rem;
     }
   }
   tr:nth-child(2n) {
@@ -186,28 +185,24 @@ div[class~='language-vue']:before {
 }
 
 .m-container > div > table {
-  thead {
+  thead,
+  tbody {
     display: block;
     width: 100%;
     border-bottom: none;
     tr {
       width: 100%;
       display: flex;
-      th {
-        width: 20%;
-        white-space: break-spaces;
-      }
-    }
-  }
-  tbody {
-    display: block;
-    width: 100%;
-    tr {
-      width: 100%;
-      display: flex;
+      th,
       td {
-        width: 20%;
+        width: 15%;
         white-space: break-spaces;
+        box-sizing: border-box;
+        word-break: break-all;
+        flex: 0 0 auto;
+        &:last-child {
+          width: 40%;
+        }
       }
     }
   }
