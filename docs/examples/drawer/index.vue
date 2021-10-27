@@ -1,6 +1,8 @@
 <template>
   <EASIButton type="link" @click="visible = true">打开抽屉</EASIButton>
-  <EASIDrawer :visible="visible" @close="visible = false" />
+  <EASIDrawer title="这是标题" :visible="visible" @close="visible = false">
+    <EASIButton @click="visible = false">关闭抽屉</EASIButton>
+  </EASIDrawer>
 </template>
 
 <script>

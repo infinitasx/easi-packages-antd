@@ -20,4 +20,8 @@ export default defineComponent({
 });
 </script>
 
-<style></style>
+<style>
+p{
+  margin: 0;
+}
+</style>

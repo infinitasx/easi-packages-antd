@@ -19,7 +19,7 @@ modal/index
 | autoHeight |       boolean        |  true   |    否    | 是否撑开弹框，如果传入 false，弹框的 body 会有滚动条，弹框不会超过屏幕高度                                                                                                                                                         |
 |   footer   |       boolean        |  true   |    否    | 是否显示 footer slot，传入 false 则会隐藏弹框底部的 footer 组件                                                                                                                                                                    |
 
-## 事件
+## Events
 
 |  name  | remark                               |
 | :----: | ------------------------------------ |
@@ -27,7 +27,7 @@ modal/index
 | cancel | 点击遮罩层或右上角叉或取消按钮的回调 |
 |  show  | 弹框显示的回调                       |
 
-## 插槽
+## Slots
 
 |  name   | remark                                                           |
 | :-----: | ---------------------------------------------------------------- |

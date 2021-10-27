@@ -1,8 +1,8 @@
 # EASIUploader - 图片选择器
 
-<!-- :::demo
+:::demo
 uploader/index
-::: -->
+:::
 
 ## Props
 
@@ -56,7 +56,7 @@ interface ISelect {
 }
 ```
 
-## 事件
+## Events
 
 | event name | params |  return value  | remark                                                 |
 | :--------: | :----: | :------------: | ------------------------------------------------------ |
@@ -66,7 +66,7 @@ interface ISelect {
 |   error    |        | IValidateError | 包含接口调用失败，文件校验失败事件                     |
 |     ok     |        |   ISelect[]    | 用户确认选择事件，调用方应监听此事件获取用户选择的图片 |  |
 
-## 插槽
+## Slots
 
 未在下面特别说明的则与 ant-design-vue v2.2.2 [Table 组件](https://2x.antdv.com/components/table-cn) 一致
 

@@ -16,7 +16,7 @@ table/index
 |  loading   |      boolean      |      -      |    否    |                                   加载效果                                   |
 |   scroll   | object or boolean | `{x: 1620}` |    否    | 默认值考虑的是多列且一定会出现横向滚动的情况，请根据实际情况调整并传入此参数 |
 
-## 事件
+## Events
 
 与 ant-design-vue v2.2.2 [Table 组件](https://2x.antdv.com/components/table-cn) 一致
 
@@ -26,7 +26,7 @@ table/index
 | cancel | 点击遮罩层或右上角叉或取消按钮的回调 |
 |  show  | 弹框显示的回调                       |
 
-## 插槽
+## Slots
 
 未在下面特别说明的则与 ant-design-vue v2.2.2 [Table 组件](https://2x.antdv.com/components/table-cn) 一致
 

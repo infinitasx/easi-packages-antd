@@ -8,11 +8,11 @@ drawer/index
 
 与 ant-design-vue v2.2.2 [Drawer 组件](https://2x.antdv.com/components/drawer-cn) 一致
 
-## 方法
+## Methods
 
 与 ant-design-vue v2.2.2 [Drawer 组件](https://2x.antdv.com/components/drawer-cn) 一致
 
-## 插槽
+## Slots
 
 |  name   | remark                                 |
 | :-----: | -------------------------------------- |

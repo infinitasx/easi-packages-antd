@@ -19,6 +19,6 @@ button/loading
 
 与 ant-design-vue v2.2.2 [Button 组件](https://2x.antdv.com/components/button-cn) 一致
 
-## Event
+## Events
 
 与 ant-design-vue v2.2.2 [Button 组件](https://2x.antdv.com/components/button-cn) 一致

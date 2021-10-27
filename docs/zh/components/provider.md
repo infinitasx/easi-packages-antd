@@ -1,5 +1,9 @@
 # EASIProvider - 全局配置
 
+:::demo
+provider/index
+:::
+
 ## Props
 
 与 ant-design-vue v2.2.2 [ConfigProvider 组件](https://2x.antdv.com/components/config-provider-cn) 一致

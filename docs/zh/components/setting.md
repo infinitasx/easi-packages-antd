@@ -2,6 +2,11 @@
 
 > 此组件是点击用户名称显示出来的设置相关内容的抽屉，如果已使用 EASILayout 组件，则不需要再使用此组件。
 
+:::demo
+setting/index
+:::
+
+
 ## Props
 
 > 未特别说明的与 ant-design-vue Drawer 组件一致
