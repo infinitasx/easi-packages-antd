@@ -60,7 +60,7 @@ interface ISelect {
 
 | event name | params |  return value  | remark                                                 |
 | :--------: | :----: | :------------: | ------------------------------------------------------ |
-|    show    |        |      void      | 显示文件选择器弹框事件                                 |
+|    show    |        |      void      | 显示文件选择器弹框事件 <img width=500/>                |
 |   cancel   |        |      void      | 关闭文件选择器弹框事件                                 |
 |   change   |        |    FileList    | 本地上传选择文件事件                                   |
 |   error    |        | IValidateError | 包含接口调用失败，文件校验失败事件                     |

@@ -20,11 +20,11 @@
 
 > NavItem
 
-| props |   type   | default | required | remark           |
-| :---: | :------: | :-----: | :------: | ---------------- |
-| path  |  string  |         |    是    | 菜单对应的路由   |
-| name  |  string  |         |    是    | 菜单对应的组件名 |
-| meta  | MenuMeta |         |    是    | 菜单的额外信息   |
+| props |   type   |     default      | required | remark           |
+| :---: | :------: | :--------------: | :------: | ---------------- |
+| path  |  string  | <img width=500/> |    是    | 菜单对应的路由   |
+| name  |  string  |                  |    是    | 菜单对应的组件名 |
+| meta  | MenuMeta |                  |    是    | 菜单的额外信息   |
 
 > MenuMeta
 
@@ -40,18 +40,18 @@
 
 |  props  |     type     | default | required | remark                                     |
 | :-----: | :----------: | :-----: | :------: | ------------------------------------------ |
-|  name   |    string    |         |    是    | 用户名称                                   |
+|  name   |    string    |         |    是    | 用户名称 <img width=500/>                  |
 | avatar  |    string    |         |    否    | 用户头像地址                               |
 | devices | DeviceInfo[] |         |    否    | 用户历史登录设备，不存在既不会显示相关内容 |
 
 > DeviceInfo
 
-|    props    |            type             | default | required | remark     |
-| :---------: | :-------------------------: | :-----: | :------: | ---------- |
-| device_type | Desktop or Mobile or Tablet |         |    是    | 客户端类型 |
-|     id      |           number            |         |    是    | 数据表 ID  |
-|     ip      |           string            |         |    是    | 登录 IP    |
-|  active_at  |           number            |         |    是    | 时间戳     |
+|    props    |            type             | default | required | remark                      |
+| :---------: | :-------------------------: | :-----: | :------: | :-------------------------- |
+| device_type | Desktop or Mobile or Tablet |         |    是    | 客户端类型 <img width=500/> |
+|     id      |           number            |         |    是    | 数据表 ID                   |
+|     ip      |           string            |         |    是    | 登录 IP                     |
+|  active_at  |           number            |         |    是    | 时间戳                      |
 
 ## 方法
 
