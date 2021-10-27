@@ -14,7 +14,7 @@ drawer/index
 
 ## Slots
 
-|  name   | remark                                 |
+|  <div style='width: 200px'> name </div>   | <div style='width: 726px'>remark</div>                                 |
 | :-----: | -------------------------------------- |
-| default | 抽屉内容插槽 <img width=1000/>         |
-| footer  | 抽屉固定在底部的插槽，一般用于放置按钮 |
+| default | 抽屉内容插槽                             |
+| footer  | 抽屉固定在底部的插槽，一般用于放置按钮        |
