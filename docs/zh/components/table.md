@@ -20,17 +20,17 @@ table/index
 
 与 ant-design-vue v2.2.2 [Table 组件](https://2x.antdv.com/components/table-cn) 一致
 
-|  name  | remark                               |
-| :----: | ------------------------------------ |
-|   ok   | 点击确定的回调 <img width=1000/>     |
-| cancel | 点击遮罩层或右上角叉或取消按钮的回调 |
-|  show  | 弹框显示的回调                       |
+|  name  |    |  |  | remark  |
+| :--------: | :------------------: | :-----: | :------: | -------------- |
+|   ok   |||| 点击确定的回调 <img width=1000/>     |
+| cancel |||| 点击遮罩层或右上角叉或取消按钮的回调 |
+|  show  |||| 弹框显示的回调                       |
 
 ## Slots
 
 未在下面特别说明的则与 ant-design-vue v2.2.2 [Table 组件](https://2x.antdv.com/components/table-cn) 一致
 
-|    name     | remark                       |
-| :---------: | ---------------------------- |
-| headerLeft  | table 标题 <img width=1000/> |
-| headerRight | table 的操作按钮             |
+|  name  |    |  |  | remark  |
+| :--------: | :------------------: | :-----: | :------: | -------------- |
+| headerLeft  |||| table 标题 <img width=1000/> |
+| headerRight |||| table 的操作按钮             |

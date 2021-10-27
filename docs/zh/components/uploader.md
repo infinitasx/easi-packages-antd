@@ -90,18 +90,18 @@ interface ISelect {
 
 ## Events
 
-| event name | params |  return value  | remark                                                 |
-| :--------: | :----: | :------------: | ------------------------------------------------------ |
-|    show    |        |      void      | 显示文件选择器弹框事件 <img width=500/>                |
-|   cancel   |        |      void      | 关闭文件选择器弹框事件                                 |
-|   change   |        |    FileList    | 本地上传选择文件事件                                   |
-|   error    |        | IValidateError | 包含接口调用失败，文件校验失败事件                     |
-|     ok     |        |   ISelect[]    | 用户确认选择事件，调用方应监听此事件获取用户选择的图片 |  |
+| event name | params |  return value | | remark                                                 |
+| :--------: | :----: | :------------: | :------------: | ------------------------------------------------------ |
+|    show    |        |      void      || 显示文件选择器弹框事件 <img width=500/>                |
+|   cancel   |        |      void      || 关闭文件选择器弹框事件                                 |
+|   change   |        |    FileList    || 本地上传选择文件事件                                   |
+|   error    |        | IValidateError || 包含接口调用失败，文件校验失败事件                     |
+|     ok     |        |   ISelect[]    || 用户确认选择事件，调用方应监听此事件获取用户选择的图片 |  |
 
 ## Slots
 
 未在下面特别说明的则与 ant-design-vue v2.2.2 [Table 组件](https://2x.antdv.com/components/table-cn) 一致
 
-|  name   | remark                                                                                                       |
-| :-----: | ------------------------------------------------------------------------------------------------------------ |
-| default | 触发文件选择器弹框的插槽，插槽内容必须要有 root dom。不写此插槽，也可以通过 v-model:visible 控制弹框显示隐藏 |
+|  name  |    |  |  | remark  |
+| :--------: | :------------------: | :-----: | :------: | -------------- |
+| default |||| 触发文件选择器弹框的插槽，插槽内容必须要有 root dom。不写此插槽，也可以通过 v-model:visible 控制弹框显示隐藏 |
