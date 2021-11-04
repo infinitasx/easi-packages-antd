@@ -4,6 +4,12 @@
 
 本文件格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/) ，并且遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 。
 
+## [0.0.35] - 2021-11-04
+
+### Fixed
+
+- 修复Uploader组件的UI样式错误
+
 ## [0.0.34] - 2021-10-27
 
 ### Changed

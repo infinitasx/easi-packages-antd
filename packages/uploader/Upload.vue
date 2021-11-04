@@ -9,7 +9,7 @@
   >
   <Empty v-show="localUploadList.length === 0 && localUploadMustCrop.length === 0" :emptyTitle="emptyTitle" :emptySubTitle="emptySubTitle"
          @clickEmpty="inputRef.click()"/>
-  <UploaderContainer v-show="!isCropping">
+  <UploaderContainer v-show="!isCropping && localUploadList.length > 0">
     <UploaderItem v-for="(item, index) in localUploadList"
                   :key="index"
                   :item="item"
