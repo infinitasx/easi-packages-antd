@@ -29,7 +29,9 @@
     </div>
   </UploaderContainer>
   <div class="easi-uploader-cropper" v-show="isCropping">
-    <img ref="cropImageRef">
+    <div class="easi-uploader-cropper-wrapper">
+      <img ref="cropImageRef">
+    </div>
   </div>
 </template>
 
@@ -235,6 +237,14 @@ export default defineComponent({
   height: calc(100% - 4px);
   z-index: 1;
   box-sizing: border-box;
+  overflow: hidden;
+  .easi-uploader-cropper-wrapper{
+    position: relative;
+    top: 4px;
+    left: 4px;
+    width: calc(100% - 8px);
+    height: calc(100% - 8px);
+  }
 }
 .easi-uploader-add-btn{
   float: left;
