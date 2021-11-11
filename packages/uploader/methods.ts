@@ -258,14 +258,14 @@ export async function getEASIUploaderToken() {
   if (oldToken) {
     return oldToken;
   } else {
-    const { token } = await request({
+    const { data } = await request({
       url: '/file_service_upload_token',
       method: 'GET',
       timeout: 30000,
     });
     // token有效期5分钟，考虑边界情况只存储4分钟
-    setCookie('easi-eut', token, 4 * 60 * 1000);
-    return token;
+    setCookie('easi-eut', data?.token, 4 * 60 * 1000);
+    return data?.token;
   }
 }
 
