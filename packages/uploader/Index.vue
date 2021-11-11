@@ -51,6 +51,7 @@
       >
         <ImageStore ref="imageStoreRef"
                     :authorization="authorization"
+                    :authorizationKey="authorizationKey"
                     :domain="domain"
                     :timeout="timeout"
                     :checkedList="checkedList"
