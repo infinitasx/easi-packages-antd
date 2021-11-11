@@ -9,6 +9,10 @@ declare const _default: import("vue").DefineComponent<{
         type: (StringConstructor | FunctionConstructor)[];
         default: undefined;
     };
+    authorizationKey: {
+        type: StringConstructor;
+        default: string;
+    };
     timeout: {
         type: NumberConstructor;
         default: number;
@@ -80,6 +84,7 @@ declare const _default: import("vue").DefineComponent<{
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("error" | "handleCheckedChange")[], "error" | "handleCheckedChange", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
     checkedList?: unknown;
     authorization?: unknown;
+    authorizationKey?: unknown;
     timeout?: unknown;
     domain?: unknown;
     multiple?: unknown;
@@ -87,6 +92,7 @@ declare const _default: import("vue").DefineComponent<{
     getText?: unknown;
 } & {
     checkedList: IPreviewItem[];
+    authorizationKey: string;
     timeout: number;
     domain: string;
     multiple: number | boolean;
@@ -98,8 +104,9 @@ declare const _default: import("vue").DefineComponent<{
     onError?: ((...args: any[]) => any) | undefined;
     onHandleCheckedChange?: ((...args: any[]) => any) | undefined;
 }, {
-    checkedList: IPreviewItem[];
     authorization: string | Function;
+    checkedList: IPreviewItem[];
+    authorizationKey: string;
     timeout: number;
     domain: string;
     multiple: number | boolean;

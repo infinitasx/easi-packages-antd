@@ -44,6 +44,10 @@ export const uploadProps = {
     type: [String, Function],
     default: undefined,
   },
+  authorizationKey: {
+    type: String,
+    default: 'authorization',
+  },
   // 接口超时时间
   timeout: {
     type: Number,

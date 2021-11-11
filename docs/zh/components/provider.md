@@ -36,7 +36,7 @@ p{
 
 |    props    |     type     | default | required | remark                 |
 | :---------: | :----------: | :-----: | :------: | ---------------------- |
-| waterMarker | IWaterMarker |         |    否    | 需要显示水印的额外信息 |
+| waterMarker | IWaterMarker or false |    {}     |    否    | 需要显示水印的额外信息，如果传入false则不会显示水印 |
 
 ```typescript
 interface IWaterMarker {

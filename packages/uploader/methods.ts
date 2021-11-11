@@ -50,6 +50,7 @@ export interface IUploadOptions {
   domain: string;
   system?: string;
   authorization: string;
+  authorizationKey: string;
   timeout: number;
 }
 
@@ -241,11 +242,7 @@ export function request(requestConfig: IRequestConfig): Promise<any> {
     });
     xhr.open(method, url, true);
     Object.keys(header).map(key => {
-      if (key === 'authorization') {
-        xhr.setRequestHeader(key, typeof header[key] === 'function' ? header[key]() : header[key]);
-      } else {
-        xhr.setRequestHeader(key, header[key]);
-      }
+      xhr.setRequestHeader(key, typeof header[key] === 'function' ? header[key]() : header[key]);
     });
     timeCount = setTimeout(() => {
       xhr.abort();
@@ -259,7 +256,7 @@ export async function uploadPic(
   previewItem: IPreviewItem,
   options: IUploadOptions,
 ): Promise<IPreviewItem> {
-  const { domain, authorization, system, timeout } = options;
+  const { domain, authorization, authorizationKey, system, timeout } = options;
   const form = new FormData();
   form.append('file', previewItem.file);
   form.append('system', system as string);
@@ -270,7 +267,7 @@ export async function uploadPic(
       url: `${domain}/v1/widget/upload`,
       method: 'POST',
       header: {
-        authorization,
+        [authorizationKey]: authorization,
       },
       body: form,
       timeout: timeout,
@@ -294,13 +291,13 @@ export async function uploadPic(
 
 // 获取图片库列表
 export async function getPicsList(params: IQueryOptions, options: IUploadOptions) {
-  const { domain, authorization, timeout } = options;
+  const { domain, authorization, authorizationKey, timeout } = options;
   try {
     return await request({
       url: `${domain}/v1/widget/list`,
       method: 'GET',
       header: {
-        authorization,
+        [authorizationKey]: authorization,
       },
       params,
       timeout: timeout,

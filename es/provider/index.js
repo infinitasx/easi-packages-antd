@@ -315,7 +315,6 @@ var script = defineComponent({
       })
     },
     waterMarker: {
-      type: Object,
       default: () => ({})
     }
   },
@@ -385,9 +384,10 @@ var script = defineComponent({
       observer.observe(document.body, config);
     };
 
-    obverseFunc();
+    console.log(waterMarker.value);
 
-    if (!document.querySelector("#easi-watermarker-container")) {
+    if (!document.querySelector("#easi-watermarker-container") && waterMarker.value) {
+      obverseFunc();
       createMarker();
     }
 

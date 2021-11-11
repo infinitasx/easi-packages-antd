@@ -6,6 +6,11 @@
 
 ## [0.0.35] - 2021-11-04
 
+### Added
+
+- EASIProvider组件支持不展示水印
+- EASIUploader组件设置动态传入token的header key
+
 ### Fixed
 
 - 修复Uploader组件的UI样式错误

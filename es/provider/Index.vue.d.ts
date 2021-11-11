@@ -1,6 +1,5 @@
 import { PropType } from "vue";
 import { ILocale } from "../locale";
-import { IWaterMarker } from '../../typings/antd';
 declare const _default: import("vue").DefineComponent<{
     locale: {
         type: PropType<ILocale>;
@@ -9,7 +8,6 @@ declare const _default: import("vue").DefineComponent<{
         };
     };
     waterMarker: {
-        type: PropType<IWaterMarker>;
         default: () => {};
     };
 }, {
@@ -20,9 +18,9 @@ declare const _default: import("vue").DefineComponent<{
     waterMarker?: unknown;
 } & {
     locale: ILocale;
-    waterMarker: IWaterMarker;
+    waterMarker: {};
 } & {}> & {}, {
     locale: ILocale;
-    waterMarker: IWaterMarker;
+    waterMarker: {};
 }>;
 export default _default;

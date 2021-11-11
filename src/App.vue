@@ -1,5 +1,5 @@
 <template>
-  <EASIProvider :locale="ZH" :waterMarker="{cityName}">
+  <EASIProvider :locale="ZH" :waterMarker="false">
     <router-view></router-view>
   </EASIProvider>
 </template>

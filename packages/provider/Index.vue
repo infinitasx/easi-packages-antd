@@ -22,7 +22,6 @@ export default defineComponent({
       })
     },
     waterMarker: {
-      type: Object as PropType<IWaterMarker>,
       default: () => ({})
     },
   },
@@ -87,9 +86,11 @@ export default defineComponent({
       // 以上述配置开始观察目标节点
       observer.observe(document.body, config);
     }
-    obverseFunc();
 
-    if(!document.querySelector('#easi-watermarker-container')){
+    console.log(waterMarker.value);
+
+    if(!document.querySelector('#easi-watermarker-container') && waterMarker.value){
+      obverseFunc();
       createMarker();
     }
 

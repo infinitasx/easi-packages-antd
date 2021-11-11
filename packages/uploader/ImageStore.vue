@@ -46,6 +46,10 @@ export default defineComponent({
       type: [String, Function],
       default: undefined
     },
+    authorizationKey: {
+      type: String,
+      default: 'authorization'
+    },
     timeout: {
       type: Number,
       default: 20000
@@ -68,7 +72,7 @@ export default defineComponent({
     }
   },
   setup(props, {emit}) {
-    const {authorization, timeout, domain, getText, multiple, checkedList} = toRefs(props);
+    const {authorization, authorizationKey, timeout, domain, getText, multiple, checkedList} = toRefs(props);
 
     const uploadGlobal = inject('uploadGlobal', { listLoading: false })
 
@@ -91,6 +95,7 @@ export default defineComponent({
           filename
         }, {
           authorization: authorization.value as string,
+          authorizationKey: authorizationKey.value,
           timeout: timeout.value,
           domain: domain.value,
         });

@@ -139,7 +139,7 @@ export default defineComponent({
     ...rootProps
   },
   setup(props, {emit, slots}) {
-    const {disabled, extType, multiple, maxFilesSize, maxWidth, maxHeight, minCropBoxHeight, minCropBoxWidth, destroyOnClose, aspectRatio, system, authorization, timeout, env} = toRefs(props);
+    const {disabled, extType, multiple, maxFilesSize, maxWidth, maxHeight, minCropBoxHeight, minCropBoxWidth, destroyOnClose, aspectRatio, system, authorization, authorizationKey, timeout, env} = toRefs(props);
 
     const globalEASILocale = inject<IGlobalLocal>('globalEASILocale', {message: {}});
     const symbolVisible = ref<boolean>(false);
@@ -325,6 +325,7 @@ export default defineComponent({
       const options: IUploadOptions = {
         system: system.value as string,
         authorization: authorization.value as string,
+        authorizationKey: authorizationKey.value,
         timeout: timeout.value,
         domain: domain.value,
       }

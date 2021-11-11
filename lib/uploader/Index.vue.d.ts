@@ -57,6 +57,10 @@ declare const _default: import("vue").DefineComponent<{
         type: (StringConstructor | FunctionConstructor)[];
         default: undefined;
     };
+    authorizationKey: {
+        type: StringConstructor;
+        default: string;
+    };
     timeout: {
         type: NumberConstructor;
         default: number;
@@ -314,6 +318,7 @@ declare const _default: import("vue").DefineComponent<{
     maxHeight?: unknown;
     system?: unknown;
     authorization?: unknown;
+    authorizationKey?: unknown;
     timeout?: unknown;
     env?: unknown;
     aspectRatio?: unknown;
@@ -332,16 +337,17 @@ declare const _default: import("vue").DefineComponent<{
     crop: boolean;
     maxWidth: number;
     maxHeight: number;
+    authorizationKey: string;
     timeout: number;
     env: "development" | "production";
     aspectRatio: number;
     minCropBoxWidth: number;
     minCropBoxHeight: number;
 } & {
+    authorization?: string | Function | undefined;
     visible?: boolean | undefined;
     title?: string | undefined;
     system?: string | undefined;
-    authorization?: string | Function | undefined;
     emptyTitle?: string | undefined;
     emptySubTitle?: string | undefined;
 }> & {
@@ -352,6 +358,7 @@ declare const _default: import("vue").DefineComponent<{
     onChange?: ((...args: any[]) => any) | undefined;
     onError?: ((...args: any[]) => any) | undefined;
 }, {
+    authorization: string | Function;
     visible: boolean;
     maskClosable: boolean;
     destroyOnClose: boolean;
@@ -365,7 +372,7 @@ declare const _default: import("vue").DefineComponent<{
     maxWidth: number;
     maxHeight: number;
     system: string;
-    authorization: string | Function;
+    authorizationKey: string;
     timeout: number;
     env: "development" | "production";
     aspectRatio: number;

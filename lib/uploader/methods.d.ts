@@ -34,6 +34,7 @@ export interface IUploadOptions {
     domain: string;
     system?: string;
     authorization: string;
+    authorizationKey: string;
     timeout: number;
 }
 export interface IRequestConfig {

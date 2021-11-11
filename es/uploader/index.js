@@ -6446,7 +6446,7 @@ const _hoisted_3$2 = {
 const _hoisted_4$2 = {
   class: "easi-uploader-loading flex items-center justify-center"
 };
-const _hoisted_5$1 = {
+const _hoisted_5$2 = {
   key: 0,
   class: "ant-card-actions"
 };
@@ -6509,7 +6509,7 @@ const render$4 = /* @__PURE__ */_withId$4((_ctx, _cache, $props, $setup, $data, 
       size: "large",
       onChange: _cache[1] || (_cache[1] = $event => _ctx.$emit("handleCheckChange", $event, _ctx.item, _ctx.index))
     }, null, 8, ["checked", "disabled"])) : createCommentVNode("v-if", true)]), withDirectives(createVNode("span", _hoisted_4$2, [createVNode(_component_LoadingOutlined)], 512), [[vShow, !_ctx.item.uploadSuccess && _ctx.loading]])])]),
-    default: _withId$4(() => [_ctx.activeKey === 0 ? (openBlock(), createBlock("ul", _hoisted_5$1, [_ctx.crop && !_ctx.item.uploadSuccess ? (openBlock(), createBlock("li", _hoisted_6$1, [createVNode(_component_EASIButton, {
+    default: _withId$4(() => [_ctx.activeKey === 0 ? (openBlock(), createBlock("ul", _hoisted_5$2, [_ctx.crop && !_ctx.item.uploadSuccess ? (openBlock(), createBlock("li", _hoisted_6$1, [createVNode(_component_EASIButton, {
       type: "link",
       block: "",
       disabled: _ctx.item.uploadSuccess || !_ctx.crop || _ctx.disabled || _ctx.item.file.type === "image/gif" || !_ctx.item.uploadSuccess && _ctx.loading,
@@ -6572,6 +6572,10 @@ const uploadProps = {
   authorization: {
     type: [String, Function],
     default: void 0
+  },
+  authorizationKey: {
+    type: String,
+    default: "authorization"
   },
   timeout: {
     type: Number,
@@ -6688,7 +6692,7 @@ const _hoisted_4$1 = /* @__PURE__ */createVNode("p", {
   d: "M928 160H96c-17.7 0-32 14.3-32 32v640c0 17.7 14.3 32 32 32h832c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32zm-40 632H136v-39.9l138.5-164.3 150.1 178L658.1 489 888 761.6V792zm0-129.8L664.2 396.8c-3.2-3.8-9-3.8-12.2 0L424.6 666.4l-144-170.7c-3.2-3.8-9-3.8-12.2 0L136 652.7V232h752v430.2zM304 456a88 88 0 100-176 88 88 0 000 176zm0-116c15.5 0 28 12.5 28 28s-12.5 28-28 28-28-12.5-28-28 12.5-28 28-28z"
 })])])], -1);
 
-const _hoisted_5 = {
+const _hoisted_5$1 = {
   class: "ant-upload-text"
 };
 const _hoisted_6 = {
@@ -6700,7 +6704,7 @@ const render$3 = /* @__PURE__ */_withId$3((_ctx, _cache, $props, $setup, $data, 
   return openBlock(), createBlock("div", _hoisted_1$3, [createVNode("div", {
     class: "ant-upload ant-upload-drag",
     onClick: _cache[1] || (_cache[1] = withModifiers($event => _ctx.$emit("clickEmpty"), ["stop"]))
-  }, [createVNode("div", _hoisted_2$2, [createVNode("div", _hoisted_3$1, [_hoisted_4$1, createVNode("p", _hoisted_5, toDisplayString(_ctx.emptyTitle || _ctx.getText("uploaderEmptyTitle")), 1), createVNode("p", _hoisted_6, toDisplayString(_ctx.emptySubTitle || _ctx.getText("uploaderEmptySubTitle")), 1)])])])]);
+  }, [createVNode("div", _hoisted_2$2, [createVNode("div", _hoisted_3$1, [_hoisted_4$1, createVNode("p", _hoisted_5$1, toDisplayString(_ctx.emptyTitle || _ctx.getText("uploaderEmptyTitle")), 1), createVNode("p", _hoisted_6, toDisplayString(_ctx.emptySubTitle || _ctx.getText("uploaderEmptySubTitle")), 1)])])])]);
 });
 
 script$3.render = render$3;
@@ -6880,11 +6884,7 @@ function request(requestConfig) {
     });
     xhr.open(method, url, true);
     Object.keys(header).map(key => {
-      if (key === "authorization") {
-        xhr.setRequestHeader(key, typeof header[key] === "function" ? header[key]() : header[key]);
-      } else {
-        xhr.setRequestHeader(key, header[key]);
-      }
+      xhr.setRequestHeader(key, typeof header[key] === "function" ? header[key]() : header[key]);
     });
     timeCount = setTimeout(() => {
       xhr.abort();
@@ -6897,6 +6897,7 @@ async function uploadPic(previewItem, options) {
   const {
     domain,
     authorization,
+    authorizationKey,
     system,
     timeout
   } = options;
@@ -6915,7 +6916,7 @@ async function uploadPic(previewItem, options) {
       url: `${domain}/v1/widget/upload`,
       method: "POST",
       header: {
-        authorization
+        [authorizationKey]: authorization
       },
       body: form,
       timeout
@@ -6940,6 +6941,7 @@ async function getPicsList(params, options) {
   const {
     domain,
     authorization,
+    authorizationKey,
     timeout
   } = options;
 
@@ -6948,7 +6950,7 @@ async function getPicsList(params, options) {
       url: `${domain}/v1/widget/list`,
       method: "GET",
       header: {
-        authorization
+        [authorizationKey]: authorization
       },
       params,
       timeout
@@ -7194,6 +7196,9 @@ const _hoisted_3 = {
   class: "easi-uploader-cropper"
 };
 const _hoisted_4 = {
+  class: "easi-uploader-cropper-wrapper"
+};
+const _hoisted_5 = {
   ref: "cropImageRef"
 };
 popScopeId();
@@ -7239,7 +7244,7 @@ const render$2 = /* @__PURE__ */_withId$2((_ctx, _cache, $props, $setup, $data, 
       onClick: _cache[3] || (_cache[3] = $event => _ctx.inputRef.click())
     }, [createVNode("div", _hoisted_1$2, [createVNode("p", null, [createVNode(_component_PlusOutlined)]), createVNode("p", _hoisted_2$1, toDisplayString(_ctx.localUploadList.length) + " / " + toDisplayString(_ctx.multiple), 1)])], 512), [[vShow, _ctx.showAddBtn]])]),
     _: 1
-  }, 512), [[vShow, !_ctx.isCropping]]), withDirectives(createVNode("div", _hoisted_3, [createVNode("img", _hoisted_4, null, 512)], 512), [[vShow, _ctx.isCropping]])], 64);
+  }, 512), [[vShow, !_ctx.isCropping && _ctx.localUploadList.length > 0]]), withDirectives(createVNode("div", _hoisted_3, [createVNode("div", _hoisted_4, [createVNode("img", _hoisted_5, null, 512)])], 512), [[vShow, _ctx.isCropping]])], 64);
 });
 
 script$2.render = render$2;
@@ -7256,6 +7261,10 @@ var script$1 = defineComponent({
     authorization: {
       type: [String, Function],
       default: void 0
+    },
+    authorizationKey: {
+      type: String,
+      default: "authorization"
     },
     timeout: {
       type: Number,
@@ -7284,6 +7293,7 @@ var script$1 = defineComponent({
   }) {
     const {
       authorization,
+      authorizationKey,
       timeout,
       domain,
       getText,
@@ -7314,6 +7324,7 @@ var script$1 = defineComponent({
           filename
         }, {
           authorization: authorization.value,
+          authorizationKey: authorizationKey.value,
           timeout: timeout.value,
           domain: domain.value
         });
@@ -7456,6 +7467,7 @@ var script = defineComponent({
       aspectRatio,
       system,
       authorization,
+      authorizationKey,
       timeout,
       env
     } = toRefs(props);
@@ -7638,6 +7650,7 @@ var script = defineComponent({
       const options = {
         system: system.value,
         authorization: authorization.value,
+        authorizationKey: authorizationKey.value,
         timeout: timeout.value,
         domain: domain.value
       };
