@@ -51,7 +51,7 @@ export const uploadProps = {
   // 接口超时时间
   timeout: {
     type: Number,
-    default: 20000,
+    default: 30000,
   },
   env: {
     type: String as PropType<'development' | 'production'>,
