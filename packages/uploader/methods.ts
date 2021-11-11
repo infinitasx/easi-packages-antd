@@ -224,7 +224,6 @@ export function request(requestConfig: IRequestConfig = { method: 'GET', url: ''
         clearTimeout(timeCount);
         if (Number(xhr.status) === 200) {
           const result = JSON.parse(xhr.response);
-          console.log(result);
           resolve(result);
         } else {
           reject(xhr.responseText);
