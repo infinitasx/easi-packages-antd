@@ -1,4 +1,5 @@
 import { ref, Ref } from 'vue';
+import { getCookie, setCookie } from 'easi-web-utils';
 
 export type IActionType = 'dragover' | 'dragleave' | 'drop' | '';
 // code:
@@ -57,7 +58,7 @@ export interface IUploadOptions {
 export interface IRequestConfig {
   url: string;
   method: string;
-  header: {
+  header?: {
     [prop: string]: any;
   };
   body?: any;
@@ -213,7 +214,7 @@ export async function canvasToFile(
 }
 
 // 封装请求方法
-export function request(requestConfig: IRequestConfig): Promise<any> {
+export function request(requestConfig: IRequestConfig = { method: 'GET', url: '' }): Promise<any> {
   return new Promise((resolve, reject) => {
     let { url, body = null, header = {}, params = {}, method = 'GET', timeout } = requestConfig;
     const xhr = new XMLHttpRequest();
@@ -251,18 +252,38 @@ export function request(requestConfig: IRequestConfig): Promise<any> {
   });
 }
 
+// 如果使用easi-uploader-token作为authorizationKey,则需要每次调用接口前查询token是否过期
+export async function getEASIUploaderToken() {
+  const oldToken = getCookie('easi-eut');
+  if (oldToken) {
+    return oldToken;
+  } else {
+    const { token } = await request({
+      url: '/file_service_upload_token',
+      method: 'GET',
+      timeout: 30000,
+    });
+    // token有效期5分钟，考虑边界情况只存储4分钟
+    setCookie('easi-eut', token, 4 * 60 * 1000);
+    return token;
+  }
+}
+
 // 上传文件的方法
 export async function uploadPic(
   previewItem: IPreviewItem,
   options: IUploadOptions,
 ): Promise<IPreviewItem> {
-  const { domain, authorization, authorizationKey, system, timeout } = options;
+  let { domain, authorization, authorizationKey, system, timeout } = options;
   const form = new FormData();
   form.append('file', previewItem.file);
   form.append('system', system as string);
   form.append('width', previewItem.width.toString());
   form.append('height', previewItem.height.toString());
   try {
+    if (authorizationKey === 'easi-upload-token') {
+      authorization = await getEASIUploaderToken();
+    }
     const { url, name, size } = await request({
       url: `${domain}/v1/widget/upload`,
       method: 'POST',
@@ -291,8 +312,11 @@ export async function uploadPic(
 
 // 获取图片库列表
 export async function getPicsList(params: IQueryOptions, options: IUploadOptions) {
-  const { domain, authorization, authorizationKey, timeout } = options;
+  let { domain, authorization, authorizationKey, timeout } = options;
   try {
+    if (authorizationKey === 'easi-upload-token') {
+      authorization = await getEASIUploaderToken();
+    }
     return await request({
       url: `${domain}/v1/widget/list`,
       method: 'GET',
