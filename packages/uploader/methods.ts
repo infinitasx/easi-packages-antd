@@ -224,6 +224,7 @@ export function request(requestConfig: IRequestConfig = { method: 'GET', url: ''
         clearTimeout(timeCount);
         if (Number(xhr.status) === 200) {
           const result = JSON.parse(xhr.response);
+          console.log(result);
           resolve(result);
         } else {
           reject(xhr.responseText);
@@ -264,8 +265,10 @@ export async function getEASIUploaderToken() {
       timeout: 30000,
     });
     // token有效期5分钟，考虑边界情况只存储4分钟
-    setCookie('easi-eut', data?.token, 4 * 60 * 1000);
-    return data?.token;
+    if (data?.token) {
+      setCookie('easi-eut', data?.token, 4 * 60 * 1000);
+    }
+    return data?.token || '';
   }
 }
 
