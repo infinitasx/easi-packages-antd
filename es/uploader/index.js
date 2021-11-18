@@ -2,6 +2,7 @@ var _window;
 
 import * as _vue from 'vue';
 import { defineComponent, pushScopeId, popScopeId, resolveComponent, openBlock, createBlock, createVNode, renderSlot, withScopeId, h, nextTick, toRefs, computed, createCommentVNode, withDirectives, vShow, withModifiers, inject, toDisplayString, ref, onBeforeUnmount, toRaw, Fragment, renderList, resolveDirective, getCurrentInstance, reactive, provide, onMounted, createTextVNode } from 'vue';
+import { getCookie, setCookie } from 'easi-web-utils';
 import { Empty, message, Modal } from 'ant-design-vue';
 
 function createNamespace(name) {
@@ -6579,7 +6580,7 @@ const uploadProps = {
   },
   timeout: {
     type: Number,
-    default: 2e4
+    default: 3e4
   },
   env: {
     type: String,
@@ -6845,7 +6846,10 @@ async function canvasToFile(file, options, getText) {
   };
 }
 
-function request(requestConfig) {
+function request(requestConfig = {
+  method: "GET",
+  url: ""
+}) {
   return new Promise((resolve, reject) => {
     let {
       url,
@@ -6893,8 +6897,30 @@ function request(requestConfig) {
   });
 }
 
+async function getEASIUploaderToken() {
+  const oldToken = getCookie("easi-eut");
+
+  if (oldToken) {
+    return oldToken;
+  } else {
+    const {
+      data
+    } = await request({
+      url: "/file_service_upload_token",
+      method: "GET",
+      timeout: 3e4
+    });
+
+    if (data !== null && data !== void 0 && data.token) {
+      setCookie("easi-eut", data === null || data === void 0 ? void 0 : data.token, 4 * 60 * 1e3);
+    }
+
+    return (data === null || data === void 0 ? void 0 : data.token) || "";
+  }
+}
+
 async function uploadPic(previewItem, options) {
-  const {
+  let {
     domain,
     authorization,
     authorizationKey,
@@ -6908,6 +6934,10 @@ async function uploadPic(previewItem, options) {
   form.append("height", previewItem.height.toString());
 
   try {
+    if (authorizationKey === "easi-upload-token") {
+      authorization = await getEASIUploaderToken();
+    }
+
     const {
       url,
       name,
@@ -6938,7 +6968,7 @@ async function uploadPic(previewItem, options) {
 }
 
 async function getPicsList(params, options) {
-  const {
+  let {
     domain,
     authorization,
     authorizationKey,
@@ -6946,6 +6976,10 @@ async function getPicsList(params, options) {
   } = options;
 
   try {
+    if (authorizationKey === "easi-upload-token") {
+      authorization = await getEASIUploaderToken();
+    }
+
     return await request({
       url: `${domain}/v1/widget/list`,
       method: "GET",
@@ -8108,6 +8142,7 @@ const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $opt
         default: _withId(() => [createVNode(_component_ImageStore, {
           ref: "imageStoreRef",
           authorization: _ctx.authorization,
+          authorizationKey: _ctx.authorizationKey,
           domain: _ctx.domain,
           timeout: _ctx.timeout,
           checkedList: _ctx.checkedList,
@@ -8116,7 +8151,7 @@ const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $opt
           getText: _ctx.getText,
           onError: _cache[5] || (_cache[5] = $event => _ctx.$emit("error", $event)),
           onHandleCheckedChange: _ctx.handleCheckedChange
-        }, null, 8, ["authorization", "domain", "timeout", "checkedList", "multiple", "ratio", "getText", "onHandleCheckedChange"])]),
+        }, null, 8, ["authorization", "authorizationKey", "domain", "timeout", "checkedList", "multiple", "ratio", "getText", "onHandleCheckedChange"])]),
         _: 1
       }, 8, ["class", "tab"])]),
       _: 1

@@ -4,12 +4,16 @@
 
 本文件格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/) ，并且遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 。
 
-## [0.0.35] - 2021-11-11
+## [0.0.35] - 2021-11-18
 
 ### Added
 
 - EASIProvider组件支持不展示水印
 - EASIUploader组件设置动态传入token的header key
+
+### Changed
+
+- 改变按需加载入口
 
 ### Fixed
 

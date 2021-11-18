@@ -40,7 +40,7 @@ export interface IUploadOptions {
 export interface IRequestConfig {
     url: string;
     method: string;
-    header: {
+    header?: {
         [prop: string]: any;
     };
     body?: any;
@@ -59,6 +59,7 @@ export declare function getImageSize(src: string): Promise<ImageProps>;
 export declare function fileToBlob(file: File): Promise<string>;
 export declare function computedMemorySize(size?: number): string;
 export declare function canvasToFile(file: File, options: IPrevHandleImageOptions, getText: (key: string, value: any) => string): Promise<IPreviewItem>;
-export declare function request(requestConfig: IRequestConfig): Promise<any>;
+export declare function request(requestConfig?: IRequestConfig): Promise<any>;
+export declare function getEASIUploaderToken(): Promise<any>;
 export declare function uploadPic(previewItem: IPreviewItem, options: IUploadOptions): Promise<IPreviewItem>;
 export declare function getPicsList(params: IQueryOptions, options: IUploadOptions): Promise<any>;
