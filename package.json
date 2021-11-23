@@ -4,7 +4,7 @@
   "version": "0.0.35",
   "description": "",
   "main": "dist/index.umd.js",
-  "module": "es/index.js",
+  "module": "dist/index.umd.js",
   "typings": "lib/index.d.ts",
   "workspaces": [
     "packages/*"
