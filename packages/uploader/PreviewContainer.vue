@@ -1,5 +1,5 @@
 <template>
-  <div class="easi-uploader-container overflow-auto h-full">
+  <div class="easi-packages-uploader-container overflow-auto h-full">
     <a-image-preview-group>
       <slot></slot>
     </a-image-preview-group>
@@ -14,8 +14,8 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss" scoped>
-.easi-uploader-container {
+<style lang="scss">
+.easi-packages-uploader-container {
   margin-left: -2%;
 }
 </style>

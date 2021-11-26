@@ -21,15 +21,15 @@
                   @handleDelete="handleDelete"
                   @handleCrop="handleCrop"
     />
-    <div class="easi-uploader-add-btn" v-show="showAddBtn" @click="inputRef.click()">
+    <div class="easi-packages-uploader-add-btn" v-show="showAddBtn" @click="inputRef.click()">
       <div class="icon-btn-plus text-center">
          <p><PlusOutlined /></p>
          <p style="font-size: 14px">{{localUploadList.length}} / {{multiple}}</p>
       </div>
     </div>
   </UploaderContainer>
-  <div class="easi-uploader-cropper" v-show="isCropping">
-    <div class="easi-uploader-cropper-wrapper">
+  <div class="easi-packages-uploader-cropper" v-show="isCropping">
+    <div class="easi-packages-uploader-cropper-wrapper">
       <img ref="cropImageRef">
     </div>
   </div>
@@ -228,8 +228,8 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss" scoped>
-.easi-uploader-cropper{
+<style lang="scss">
+.easi-packages-uploader-cropper{
   position: absolute;
   top: 2px;
   left: 2px;
@@ -238,7 +238,7 @@ export default defineComponent({
   z-index: 1;
   box-sizing: border-box;
   overflow: hidden;
-  .easi-uploader-cropper-wrapper{
+  .easi-packages-uploader-cropper-wrapper{
     position: relative;
     top: 4px;
     left: 4px;
@@ -246,7 +246,7 @@ export default defineComponent({
     height: calc(100% - 8px);
   }
 }
-.easi-uploader-add-btn{
+.easi-packages-uploader-add-btn{
   float: left;
   position: relative;
   width: 14.666667%;
@@ -273,14 +273,14 @@ export default defineComponent({
   }
 }
 @media (max-width: 960px) {
-  .easi-uploader-add-btn {
+  .easi-packages-uploader-add-btn {
     width: 23%;
     padding-bottom: 23%;
   }
 }
 
 @media (max-width: 540px) {
-  .easi-uploader-add-btn {
+  .easi-packages-uploader-add-btn {
     width: 48%;
     padding-bottom: 48%;
   }

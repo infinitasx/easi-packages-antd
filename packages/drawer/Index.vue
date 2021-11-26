@@ -8,7 +8,7 @@
       @close="handleClose"
   >
     <slot name="default"></slot>
-    <div class="drawer-footer" v-if="$slots.footer">
+    <div class="easi-packages-drawer-footer" v-if="$slots.footer">
       <slot name="footer"></slot>
     </div>
   </a-drawer>
@@ -62,15 +62,12 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-.has-footer {
-  padding-bottom: 35px;
-}
-[data-pro-theme='antdv-pro-theme-dark'] .drawer-footer {
+<style lang="scss">
+[data-pro-theme='antdv-pro-theme-dark'] .easi-packages-drawer-footer {
   background-color: #1f1f1f;
   border-color: #303030;
 }
-.drawer-footer {
+.easi-packages-drawer-footer {
   position: absolute;
   right: 0;
   bottom: 0;

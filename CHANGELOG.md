@@ -4,6 +4,12 @@
 
 本文件格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/) ，并且遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 。
 
+## [0.0.36] - 2021-11-26
+
+### Changed
+
+- 去掉组件内style的scoped属性，解决按需加载样式冲突
+
 ## [0.0.35] - 2021-11-18
 
 ### Added

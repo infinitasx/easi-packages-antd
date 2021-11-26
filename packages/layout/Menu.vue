@@ -1,7 +1,7 @@
 <template>
   <div class="py-6 flex items-center" :class="[collapsed ? 'px-24' : 'px-16']">
-    <img :src="logo" alt="" class="logo" />
-    <div class="admin-title text-white ml-16 truncate" v-if="title || subTitle" v-show="!collapsed">
+    <img :src="logo" alt="" class="easi-packages-logo" />
+    <div class="easi-packages-admin-title text-white ml-16 truncate" v-if="title || subTitle" v-show="!collapsed">
       <p class="truncate" v-if="title" :class="[subTitle ? 'text-14' : 'text-16']">{{ title }}</p>
       <p class="text-12 truncate text-gray-400" v-if="subTitle">
         {{ subTitle }}
@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="flex-1 overflow-y-auto overflow-x-hidden">
-    <a-menu class="layout-menu" mode="inline" :inlineCollapsed="false" v-model:openKeys="openKeys" v-model:selectedKeys="selectedKeys" theme="dark">
+    <a-menu class="easi-packages-layout-menu" mode="inline" :inlineCollapsed="false" v-model:openKeys="openKeys" v-model:selectedKeys="selectedKeys" theme="dark">
       <template v-for="item in nav" :key="item.name">
         <template v-if="item.children && item.children.length > 0 && !item.meta.hideMenu">
           <a-sub-menu :key="item.name">
@@ -120,8 +120,8 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-.logo {
+<style lang="scss">
+.easi-packages-logo {
   width: 32px;
   height: 32px;
 }
@@ -133,15 +133,15 @@ export default defineComponent({
   }
 }
 
-.admin-title {
-  animation: fade-in 0.2s;
+.easi-packages-admin-title {
+  animation: easi-packages-fade-in 0.2s;
 }
 
-.layout-menu{
+.easi-packages-layout-menu{
   min-height: 100%;
 }
 
-@keyframes fade-in {
+@keyframes easi-packages-fade-in {
   0% {
     display: none;
     opacity: 0;

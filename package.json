@@ -1,10 +1,10 @@
 {
   "name": "easi-packages-antd",
   "private": true,
-  "version": "0.0.35",
+  "version": "0.0.36",
   "description": "",
   "main": "dist/index.umd.js",
-  "module": "dist/index.umd.js",
+  "module": "lib/index.umd.js",
   "typings": "lib/index.d.ts",
   "workspaces": [
     "packages/*"

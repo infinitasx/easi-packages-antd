@@ -1,5 +1,5 @@
 <template>
-  <a-card :bordered="false" class="error-full-page">
+  <a-card :bordered="false" class="easi-packages-error-full-page">
     <a-result :status="status">
       <template v-for="(index, name) in $slots" v-slot:[name]="slotProps">
         <slot
@@ -26,8 +26,8 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-.error-full-page {
+<style lang="scss">
+.easi-packages-error-full-page {
   height: calc(100vh - 160px);
 }
 </style>

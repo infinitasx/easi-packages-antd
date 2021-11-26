@@ -11,7 +11,7 @@
     <a-tabs type="card"
             v-model:activeKey="activeKey"
     >
-      <a-tab-pane class="pane-container"
+      <a-tab-pane class="easi-packages-pane-container"
                   :class="actionType"
                   :key="0"
                   :tab="getText('uploaderTab0')"
@@ -40,7 +40,7 @@
                 @handleConfirmCrop="handleConfirmCrop"
         />
       </a-tab-pane>
-      <a-tab-pane class="pane-container relative overflow-hidden"
+      <a-tab-pane class="easi-packages-pane-container relative overflow-hidden"
                   :class="actionType"
                   :key="1"
                   :tab="getText('uploaderTab1')"
@@ -543,8 +543,8 @@ img.ant-image-preview-img{
 }
 </style>
 
-<style lang="scss" scoped>
-.pane-container {
+<style lang="scss">
+.easi-packages-pane-container {
   position: relative;
   height: calc(100vh - 400px);
   overflow: auto;
@@ -554,7 +554,7 @@ img.ant-image-preview-img{
   }
 }
 
-[data-pro-theme=antdv-pro-theme-dark] .pane-container.dragover {
+[data-pro-theme=antdv-pro-theme-dark] .easi-packages-pane-container.dragover {
   background: hsla(0, 0%, 100%, .04)
 }
 </style>

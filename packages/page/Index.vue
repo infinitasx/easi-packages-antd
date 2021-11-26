@@ -1,7 +1,7 @@
 <template>
   <div>
     <template v-if="$usePermissions($route.meta.permission) || hasPermission">
-      <div class="page-breadcrumb-wrap" v-if="showPageHeader">
+      <div class="easi-packages-page-breadcrumb-wrap" v-if="showPageHeader">
         <a-page-header :title="pageTitle">
           <template #breadcrumb>
             <a-breadcrumb :routes="breadcrumbRoutes" v-if="breadcrumbRoutes.length > 1">
@@ -129,7 +129,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.page-breadcrumb-wrap {
+.easi-packages-page-breadcrumb-wrap {
   .ant-page-header-footer {
     margin: 0;
   }

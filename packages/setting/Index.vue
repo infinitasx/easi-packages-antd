@@ -59,16 +59,16 @@
 
     <a-divider />
 
-    <a-typography-text strong class="block margin-bottom" v-if="!!onLogout || !!toDashboard || !!editPassword"> {{ globalEASILocale.message.more }}</a-typography-text>
-    <div class="more-item flex items-center cursor-pointer easi-hover-block" @click="handleToDashBoard" v-if="!!toDashboard">
+    <a-typography-text strong class="block easi-packages-margin-bottom" v-if="!!onLogout || !!toDashboard || !!editPassword"> {{ globalEASILocale.message.more }}</a-typography-text>
+    <div class="easi-packages-more-item flex items-center cursor-pointer easi-hover-block" @click="handleToDashBoard" v-if="!!toDashboard">
       <CompassOutlined class="mr-8 text-14" />
       <a-typography-text>{{ globalEASILocale.message.backToDashBoard }}</a-typography-text>
     </div>
-    <div class="more-item flex items-center cursor-pointer easi-hover-block" @click="handleEditPassword" v-if="!!editPassword">
+    <div class="easi-packages-more-item flex items-center cursor-pointer easi-hover-block" @click="handleEditPassword" v-if="!!editPassword">
       <UnlockOutlined class="mr-8 text-14" />
       <a-typography-text>{{ globalEASILocale.message.editPassword }}</a-typography-text>
     </div>
-    <div class="more-item flex items-center cursor-pointer text-red-400 easi-hover-block" @click="handleLogout" v-if="!!onLogout">
+    <div class="easi-packages-more-item flex items-center cursor-pointer text-red-400 easi-hover-block" @click="handleLogout" v-if="!!onLogout">
       <LogoutOutlined class="mr-8 text-14" />
       <a-typography-text type="danger">{{ globalEASILocale.message.logout }}</a-typography-text>
     </div>
@@ -174,11 +174,11 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-.margin-bottom{
+<style lang="scss">
+.easi-packages-margin-bottom{
   margin-bottom: 20px;
 }
-.more-item{
+.easi-packages-more-item{
   padding-left: 24px;
   padding-right: 24px;
   margin-bottom: 10px;

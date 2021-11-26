@@ -1,6 +1,6 @@
 <template>
   <div class="relative w-full h-full flex items-center justify-center">
-    <div class="ant-upload ant-upload-drag" @click.stop="$emit('clickEmpty')">
+    <div class="easi-packages-ant-upload ant-upload ant-upload-drag" @click.stop="$emit('clickEmpty')">
       <div role="button" tabindex="0" class="ant-upload ant-upload-btn">
         <div class="ant-upload-drag-container">
           <p class="ant-upload-drag-icon">
@@ -47,8 +47,8 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss" scoped>
-.ant-upload.ant-upload-drag {
+<style lang="scss">
+.easi-packages-ant-upload.ant-upload {
   width: 384px;
   height: 192px;
   background: transparent;

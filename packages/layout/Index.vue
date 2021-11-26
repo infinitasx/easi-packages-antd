@@ -6,15 +6,15 @@
     <a-layout>
       <div class="h-48"></div>
       <a-layout-header
-        class="page-header fixed top-0 right-0 bg-white flex items-center h-48 leading-48 pl-16 pr-16 z-10"
-        :class="{ 'transition-width': !isH5 }"
+        class="easi-packages-page-header fixed top-0 right-0 bg-white flex items-center h-48 leading-48 pl-16 pr-16 z-10"
+        :class="{ 'easi-packages-transition-width': !isH5 }"
         :style="{ width: isH5 ? '100%' : `calc(100% - ${collWidth})` }"
       >
         <PageHeader :collapsed="collapsed" :userInfo="userInfo" @colToggle="setCollapsed" @handleShowSetting="handleShowSetting" />
       </a-layout-header>
       <PageTab
         class="page-tab pt-6 bg-white"
-        :class="[globalProvider.fixedTab ? 'fixed top-48 right-0 z-10' : '', !isH5 && addTransition ? 'transition-width' : '']"
+        :class="[globalProvider.fixedTab ? 'fixed top-48 right-0 z-10' : '', !isH5 && addTransition ? 'easi-packages-transition-width' : '']"
         :style="{ width: globalProvider.fixedTab && !isH5 ? `calc(100% - ${collWidth})` : `100%` }"
         @reloadPage="onReloadPage"
         v-if="globalProvider.showTab"
@@ -231,8 +231,8 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
-.page-header {
+<style lang="scss">
+.easi-packages-page-header {
   border-bottom: 2px solid #f1f1f1;
   //
   //.dropdown-trigger {
@@ -248,11 +248,11 @@ export default defineComponent({
 //  }
 //}
 
-.transition-width {
+.easi-packages-transition-width {
   transition: width 0.2s;
 }
 
-.side-placeholder {
+.easi-packages-side-placeholder {
   flex-shrink: 0;
   overflow: hidden;
 }

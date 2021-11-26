@@ -1,6 +1,6 @@
 <template>
   <UploaderContainer v-loading="uploadGlobal.listLoading">
-    <div class="overflow-auto easi-uploader-image-list">
+    <div class="overflow-auto easi-packages-uploader-image-list">
       <UploaderItem v-for="(item, index) in imageList"
                     :key="index"
                     :item="item"
@@ -152,8 +152,8 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss" scoped>
-.easi-uploader-image-list{
+<style lang="scss">
+.easi-packages-uploader-image-list{
   height: calc(100% - 38px);
 }
 </style>

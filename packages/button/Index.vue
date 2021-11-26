@@ -56,7 +56,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $success: #67C23A;
 $warning: #E6A23C;
 $info: #909399;

@@ -1,19 +1,19 @@
 <template>
-  <div class="easi-uploader-preview-item relative">
+  <div class="easi-packages-uploader-preview-item relative">
     <a-card bordered hoverable :body-style="{padding: 0}">
       <template #cover>
-        <div class="easi-uploader-preview relative">
+        <div class="easi-packages-uploader-preview relative">
           <a-image
               width="100%"
               :src="item.url"
-              :class="{'easi-uploader-disabled-checked': ((disabled && !item.checked) || invalidAspectRatio) && activeKey === 1}"
+              :class="{'easi-packages-uploader-disabled-checked': ((disabled && !item.checked) || invalidAspectRatio) && activeKey === 1}"
           />
           <div class="absolute">
             <CheckCircleFilled style="color: #67c23a;font-size: 18px" v-if="item.uploadSuccess && activeKey === 0"/>
             <CloseCircleFilled style="color: #ff4949;font-size: 18px" v-if="item.uploadFail && activeKey === 0"/>
             <a-checkbox v-if="activeKey === 1" :checked="item.checked" :disabled="(disabled && !item.checked) || invalidAspectRatio" size="large" @change="$emit('handleCheckChange', $event, item, index)" />
           </div>
-          <span class="easi-uploader-loading flex items-center justify-center" v-show="!item.uploadSuccess && loading">
+          <span class="easi-packages-uploader-loading flex items-center justify-center" v-show="!item.uploadSuccess && loading">
             <LoadingOutlined />
           </span>
         </div>
@@ -119,20 +119,13 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.easi-uploader-preview-item {
-  .anticon{
-    svg{
-      margin: auto;
-    }
-  }
-  .ant-card-actions{
-    li{
-      margin: 0;
-    }
-  }
-}
-.easi-uploader-preview {
-  .easi-uploader-disabled-checked{
+.easi-packages-uploader-preview{
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  overflow: hidden;
+  user-select: none;
+  .easi-packages-uploader-disabled-checked{
     filter: grayscale(1);
   }
   .ant-image{
@@ -153,21 +146,11 @@ export default defineComponent({
       transform: translate(-50%,-50%);
     }
   }
-}
-</style>
-
-<style lang="scss" scoped>
-.easi-uploader-preview{
-  width: 100%;
-  height: 0;
-  padding-bottom: 100%;
-  overflow: hidden;
-  user-select: none;
   .absolute{
     top: 4px;
     right: 4px;
   }
-  .easi-uploader-loading{
+  .easi-packages-uploader-loading{
     position: absolute;
     top: 0;
     left: 0;
@@ -179,22 +162,32 @@ export default defineComponent({
   }
 }
 
-.easi-uploader-preview-item{
+.easi-packages-uploader-preview-item{
   float: left;
   width: 14.666667%;
   margin-left: 2%;
   margin-bottom: 2%;
+  .anticon{
+    svg{
+      margin: auto;
+    }
+  }
+  .ant-card-actions{
+    li{
+      margin: 0;
+    }
+  }
 }
 
 
 @media (max-width: 960px) {
-  .easi-uploader-preview-item {
+  .easi-packages-uploader-preview-item {
     width: 23%;
   }
 }
 
 @media (max-width: 540px) {
-  .easi-uploader-preview-item {
+  .easi-packages-uploader-preview-item {
     width: 48%;
   }
 }

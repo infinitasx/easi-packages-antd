@@ -5,19 +5,19 @@
       hide-add
       @tabClick="toPage"
       type="editable-card"
-      class="page-tab"
+      class="easi-packages-page-tab"
   >
     <a-tab-pane v-for="(pane, index) in panes" :key="pane.fullPath" :closable="false">
       <template #tab>
         <span class="flex items-center">
           {{ pane.title }}
           <ReloadOutlined
-              class="icon-action text-12 leading-0 ml-8"
+              class="easi-packages-icon-action text-12 leading-0 ml-8"
               v-show="pane.fullPath === activeKey"
               @click.stop="reloadPage"
           />
           <CloseOutlined
-              class="icon-action text-12 leading-0 ml-8"
+              class="easi-packages-icon-action text-12 leading-0 ml-8"
               v-show="panes.length !== 1"
               @click.stop="removeTab(index)"
           />
@@ -150,12 +150,12 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss" scoped>
-.page-tab {
+<style lang="scss">
+.easi-packages-page-tab {
   height: 64px;
 }
 
-.icon-action {
+.easi-packages-icon-action {
   margin-right: 0 !important;
   color: rgba(0, 0, 0, 0.85);
 
@@ -164,7 +164,7 @@ export default defineComponent({
   }
 }
 
-[data-pro-theme='antdv-pro-theme-dark'] .icon-action {
+[data-pro-theme='antdv-pro-theme-dark'] .easi-packages-icon-action {
   margin-right: 0 !important;
   color: hsla(0, 0%, 100%, 0.45);
 

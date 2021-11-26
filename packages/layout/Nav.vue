@@ -1,6 +1,6 @@
 <template>
   <div
-      class="side-placeholder"
+      class="easi-packages-side-placeholder"
       :class="{ 'transition-width': !isH5 }"
       v-show="!isH5"
       :style="{ width: collWidth }"

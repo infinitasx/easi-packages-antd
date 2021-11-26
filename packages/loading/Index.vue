@@ -1,17 +1,17 @@
 <template>
   <transition name="fade" mode="out-in">
-    <div class="loading-container" id="cus-loading" v-if="cShow">
-      <div class="loading" :class="cSize">
-        <div class="loading-wrap">
-          <div class="ball">
-            <i class="bg spoon"></i>
-            <i class="bg fork"></i>
+    <div class="easi-packages-loading-container" id="cus-loading" v-if="cShow">
+      <div class="easi-packages-loading" :class="cSize">
+        <div class="easi-packages-loading-wrap">
+          <div class="easi-packages-ball">
+            <i class="easi-packages-bg easi-packages-spoon"></i>
+            <i class="easi-packages-bg easi-packages-fork"></i>
           </div>
-          <div class="loading-shadow">
+          <div class="easi-packages-loading-shadow">
             <div></div>
           </div>
         </div>
-        <p class="tips" v-if="title || cTitle">{{ title || cTitle }}</p>
+        <p class="easi-packages-tips" v-if="title || cTitle">{{ title || cTitle }}</p>
       </div>
     </div>
   </transition>
@@ -96,25 +96,25 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss" scoped>
-[data-pro-theme='antdv-pro-theme-dark'] .loading-container {
+<style lang="scss">
+[data-pro-theme='antdv-pro-theme-dark'] .easi-packages-loading-container {
   background: rgba(20, 20, 20, 0.8);
 
-  .loading {
+  .easi-packages-loading {
     background-color: #000;
     box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.6);
   }
 
-  .loading-shadow div {
+  .easi-packages-loading-shadow div {
     background-color: #898989;
   }
 
-  .tips {
+  .easi-packages-tips {
     color: #eaeaea;
   }
 }
 
-.loading-container {
+.easi-packages-loading-container {
   position: absolute;
   top: 0;
   left: 0;
@@ -124,7 +124,7 @@ export default defineComponent({
   z-index: 100;
 }
 
-.loading {
+.easi-packages-loading {
   position: absolute;
   top: 45%;
   left: 50%;
@@ -139,25 +139,25 @@ export default defineComponent({
   }
 }
 
-.loading-wrap {
+.easi-packages-loading-wrap {
   padding-top: 14px;
   padding-bottom: 10px;
   width: 94px;
 }
 
-.ball {
+.easi-packages-ball {
   position: relative;
   margin: auto;
   width: 40px;
   height: 40px;
-  animation: jump 1s linear infinite;
+  animation: easi-packages-jump 1s linear infinite;
   z-index: 10;
   background-color: #ffda00;
   border-radius: 50%;
   backface-visibility: hidden;
 }
 
-.loading-shadow {
+.easi-packages-loading-shadow {
   position: relative;
   margin-top: 4px;
   width: 100%;
@@ -165,7 +165,7 @@ export default defineComponent({
   backface-visibility: hidden;
 }
 
-.loading-shadow div {
+.easi-packages-loading-shadow div {
   margin: auto;
   width: 35%;
   height: 6px;
@@ -176,7 +176,7 @@ export default defineComponent({
   backface-visibility: hidden;
 }
 
-.bg {
+.easi-packages-bg {
   position: absolute;
   top: 8px;
   left: 8px;
@@ -191,21 +191,21 @@ export default defineComponent({
   backface-visibility: hidden;
 }
 
-.spoon {
+.easi-packages-spoon {
   margin-top: 1px;
   margin-left: -3px;
   background-position: 0 0;
-  animation: spoon 1s linear infinite;
+  animation: easi-packages-spoon 1s linear infinite;
 }
 
-.fork {
+.easi-packages-fork {
   margin-top: 1px;
   margin-left: 3px;
   background-position: -44px 0;
-  animation: fork 1s linear infinite;
+  animation: easi-packages-fork 1s linear infinite;
 }
 
-.tips {
+.easi-packages-tips {
   margin-bottom: 7px;
   font-size: 12px;
   color: #ccc;
@@ -215,17 +215,17 @@ export default defineComponent({
   white-space: nowrap;
 }
 
-.fade-enter-active,
-.fade-leave-active {
+.easi-packages-fade-enter-active,
+.easi-packages-fade-leave-active {
   transition: opacity 0.3s;
 }
 
-.fade-enter-from,
-.fade-leave-to {
+.easi-packages-fade-enter-from,
+.easi-packages-fade-leave-to {
   opacity: 0;
 }
 
-@keyframes jump {
+@keyframes easi-packages-jump {
   0%,
   100% {
     transform: translate3d(0, 0, 0) scale(1);
@@ -237,7 +237,7 @@ export default defineComponent({
   }
 }
 
-@keyframes scale {
+@keyframes easi-packages-scale {
   0%,
   100% {
     animation-timing-function: cubic-bezier(0.45, 0, 0.9, 0.55);
@@ -250,7 +250,7 @@ export default defineComponent({
   }
 }
 
-@keyframes fork {
+@keyframes easi-packages-fork {
   0%,
   100% {
     transform: translateX(0) rotate(0);
@@ -261,7 +261,7 @@ export default defineComponent({
   }
 }
 
-@keyframes spoon {
+@keyframes easi-packages-spoon {
   0%,
   100% {
     transform: translateX(0) rotate(0);
