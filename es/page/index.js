@@ -1,4 +1,4 @@
-import { defineComponent, resolveComponent, openBlock, createBlock, createVNode, createSlots, renderList, renderSlot, withScopeId, toRefs, inject, getCurrentInstance, computed, Fragment, withCtx, createTextVNode, toDisplayString, createCommentVNode } from 'vue';
+import { defineComponent, resolveComponent, openBlock, createBlock, withCtx, createVNode, createSlots, renderList, renderSlot, toRefs, inject, getCurrentInstance, computed, Fragment, createTextVNode, toDisplayString, createCommentVNode } from 'vue';
 import { useRoute } from 'vue-router';
 
 function createNamespace(name) {
@@ -15,33 +15,30 @@ var script$1 = defineComponent({
   }
 });
 
-const _withId = /* @__PURE__ */withScopeId("data-v-4bca0fd7");
-
-const render$1 = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $options) => {
+function render$1(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_a_result = resolveComponent("a-result");
 
   const _component_a_card = resolveComponent("a-card");
 
   return openBlock(), createBlock(_component_a_card, {
     bordered: false,
-    class: "error-full-page"
+    class: "easi-packages-error-full-page"
   }, {
-    default: _withId(() => [createVNode(_component_a_result, {
+    default: withCtx(() => [createVNode(_component_a_result, {
       status: _ctx.status
     }, createSlots({
       _: 2
     }, [renderList(_ctx.$slots, (index, name) => {
       return {
         name,
-        fn: _withId(slotProps => [renderSlot(_ctx.$slots, name, slotProps)])
+        fn: withCtx(slotProps => [renderSlot(_ctx.$slots, name, slotProps)])
       };
     })]), 1032, ["status"])]),
     _: 1
   });
-});
+}
 
 script$1.render = render$1;
-script$1.__scopeId = "data-v-4bca0fd7";
 script$1.__file = "packages/error/Index.vue";
 
 script$1.install = app => {
@@ -152,7 +149,7 @@ var script = defineComponent({
 });
 const _hoisted_1 = {
   key: 0,
-  class: "page-breadcrumb-wrap"
+  class: "easi-packages-page-breadcrumb-wrap"
 };
 const _hoisted_2 = {
   key: 0

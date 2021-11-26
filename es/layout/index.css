@@ -1,12 +1,12 @@
-.page-header {
+.easi-packages-page-header {
   border-bottom: 2px solid #f1f1f1;
 }
 
-.transition-width {
+.easi-packages-transition-width {
   transition: width 0.2s;
 }
 
-.side-placeholder {
+.easi-packages-side-placeholder {
   flex-shrink: 0;
   overflow: hidden;
 }
@@ -14,26 +14,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.page-tab {
-  height: 64px;
-}
-
-.icon-action {
-  margin-right: 0 !important;
-  color: rgba(0, 0, 0, 0.85);
-}
-.icon-action:hover {
-  color: #177ddc;
-}
-
-[data-pro-theme=antdv-pro-theme-dark] .icon-action {
-  margin-right: 0 !important;
-  color: rgba(255, 255, 255, 0.45);
-}
-[data-pro-theme=antdv-pro-theme-dark] .icon-action:hover {
-  color: #177ddc;
-}
-
 .easi-system-option .ant-popover-inner-content {
   padding: 0;
   min-width: 500px;
@@ -63,11 +43,31 @@
   color: #3c9be8;
 }
 
-.margin-bottom {
+.easi-packages-page-tab {
+  height: 64px;
+}
+
+.easi-packages-icon-action {
+  margin-right: 0 !important;
+  color: rgba(0, 0, 0, 0.85);
+}
+.easi-packages-icon-action:hover {
+  color: #177ddc;
+}
+
+[data-pro-theme=antdv-pro-theme-dark] .easi-packages-icon-action {
+  margin-right: 0 !important;
+  color: rgba(255, 255, 255, 0.45);
+}
+[data-pro-theme=antdv-pro-theme-dark] .easi-packages-icon-action:hover {
+  color: #177ddc;
+}
+
+.easi-packages-margin-bottom {
   margin-bottom: 20px;
 }
 
-.more-item {
+.easi-packages-more-item {
   padding-left: 24px;
   padding-right: 24px;
   margin-bottom: 10px;
@@ -76,7 +76,7 @@
   height: 44px;
 }
 
-.logo {
+.easi-packages-logo {
   width: 32px;
   height: 32px;
 }
@@ -88,15 +88,15 @@
   display: block !important;
 }
 
-.admin-title {
-  animation: fade-in 0.2s;
+.easi-packages-admin-title {
+  animation: easi-packages-fade-in 0.2s;
 }
 
-.layout-menu {
+.easi-packages-layout-menu {
   min-height: 100%;
 }
 
-@keyframes fade-in {
+@keyframes easi-packages-fade-in {
   0% {
     display: none;
     opacity: 0;

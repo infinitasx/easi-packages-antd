@@ -1,5 +1,5 @@
 import * as _vue from 'vue';
-import { defineComponent, toRefs, ref, onMounted, watch, toRaw, pushScopeId, popScopeId, resolveComponent, openBlock, createBlock, Fragment, createVNode, withDirectives, toDisplayString, createCommentVNode, vShow, renderList, withScopeId, withCtx, h, nextTick, computed, createTextVNode, withModifiers, inject, mergeProps, renderSlot, onBeforeUnmount, Transition, KeepAlive, resolveDynamicComponent } from 'vue';
+import { defineComponent, toRefs, ref, onMounted, watch, toRaw, resolveComponent, openBlock, createBlock, Fragment, createVNode, withDirectives, toDisplayString, createCommentVNode, vShow, withCtx, renderList, h, nextTick, computed, createTextVNode, withModifiers, inject, mergeProps, renderSlot, onBeforeUnmount, Transition, KeepAlive, resolveDynamicComponent } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { Modal, message } from 'ant-design-vue';
 import { setLocal, copy, isMobile, debounced } from 'easi-web-utils';
@@ -80,13 +80,9 @@ var script$5 = defineComponent({
   }
 
 });
-
-const _withId$3 = /* @__PURE__ */withScopeId("data-v-a3884aa0");
-
-pushScopeId("data-v-a3884aa0");
 const _hoisted_1$4 = {
   key: 0,
-  class: "admin-title text-white ml-16 truncate"
+  class: "easi-packages-admin-title text-white ml-16 truncate"
 };
 const _hoisted_2$3 = {
   key: 1,
@@ -98,9 +94,8 @@ const _hoisted_3$2 = {
 const _hoisted_4$2 = {
   class: "flex items-center"
 };
-popScopeId();
 
-const render$5 = /* @__PURE__ */_withId$3((_ctx, _cache, $props, $setup, $data, $options) => {
+function render$5(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_a_menu_item = resolveComponent("a-menu-item");
 
   const _component_a_sub_menu = resolveComponent("a-sub-menu");
@@ -112,12 +107,12 @@ const render$5 = /* @__PURE__ */_withId$3((_ctx, _cache, $props, $setup, $data, 
   }, [createVNode("img", {
     src: _ctx.logo,
     alt: "",
-    class: "logo"
+    class: "easi-packages-logo"
   }, null, 8, ["src"]), _ctx.title || _ctx.subTitle ? withDirectives((openBlock(), createBlock("div", _hoisted_1$4, [_ctx.title ? (openBlock(), createBlock("p", {
     key: 0,
     class: ["truncate", [_ctx.subTitle ? "text-14" : "text-16"]]
   }, toDisplayString(_ctx.title), 3)) : createCommentVNode("v-if", true), _ctx.subTitle ? (openBlock(), createBlock("p", _hoisted_2$3, toDisplayString(_ctx.subTitle), 1)) : createCommentVNode("v-if", true)], 512)), [[vShow, !_ctx.collapsed]]) : createCommentVNode("v-if", true)], 2), createVNode("div", _hoisted_3$2, [createVNode(_component_a_menu, {
-    class: "layout-menu",
+    class: "easi-packages-layout-menu",
     mode: "inline",
     inlineCollapsed: false,
     openKeys: _ctx.openKeys,
@@ -126,17 +121,17 @@ const render$5 = /* @__PURE__ */_withId$3((_ctx, _cache, $props, $setup, $data, 
     "onUpdate:selectedKeys": _cache[2] || (_cache[2] = $event => _ctx.selectedKeys = $event),
     theme: "dark"
   }, {
-    default: _withId$3(() => [(openBlock(true), createBlock(Fragment, null, renderList(_ctx.nav, item => {
+    default: withCtx(() => [(openBlock(true), createBlock(Fragment, null, renderList(_ctx.nav, item => {
       return openBlock(), createBlock(Fragment, {
         key: item.name
       }, [item.children && item.children.length > 0 && !item.meta.hideMenu ? (openBlock(), createBlock(_component_a_sub_menu, {
         key: item.name
       }, {
-        title: _withId$3(() => [createVNode("span", _hoisted_4$2, [!!item.meta.icon ? (openBlock(), createBlock("i", {
+        title: withCtx(() => [createVNode("span", _hoisted_4$2, [!!item.meta.icon ? (openBlock(), createBlock("i", {
           key: 0,
           class: [item.meta.icon, "anticon"]
         }, null, 2)) : createCommentVNode("v-if", true), createVNode("span", null, toDisplayString(item.meta.title), 1)])]),
-        default: _withId$3(() => [(openBlock(true), createBlock(Fragment, null, renderList(item.children, child => {
+        default: withCtx(() => [(openBlock(true), createBlock(Fragment, null, renderList(item.children, child => {
           return openBlock(), createBlock(Fragment, {
             key: child.name
           }, [!child.meta.hideMenu ? (openBlock(), createBlock(_component_a_menu_item, {
@@ -144,7 +139,7 @@ const render$5 = /* @__PURE__ */_withId$3((_ctx, _cache, $props, $setup, $data, 
             class: "flex items-center",
             onClick: $event => _ctx.toPage(child.name)
           }, {
-            default: _withId$3(() => [!!child.meta.icon ? (openBlock(), createBlock("i", {
+            default: withCtx(() => [!!child.meta.icon ? (openBlock(), createBlock("i", {
               key: 0,
               class: [child.meta.icon, "anticon"]
             }, null, 2)) : createCommentVNode("v-if", true), createVNode("span", null, toDisplayString(child.meta.title), 1)]),
@@ -157,7 +152,7 @@ const render$5 = /* @__PURE__ */_withId$3((_ctx, _cache, $props, $setup, $data, 
         class: "flex items-center",
         onClick: $event => _ctx.toPage(item.name)
       }, {
-        default: _withId$3(() => [!!item.meta.icon ? (openBlock(), createBlock("i", {
+        default: withCtx(() => [!!item.meta.icon ? (openBlock(), createBlock("i", {
           key: 0,
           class: [item.meta.icon, "anticon"]
         }, null, 2)) : createCommentVNode("v-if", true), createVNode("span", null, toDisplayString(item.meta.title), 1)]),
@@ -166,10 +161,9 @@ const render$5 = /* @__PURE__ */_withId$3((_ctx, _cache, $props, $setup, $data, 
     }), 128))]),
     _: 1
   }, 8, ["openKeys", "selectedKeys"])])], 64);
-});
+}
 
 script$5.render = render$5;
-script$5.__scopeId = "data-v-a3884aa0";
 script$5.__file = "packages/layout/Menu.vue";
 var script$4 = defineComponent({
   name: createNamespace("Nav"),
@@ -217,7 +211,7 @@ function render$4(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_a_drawer = resolveComponent("a-drawer");
 
   return openBlock(), createBlock(Fragment, null, [withDirectives(createVNode("div", {
-    class: ["side-placeholder", {
+    class: ["easi-packages-side-placeholder", {
       "transition-width": !_ctx.isH5
     }],
     style: {
@@ -3610,10 +3604,6 @@ var script$2 = defineComponent({
     TabletOutlined: TabletOutlined$1
   }
 });
-
-const _withId$2 = /* @__PURE__ */withScopeId("data-v-ac52a5c2");
-
-pushScopeId("data-v-ac52a5c2");
 const _hoisted_1$2 = {
   class: "flex items-center"
 };
@@ -3643,9 +3633,8 @@ const _hoisted_8 = {
 const _hoisted_9 = {
   class: "flex-1"
 };
-popScopeId();
 
-const render$2 = /* @__PURE__ */_withId$2((_ctx, _cache, $props, $setup, $data, $options) => {
+function render$2(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_a_avatar = resolveComponent("a-avatar");
 
   const _component_a_typography_text = resolveComponent("a-typography-text");
@@ -3677,7 +3666,7 @@ const render$2 = /* @__PURE__ */_withId$2((_ctx, _cache, $props, $setup, $data, 
   }, _ctx.$attrs, {
     onClose: _cache[7] || (_cache[7] = $event => _ctx.$emit("update:visible", false))
   }), {
-    title: _withId$2(() => {
+    title: withCtx(() => {
       var _ctx$userInfo3, _ctx$userInfo4;
 
       return [createVNode("header", _hoisted_1$2, [(_ctx$userInfo3 = _ctx.userInfo) !== null && _ctx$userInfo3 !== void 0 && _ctx$userInfo3.avatar ? (openBlock(), createBlock(_component_a_avatar, {
@@ -3692,7 +3681,7 @@ const render$2 = /* @__PURE__ */_withId$2((_ctx, _cache, $props, $setup, $data, 
         }
       }, null, 8, ["src"])) : createCommentVNode("v-if", true), createTextVNode(" " + toDisplayString(((_ctx$userInfo4 = _ctx.userInfo) === null || _ctx$userInfo4 === void 0 ? void 0 : _ctx$userInfo4.name) || "\u7528\u6237\u540D"), 1)])];
     }),
-    default: _withId$2(() => {
+    default: withCtx(() => {
       var _ctx$userInfo5, _ctx$userInfo5$device;
 
       return [renderSlot(_ctx.$slots, "action-render"), ((_ctx$userInfo5 = _ctx.userInfo) === null || _ctx$userInfo5 === void 0 ? void 0 : (_ctx$userInfo5$device = _ctx$userInfo5.devices) === null || _ctx$userInfo5$device === void 0 ? void 0 : _ctx$userInfo5$device.length) > 0 ? (openBlock(), createBlock(Fragment, {
@@ -3701,7 +3690,7 @@ const render$2 = /* @__PURE__ */_withId$2((_ctx, _cache, $props, $setup, $data, 
         strong: "",
         class: "block mb-32"
       }, {
-        default: _withId$2(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.deviceTitle), 1)]),
+        default: withCtx(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.deviceTitle), 1)]),
         _: 1
       }), (openBlock(true), createBlock(Fragment, null, renderList(_ctx.userInfo.devices, item => {
         return openBlock(), createBlock("div", {
@@ -3710,7 +3699,7 @@ const render$2 = /* @__PURE__ */_withId$2((_ctx, _cache, $props, $setup, $data, 
         }, [createVNode("p", _hoisted_2$1, [createVNode(_component_a_typography_text, {
           type: "secondary"
         }, {
-          default: _withId$2(() => [item.device_type === "Desktop" ? (openBlock(), createBlock(_component_DesktopOutlined, {
+          default: withCtx(() => [item.device_type === "Desktop" ? (openBlock(), createBlock(_component_DesktopOutlined, {
             key: 0
           })) : item.device_type === "Mobile" ? (openBlock(), createBlock(_component_MobileOutlined, {
             key: 1
@@ -3721,40 +3710,40 @@ const render$2 = /* @__PURE__ */_withId$2((_ctx, _cache, $props, $setup, $data, 
         }, 1024), createVNode(_component_a_typography_text, {
           class: "px-8"
         }, {
-          default: _withId$2(() => [createTextVNode(toDisplayString(item.device_type) + " " + toDisplayString(item.ip), 1)]),
+          default: withCtx(() => [createTextVNode(toDisplayString(item.device_type) + " " + toDisplayString(item.ip), 1)]),
           _: 2
         }, 1024), createVNode(_component_a_typography_link, {
           class: "flex-1 truncate",
           onClick: $event => _ctx.handleCopy(item.session_id)
         }, {
-          default: _withId$2(() => [createTextVNode(" (" + toDisplayString(item.session_id) + ") ", 1)]),
+          default: withCtx(() => [createTextVNode(" (" + toDisplayString(item.session_id) + ") ", 1)]),
           _: 2
         }, 1032, ["onClick"])]), createVNode("p", _hoisted_3, [createVNode(_component_a_typography_text, {
           type: "secondary"
         }, {
-          default: _withId$2(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.deviceLoginTime) + " " + toDisplayString(_ctx.transformTime(item.active_at)), 1)]),
+          default: withCtx(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.deviceLoginTime) + " " + toDisplayString(_ctx.transformTime(item.active_at)), 1)]),
           _: 2
         }, 1024)])]);
       }), 128)), createVNode(_component_a_divider)], 64)) : createCommentVNode("v-if", true), createVNode(_component_a_typography_text, {
         strong: "",
         class: "block mb-32"
       }, {
-        default: _withId$2(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.styleSetting), 1)]),
+        default: withCtx(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.styleSetting), 1)]),
         _: 1
       }), createVNode("div", _hoisted_4, [createVNode("span", _hoisted_5, [createVNode(_component_a_typography_text, null, {
-        default: _withId$2(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.darkSetting), 1)]),
+        default: withCtx(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.darkSetting), 1)]),
         _: 1
       })]), createVNode("div", null, [createVNode(_component_a_switch, {
         checked: _ctx.globalProvider.mode,
         onChange: _cache[1] || (_cache[1] = $event => _ctx.setSetting("mode", $event))
       }, null, 8, ["checked"])])]), _ctx.showTabSetting ? (openBlock(), createBlock("div", _hoisted_6, [createVNode("span", _hoisted_7, [createVNode(_component_a_typography_text, null, {
-        default: _withId$2(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.showTabSetting), 1)]),
+        default: withCtx(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.showTabSetting), 1)]),
         _: 1
       })]), createVNode("div", null, [createVNode(_component_a_switch, {
         checked: _ctx.globalProvider.showTab,
         onChange: _cache[2] || (_cache[2] = $event => _ctx.setSetting("showTab", $event))
       }, null, 8, ["checked"])])])) : createCommentVNode("v-if", true), _ctx.showTabSetting ? (openBlock(), createBlock("div", _hoisted_8, [createVNode("span", _hoisted_9, [createVNode(_component_a_typography_text, null, {
-        default: _withId$2(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.fixedTabSetting), 1)]),
+        default: withCtx(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.fixedTabSetting), 1)]),
         _: 1
       })]), createVNode("div", null, [createVNode(_component_a_switch, {
         checked: _ctx.globalProvider.fixedTab,
@@ -3762,47 +3751,46 @@ const render$2 = /* @__PURE__ */_withId$2((_ctx, _cache, $props, $setup, $data, 
       }, null, 8, ["checked"])])])) : createCommentVNode("v-if", true), createVNode(_component_a_divider), !!_ctx.onLogout || !!_ctx.toDashboard || !!_ctx.editPassword ? (openBlock(), createBlock(_component_a_typography_text, {
         key: 3,
         strong: "",
-        class: "block margin-bottom"
+        class: "block easi-packages-margin-bottom"
       }, {
-        default: _withId$2(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.more), 1)]),
+        default: withCtx(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.more), 1)]),
         _: 1
       })) : createCommentVNode("v-if", true), !!_ctx.toDashboard ? (openBlock(), createBlock("div", {
         key: 4,
-        class: "more-item flex items-center cursor-pointer easi-hover-block",
+        class: "easi-packages-more-item flex items-center cursor-pointer easi-hover-block",
         onClick: _cache[4] || (_cache[4] = (...args) => _ctx.handleToDashBoard && _ctx.handleToDashBoard(...args))
       }, [createVNode(_component_CompassOutlined, {
         class: "mr-8 text-14"
       }), createVNode(_component_a_typography_text, null, {
-        default: _withId$2(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.backToDashBoard), 1)]),
+        default: withCtx(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.backToDashBoard), 1)]),
         _: 1
       })])) : createCommentVNode("v-if", true), !!_ctx.editPassword ? (openBlock(), createBlock("div", {
         key: 5,
-        class: "more-item flex items-center cursor-pointer easi-hover-block",
+        class: "easi-packages-more-item flex items-center cursor-pointer easi-hover-block",
         onClick: _cache[5] || (_cache[5] = (...args) => _ctx.handleEditPassword && _ctx.handleEditPassword(...args))
       }, [createVNode(_component_UnlockOutlined, {
         class: "mr-8 text-14"
       }), createVNode(_component_a_typography_text, null, {
-        default: _withId$2(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.editPassword), 1)]),
+        default: withCtx(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.editPassword), 1)]),
         _: 1
       })])) : createCommentVNode("v-if", true), !!_ctx.onLogout ? (openBlock(), createBlock("div", {
         key: 6,
-        class: "more-item flex items-center cursor-pointer text-red-400 easi-hover-block",
+        class: "easi-packages-more-item flex items-center cursor-pointer text-red-400 easi-hover-block",
         onClick: _cache[6] || (_cache[6] = (...args) => _ctx.handleLogout && _ctx.handleLogout(...args))
       }, [createVNode(_component_LogoutOutlined, {
         class: "mr-8 text-14"
       }), createVNode(_component_a_typography_text, {
         type: "danger"
       }, {
-        default: _withId$2(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.logout), 1)]),
+        default: withCtx(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.logout), 1)]),
         _: 1
       })])) : createCommentVNode("v-if", true)];
     }),
     _: 3
   }, 16);
-});
+}
 
 script$2.render = render$2;
-script$2.__scopeId = "data-v-ac52a5c2";
 script$2.__file = "packages/setting/Index.vue";
 
 function getEASIText(globalEASILocale, key, value) {
@@ -3928,16 +3916,11 @@ var script$1 = defineComponent({
     CloseOutlined: CloseOutlined$1
   }
 });
-
-const _withId$1 = /* @__PURE__ */withScopeId("data-v-1dba1a54");
-
-pushScopeId("data-v-1dba1a54");
 const _hoisted_1$1 = {
   class: "flex items-center"
 };
-popScopeId();
 
-const render$1 = /* @__PURE__ */_withId$1((_ctx, _cache, $props, $setup, $data, $options) => {
+function render$1(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ReloadOutlined = resolveComponent("ReloadOutlined");
 
   const _component_CloseOutlined = resolveComponent("CloseOutlined");
@@ -3962,28 +3945,28 @@ const render$1 = /* @__PURE__ */_withId$1((_ctx, _cache, $props, $setup, $data, 
     "hide-add": "",
     onTabClick: _ctx.toPage,
     type: "editable-card",
-    class: "page-tab"
+    class: "easi-packages-page-tab"
   }, {
-    tabBarExtraContent: _withId$1(() => [createVNode(_component_a_dropdown, {
+    tabBarExtraContent: withCtx(() => [createVNode(_component_a_dropdown, {
       onClick: _ctx.action
     }, {
-      overlay: _withId$1(() => [createVNode(_component_a_menu, {
+      overlay: withCtx(() => [createVNode(_component_a_menu, {
         onClick: _ctx.action
       }, {
-        default: _withId$1(() => [createVNode(_component_a_menu_item, {
+        default: withCtx(() => [createVNode(_component_a_menu_item, {
           key: "closeAll"
         }, {
-          default: _withId$1(() => [createTextVNode(toDisplayString(_ctx.getText("closeOther")), 1)]),
+          default: withCtx(() => [createTextVNode(toDisplayString(_ctx.getText("closeOther")), 1)]),
           _: 1
         }), createVNode(_component_a_menu_item, {
           key: "refresh"
         }, {
-          default: _withId$1(() => [createTextVNode(toDisplayString(_ctx.getText("refreshPage")), 1)]),
+          default: withCtx(() => [createTextVNode(toDisplayString(_ctx.getText("refreshPage")), 1)]),
           _: 1
         })]),
         _: 1
       }, 8, ["onClick"])]),
-      default: _withId$1(() => [createVNode("a", {
+      default: withCtx(() => [createVNode("a", {
         class: "ant-dropdown-link p-12 mr-8",
         onClick: _cache[1] || (_cache[1] = withModifiers(() => {}, ["prevent"]))
       }, [createVNode(_component_MoreOutlined, {
@@ -3991,16 +3974,16 @@ const render$1 = /* @__PURE__ */_withId$1((_ctx, _cache, $props, $setup, $data, 
       })])]),
       _: 1
     }, 8, ["onClick"])]),
-    default: _withId$1(() => [(openBlock(true), createBlock(Fragment, null, renderList(_ctx.panes, (pane, index) => {
+    default: withCtx(() => [(openBlock(true), createBlock(Fragment, null, renderList(_ctx.panes, (pane, index) => {
       return openBlock(), createBlock(_component_a_tab_pane, {
         key: pane.fullPath,
         closable: false
       }, {
-        tab: _withId$1(() => [createVNode("span", _hoisted_1$1, [createTextVNode(toDisplayString(pane.title) + " ", 1), withDirectives(createVNode(_component_ReloadOutlined, {
-          class: "icon-action text-12 leading-0 ml-8",
+        tab: withCtx(() => [createVNode("span", _hoisted_1$1, [createTextVNode(toDisplayString(pane.title) + " ", 1), withDirectives(createVNode(_component_ReloadOutlined, {
+          class: "easi-packages-icon-action text-12 leading-0 ml-8",
           onClick: withModifiers(_ctx.reloadPage, ["stop"])
         }, null, 8, ["onClick"]), [[vShow, pane.fullPath === _ctx.activeKey]]), withDirectives(createVNode(_component_CloseOutlined, {
-          class: "icon-action text-12 leading-0 ml-8",
+          class: "easi-packages-icon-action text-12 leading-0 ml-8",
           onClick: withModifiers($event => _ctx.removeTab(index), ["stop"])
         }, null, 8, ["onClick"]), [[vShow, _ctx.panes.length !== 1]])])]),
         _: 2
@@ -4008,10 +3991,9 @@ const render$1 = /* @__PURE__ */_withId$1((_ctx, _cache, $props, $setup, $data, 
     }), 128))]),
     _: 1
   }, 8, ["activeKey", "onTabClick"]);
-});
+}
 
 script$1.render = render$1;
-script$1.__scopeId = "data-v-1dba1a54";
 script$1.__file = "packages/layout/Tab.vue";
 var script = defineComponent({
   name: createNamespace("Layout"),
@@ -4187,10 +4169,6 @@ var script = defineComponent({
   }
 });
 
-const _withId = /* @__PURE__ */withScopeId("data-v-46be8f51");
-
-pushScopeId("data-v-46be8f51");
-
 const _hoisted_1 = /* @__PURE__ */createVNode("div", {
   class: "h-48"
 }, null, -1);
@@ -4199,9 +4177,8 @@ const _hoisted_2 = {
   key: 1,
   class: "h-64"
 };
-popScopeId();
 
-const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $options) => {
+function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_PageNav = resolveComponent("PageNav");
 
   const _component_PageHeader = resolveComponent("PageHeader");
@@ -4223,7 +4200,7 @@ const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $opt
   return openBlock(), createBlock(_component_a_layout, {
     class: "min-h-screen"
   }, {
-    default: _withId(() => [createCommentVNode(" \u4FA7\u8FB9\u680F\u5BFC\u822A  "), createVNode(_component_PageNav, {
+    default: withCtx(() => [createCommentVNode(" \u4FA7\u8FB9\u680F\u5BFC\u822A  "), createVNode(_component_PageNav, {
       collapsed: _ctx.collapsed,
       "coll-width": _ctx.collWidth,
       isH5: _ctx.isH5,
@@ -4233,15 +4210,15 @@ const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $opt
       nav: _ctx.nav,
       onHideMenu: _cache[1] || (_cache[1] = $event => _ctx.collapsed = true)
     }, null, 8, ["collapsed", "coll-width", "isH5", "logo", "sub-title", "title", "nav"]), createCommentVNode(" \u5185\u5BB9\u5E03\u5C40 "), createVNode(_component_a_layout, null, {
-      default: _withId(() => [_hoisted_1, createVNode(_component_a_layout_header, {
-        class: ["page-header fixed top-0 right-0 bg-white flex items-center h-48 leading-48 pl-16 pr-16 z-10", {
-          "transition-width": !_ctx.isH5
+      default: withCtx(() => [_hoisted_1, createVNode(_component_a_layout_header, {
+        class: ["easi-packages-page-header fixed top-0 right-0 bg-white flex items-center h-48 leading-48 pl-16 pr-16 z-10", {
+          "easi-packages-transition-width": !_ctx.isH5
         }],
         style: {
           width: _ctx.isH5 ? "100%" : `calc(100% - ${_ctx.collWidth})`
         }
       }, {
-        default: _withId(() => [createVNode(_component_PageHeader, {
+        default: withCtx(() => [createVNode(_component_PageHeader, {
           collapsed: _ctx.collapsed,
           userInfo: _ctx.userInfo,
           onColToggle: _ctx.setCollapsed,
@@ -4250,20 +4227,20 @@ const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $opt
         _: 1
       }, 8, ["class", "style"]), _ctx.globalProvider.showTab ? (openBlock(), createBlock(_component_PageTab, {
         key: 0,
-        class: ["page-tab pt-6 bg-white", [_ctx.globalProvider.fixedTab ? "fixed top-48 right-0 z-10" : "", !_ctx.isH5 && _ctx.addTransition ? "transition-width" : ""]],
+        class: ["page-tab pt-6 bg-white", [_ctx.globalProvider.fixedTab ? "fixed top-48 right-0 z-10" : "", !_ctx.isH5 && _ctx.addTransition ? "easi-packages-transition-width" : ""]],
         style: {
           width: _ctx.globalProvider.fixedTab && !_ctx.isH5 ? `calc(100% - ${_ctx.collWidth})` : `100%`
         },
         onReloadPage: _ctx.onReloadPage
       }, null, 8, ["class", "style", "onReloadPage"])) : createCommentVNode("v-if", true), _ctx.globalProvider.showTab && _ctx.globalProvider.fixedTab ? (openBlock(), createBlock("div", _hoisted_2)) : createCommentVNode("v-if", true), createVNode(_component_a_layout_content, null, {
-        default: _withId(() => [createVNode(_component_router_view, null, {
-          default: _withId(({
+        default: withCtx(() => [createVNode(_component_router_view, null, {
+          default: withCtx(({
             Component
           }) => [createVNode(Transition, {
             name: "slid-up",
             mode: "out-in"
           }, {
-            default: _withId(() => [(openBlock(), createBlock(KeepAlive, {
+            default: withCtx(() => [(openBlock(), createBlock(KeepAlive, {
               include: _ctx.cachedPage
             }, [_ctx.globalProvider.reloadPage ? (openBlock(), createBlock(resolveDynamicComponent(Component), {
               key: (Component || {}).name
@@ -4276,7 +4253,7 @@ const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $opt
       }), createVNode(_component_a_layout_footer, {
         class: "px-16 py-12 text-center"
       }, {
-        default: _withId(() => [createTextVNode(" \xA9 " + toDisplayString(_ctx.copyRightYear()) + " EASI, Make Life Easier. ", 1)]),
+        default: withCtx(() => [createTextVNode(" \xA9 " + toDisplayString(_ctx.copyRightYear()) + " EASI, Make Life Easier. ", 1)]),
         _: 1
       })]),
       _: 1
@@ -4289,15 +4266,14 @@ const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $opt
       toDashboard: _ctx.toDashboard,
       editPassword: _ctx.editPassword
     }, {
-      "action-render": _withId(() => [renderSlot(_ctx.$slots, "action-render")]),
+      "action-render": withCtx(() => [renderSlot(_ctx.$slots, "action-render")]),
       _: 3
     }, 8, ["visible", "userInfo", "showTabSetting", "onLogout", "toDashboard", "editPassword"])]),
     _: 1
   });
-});
+}
 
 script.render = render;
-script.__scopeId = "data-v-46be8f51";
 script.__file = "packages/layout/Index.vue";
 
 script.install = app => {

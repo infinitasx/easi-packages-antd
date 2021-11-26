@@ -1,13 +1,9 @@
-.has-footer {
-  padding-bottom: 35px;
-}
-
-[data-pro-theme=antdv-pro-theme-dark] .drawer-footer {
+[data-pro-theme=antdv-pro-theme-dark] .easi-packages-drawer-footer {
   background-color: #1f1f1f;
   border-color: #303030;
 }
 
-.drawer-footer {
+.easi-packages-drawer-footer {
   position: absolute;
   right: 0;
   bottom: 0;

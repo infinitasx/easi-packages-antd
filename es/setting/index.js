@@ -1,5 +1,5 @@
 import * as _vue from 'vue';
-import { toRaw, h, nextTick, defineComponent, toRefs, inject, watch, createVNode, pushScopeId, popScopeId, resolveComponent, openBlock, createBlock, mergeProps, createCommentVNode, createTextVNode, toDisplayString, renderSlot, Fragment, renderList, withScopeId } from 'vue';
+import { toRaw, h, nextTick, defineComponent, toRefs, inject, watch, createVNode, resolveComponent, openBlock, createBlock, mergeProps, withCtx, createCommentVNode, createTextVNode, toDisplayString, renderSlot, Fragment, renderList } from 'vue';
 import { Modal, message } from 'ant-design-vue';
 import { setLocal, copy } from 'easi-web-utils';
 import moment from 'moment';
@@ -2780,10 +2780,6 @@ var script = defineComponent({
     TabletOutlined: TabletOutlined$1
   }
 });
-
-const _withId = /* @__PURE__ */withScopeId("data-v-ac52a5c2");
-
-pushScopeId("data-v-ac52a5c2");
 const _hoisted_1 = {
   class: "flex items-center"
 };
@@ -2813,9 +2809,8 @@ const _hoisted_8 = {
 const _hoisted_9 = {
   class: "flex-1"
 };
-popScopeId();
 
-const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $options) => {
+function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_a_avatar = resolveComponent("a-avatar");
 
   const _component_a_typography_text = resolveComponent("a-typography-text");
@@ -2847,7 +2842,7 @@ const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $opt
   }, _ctx.$attrs, {
     onClose: _cache[7] || (_cache[7] = $event => _ctx.$emit("update:visible", false))
   }), {
-    title: _withId(() => {
+    title: withCtx(() => {
       var _ctx$userInfo, _ctx$userInfo2;
 
       return [createVNode("header", _hoisted_1, [(_ctx$userInfo = _ctx.userInfo) !== null && _ctx$userInfo !== void 0 && _ctx$userInfo.avatar ? (openBlock(), createBlock(_component_a_avatar, {
@@ -2862,7 +2857,7 @@ const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $opt
         }
       }, null, 8, ["src"])) : createCommentVNode("v-if", true), createTextVNode(" " + toDisplayString(((_ctx$userInfo2 = _ctx.userInfo) === null || _ctx$userInfo2 === void 0 ? void 0 : _ctx$userInfo2.name) || "\u7528\u6237\u540D"), 1)])];
     }),
-    default: _withId(() => {
+    default: withCtx(() => {
       var _ctx$userInfo3, _ctx$userInfo3$device;
 
       return [renderSlot(_ctx.$slots, "action-render"), ((_ctx$userInfo3 = _ctx.userInfo) === null || _ctx$userInfo3 === void 0 ? void 0 : (_ctx$userInfo3$device = _ctx$userInfo3.devices) === null || _ctx$userInfo3$device === void 0 ? void 0 : _ctx$userInfo3$device.length) > 0 ? (openBlock(), createBlock(Fragment, {
@@ -2871,7 +2866,7 @@ const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $opt
         strong: "",
         class: "block mb-32"
       }, {
-        default: _withId(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.deviceTitle), 1)]),
+        default: withCtx(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.deviceTitle), 1)]),
         _: 1
       }), (openBlock(true), createBlock(Fragment, null, renderList(_ctx.userInfo.devices, item => {
         return openBlock(), createBlock("div", {
@@ -2880,7 +2875,7 @@ const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $opt
         }, [createVNode("p", _hoisted_2, [createVNode(_component_a_typography_text, {
           type: "secondary"
         }, {
-          default: _withId(() => [item.device_type === "Desktop" ? (openBlock(), createBlock(_component_DesktopOutlined, {
+          default: withCtx(() => [item.device_type === "Desktop" ? (openBlock(), createBlock(_component_DesktopOutlined, {
             key: 0
           })) : item.device_type === "Mobile" ? (openBlock(), createBlock(_component_MobileOutlined, {
             key: 1
@@ -2891,40 +2886,40 @@ const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $opt
         }, 1024), createVNode(_component_a_typography_text, {
           class: "px-8"
         }, {
-          default: _withId(() => [createTextVNode(toDisplayString(item.device_type) + " " + toDisplayString(item.ip), 1)]),
+          default: withCtx(() => [createTextVNode(toDisplayString(item.device_type) + " " + toDisplayString(item.ip), 1)]),
           _: 2
         }, 1024), createVNode(_component_a_typography_link, {
           class: "flex-1 truncate",
           onClick: $event => _ctx.handleCopy(item.session_id)
         }, {
-          default: _withId(() => [createTextVNode(" (" + toDisplayString(item.session_id) + ") ", 1)]),
+          default: withCtx(() => [createTextVNode(" (" + toDisplayString(item.session_id) + ") ", 1)]),
           _: 2
         }, 1032, ["onClick"])]), createVNode("p", _hoisted_3, [createVNode(_component_a_typography_text, {
           type: "secondary"
         }, {
-          default: _withId(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.deviceLoginTime) + " " + toDisplayString(_ctx.transformTime(item.active_at)), 1)]),
+          default: withCtx(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.deviceLoginTime) + " " + toDisplayString(_ctx.transformTime(item.active_at)), 1)]),
           _: 2
         }, 1024)])]);
       }), 128)), createVNode(_component_a_divider)], 64)) : createCommentVNode("v-if", true), createVNode(_component_a_typography_text, {
         strong: "",
         class: "block mb-32"
       }, {
-        default: _withId(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.styleSetting), 1)]),
+        default: withCtx(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.styleSetting), 1)]),
         _: 1
       }), createVNode("div", _hoisted_4, [createVNode("span", _hoisted_5, [createVNode(_component_a_typography_text, null, {
-        default: _withId(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.darkSetting), 1)]),
+        default: withCtx(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.darkSetting), 1)]),
         _: 1
       })]), createVNode("div", null, [createVNode(_component_a_switch, {
         checked: _ctx.globalProvider.mode,
         onChange: _cache[1] || (_cache[1] = $event => _ctx.setSetting("mode", $event))
       }, null, 8, ["checked"])])]), _ctx.showTabSetting ? (openBlock(), createBlock("div", _hoisted_6, [createVNode("span", _hoisted_7, [createVNode(_component_a_typography_text, null, {
-        default: _withId(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.showTabSetting), 1)]),
+        default: withCtx(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.showTabSetting), 1)]),
         _: 1
       })]), createVNode("div", null, [createVNode(_component_a_switch, {
         checked: _ctx.globalProvider.showTab,
         onChange: _cache[2] || (_cache[2] = $event => _ctx.setSetting("showTab", $event))
       }, null, 8, ["checked"])])])) : createCommentVNode("v-if", true), _ctx.showTabSetting ? (openBlock(), createBlock("div", _hoisted_8, [createVNode("span", _hoisted_9, [createVNode(_component_a_typography_text, null, {
-        default: _withId(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.fixedTabSetting), 1)]),
+        default: withCtx(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.fixedTabSetting), 1)]),
         _: 1
       })]), createVNode("div", null, [createVNode(_component_a_switch, {
         checked: _ctx.globalProvider.fixedTab,
@@ -2932,47 +2927,46 @@ const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $opt
       }, null, 8, ["checked"])])])) : createCommentVNode("v-if", true), createVNode(_component_a_divider), !!_ctx.onLogout || !!_ctx.toDashboard || !!_ctx.editPassword ? (openBlock(), createBlock(_component_a_typography_text, {
         key: 3,
         strong: "",
-        class: "block margin-bottom"
+        class: "block easi-packages-margin-bottom"
       }, {
-        default: _withId(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.more), 1)]),
+        default: withCtx(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.more), 1)]),
         _: 1
       })) : createCommentVNode("v-if", true), !!_ctx.toDashboard ? (openBlock(), createBlock("div", {
         key: 4,
-        class: "more-item flex items-center cursor-pointer easi-hover-block",
+        class: "easi-packages-more-item flex items-center cursor-pointer easi-hover-block",
         onClick: _cache[4] || (_cache[4] = (...args) => _ctx.handleToDashBoard && _ctx.handleToDashBoard(...args))
       }, [createVNode(_component_CompassOutlined, {
         class: "mr-8 text-14"
       }), createVNode(_component_a_typography_text, null, {
-        default: _withId(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.backToDashBoard), 1)]),
+        default: withCtx(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.backToDashBoard), 1)]),
         _: 1
       })])) : createCommentVNode("v-if", true), !!_ctx.editPassword ? (openBlock(), createBlock("div", {
         key: 5,
-        class: "more-item flex items-center cursor-pointer easi-hover-block",
+        class: "easi-packages-more-item flex items-center cursor-pointer easi-hover-block",
         onClick: _cache[5] || (_cache[5] = (...args) => _ctx.handleEditPassword && _ctx.handleEditPassword(...args))
       }, [createVNode(_component_UnlockOutlined, {
         class: "mr-8 text-14"
       }), createVNode(_component_a_typography_text, null, {
-        default: _withId(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.editPassword), 1)]),
+        default: withCtx(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.editPassword), 1)]),
         _: 1
       })])) : createCommentVNode("v-if", true), !!_ctx.onLogout ? (openBlock(), createBlock("div", {
         key: 6,
-        class: "more-item flex items-center cursor-pointer text-red-400 easi-hover-block",
+        class: "easi-packages-more-item flex items-center cursor-pointer text-red-400 easi-hover-block",
         onClick: _cache[6] || (_cache[6] = (...args) => _ctx.handleLogout && _ctx.handleLogout(...args))
       }, [createVNode(_component_LogoutOutlined, {
         class: "mr-8 text-14"
       }), createVNode(_component_a_typography_text, {
         type: "danger"
       }, {
-        default: _withId(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.logout), 1)]),
+        default: withCtx(() => [createTextVNode(toDisplayString(_ctx.globalEASILocale.message.logout), 1)]),
         _: 1
       })])) : createCommentVNode("v-if", true)];
     }),
     _: 3
   }, 16);
-});
+}
 
 script.render = render;
-script.__scopeId = "data-v-ac52a5c2";
 script.__file = "packages/setting/Index.vue";
 
 script.install = app => {

@@ -1,18 +1,18 @@
-[data-pro-theme=antdv-pro-theme-dark] .loading-container[data-v-b2dea7fe] {
+[data-pro-theme=antdv-pro-theme-dark] .easi-packages-loading-container {
   background: rgba(20, 20, 20, 0.8);
 }
-[data-pro-theme=antdv-pro-theme-dark] .loading-container[data-v-b2dea7fe] .loading[data-v-b2dea7fe] {
+[data-pro-theme=antdv-pro-theme-dark] .easi-packages-loading-container .easi-packages-loading {
   background-color: #000;
   box-shadow: 1px 1px 10px 2px rgba(0, 0, 0, 0.6);
 }
-[data-pro-theme=antdv-pro-theme-dark] .loading-container[data-v-b2dea7fe] .loading-shadow div[data-v-b2dea7fe] {
+[data-pro-theme=antdv-pro-theme-dark] .easi-packages-loading-container .easi-packages-loading-shadow div {
   background-color: #898989;
 }
-[data-pro-theme=antdv-pro-theme-dark] .loading-container[data-v-b2dea7fe] .tips[data-v-b2dea7fe] {
+[data-pro-theme=antdv-pro-theme-dark] .easi-packages-loading-container .easi-packages-tips {
   color: #eaeaea;
 }
 
-.loading-container[data-v-b2dea7fe] {
+.easi-packages-loading-container {
   position: absolute;
   top: 0;
   left: 0;
@@ -22,7 +22,7 @@
   z-index: 100;
 }
 
-.loading[data-v-b2dea7fe] {
+.easi-packages-loading {
   position: absolute;
   top: 45%;
   left: 50%;
@@ -32,29 +32,29 @@
   box-sizing: border-box;
   box-shadow: 1px 1px 10px 2px rgba(190, 190, 190, 0.4);
 }
-.loading[data-v-b2dea7fe].small[data-v-b2dea7fe] {
+.easi-packages-loading.small {
   transform: translate(-50%, -50%) scale(0.8);
 }
 
-.loading-wrap[data-v-b2dea7fe] {
+.easi-packages-loading-wrap {
   padding-top: 14px;
   padding-bottom: 10px;
   width: 94px;
 }
 
-.ball[data-v-b2dea7fe] {
+.easi-packages-ball {
   position: relative;
   margin: auto;
   width: 40px;
   height: 40px;
-  animation: jump-b2dea7fe 1s linear infinite;
+  animation: easi-packages-jump 1s linear infinite;
   z-index: 10;
   background-color: #ffda00;
   border-radius: 50%;
   backface-visibility: hidden;
 }
 
-.loading-shadow[data-v-b2dea7fe] {
+.easi-packages-loading-shadow {
   position: relative;
   margin-top: 4px;
   width: 100%;
@@ -62,18 +62,18 @@
   backface-visibility: hidden;
 }
 
-.loading-shadow div[data-v-b2dea7fe] {
+.easi-packages-loading-shadow div {
   margin: auto;
   width: 35%;
   height: 6px;
-  animation: scale-b2dea7fe 1s linear infinite;
+  animation: scale 1s linear infinite;
   transform-origin: top center;
   background: #e1e1e1;
   border-radius: 50%;
   backface-visibility: hidden;
 }
 
-.bg[data-v-b2dea7fe] {
+.easi-packages-bg {
   position: absolute;
   top: 8px;
   left: 8px;
@@ -88,21 +88,21 @@
   backface-visibility: hidden;
 }
 
-.spoon[data-v-b2dea7fe] {
+.easi-packages-spoon {
   margin-top: 1px;
   margin-left: -3px;
   background-position: 0 0;
-  animation: spoon-b2dea7fe 1s linear infinite;
+  animation: easi-packages-spoon 1s linear infinite;
 }
 
-.fork[data-v-b2dea7fe] {
+.easi-packages-fork {
   margin-top: 1px;
   margin-left: 3px;
   background-position: -44px 0;
-  animation: fork-b2dea7fe 1s linear infinite;
+  animation: easi-packages-fork 1s linear infinite;
 }
 
-.tips[data-v-b2dea7fe] {
+.easi-packages-tips {
   margin-bottom: 7px;
   font-size: 12px;
   color: #ccc;
@@ -112,17 +112,17 @@
   white-space: nowrap;
 }
 
-.fade-enter-active[data-v-b2dea7fe],
-.fade-leave-active[data-v-b2dea7fe] {
+.easi-packages-fade-enter-active,
+.easi-packages-fade-leave-active {
   transition: opacity 0.3s;
 }
 
-.fade-enter-from[data-v-b2dea7fe],
-.fade-leave-to[data-v-b2dea7fe] {
+.easi-packages-fade-enter-from,
+.easi-packages-fade-leave-to {
   opacity: 0;
 }
 
-@keyframes jump-b2dea7fe {
+@keyframes easi-packages-jump {
   0%, 100% {
     transform: translate3d(0, 0, 0) scale(1);
     animation-timing-function: cubic-bezier(0.45, 0, 0.9, 0.55);
@@ -132,7 +132,7 @@
     animation-timing-function: cubic-bezier(0, 0.45, 0.55, 0.9);
   }
 }
-@keyframes scale-b2dea7fe {
+@keyframes easi-packages-scale {
   0%, 100% {
     animation-timing-function: cubic-bezier(0.45, 0, 0.9, 0.55);
     opacity: 1;
@@ -143,7 +143,7 @@
     opacity: 0.4;
   }
 }
-@keyframes fork-b2dea7fe {
+@keyframes easi-packages-fork {
   0%, 100% {
     transform: translateX(0) rotate(0);
   }
@@ -151,7 +151,7 @@
     transform: translateX(-6px) rotate(-90deg);
   }
 }
-@keyframes spoon-b2dea7fe {
+@keyframes easi-packages-spoon {
   0%, 100% {
     transform: translateX(0) rotate(0);
   }

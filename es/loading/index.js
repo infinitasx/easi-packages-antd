@@ -1,4 +1,4 @@
-import { reactive, defineComponent, toRefs, getCurrentInstance, ref, watch, pushScopeId, popScopeId, openBlock, createBlock, Transition, createVNode, toDisplayString, createCommentVNode, withScopeId } from 'vue';
+import { reactive, defineComponent, toRefs, getCurrentInstance, ref, watch, openBlock, createBlock, Transition, withCtx, createVNode, toDisplayString, createCommentVNode } from 'vue';
 
 function createNamespace(name) {
   return `EASI${name}`;
@@ -227,48 +227,42 @@ var script = defineComponent({
   }
 
 });
-
-const _withId = /* @__PURE__ */withScopeId("data-v-7bbec90b");
-
-pushScopeId("data-v-7bbec90b");
 const _hoisted_1 = {
   key: 0,
-  class: "loading-container",
+  class: "easi-packages-loading-container",
   id: "cus-loading"
 };
 
 const _hoisted_2 = /* @__PURE__ */createVNode("div", {
-  class: "loading-wrap"
+  class: "easi-packages-loading-wrap"
 }, [/* @__PURE__ */createVNode("div", {
-  class: "ball"
+  class: "easi-packages-ball"
 }, [/* @__PURE__ */createVNode("i", {
-  class: "bg spoon"
+  class: "easi-packages-bg easi-packages-spoon"
 }), /* @__PURE__ */createVNode("i", {
-  class: "bg fork"
+  class: "easi-packages-bg easi-packages-fork"
 })]), /* @__PURE__ */createVNode("div", {
-  class: "loading-shadow"
+  class: "easi-packages-loading-shadow"
 }, [/* @__PURE__ */createVNode("div")])], -1);
 
 const _hoisted_3 = {
   key: 0,
-  class: "tips"
+  class: "easi-packages-tips"
 };
-popScopeId();
 
-const render = /* @__PURE__ */_withId((_ctx, _cache, $props, $setup, $data, $options) => {
+function render(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createBlock(Transition, {
     name: "fade",
     mode: "out-in"
   }, {
-    default: _withId(() => [_ctx.cShow ? (openBlock(), createBlock("div", _hoisted_1, [createVNode("div", {
-      class: ["loading", _ctx.cSize]
+    default: withCtx(() => [_ctx.cShow ? (openBlock(), createBlock("div", _hoisted_1, [createVNode("div", {
+      class: ["easi-packages-loading", _ctx.cSize]
     }, [_hoisted_2, _ctx.title || _ctx.cTitle ? (openBlock(), createBlock("p", _hoisted_3, toDisplayString(_ctx.title || _ctx.cTitle), 1)) : createCommentVNode("v-if", true)], 2)])) : createCommentVNode("v-if", true)]),
     _: 1
   });
-});
+}
 
 script.render = render;
-script.__scopeId = "data-v-7bbec90b";
 script.__file = "packages/loading/Index.vue";
 
 script.install = app => {
