@@ -2,7 +2,7 @@
   <div>
     <template v-if="$usePermissions($route.meta.permission) || hasPermission">
       <div class="easi-packages-page-breadcrumb-wrap" v-if="showPageHeader">
-        <a-page-header :title="pageTitle">
+        <a-page-header :title="pageTitle" :ghost="false">
           <template #breadcrumb>
             <a-breadcrumb :routes="breadcrumbRoutes" v-if="breadcrumbRoutes.length > 1">
               <template #itemRender="{ route }">

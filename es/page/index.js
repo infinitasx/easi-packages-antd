@@ -174,7 +174,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createBlock("div", null, [_ctx.$usePermissions(_ctx.$route.meta.permission) || _ctx.hasPermission ? (openBlock(), createBlock(Fragment, {
     key: 0
   }, [_ctx.showPageHeader ? (openBlock(), createBlock("div", _hoisted_1, [createVNode(_component_a_page_header, {
-    title: _ctx.pageTitle
+    title: _ctx.pageTitle,
+    ghost: false
   }, {
     breadcrumb: withCtx(() => [_ctx.breadcrumbRoutes.length > 1 ? (openBlock(), createBlock(_component_a_breadcrumb, {
       key: 0,

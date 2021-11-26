@@ -9946,31 +9946,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.easi-packages-error-full-page {
-  height: calc(100vh - 160px);
-}
-
-.easi-packages-page-breadcrumb-wrap .ant-page-header-footer {
-  margin: 0;
-}
-
-[data-pro-theme=antdv-pro-theme-dark] .easi-packages-drawer-footer {
-  background-color: #1f1f1f;
-  border-color: #303030;
-}
-
-.easi-packages-drawer-footer {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  border-top: 1px solid #e9e9e9;
-  padding: 10px 16px;
-  background: #fff;
-  text-align: right;
-  z-index: 1;
-}
-
 img.ant-image-preview-img {
   display: inline-block !important;
 }
@@ -9986,19 +9961,6 @@ img.ant-image-preview-img {
 
 [data-pro-theme=antdv-pro-theme-dark] .easi-packages-pane-container.dragover {
   background: rgba(255, 255, 255, 0.04);
-}
-
-.easi-packages-margin-bottom {
-  margin-bottom: 20px;
-}
-
-.easi-packages-more-item {
-  padding-left: 24px;
-  padding-right: 24px;
-  margin-bottom: 10px;
-  margin-left: -24px;
-  margin-right: -24px;
-  height: 44px;
 }
 
 .ant-btn-link.easi-btn-success, .ant-btn-text.easi-btn-success {
@@ -10310,17 +10272,25 @@ img.ant-image-preview-img {
   border-color: #434343;
 }
 
-.easi-packages-page-header {
-  border-bottom: 2px solid #f1f1f1;
+[data-pro-theme=antdv-pro-theme-dark] .easi-packages-drawer-footer {
+  background-color: #1f1f1f;
+  border-color: #303030;
 }
 
-.easi-packages-transition-width {
-  transition: width 0.2s;
+.easi-packages-drawer-footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #e9e9e9;
+  padding: 10px 16px;
+  background: #fff;
+  text-align: right;
+  z-index: 1;
 }
 
-.easi-packages-side-placeholder {
-  flex-shrink: 0;
-  overflow: hidden;
+.easi-packages-page-breadcrumb-wrap .ant-page-header-footer {
+  margin: 0;
 }
 
 [data-pro-theme=antdv-pro-theme-dark] .easi-packages-loading-container {
@@ -10484,6 +10454,36 @@ img.ant-image-preview-img {
     transform: translateX(6px) rotate(90deg);
   }
 }
+.easi-packages-margin-bottom {
+  margin-bottom: 20px;
+}
+
+.easi-packages-more-item {
+  padding-left: 24px;
+  padding-right: 24px;
+  margin-bottom: 10px;
+  margin-left: -24px;
+  margin-right: -24px;
+  height: 44px;
+}
+
+.easi-packages-error-full-page {
+  height: calc(100vh - 160px);
+}
+
+.easi-packages-page-header {
+  border-bottom: 2px solid #f1f1f1;
+}
+
+.easi-packages-transition-width {
+  transition: width 0.2s;
+}
+
+.easi-packages-side-placeholder {
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
 /*!
  * Cropper.js v1.5.12
  * https://fengyuanchen.github.io/cropperjs
@@ -10863,26 +10863,6 @@ img.ant-image-preview-img {
   height: calc(100% - 38px);
 }
 
-.easi-packages-page-tab {
-  height: 64px;
-}
-
-.easi-packages-icon-action {
-  margin-right: 0 !important;
-  color: rgba(0, 0, 0, 0.85);
-}
-.easi-packages-icon-action:hover {
-  color: #177ddc;
-}
-
-[data-pro-theme=antdv-pro-theme-dark] .easi-packages-icon-action {
-  margin-right: 0 !important;
-  color: rgba(255, 255, 255, 0.45);
-}
-[data-pro-theme=antdv-pro-theme-dark] .easi-packages-icon-action:hover {
-  color: #177ddc;
-}
-
 .easi-system-option .ant-popover-inner-content {
   padding: 0;
   min-width: 500px;
@@ -10910,6 +10890,26 @@ img.ant-image-preview-img {
 }
 .easi-system-option .cursor-pointer:hover {
   color: #3c9be8;
+}
+
+.easi-packages-page-tab {
+  height: 64px;
+}
+
+.easi-packages-icon-action {
+  margin-right: 0 !important;
+  color: rgba(0, 0, 0, 0.85);
+}
+.easi-packages-icon-action:hover {
+  color: #177ddc;
+}
+
+[data-pro-theme=antdv-pro-theme-dark] .easi-packages-icon-action {
+  margin-right: 0 !important;
+  color: rgba(255, 255, 255, 0.45);
+}
+[data-pro-theme=antdv-pro-theme-dark] .easi-packages-icon-action:hover {
+  color: #177ddc;
 }
 
 .easi-packages-uploader-container {
