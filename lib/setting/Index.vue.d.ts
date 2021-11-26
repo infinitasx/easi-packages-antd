@@ -32,7 +32,7 @@ declare const _default: import("vue").DefineComponent<{
     transformTime(timestamp: number): string;
     handleCopy(session_id: string): void;
     globalEASILocale: IGlobalLocal;
-}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "update:visible"[], "update:visible", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
+}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("update:visible" | "modeChange")[], "update:visible" | "modeChange", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
     userInfo?: unknown;
     showTabSetting?: unknown;
     onLogout?: unknown;
@@ -47,6 +47,7 @@ declare const _default: import("vue").DefineComponent<{
     editPassword?: Function | undefined;
 }> & {
     "onUpdate:visible"?: ((...args: any[]) => any) | undefined;
+    onModeChange?: ((...args: any[]) => any) | undefined;
 }, {
     userInfo: UserInfo;
     showTabSetting: boolean;

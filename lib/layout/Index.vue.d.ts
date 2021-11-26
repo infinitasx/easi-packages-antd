@@ -60,7 +60,7 @@ declare const _default: import("vue").DefineComponent<{
     onReloadPage(refresh?: boolean): Promise<boolean>;
     handleShowSetting(): void;
     copyRightYear(): string | number;
-}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "update:setting"[], "update:setting", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
+}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("update:setting" | "modeChange")[], "update:setting" | "modeChange", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
     logo?: unknown;
     title?: unknown;
     subTitle?: unknown;
@@ -87,6 +87,7 @@ declare const _default: import("vue").DefineComponent<{
     editPassword?: Function | undefined;
 }> & {
     "onUpdate:setting"?: ((...args: any[]) => any) | undefined;
+    onModeChange?: ((...args: any[]) => any) | undefined;
 }, {
     logo: string;
     title: string;

@@ -88,7 +88,7 @@ import moment from 'moment';
 
 export default defineComponent({
   name: createNamespace("Setting"),
-  emits: ["update:visible"],
+  emits: ["update:visible", 'modeChange'],
   props: {
     userInfo: {
       type: Object as PropType<UserInfo>,
@@ -111,7 +111,7 @@ export default defineComponent({
       default: undefined,
     },
   },
-  setup(props) {
+  setup(props, {emit}) {
 
     const { userInfo } = toRefs(props);
 
@@ -120,6 +120,9 @@ export default defineComponent({
 
     const setSetting = (key: string, value: boolean | string) => {
       (globalProvider as IProvider)[key] = value;
+      if(key === 'mode'){
+        emit('modeChange', value)
+      }
       setProvider(globalProvider as IProvider);
     };
 

@@ -2685,7 +2685,7 @@ UnlockOutlined.inheritAttrs = false;
 var UnlockOutlined$1 = UnlockOutlined;
 var script = defineComponent({
   name: createNamespace("Setting"),
-  emits: ["update:visible"],
+  emits: ["update:visible", "modeChange"],
   props: {
     userInfo: {
       type: Object,
@@ -2709,7 +2709,9 @@ var script = defineComponent({
     }
   },
 
-  setup(props) {
+  setup(props, {
+    emit
+  }) {
     const {
       userInfo
     } = toRefs(props);
@@ -2721,6 +2723,11 @@ var script = defineComponent({
 
     const setSetting = (key, value) => {
       globalProvider[key] = value;
+
+      if (key === "mode") {
+        emit("modeChange", value);
+      }
+
       setProvider(globalProvider);
     };
 

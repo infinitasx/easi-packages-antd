@@ -3509,7 +3509,7 @@ async function useReload(provide, route, refreshAll = false) {
 
 var script$2 = defineComponent({
   name: createNamespace("Setting"),
-  emits: ["update:visible"],
+  emits: ["update:visible", "modeChange"],
   props: {
     userInfo: {
       type: Object,
@@ -3533,7 +3533,9 @@ var script$2 = defineComponent({
     }
   },
 
-  setup(props) {
+  setup(props, {
+    emit
+  }) {
     const {
       userInfo
     } = toRefs(props);
@@ -3545,6 +3547,11 @@ var script$2 = defineComponent({
 
     const setSetting = (key, value) => {
       globalProvider[key] = value;
+
+      if (key === "mode") {
+        emit("modeChange", value);
+      }
+
       setProvider(globalProvider);
     };
 
@@ -3997,7 +4004,7 @@ script$1.render = render$1;
 script$1.__file = "packages/layout/Tab.vue";
 var script = defineComponent({
   name: createNamespace("Layout"),
-  emits: ["update:setting"],
+  emits: ["update:setting", "modeChange"],
   props: {
     logo: {
       type: String,
@@ -4270,7 +4277,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       showTabSetting: _ctx.showTabSetting,
       onLogout: _ctx.onLogout,
       toDashboard: _ctx.toDashboard,
-      editPassword: _ctx.editPassword
+      editPassword: _ctx.editPassword,
+      onModeChange: _cache[3] || (_cache[3] = $event => _ctx.$emit("modeChange", $event))
     }, {
       "action-render": withCtx(() => [renderSlot(_ctx.$slots, "action-render")]),
       _: 3

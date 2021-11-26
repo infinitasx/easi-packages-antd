@@ -31,7 +31,7 @@
       </a-layout-content>
       <a-layout-footer class="px-16 py-12 text-center"> &copy; {{copyRightYear()}} EASI, Make Life Easier. </a-layout-footer>
     </a-layout>
-    <PageSetting v-model:visible="showSetting" :userInfo="userInfo" :showTabSetting="showTabSetting" :onLogout="onLogout" :toDashboard="toDashboard" :editPassword="editPassword">
+    <PageSetting v-model:visible="showSetting" :userInfo="userInfo" :showTabSetting="showTabSetting" :onLogout="onLogout" :toDashboard="toDashboard" :editPassword="editPassword" @modeChange="$emit('modeChange', $event)">
       <!--  开发时可自定义插入内容  -->
       <template #action-render>
         <slot name="action-render"></slot>
@@ -54,7 +54,7 @@ import { UserInfo } from '../../typings/antd'
 
 export default defineComponent({
   name: createNamespace("Layout"),
-  emits: ['update:setting'],
+  emits: ['update:setting', 'modeChange'],
   props: {
     // Logo图片路径
     logo: {
