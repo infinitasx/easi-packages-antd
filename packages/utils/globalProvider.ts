@@ -5,7 +5,7 @@ import { UserInfo } from '../../typings/antd';
 
 export interface IProvider {
   reloadPage: boolean;
-  mode: boolean;
+  mode: false | true | 'dark' | '';
   showTab: boolean;
   fixedTab: boolean;
   cachedPage: string[];

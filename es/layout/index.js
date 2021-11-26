@@ -4132,6 +4132,12 @@ var script = defineComponent({
         collapsed.value = !collapsed.value;
       },
 
+      setProvider(mode) {
+        setProvider({ ...toRaw(globalProvider),
+          mode
+        });
+      },
+
       collWidth: computed(() => {
         return collapsed.value ? "80px" : "200px";
       }),

@@ -53,6 +53,7 @@ declare const _default: import("vue").DefineComponent<{
     collapsed: import("vue").Ref<boolean>;
     addTransition: import("vue").Ref<boolean>;
     setCollapsed(): void;
+    setProvider(mode: false | true | 'dark' | ''): void;
     collWidth: import("vue").ComputedRef<"80px" | "200px">;
     globalProvider: IProvider;
     cachedPage: import("vue").ComputedRef<string[]>;

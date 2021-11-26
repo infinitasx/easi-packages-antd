@@ -2,7 +2,7 @@ import { RouteLocationNormalizedLoaded } from 'vue-router';
 import { UserInfo } from '../../typings/antd';
 export interface IProvider {
     reloadPage: boolean;
-    mode: boolean;
+    mode: false | true | 'dark' | '';
     showTab: boolean;
     fixedTab: boolean;
     cachedPage: string[];
@@ -13,7 +13,7 @@ export declare const defaultProvider: IProvider;
 export declare function initProvider(): {
     [x: string]: any;
     reloadPage: boolean;
-    mode: boolean;
+    mode: boolean | "" | "dark";
     showTab: boolean;
     fixedTab: boolean;
     cachedPage: string[];

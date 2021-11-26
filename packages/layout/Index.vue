@@ -41,7 +41,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, inject, onBeforeUnmount, onMounted, ref, toRefs, watch, PropType } from "vue";
+import { computed, defineComponent, inject, onBeforeUnmount, onMounted, toRaw, ref, toRefs, watch, PropType } from "vue";
 import { useRoute, useRouter, RouteLocationNormalized } from "vue-router";
 import { createNamespace } from "../utils/create";
 import PageNav from "./Nav.vue";
@@ -49,7 +49,7 @@ import PageHeader from "./Header.vue";
 import PageSetting from "../setting/Index.vue";
 import PageTab from "./Tab.vue";
 import { isMobile, debounced } from "easi-web-utils";
-import { useReload, IProvider, defaultProvider } from "../utils/globalProvider";
+import { useReload, setProvider, IProvider, defaultProvider } from "../utils/globalProvider";
 import { UserInfo } from '../../typings/antd'
 
 export default defineComponent({
@@ -169,7 +169,6 @@ export default defineComponent({
 
     handleResize();
     window?.addEventListener("resize", handleResize, false);
-
     watch(() => showSetting.value, (newVal) => {
       if(setting.value !== newVal){
         emit('update:setting', newVal);
@@ -199,6 +198,9 @@ export default defineComponent({
       addTransition,
       setCollapsed() {
         collapsed.value = !collapsed.value;
+      },
+      setProvider(mode: false | true | 'dark' | '') {
+        setProvider({...toRaw(globalProvider), mode})
       },
       collWidth: computed(() => {
         return collapsed.value ? "80px" : "200px";

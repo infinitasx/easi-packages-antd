@@ -308,10 +308,6 @@ img.ant-image-preview-img {
   cursor: not-allowed;
 }
 
-.easi-packages-uploader-image-list {
-  height: calc(100% - 38px);
-}
-
 .easi-packages-uploader-cropper {
   position: absolute;
   top: 2px;
@@ -369,6 +365,10 @@ img.ant-image-preview-img {
     padding-bottom: 48%;
   }
 }
+.easi-packages-uploader-image-list {
+  height: calc(100% - 38px);
+}
+
 .easi-packages-uploader-preview {
   width: 100%;
   height: 0;
