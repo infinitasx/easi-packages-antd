@@ -68,6 +68,10 @@ declare const _default: import("vue").DefineComponent<{
         type: BooleanConstructor;
         default: boolean;
     };
+    footerCenter: {
+        type: BooleanConstructor;
+        default: boolean;
+    };
 }, {
     symbolVisible: import("vue").Ref<boolean>;
     autoLoading: import("vue").Ref<boolean>;
@@ -101,6 +105,7 @@ declare const _default: import("vue").DefineComponent<{
     handleOk?: unknown;
     autoHeight?: unknown;
     footer?: unknown;
+    footerCenter?: unknown;
 } & {
     title: string;
     showCancel: boolean;
@@ -116,6 +121,7 @@ declare const _default: import("vue").DefineComponent<{
     handleOk: Function;
     autoHeight: boolean;
     footer: boolean;
+    footerCenter: boolean;
 } & {
     visible?: boolean | undefined;
     bodyStyle?: Record<string, any> | undefined;
@@ -143,5 +149,6 @@ declare const _default: import("vue").DefineComponent<{
     handleOk: Function;
     autoHeight: boolean;
     footer: boolean;
+    footerCenter: boolean;
 }>;
 export default _default;

@@ -96,6 +96,10 @@ var script = defineComponent({
     footer: {
       type: Boolean,
       default: true
+    },
+    footerCenter: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -168,10 +172,6 @@ var script = defineComponent({
   }
 
 });
-const _hoisted_1 = {
-  key: 0,
-  class: "footer"
-};
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_a_button = resolveComponent("a-button");
@@ -198,7 +198,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, _ctx.$attrs, {
     onCancel: _ctx.onCancel
   }), {
-    footer: withCtx(() => [renderSlot(_ctx.$slots, "footer"), !_ctx.$slots.footer && _ctx.footer ? (openBlock(), createBlock("div", _hoisted_1, [_ctx.showCancel ? (openBlock(), createBlock(_component_a_button, {
+    footer: withCtx(() => [renderSlot(_ctx.$slots, "footer"), !_ctx.$slots.footer && _ctx.footer ? (openBlock(), createBlock("div", {
+      key: 0,
+      class: ["footer", {
+        "easi-antd-footer-center": _ctx.footerCenter
+      }]
+    }, [_ctx.showCancel ? (openBlock(), createBlock(_component_a_button, {
       key: 0,
       onClick: _ctx.onCancel
     }, {
@@ -212,7 +217,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, {
       default: withCtx(() => [createTextVNode(toDisplayString(_ctx.okText || _ctx.getText("confirm")), 1)]),
       _: 1
-    }, 8, ["type", "loading", "onClick"])) : createCommentVNode("v-if", true)])) : createCommentVNode("v-if", true)]),
+    }, 8, ["type", "loading", "onClick"])) : createCommentVNode("v-if", true)], 2)) : createCommentVNode("v-if", true)]),
     default: withCtx(() => [renderSlot(_ctx.$slots, "default")]),
     _: 3
   }, 16, ["visible", "title", "bodyStyle", "closable", "confirmLoading", "destroyOnClose", "keyboard", "maskClosable", "width", "getContainer", "afterClose", "class", "onCancel"])], 2112);
