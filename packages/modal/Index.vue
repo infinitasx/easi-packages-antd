@@ -20,7 +20,7 @@
     <slot></slot>
     <template #footer>
       <slot name="footer"></slot>
-      <div class="footer" v-if="!$slots.footer && footer">
+      <div class="footer" :class="{'easi-antd-footer-center': footerCenter}" v-if="!$slots.footer && footer">
         <a-button v-if="showCancel" @click="onCancel">
           {{ cancelText || getText('cancel') }}
         </a-button>
@@ -116,6 +116,10 @@ export default defineComponent({
       type: Boolean,
       default: true,
     },
+    footerCenter: {
+      type: Boolean,
+      default: false,
+    }
   },
   setup(props, { emit }) {
     const { handleOk, visible } = toRefs(props);
@@ -184,3 +188,8 @@ export default defineComponent({
   },
 });
 </script>
+<style lang="scss">
+.easi-antd-footer-center{
+  text-align: center;
+}
+</style>
