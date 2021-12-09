@@ -6,7 +6,7 @@ declare const _default: import("vue").DefineComponent<{
     };
     title: {
         type: StringConstructor;
-        default: string;
+        default: undefined;
     };
     bodyStyle: ObjectConstructor;
     showCancel: {
@@ -107,7 +107,6 @@ declare const _default: import("vue").DefineComponent<{
     footer?: unknown;
     footerCenter?: unknown;
 } & {
-    title: string;
     showCancel: boolean;
     showOk: boolean;
     okType: string;
@@ -124,6 +123,7 @@ declare const _default: import("vue").DefineComponent<{
     footerCenter: boolean;
 } & {
     visible?: boolean | undefined;
+    title?: string | undefined;
     bodyStyle?: Record<string, any> | undefined;
     cancelText?: string | undefined;
     okText?: string | undefined;

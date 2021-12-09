@@ -17,6 +17,9 @@
       v-bind="$attrs"
       @cancel="onCancel"
   >
+    <template #title v-if="!title">
+      <slot name="title"></slot>
+    </template>
     <slot></slot>
     <template #footer>
       <slot name="footer"></slot>
@@ -52,7 +55,7 @@ export default defineComponent({
     },
     title: {
       type: String,
-      default: '',
+      default: undefined,
     },
     bodyStyle: Object,
     showCancel: {

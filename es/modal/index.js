@@ -1,4 +1,4 @@
-import { defineComponent, toRefs, ref, inject, watch, resolveComponent, openBlock, createBlock, Fragment, createCommentVNode, createVNode, mergeProps, withCtx, renderSlot, createTextVNode, toDisplayString } from 'vue';
+import { defineComponent, toRefs, ref, inject, watch, resolveComponent, openBlock, createBlock, Fragment, createCommentVNode, createVNode, mergeProps, createSlots, withCtx, renderSlot, createTextVNode, toDisplayString } from 'vue';
 
 function createNamespace(name) {
   return `EASI${name}`;
@@ -35,7 +35,7 @@ var script = defineComponent({
     },
     title: {
       type: String,
-      default: ""
+      default: void 0
     },
     bodyStyle: Object,
     showCancel: {
@@ -197,7 +197,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }]
   }, _ctx.$attrs, {
     onCancel: _ctx.onCancel
-  }), {
+  }), createSlots({
     footer: withCtx(() => [renderSlot(_ctx.$slots, "footer"), !_ctx.$slots.footer && _ctx.footer ? (openBlock(), createBlock("div", {
       key: 0,
       class: ["footer", {
@@ -219,8 +219,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       _: 1
     }, 8, ["type", "loading", "onClick"])) : createCommentVNode("v-if", true)], 2)) : createCommentVNode("v-if", true)]),
     default: withCtx(() => [renderSlot(_ctx.$slots, "default")]),
-    _: 3
-  }, 16, ["visible", "title", "bodyStyle", "closable", "confirmLoading", "destroyOnClose", "keyboard", "maskClosable", "width", "getContainer", "afterClose", "class", "onCancel"])], 2112);
+    _: 2
+  }, [!_ctx.title ? {
+    name: "title",
+    fn: withCtx(() => [renderSlot(_ctx.$slots, "title")])
+  } : void 0]), 1040, ["visible", "title", "bodyStyle", "closable", "confirmLoading", "destroyOnClose", "keyboard", "maskClosable", "width", "getContainer", "afterClose", "class", "onCancel"])], 2112);
 }
 
 script.render = render;

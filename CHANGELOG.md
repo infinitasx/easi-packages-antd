@@ -9,6 +9,7 @@
 ### Added
 
 - EASIModal组件新增footerCenter参数，支持默认的底部按钮居中展示
+- EASIModal组件新增title插槽支持
 
 ## [0.0.36] - 2021-11-26
 
