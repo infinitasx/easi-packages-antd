@@ -248,6 +248,10 @@ export default defineComponent({
 //  }
 //}
 
+[data-pro-theme="antdv-pro-theme-dark"] .easi-packages-page-header {
+  border-bottom: 2px solid #434343;
+}
+
 .easi-packages-transition-width {
   transition: width 0.2s;
 }

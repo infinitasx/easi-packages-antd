@@ -308,10 +308,6 @@ img.ant-image-preview-img {
   cursor: not-allowed;
 }
 
-.easi-packages-uploader-image-list {
-  height: calc(100% - 38px);
-}
-
 .easi-packages-uploader-cropper {
   position: absolute;
   top: 2px;
@@ -369,8 +365,8 @@ img.ant-image-preview-img {
     padding-bottom: 48%;
   }
 }
-.easi-packages-uploader-container {
-  margin-left: -2%;
+.easi-packages-uploader-image-list {
+  height: calc(100% - 38px);
 }
 
 .easi-packages-uploader-preview {
@@ -439,6 +435,10 @@ img.ant-image-preview-img {
     width: 48%;
   }
 }
+.easi-packages-uploader-container {
+  margin-left: -2%;
+}
+
 .easi-packages-ant-upload.ant-upload {
   width: 384px;
   height: 192px;

@@ -62,6 +62,10 @@
   margin-left: 16px;
 }
 
+.easi-packages-page-breadcrumb-wrap .ant-page-header-content {
+  padding-top: 0;
+}
+
 [data-pro-theme=antdv-pro-theme-dark] body {
   color: rgba(255, 255, 255, 0.65);
   background-color: #000;
@@ -9946,23 +9950,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.easi-packages-page-breadcrumb-wrap .ant-page-header-footer {
-  margin: 0;
-}
-
-.easi-packages-page-header {
-  border-bottom: 2px solid #f1f1f1;
-}
-
-.easi-packages-transition-width {
-  transition: width 0.2s;
-}
-
-.easi-packages-side-placeholder {
-  flex-shrink: 0;
-  overflow: hidden;
-}
-
 [data-pro-theme=antdv-pro-theme-dark] .easi-packages-drawer-footer {
   background-color: #1f1f1f;
   border-color: #303030;
@@ -9978,6 +9965,10 @@
   background: #fff;
   text-align: right;
   z-index: 1;
+}
+
+.easi-packages-page-breadcrumb-wrap .ant-page-header-footer {
+  margin: 0;
 }
 
 .ant-btn-link.easi-btn-success, .ant-btn-text.easi-btn-success {
@@ -10289,6 +10280,23 @@
   border-color: #434343;
 }
 
+.easi-packages-error-full-page {
+  height: calc(100vh - 160px);
+}
+
+.easi-packages-margin-bottom {
+  margin-bottom: 20px;
+}
+
+.easi-packages-more-item {
+  padding-left: 24px;
+  padding-right: 24px;
+  margin-bottom: 10px;
+  margin-left: -24px;
+  margin-right: -24px;
+  height: 44px;
+}
+
 .easi-packages-pane-container {
   position: relative;
   height: calc(100vh - 400px);
@@ -10306,21 +10314,21 @@ img.ant-image-preview-img {
   display: inline-block !important;
 }
 
-.easi-packages-margin-bottom {
-  margin-bottom: 20px;
+.easi-packages-page-header {
+  border-bottom: 2px solid #f1f1f1;
 }
 
-.easi-packages-more-item {
-  padding-left: 24px;
-  padding-right: 24px;
-  margin-bottom: 10px;
-  margin-left: -24px;
-  margin-right: -24px;
-  height: 44px;
+[data-pro-theme=antdv-pro-theme-dark] .easi-packages-page-header {
+  border-bottom: 2px solid #434343;
 }
 
-.easi-packages-error-full-page {
-  height: calc(100vh - 160px);
+.easi-packages-transition-width {
+  transition: width 0.2s;
+}
+
+.easi-packages-side-placeholder {
+  flex-shrink: 0;
+  overflow: hidden;
 }
 
 [data-pro-theme=antdv-pro-theme-dark] .easi-packages-loading-container {
@@ -10778,38 +10786,6 @@ img.ant-image-preview-img {
   cursor: not-allowed;
 }
 
-#easi-watermarker-container {
-  padding-top: 20px;
-  padding-left: 25px;
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  pointer-events: none;
-  user-select: none;
-  z-index: 19999;
-}
-#easi-watermarker-container .easi-water-marker-item {
-  width: 220px;
-  height: 220px;
-  padding: 0 20px;
-  text-align: center;
-  font-size: 15px;
-  transform: rotate(-45deg);
-  color: #adadad;
-  opacity: 0.12;
-}
-
-.easi-packages-uploader-image-list {
-  height: calc(100% - 38px);
-}
-
 .easi-packages-uploader-cropper {
   position: absolute;
   top: 2px;
@@ -10867,6 +10843,38 @@ img.ant-image-preview-img {
     padding-bottom: 48%;
   }
 }
+#easi-watermarker-container {
+  padding-top: 20px;
+  padding-left: 25px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  pointer-events: none;
+  user-select: none;
+  z-index: 19999;
+}
+#easi-watermarker-container .easi-water-marker-item {
+  width: 220px;
+  height: 220px;
+  padding: 0 20px;
+  text-align: center;
+  font-size: 15px;
+  transform: rotate(-45deg);
+  color: #adadad;
+  opacity: 0.12;
+}
+
+.easi-packages-uploader-image-list {
+  height: calc(100% - 38px);
+}
+
 .easi-system-option .ant-popover-inner-content {
   padding: 0;
   min-width: 500px;
@@ -10918,6 +10926,12 @@ img.ant-image-preview-img {
 
 .easi-packages-uploader-container {
   margin-left: -2%;
+}
+
+.easi-packages-ant-upload.ant-upload {
+  width: 384px;
+  height: 192px;
+  background: transparent;
 }
 
 .easi-packages-uploader-preview {
@@ -10986,12 +11000,6 @@ img.ant-image-preview-img {
     width: 48%;
   }
 }
-.easi-packages-ant-upload.ant-upload {
-  width: 384px;
-  height: 192px;
-  background: transparent;
-}
-
 .easi-packages-logo {
   width: 32px;
   height: 32px;
