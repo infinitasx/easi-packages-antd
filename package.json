@@ -92,7 +92,7 @@
     "easi-web-utils": "git+https://github.com/infinitasx/easi-web-utils.git#main",
     "vue-router": "^4.0.10"
   },
-  "homepage": "https://static.easiglobal.com/easi-packages-antd/0.0.37/website/index.html",
+  "homepage": "https://static.easiglobal.com/easi-packages-antd/0.0.38/website/index.html",
   "easiAssetsDeployConfig": {
     "backend": {
       "projectName": "",
