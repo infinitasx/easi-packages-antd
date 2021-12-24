@@ -4,11 +4,12 @@
 
 本文件格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/) ，并且遵循 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) 。
 
-## [0.0.38] - 2021-12-23
+## [0.0.38] - 2021-12-24
 
 ### Fixed
 
 - 暗黑模式下样式优化
+- 修复EASILoading动画效果
 
 
 ## [0.0.37] - 2021-12-08

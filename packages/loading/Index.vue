@@ -169,7 +169,7 @@ export default defineComponent({
   margin: auto;
   width: 35%;
   height: 6px;
-  animation: scale 1s linear infinite;
+  animation: easi-packages-scale 1s linear infinite;
   transform-origin: top center;
   background: #e1e1e1;
   border-radius: 50%;
